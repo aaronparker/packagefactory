@@ -1,0 +1,69 @@
+{
+    "PackageInformation": {
+        "SetupType": "MSI \\ EXE",
+        "SetupFile": "Setup.exe",
+        "SourceFolder": "Source",
+        "OutputFolder": "Package",
+        "IconFile": "Icon.png"
+    },
+    "Information": {
+        "DisplayName": "AppName 1.0.0",
+        "Description": "Installs AppName 1.0.0",
+        "Publisher": "AppVendor",
+        "Notes": "AppNote"
+    },
+    "Program": {
+        "InstallCommand": "<-- Only required when SetupType is set as EXE -->",
+        "UninstallCommand": "<-- Only required when SetupType is set as EXE -->",
+        "InstallExperience": "system \\ user",
+        "DeviceRestartBehavior": "suppress \\ force \\ basedOnReturnCode \\ allow"
+    },
+    "RequirementRule": {
+        "MinimumRequiredOperatingSystem": "1809",
+        "Architecture": "All \\ x64 \\ x86"
+    },
+    "CustomRequirementRule": [
+    ],
+    "DetectionRule": [
+        {
+            "Type": "Registry",
+            "DetectionMethod": "VersionComparison",
+            "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\123",
+            "ValueName": "DisplayVersion",
+            "Operator": "greaterThanOrEqual",
+            "Value": "1.0.0",
+            "Check32BitOn64System": "false"
+        },
+        {
+            "Type": "Registry",
+            "DetectionMethod": "Existence",
+            "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\123",
+            "ValueName": "<reg_value_name>",
+            "DetectionType": "exists \\ notExists",
+            "Check32BitOn64System": "false \\ true"
+        },
+        {
+            "Type": "MSI",
+            "ProductCode": "<guid>",
+            "ProductVersionOperator": "notConfigured \\ equal \\ notEqual \\ greaterThanOrEqual \\ greaterThan \\ lessThanOrEqual \\ lessThan",
+            "ProductVersion": "1.0.0"
+        },
+        {
+            "Type": "MSI",
+            "ProductCode": "<guid>",
+            "ProductVersionOperator": "notConfigured",
+            "ProductVersion": ""
+        },
+        {
+            "Type": "Script",
+            "ScriptFile": "detection.ps1",
+            "EnforceSignatureCheck": "true \\ false",
+            "RunAs32Bit": "true \\ false"
+        }
+    ],
+    "TenantInformation": {
+        "Name": "tenant.onmicrosoft.com",
+        "PromptBehavior": "Always \\ Auto \\ Never",
+        "ApplicationID": "d1ddf0e4-d672-4dae-b554-9d5bdfd93547"
+    }
+}

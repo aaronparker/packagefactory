@@ -1,0 +1,40 @@
+{
+    "PackageInformation": {
+        "SetupType": "MSI \\ EXE",
+        "SetupFile": "Setup.exe",
+        "SourceFolder": "Source",
+        "OutputFolder": "Package",
+        "IconFile": "Icon.png"
+    },
+    "Information": {
+        "DisplayName": "AppName 1.0.0",
+        "Description": "Installs AppName 1.0.0",
+        "Publisher": "AppVendor",
+        "Notes": "AppNote"
+    },
+    "Program": {
+        "InstallCommand": "",
+        "UninstallCommand": "",
+        "InstallExperience": "system \\ user",
+        "DeviceRestartBehavior": "suppress \\ force \\ basedOnReturnCode \\ allow"
+    },
+    "RequirementRule": {
+        "MinimumRequiredOperatingSystem": "1809",
+        "Architecture": "All \\ x64 \\ x86"
+    },
+    "CustomRequirementRule": [
+    ],
+    "DetectionRule": [
+        {
+            "Type": "Script",
+            "ScriptFile": "File.ps1",
+            "EnforceSignatureCheck": "true \\ false",
+            "RunAs32Bit": "true \\ false"
+        }
+    ],
+    "TenantInformation": {
+        "Name": "tenant.onmicrosoft.com",
+        "PromptBehavior": "Always \\ Auto \\ Never",
+        "ApplicationID": "d1ddf0e4-d672-4dae-b554-9d5bdfd93547"
+    }
+}
