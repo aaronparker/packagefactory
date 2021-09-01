@@ -1,0 +1,2 @@
+# IntuneWin32AppPackager
+Integrating IntuneWin32AppPackager and Evergreen
