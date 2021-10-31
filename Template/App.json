@@ -22,8 +22,7 @@
         "MinimumRequiredOperatingSystem": "1809",
         "Architecture": "All \\ x64 \\ x86"
     },
-    "CustomRequirementRule": [
-    ],
+    "CustomRequirementRule": [],
     "DetectionRule": [
         {
             "Type": "Registry",

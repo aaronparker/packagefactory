@@ -1,0 +1,42 @@
+{
+  "PackageInformation": {
+    "SetupType": "EXE",
+    "SetupFile": "AcroRdrDCx642100720099_en_US.exe",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://raw.githubusercontent.com/Insentra/intune-icons/main/icons/Adobe-AcrobatReader.png"
+  },
+  "Information": {
+    "DisplayName": "Adobe Acrobat Reader DC 21.007.20099 x64",
+    "Description": "The leading PDF viewer to print, sign, and annotate PDFs.",
+    "Publisher": "Adobe",
+    "Notes": "Created with Evergreen and IntuneWin32AppPackager."
+  },
+  "Program": {
+    "InstallCommand": "-sfx_nu /sALL /rps /l /msi EULA_ACCEPT=YES ENABLE_CHROMEEXT=0 DISABLE_BROWSER_INTEGRATION=1 ENABLE_OPTIMIZATION=YES ADD_THUMBNAILPREVIEW=0 DISABLEDESKTOPSHORTCUT=1",
+    "UninstallCommand": "msiexec.exe /X {AC76BA86-1033-1033-7760-BC15014EA700} /QN-",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "suppress"
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "1809",
+    "Architecture": "x64"
+  },
+  "CustomRequirementRule": [],
+  "DetectionRule": [
+    {
+      "Type": "Registry",
+      "DetectionMethod": "VersionComparison",
+      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{AC76BA86-1033-1033-7760-BC15014EA700}",
+      "ValueName": "DisplayVersion",
+      "Operator": "greaterThanOrEqual",
+      "Value": "21.007.20099",
+      "Check32BitOn64System": "false"
+    }
+  ],
+  "TenantInformation": {
+    "Name": "tenant.onmicrosoft.com",
+    "PromptBehavior": "Always \\ Auto \\ Never",
+    "ApplicationID": "d1ddf0e4-d672-4dae-b554-9d5bdfd93547"
+  }
+}
