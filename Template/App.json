@@ -2,6 +2,7 @@
     "PackageInformation": {
         "SetupType": "MSI \\ EXE",
         "SetupFile": "Setup.exe",
+        "Version": "",
         "SourceFolder": "Source",
         "OutputFolder": "Package",
         "IconFile": "Icon.png"

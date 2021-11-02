@@ -21,10 +21,13 @@
 
         Version history:
         1.0.0 - (2020-09-26) Script created
+
+        Updated for Evergreen integration to create a package factory
+        Aaron Parker, @stealthpuppy
 #>
 [CmdletBinding(SupportsShouldProcess = $true)]
 param(
-    [Parameter(Mandatory = $false, HelpMessage = "")]
+    [Parameter(Mandatory = $true, HelpMessage = "Specify the application package name.")]
     [ValidateNotNullOrEmpty()]
     [System.String] $AppName,
 
@@ -306,7 +309,7 @@ Process {
                     "ProductCode"            = $DetectionRuleItem.ProductCode
                     "ProductVersionOperator" = $DetectionRuleItem.ProductVersionOperator
                 }
-                if (-not([string]::IsNullOrEmpty($DetectionRuleItem.ProductVersion))) {
+                if (-not([System.String]::IsNullOrEmpty($DetectionRuleItem.ProductVersion))) {
                     $DetectionRuleArgs.Add("ProductVersion", $DetectionRuleItem.ProductVersion)
                 }
 
@@ -334,7 +337,7 @@ Process {
                             "DetectionType"        = $DetectionRuleItem.DetectionType
                             "Check32BitOn64System" = [System.Convert]::ToBoolean($DetectionRuleItem.Check32BitOn64System)
                         }
-                        if (-not([string]::IsNullOrEmpty($DetectionRuleItem.ValueName))) {
+                        if (-not([System.String]::IsNullOrEmpty($DetectionRuleItem.ValueName))) {
                             $DetectionRuleArgs.Add("ValueName", $DetectionRuleItem.ValueName)
                         }
                     }
@@ -468,18 +471,18 @@ Process {
     if (Test-Path -Path $AppIconFile) {
         $Win32AppArgs.Add("Icon", $Icon)
     }
-    if (-not([string]::IsNullOrEmpty($AppData.Information.Notes))) {
+    if (-not([System.String]::IsNullOrEmpty($AppData.Information.Notes))) {
         $Win32AppArgs.Add("Notes", $AppData.Information.Notes)
     }
-    if (-not([string]::IsNullOrEmpty($AppData.Program.InstallCommand))) {
+    if (-not([System.String]::IsNullOrEmpty($AppData.Program.InstallCommand))) {
         $Win32AppArgs.Add("InstallCommandLine", $AppData.Program.InstallCommand)
     }
-    if (-not([string]::IsNullOrEmpty($AppData.Program.UninstallCommand))) {
+    if (-not([System.String]::IsNullOrEmpty($AppData.Program.UninstallCommand))) {
         $Win32AppArgs.Add("UninstallCommandLine", $AppData.Program.UninstallCommand)
     }
 
     if ($PSBoundParameters["Validate"]) {
-        if (-not([string]::IsNullOrEmpty($Win32AppArgs["Icon"]))) {
+        if (-not([System.String]::IsNullOrEmpty($Win32AppArgs["Icon"]))) {
             # Redact icon Base64 code for better visibility in validate context
             $Win32AppArgs["Icon"] = $Win32AppArgs["Icon"].SubString(0, 20) + "... //redacted for validation context//"
         }

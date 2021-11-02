@@ -2,6 +2,7 @@
   "PackageInformation": {
     "SetupType": "EXE",
     "SetupFile": "AcroRdrDCx642100720099_en_US.exe",
+    "Version": "21.007.20099",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://raw.githubusercontent.com/Insentra/intune-icons/main/icons/Adobe-AcrobatReader.png"

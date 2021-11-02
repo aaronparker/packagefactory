@@ -1,0 +1,22 @@
+{
+    "Applications": {
+        "AdobeAcrobatReaderDC": {
+            "Filter": "Get-EvergreenApp -Name \"AdobeAcrobatReaderDC\" | Where-Object { $_.Language -eq \"English\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+            "AppTitle": "Adobe Acrobat Reader DC",
+            "Language": "English",
+            "Architecture": "x64"
+        },
+        "7-Zip": {
+            "Filter": "Get-EvergreenApp -Name \"7zip\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Type -eq \"msi\" } | Select-Object -First 1",
+            "AppTitle": "7-Zip",
+            "Language": "en-US",
+            "Architecture": "x64"
+        },
+        "MicrosoftVisualStudioCode": {
+            "Filter": "Get-EvergreenApp -Name \"MicrosoftVisualStudioCode\" | Where-Object { $_.Channel -eq \"Stable\" -and $_.Architecture -eq \"x64\" -and $_.Platform -eq \"win32-x64\" } | Select-Object -First 1",
+            "AppTitle": "Microsoft Visual Studio Code",
+            "Language": "en-US",
+            "Architecture": "x64"
+        }
+    }
+}
