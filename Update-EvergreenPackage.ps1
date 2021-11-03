@@ -43,7 +43,7 @@ ForEach ($Application in $ApplicationList.Applications | Get-Member -MemberType 
             $AppJson.Information.DisplayName = "$($Application.AppTitle) $($Evergreen.Version)"
         }
     
-        # Step through each DetectionRule to update properties
+        # Step through each DetectionRule to update version properties
         For ($i = 0; $i -le $AppJson.DetectionRule.Count - 1; $i++) {
 
             If ("Value" -in $AppJson.DetectionRule[$i] | Get-Member -MemberType "NoteProperty" | Select-Object -ExpandProperty "Name") {
@@ -57,11 +57,15 @@ ForEach ($Application in $ApplicationList.Applications | Get-Member -MemberType 
 
         # Write the application manifest back to disk
         $AppJson | ConvertTo-Json | Out-File -Path $AppConfiguration -Force
+
+        # TODO: Update Save-Evergreen for custom path output and download installer here
+
+        # TODO: Call Create-Win32App.ps1 here
     }
     ElseIf ([System.Version]$Evergreen.Version -le [System.Version]$AppJson.PackageInformation.Version) {
         Write-Host -Object "$($Evergreen.Version) less than or equal to $($AppJson.PackageInformation.Version)."
     }
     Else {
-        Write-Host -Object "Could not determine version in the application manifest."
+        Write-Host -Object "Could not compare package version between Evergreen and the application manifest."
     }
 }
