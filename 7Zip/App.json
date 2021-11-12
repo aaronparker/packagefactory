@@ -5,18 +5,18 @@
     "Version": "21.007.20099",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
-    "IconFile": "https://raw.githubusercontent.com/Insentra/intune-icons/main/icons/Adobe-AcrobatReader.png"
+    "IconFile": "https://raw.githubusercontent.com/Insentra/intune-icons/main/icons/7-Zip.png"
   },
   "Information": {
-    "DisplayName": "Adobe Acrobat Reader DC 21.007.20099 x64",
-    "Description": "The leading PDF viewer to print, sign, and annotate PDFs.",
-    "Publisher": "Adobe",
-    "InformationURL": "https://www.adobe.com/au/acrobat/pdf-reader.html",
-    "PrivacyURL": "https://www.adobe.com/au/privacy.html",
+    "DisplayName": "7-Zip x64",
+    "Description": "7-Zip is a file archiver with a high compression ratio.",
+    "Publisher": "Igor Pavlov",
+    "InformationURL": "https://www.7-zip.org/",
+    "PrivacyURL": "https://www.7-zip.org/privacy.html",
     "Notes": "Created with Evergreen and IntuneWin32AppPackager."
   },
   "Program": {
-    "InstallCommand": "-sfx_nu /sALL /rps /l /msi EULA_ACCEPT=YES ENABLE_CHROMEEXT=0 DISABLE_BROWSER_INTEGRATION=1 ENABLE_OPTIMIZATION=YES ADD_THUMBNAILPREVIEW=0 DISABLEDESKTOPSHORTCUT=1",
+    "InstallCommand": "msiexec /i 7z1900-x64.msi ALLUSERS=1 MSIRMSHUTDOWN=2 REBOOT=ReallySuppress /qn",
     "UninstallCommand": "msiexec.exe /X {AC76BA86-1033-1033-7760-BC15014EA700} /QN-",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"

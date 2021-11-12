@@ -11,6 +11,8 @@
         "DisplayName": "AppName 1.0.0",
         "Description": "Installs AppName 1.0.0",
         "Publisher": "AppVendor",
+        "InformationURL": "https://www.appvendor.com/aboutapplication.html",
+        "PrivacyURL": "https://www.appvendor.com/privacy.html",
         "Notes": "AppNote"
     },
     "Program": {

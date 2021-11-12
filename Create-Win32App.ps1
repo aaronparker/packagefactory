@@ -457,6 +457,8 @@ Process {
         "DisplayName"       = $AppData.Information.DisplayName
         "Description"       = $AppData.Information.Description
         "Publisher"         = $AppData.Information.Publisher
+        "InformationURL"    = $AppData.Information.InformationURL
+        "PrivacyURL"        = $AppData.Information.PrivacyURL
         "InstallExperience" = $AppData.Program.InstallExperience
         "RestartBehavior"   = $AppData.Program.DeviceRestartBehavior
         "DetectionRule"     = $DetectionRules
