@@ -5,8 +5,13 @@
         "DISABLEDESKTOPSHORTCUT",
         "ehthumbs",
         "HKEY",
+        "MERGETASKS",
         "Nickolaj",
+        "NOCLOSEAPPLICATIONS",
+        "NORESTARTAPPLICATIONS",
         "packagefactory",
-        "THUMBNAILPREVIEW"
+        "SUPPRESSMSGBOXES",
+        "THUMBNAILPREVIEW",
+        "VERYSILENT"
     ]
 }

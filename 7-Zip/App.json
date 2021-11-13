@@ -28,14 +28,11 @@
   "CustomRequirementRule": [],
   "DetectionRule": [
     {
-      "Type": "Registry",
-      "DetectionMethod": "VersionComparison",
-      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{AC76BA86-1033-1033-7760-BC15014EA700}",
-      "ValueName": "DisplayVersion",
-      "Operator": "greaterThanOrEqual",
-      "Value": "21.007.20099",
-      "Check32BitOn64System": "false"
-    }
+      "Type": "Script",
+      "ScriptFile": "detection_rule_x64",
+      "EnforceSignatureCheck": "false",
+      "RunAs32Bit": "false"
+  }
   ],
   "TenantInformation": {
     "Name": "tenant.onmicrosoft.com",
