@@ -20,7 +20,7 @@ Write-Verbose -Message "Read: $ManifestFile."
 $ApplicationList = Get-Content -Path $ManifestFile | ConvertFrom-Json
 
 # Walk through the list of applications
-ForEach ($Application in $ApplicationList.Applications) <#| Get-Member -MemberType "NoteProperty")#> {
+ForEach ($Application in $ApplicationList.Applications) {
     
     # Determine the application download and version number via Evergreen
     #$Properties = $ApplicationList.Applications.($Application.Name)

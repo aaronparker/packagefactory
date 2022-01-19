@@ -1,0 +1,45 @@
+{
+  "PackageInformation": {
+    "SetupType": "MSI",
+    "SetupFile": "googlechromestandaloneenterprise64.msi",
+    "Version": "97.0.4692.71",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://raw.githubusercontent.com/Insentra/intune-icons/main/icons/Adobe-AcrobatReader.png"
+  },
+  "Information": {
+    "DisplayName": "Google Chrome 97.0.4692.71 x64",
+    "Description": "The browser built by Google.",
+    "Publisher": "Google",
+    "InformationURL": "https://www.google.com/chrome/",
+    "PrivacyURL": "https://www.google.com.au/intl/en_au/chrome/privacy/",
+    "Notes": "Created with Evergreen and IntuneWin32AppPackager."
+  },
+  "Program": {
+    "InstallCommand": "/qb-",
+    "UninstallCommand": "msiexec.exe /X {B01A8859-9D45-3472-AD5D-0FB367564035} /QN-",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "suppress"
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "1809",
+    "Architecture": "x64"
+  },
+  "CustomRequirementRule": [],
+  "DetectionRule": [
+    {
+      "Type": "Registry",
+      "DetectionMethod": "VersionComparison",
+      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{B01A8859-9D45-3472-AD5D-0FB367564035}",
+      "ValueName": "DisplayVersion",
+      "Operator": "greaterThanOrEqual",
+      "Value": "1.62.2",
+      "Check32BitOn64System": "false"
+    }
+  ],
+  "TenantInformation": {
+    "Name": "tenant.onmicrosoft.com",
+    "PromptBehavior": "Always \\ Auto \\ Never",
+    "ApplicationID": "d1ddf0e4-d672-4dae-b554-9d5bdfd93547"
+  }
+}

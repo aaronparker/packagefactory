@@ -14,7 +14,7 @@
 
 # Package folders
 **/Package
-**/Source
+# **/Source
 
 # Logs and databases #
 ######################
