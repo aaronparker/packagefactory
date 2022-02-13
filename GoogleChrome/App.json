@@ -2,13 +2,13 @@
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "googlechromestandaloneenterprise64.msi",
-    "Version": "97.0.4692.71",
+    "Version": "98.0.4758.82",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://raw.githubusercontent.com/Insentra/intune-icons/main/icons/Adobe-AcrobatReader.png"
   },
   "Information": {
-    "DisplayName": "Google Chrome 97.0.4692.71 x64",
+    "DisplayName": "Google Chrome 98.0.4758.82 x64",
     "Description": "The browser built by Google.",
     "Publisher": "Google",
     "InformationURL": "https://www.google.com/chrome/",
@@ -33,7 +33,7 @@
       "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{B01A8859-9D45-3472-AD5D-0FB367564035}",
       "ValueName": "DisplayVersion",
       "Operator": "greaterThanOrEqual",
-      "Value": "1.62.2",
+      "Value": "98.0.4758.82",
       "Check32BitOn64System": "false"
     }
   ],

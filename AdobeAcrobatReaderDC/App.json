@@ -1,14 +1,14 @@
 {
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "AcroRdrDCx642100720099_en_US.exe",
-    "Version": "21.007.20099",
+    "SetupFile": "AcroRdrDCx642101120039_en_US.exe",
+    "Version": "21.011.20039",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://raw.githubusercontent.com/Insentra/intune-icons/main/icons/Adobe-AcrobatReader.png"
   },
   "Information": {
-    "DisplayName": "Adobe Acrobat Reader DC 21.007.20099 x64",
+    "DisplayName": "Adobe Acrobat Reader DC 21.011.20039 x64",
     "Description": "The leading PDF viewer to print, sign, and annotate PDFs.",
     "Publisher": "Adobe",
     "InformationURL": "https://www.adobe.com/au/acrobat/pdf-reader.html",
@@ -33,7 +33,7 @@
       "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{AC76BA86-1033-1033-7760-BC15014EA700}",
       "ValueName": "DisplayVersion",
       "Operator": "greaterThanOrEqual",
-      "Value": "21.007.20099",
+      "Value": "21.011.20039",
       "Check32BitOn64System": "false"
     }
   ],

@@ -5,7 +5,7 @@
 [CmdletBinding()]
 param (
     [Parameter()]
-    [System.String] $Path = "~/projects/evergreen-packagefactory",
+    [System.String] $Path = "~/projects/packagefactory",
 
     [Parameter()]
     [System.String] $Manifest = "Applications.json",

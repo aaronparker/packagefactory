@@ -1,14 +1,14 @@
 {
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "7z1900-x64.msi",
-    "Version": "19.00",
+    "SetupFile": "7z2107-x64.msi",
+    "Version": "21.07",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://raw.githubusercontent.com/Insentra/intune-icons/main/icons/7-Zip.png"
   },
   "Information": {
-    "DisplayName": "7-Zip 19.00 x64",
+    "DisplayName": "7-Zip 21.07 x64",
     "Description": "7-Zip is a file archiver with a high compression ratio.",
     "Publisher": "Igor Pavlov",
     "InformationURL": "https://www.7-zip.org/",
@@ -32,7 +32,7 @@
       "ScriptFile": "detection_rule_x64",
       "EnforceSignatureCheck": "false",
       "RunAs32Bit": "false"
-  }
+    }
   ],
   "TenantInformation": {
     "Name": "tenant.onmicrosoft.com",
