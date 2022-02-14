@@ -61,7 +61,7 @@ process {
     }
 
     if (-not($PSBoundParameters["Validate"])) {
-        
+
         # Connect and retrieve authentication token
         $params = @{
             TenantName     = $AppData.TenantInformation.Name
@@ -278,7 +278,6 @@ process {
                                 "RunAs32BitOn64System"      = [System.Convert]::ToBoolean($RequirementRuleItem.RunAs32BitOn64System)
                                 "EnforceSignatureCheck"     = [System.Convert]::ToBoolean($RequirementRuleItem.EnforceSignatureCheck)
                             }
-                            
                         }
                     }
 
