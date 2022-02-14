@@ -27,6 +27,13 @@
             "Title": "Google Chrome",
             "Language": "en-US",
             "Architecture": "x64"
+        },
+        {
+            "Name": "Audacity",
+            "Filter": "Get-EvergreenApp -Name \"Audacity\" | Where-Object { $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+            "Title": "Audacity",
+            "Language": "en-US",
+            "Architecture": "x64"
         }
     ]
 }

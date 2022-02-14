@@ -1,0 +1,42 @@
+{
+  "PackageInformation": {
+    "SetupType": "EXE",
+    "SetupFile": "audacity-win-3.1.3-64bit.exe",
+    "Version": "3.1.3",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://raw.githubusercontent.com/aaronparker/icons/main/icons/Audacity.png"
+  },
+  "Information": {
+    "DisplayName": "Audacity 3.1.3 x64",
+    "Description": "Audacity is an easy-to-use, multi-track audio editor and recorder for Windows, macOS, GNU/Linux and other operating systems.",
+    "Publisher": "Audacity",
+    "InformationURL": "https://www.audacityteam.org/",
+    "PrivacyURL": "https://www.audacityteam.org/",
+    "Notes": "Created with Evergreen and IntuneWin32AppPackager."
+  },
+  "Program": {
+    "InstallCommand": "/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP- /MERGETASKS=\"!desktopicon\"",
+    "UninstallCommand": "msiexec.exe /X {AC76BA86-1033-1033-7760-BC15014EA700} /QN-",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "suppress"
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "1809",
+    "Architecture": "x64"
+  },
+  "CustomRequirementRule": [],
+  "DetectionRule": [
+    {
+      "Type": "Script",
+      "ScriptFile": "detection_rule_x64",
+      "EnforceSignatureCheck": "false",
+      "RunAs32Bit": "false"
+    }
+  ],
+  "TenantInformation": {
+    "Name": "tenant.onmicrosoft.com",
+    "PromptBehavior": "Always \\ Auto \\ Never",
+    "ApplicationID": "d1ddf0e4-d672-4dae-b554-9d5bdfd93547"
+  }
+}
