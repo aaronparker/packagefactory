@@ -35,7 +35,7 @@ param(
     [ValidateNotNullOrEmpty()]
     [System.Management.Automation.SwitchParameter] $Validate
 )
-Process {
+process {
     # Read app data from JSON manifest
     $AppDataFile = [System.IO.Path]::Combine($PSScriptRoot, $AppName, "App.json")
     $AppData = Get-Content -Path $AppDataFile | ConvertFrom-Json
@@ -46,7 +46,7 @@ Process {
     $ScriptsFolder = [System.IO.Path]::Combine($PSScriptRoot, $AppName, "Scripts")
 
     # Icon file - download the file, if the property is a URL
-    If ($AppData.PackageInformation.IconFile -match "^http") {
+    if ($AppData.PackageInformation.IconFile -match "^http") {
         $OutFile = [System.IO.Path]::Combine($PSScriptRoot, $AppName, $(Split-Path -Path $AppData.PackageInformation.IconFile -Leaf))
         $params = @{
             Uri             = $AppData.PackageInformation.IconFile
@@ -56,7 +56,7 @@ Process {
         Invoke-WebRequest @params
         $AppIconFile = $OutFile
     }
-    Else {
+    else {
         $AppIconFile = [System.IO.Path]::Combine($PSScriptRoot, $AppName, $AppData.PackageInformation.IconFile)
     }
 
