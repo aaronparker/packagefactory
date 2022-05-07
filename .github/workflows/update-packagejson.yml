@@ -9,6 +9,8 @@ on:
   push:
     paths:
       - "/scripts/Update-PackageJson.ps1"
+  schedule:
+      - cron: '15 2 * * *'
 
 jobs:
   update-json:
