@@ -15,12 +15,10 @@ param (
     [System.String] $AppManifest = "App.json"
 )
 
-# Read the list of applications
-$ManifestFile = $(Join-Path -Path $Path -ChildPath $Manifest)
-Write-Host "Read: $ManifestFile."
-
 try {
-    $ApplicationList = Get-Content -Path $ManifestFile | ConvertFrom-Json
+    # Read the list of applications; we're assuming that $Manifest exists
+    Write-Host "Read: $Manifest."
+    $ApplicationList = Get-Content -Path $Manifest | ConvertFrom-Json
 }
 catch {
     throw $_.Exception.Message
