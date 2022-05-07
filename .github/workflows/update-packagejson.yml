@@ -6,6 +6,9 @@ env:
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - "/scripts/Update-PackageJson.ps1"
 
 jobs:
   update-json:
