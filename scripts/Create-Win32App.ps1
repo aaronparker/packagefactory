@@ -31,23 +31,28 @@ param(
     [ValidateNotNullOrEmpty()]
     [System.String] $AppName,
 
+    [Parameter(Mandatory = $true, HelpMessage = "Specify the application JSON definition.")]
+    [ValidateNotNullOrEmpty()]
+    [System.String] $Json,
+
+    [Parameter(Mandatory = $true, HelpMessage = "Specify the application package path.")]
+    [ValidateNotNullOrEmpty()]
+    [System.String] $PackageFile,
+
     [Parameter(Mandatory = $false, HelpMessage = "Specify to validate manifest file configuration.")]
     [ValidateNotNullOrEmpty()]
     [System.Management.Automation.SwitchParameter] $Validate
 )
 process {
     # Read app data from JSON manifest
-    $AppDataFile = [System.IO.Path]::Combine($PSScriptRoot, $AppName, "App.json")
-    $AppData = Get-Content -Path $AppDataFile | ConvertFrom-Json
+    $AppData = Get-Content -Path $Json | ConvertFrom-Json
 
     # Required packaging variables
-    $SourceFolder = [System.IO.Path]::Combine($PSScriptRoot, $AppName, $AppData.PackageInformation.SourceFolder)
-    $OutputFolder = [System.IO.Path]::Combine($PSScriptRoot, $AppName, $AppData.PackageInformation.OutputFolder)
-    $ScriptsFolder = [System.IO.Path]::Combine($PSScriptRoot, $AppName, "Scripts")
+    $ScriptsFolder = [System.IO.Path]::Combine($PSScriptRoot, "Scripts")
 
     # Icon file - download the file, if the property is a URL
     if ($AppData.PackageInformation.IconFile -match "^http") {
-        $OutFile = [System.IO.Path]::Combine($PSScriptRoot, $AppName, $(Split-Path -Path $AppData.PackageInformation.IconFile -Leaf))
+        $OutFile = [System.IO.Path]::Combine($PSScriptRoot, $(Split-Path -Path $AppData.PackageInformation.IconFile -Leaf))
         $params = @{
             Uri             = $AppData.PackageInformation.IconFile
             OutFile         = $OutFile
@@ -57,29 +62,8 @@ process {
         $AppIconFile = $OutFile
     }
     else {
-        $AppIconFile = [System.IO.Path]::Combine($PSScriptRoot, $AppName, $AppData.PackageInformation.IconFile)
+        $AppIconFile = [System.IO.Path]::Combine($PSScriptRoot, $AppData.PackageInformation.IconFile)
     }
-
-    if (-not($PSBoundParameters["Validate"])) {
-
-        # Connect and retrieve authentication token
-        $params = @{
-            TenantName     = $AppData.TenantInformation.Name
-            PromptBehavior = $AppData.TenantInformation.PromptBehavior
-            ApplicationID  = $AppData.TenantInformation.ApplicationID
-            Verbose        = $True
-        }
-        Connect-MSIntuneGraph @params
-    }
-
-    # Create required .intunewin package from source folder
-    $params = @{
-        SourceFolder = $SourceFolder
-        SetupFile    = $AppData.PackageInformation.SetupFile
-        OutputFolder = $OutputFolder
-        Verbose      = $True
-    }
-    $IntuneAppPackage = New-IntuneWin32AppPackage @params
 
     # Create default requirement rule
     $params = @{
@@ -452,17 +436,20 @@ process {
 
     # Construct a table of default parameters for Win32 app
     $Win32AppArgs = @{
-        "FilePath"          = $IntuneAppPackage.Path
-        "DisplayName"       = $AppData.Information.DisplayName
-        "Description"       = $AppData.Information.Description
-        "Publisher"         = $AppData.Information.Publisher
-        "InformationURL"    = $AppData.Information.InformationURL
-        "PrivacyURL"        = $AppData.Information.PrivacyURL
-        "InstallExperience" = $AppData.Program.InstallExperience
-        "RestartBehavior"   = $AppData.Program.DeviceRestartBehavior
-        "DetectionRule"     = $DetectionRules
-        "RequirementRule"   = $RequirementRule
-        "Verbose"           = $true
+        "FilePath"                 = $PackageFile
+        "DisplayName"              = $AppData.Information.DisplayName
+        "Description"              = $AppData.Information.Description
+        "AppVersion"               = $AppData.PackageInformation.Version
+        "Notes"                    = "Created by GitHub Workflow [$env:GITHUB_WORKFLOW] in repository [$env:GITHUB_REPOSITORY] on $(Get-Date -Format "yyyy-MM-dd") using setup.exe $SetupVersion."
+        "Publisher"                = $AppData.Information.Publisher
+        "InformationURL"           = $AppData.Information.InformationURL
+        "PrivacyURL"               = $AppData.Information.PrivacyURL
+        "CompanyPortalFeaturedApp" = $false
+        "InstallExperience"        = $AppData.Program.InstallExperience
+        "RestartBehavior"          = $AppData.Program.DeviceRestartBehavior
+        "DetectionRule"            = $DetectionRules
+        "RequirementRule"          = $RequirementRule
+        "Verbose"                  = $true
     }
 
     # Dynamically add additional parameters for Win32 app

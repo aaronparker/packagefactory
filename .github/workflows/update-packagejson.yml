@@ -39,6 +39,7 @@ jobs:
       # Format the date number for the commit message
       - name: Get date
         id: get-date
+        shell: pwsh
         run: |
           echo "::set-output name=date::$(Get-Date -Format "yyyy.MM.dd")"
 
