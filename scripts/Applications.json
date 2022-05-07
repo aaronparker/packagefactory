@@ -2,7 +2,7 @@
     "Applications": [
         {
             "Name": "AdobeAcrobatReaderDC",
-            "Filter": "Get-EvergreenApp -Name \"AdobeAcrobatReaderDC\" | Where-Object { $_.Language -eq \"English\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+            "Filter": "Get-EvergreenApp -Name \"AdobeAcrobatReaderDC\" | Where-Object { $_.Language -eq \"MUI\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
             "Title": "Adobe Acrobat Reader DC",
             "Language": "English",
             "Architecture": "x64"

@@ -1,0 +1,70 @@
+# Update package App.json
+name: update-packagejson
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update-json:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install and cache PowerShell modules
+        id: psmodulecache
+        uses: potatoqualitee/psmodulecache@v4.5
+        with:
+          modules-to-cache: Evergreen
+          shell: powershell
+
+      - name: Test for Applications.json
+        id: test-appjson
+        shell: pwsh
+        run: |
+          Test-Path -Path "${{ github.workspace }}/scripts/Applications.json"
+
+      - name: Update package JSON
+        id: update-json
+        shell: pwsh
+        run: |
+          . "${{ github.workspace }}/scripts/Update-PackageJson.ps1" -Path "${{ github.workspace }}/packages" -Manifest "${{ github.workspace }}/scripts/Applications.json"
+
+      # Format the date number for the commit message
+      - name: Get date
+        id: get-date
+        run: |
+          echo "::set-output name=date::$(Get-Date -Format "yyyy.MM.dd")"
+
+      - name: Import GPG key
+        id: import_gpg
+        uses: crazy-max/ghaction-import-gpg@v4
+        with:
+          gpg_private_key: ${{ secrets.GPGKEY }}
+          passphrase: ${{ secrets.GPGPASSPHRASE }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+          git_config_global: true
+          git_tag_gpgsign: true
+          git_push_gpgsign: false
+          git_committer_name: ${{ secrets.COMMIT_NAME }}
+          git_committer_email: ${{ secrets.COMMIT_EMAIL }}
+
+      - name: Commit changes
+        id: commit
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Update json ${{ steps.get-date.outputs.date }}.${{ github.run_number }} ${{ github.job }}"
+          commit_user_name: ${{ secrets.COMMIT_NAME }}
+          commit_user_email: ${{ secrets.COMMIT_EMAIL }}
+
+      - name: "Run if changes have been detected"
+        if: steps.commit.outputs.changes_detected == 'true'
+        run: echo "Changes committed."
+
+      - name: "Run if no changes have been detected"
+        if: steps.commit.outputs.changes_detected == 'false'
+        run: echo "No changes detected."

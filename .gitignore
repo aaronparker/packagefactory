@@ -1,5 +1,4 @@
-# Packages #
-############
+# Package files
 *.7z
 *.dmg
 *.gz
@@ -13,17 +12,10 @@
 *.intunewin
 
 # Package folders
-**/Package
-# **/Source
+packages/**/Package
+packages/**/Source
 
-# Logs and databases #
-######################
-*.log
-*.sql
-*.sqlite
-
-# OS generated files #
-######################
+# OS generated files
 .DS_Store
 .DS_Store?
 ._*
@@ -31,7 +23,4 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
-
-# Visual Studio files
-######################
-.vs/**
+*.tmp

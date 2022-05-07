@@ -1,6 +1,6 @@
 #Requires -Modules Evergreen
 <#
-    Update the App.json for Adobe Reader
+    Update the App.json for packages
 #>
 [CmdletBinding()]
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingWriteHost", "")]
@@ -17,22 +17,28 @@ param (
 
 # Read the list of applications
 $ManifestFile = $(Join-Path -Path $Path -ChildPath $Manifest)
-Write-Verbose -Message "Read: $ManifestFile."
-$ApplicationList = Get-Content -Path $ManifestFile | ConvertFrom-Json
+Write-Host "Read: $ManifestFile."
+
+try {
+    $ApplicationList = Get-Content -Path $ManifestFile | ConvertFrom-Json
+}
+catch {
+    throw $_.Exception.Message
+}
 
 # Walk through the list of applications
 foreach ($Application in $ApplicationList.Applications) {
 
     # Determine the application download and version number via Evergreen
     #$Properties = $ApplicationList.Applications.($Application.Name)
-    Write-Verbose -Message "Application: $($Application.Title)"
-    Write-Verbose -Message "Running: $($Application.Filter)."
+    Write-Host "Application: $($Application.Title)"
+    Write-Host "Running: $($Application.Filter)."
     $Evergreen = Invoke-Expression -Command $Application.Filter
-    Write-Verbose -Message "Found: $($Application.Title) $($Evergreen.Version) $($Evergreen.Architecture)."
+    Write-Host "Found: $($Application.Title) $($Evergreen.Version) $($Evergreen.Architecture)."
 
     # Get the application package manifest and update it
     $AppConfiguration = $([System.IO.Path]::Combine($Path, $Application.Name, $AppManifest))
-    Write-Verbose -Message "Read: $AppConfiguration."
+    Write-Host "Read: $AppConfiguration."
     $AppJson = Get-Content -Path $AppConfiguration | ConvertFrom-Json
 
     # If the version that Evergreen returns is higher than the version in the manifest
@@ -41,7 +47,7 @@ foreach ($Application in $ApplicationList.Applications) {
 
         # Update the manifest with the application setup file
         # TODO: some applications may require unpacking the installer
-        Write-Verbose -Message "Update package."
+        Write-Host "Update package."
         $AppJson.PackageInformation.Version = $Evergreen.Version
         $AppJson.PackageInformation.SetupFile = $(Split-Path -Path $Evergreen.URI -Leaf)
 
@@ -66,12 +72,8 @@ foreach ($Application in $ApplicationList.Applications) {
         }
 
         # Write the application manifest back to disk
-        Write-Verbose -Message "Output: $AppConfiguration."
-        $AppJson | ConvertTo-Json | Out-File -Path $AppConfiguration -force
-
-        # TODO: Update Save-Evergreen for custom path output and download installer here
-
-        # TODO: Call Create-Win32App.ps1 here
+        Write-Host "Output: $AppConfiguration."
+        $AppJson | ConvertTo-Json | Out-File -Path $AppConfiguration -Force
     }
     elseif ([System.Version]$Evergreen.Version -lt [System.Version]$AppJson.PackageInformation.Version) {
         Write-Host -Object "$($Evergreen.Version) less than or equal to $($AppJson.PackageInformation.Version)."

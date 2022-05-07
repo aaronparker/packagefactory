@@ -33,10 +33,5 @@
       "EnforceSignatureCheck": "false",
       "RunAs32Bit": "false"
     }
-  ],
-  "TenantInformation": {
-    "Name": "tenant.onmicrosoft.com",
-    "PromptBehavior": "Always \\ Auto \\ Never",
-    "ApplicationID": "d1ddf0e4-d672-4dae-b554-9d5bdfd93547"
-  }
+  ]
 }
