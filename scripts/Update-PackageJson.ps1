@@ -48,6 +48,7 @@ foreach ($Application in $ApplicationList.Applications) {
         Write-Host "Update package."
         $AppJson.PackageInformation.Version = $Evergreen.Version
         $AppJson.PackageInformation.SetupFile = $(Split-Path -Path $Evergreen.URI -Leaf)
+        $AppJson.Program.InstallCommand = $AppJson.Program.InstallTemplate -replace $(Split-Path -Path $Evergreen.URI -Leaf)
 
         # Update the application display name
         if ([System.Boolean]($Evergreen.PSobject.Properties.Name -match "Architecture")) {

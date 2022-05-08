@@ -9,13 +9,14 @@
   },
   "Information": {
     "DisplayName": "Google Chrome 101.0.4951.54 x64",
-    "Description": "The browser built by Google.",
+    "Description": "The browser built by Google. Browse with the power of Google. With Google apps like Gmail, Google Pay, and Google Assistant, Chrome can help you stay productive and get more out of your browser.",
     "Publisher": "Google",
     "InformationURL": "https://www.google.com/chrome/",
     "PrivacyURL": "https://www.google.com.au/intl/en_au/chrome/privacy/"
   },
   "Program": {
-    "InstallCommand": "/qb-",
+    "InstallTemplate": "msiexec.exe /i #SetupFile /qn",
+    "InstallCommand": "msiexec.exe /i googlechromestandaloneenterprise64.msi /qn",
     "UninstallCommand": "msiexec.exe /X {B01A8859-9D45-3472-AD5D-0FB367564035} /QN-",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
