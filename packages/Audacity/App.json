@@ -30,7 +30,7 @@
     {
       "Type": "File",
       "DetectionMethod": "Version",
-      "Path": "$env:ProgramFiles\\Audacity",
+      "Path": "C:\\Program Files\\Audacity",
       "FileOrFolder": "Audacity.exe",
       "Operator": "greaterThanOrEqual",
       "VersionValue": "3.1.3",

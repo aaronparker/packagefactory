@@ -30,7 +30,7 @@
     {
       "Type": "File",
       "DetectionMethod": "Version",
-      "Path": "$env:ProgramFiles\\7-Zip",
+      "Path": "C:\\Program Files\\7-Zip",
       "FileOrFolder": "7zFM.exe",
       "Operator": "greaterThanOrEqual",
       "VersionValue": "21.07",
