@@ -5,7 +5,7 @@
     "Version": "21.07",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
-    "IconFile": "https://raw.githubusercontent.com/Insentra/intune-icons/main/icons/7-Zip.png"
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/7-Zip.png"
   },
   "Information": {
     "DisplayName": "7-Zip 21.07 x64",
