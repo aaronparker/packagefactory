@@ -12,8 +12,7 @@
     "Description": "The browser built by Google.",
     "Publisher": "Google",
     "InformationURL": "https://www.google.com/chrome/",
-    "PrivacyURL": "https://www.google.com.au/intl/en_au/chrome/privacy/",
-    "Notes": "Created with Evergreen and IntuneWin32AppPackager."
+    "PrivacyURL": "https://www.google.com.au/intl/en_au/chrome/privacy/"
   },
   "Program": {
     "InstallCommand": "/qb-",

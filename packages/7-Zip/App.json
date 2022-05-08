@@ -12,8 +12,7 @@
     "Description": "7-Zip is a file archiver with a high compression ratio.",
     "Publisher": "Igor Pavlov",
     "InformationURL": "https://www.7-zip.org/",
-    "PrivacyURL": "https://www.7-zip.org/privacy.html",
-    "Notes": "Created with Evergreen and IntuneWin32AppPackager."
+    "PrivacyURL": "https://www.7-zip.org/privacy.html"
   },
   "Program": {
     "InstallCommand": "msiexec /i 7z1900-x64.msi ALLUSERS=1 MSIRMSHUTDOWN=2 REBOOT=ReallySuppress /qn",

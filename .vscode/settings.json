@@ -6,6 +6,7 @@
         "Authn",
         "CHROMEEXT",
         "codeql",
+        "desktopicon",
         "DISABLEDESKTOPSHORTCUT",
         "ehthumbs",
         "ghaction",
