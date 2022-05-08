@@ -16,7 +16,7 @@
   },
   "Program": {
     "InstallTemplate": ".\\#SetupFile /VERYSILENT /NOCLOSEAPPLICATIONS /NORESTARTAPPLICATIONS /NORESTART /SP- /SUPPRESSMSGBOXES /MERGETASKS=!runcode",
-    "InstallCommand": "/VERYSILENT /NOCLOSEAPPLICATIONS /NORESTARTAPPLICATIONS /NORESTART /SP- /SUPPRESSMSGBOXES /MERGETASKS=!runcode",
+    "InstallCommand": ".\\#SetupFile /VERYSILENT /NOCLOSEAPPLICATIONS /NORESTARTAPPLICATIONS /NORESTART /SP- /SUPPRESSMSGBOXES /MERGETASKS=!runcode",
     "UninstallCommand": "msiexec.exe /X {AC76BA86-1033-1033-7760-BC15014EA700} /QN-",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
