@@ -64,6 +64,10 @@ foreach ($Application in $ApplicationList.Applications) {
                 $AppJson.DetectionRule[$i].Value = $Evergreen.Version
             }
 
+            if ("VersionValue" -in ($AppJson.DetectionRule[$i] | Get-Member -MemberType "NoteProperty" | Select-Object -ExpandProperty "Name")) {
+                $AppJson.DetectionRule[$i].VersionValue = $Evergreen.Version
+            }
+
             if ("ProductVersion" -in ($AppJson.DetectionRule[$i] | Get-Member -MemberType "NoteProperty" | Select-Object -ExpandProperty "Name")) {
                 $AppJson.DetectionRule[$i].ProductVersion = $Evergreen.Version
             }
