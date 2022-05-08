@@ -28,10 +28,13 @@
   "CustomRequirementRule": [],
   "DetectionRule": [
     {
-      "Type": "Script",
-      "ScriptFile": "detection_rule_x64",
-      "EnforceSignatureCheck": "false",
-      "RunAs32Bit": "false"
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "$env:ProgramFiles\\7-Zip",
+      "FileOrFolder": "7zFM.exe",
+      "Operator": "greaterThanOrEqual",
+      "VersionValue": "21.07",
+      "Check32BitOn64System": "false"
     }
   ]
 }
