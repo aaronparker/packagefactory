@@ -49,6 +49,7 @@ process {
         # Required packaging variables
         $SourceFolder = [System.IO.Path]::Combine($Path, $AppName, $AppData.PackageInformation.SourceFolder)
         $OutputFolder = [System.IO.Path]::Combine($Path, $AppName, $AppData.PackageInformation.OutputFolder)
+        New-Item -Path $OutputFolder -ItemType "Directory" -Force | Out-Null
         $ScriptsFolder = [System.IO.Path]::Combine($Path, $AppName, "Scripts")
 
         # Icon file - download the file, if the property is a URL

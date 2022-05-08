@@ -12,8 +12,7 @@
     "Description": "The leading PDF viewer to print, sign, and annotate PDFs.",
     "Publisher": "Adobe",
     "InformationURL": "https://www.adobe.com/au/acrobat/pdf-reader.html",
-    "PrivacyURL": "https://www.adobe.com/au/privacy.html",
-    "Notes": "Created with Evergreen and IntuneWin32AppPackager."
+    "PrivacyURL": "https://www.adobe.com/au/privacy.html"
   },
   "Program": {
     "InstallCommand": ".\\AcroRdrDCx642100720099_en_US.exe -sfx_nu /sALL /rps /l /msi EULA_ACCEPT=YES ENABLE_CHROMEEXT=0 DISABLE_BROWSER_INTEGRATION=1 ENABLE_OPTIMIZATION=YES ADD_THUMBNAILPREVIEW=0 DISABLEDESKTOPSHORTCUT=1",
