@@ -460,7 +460,7 @@ process {
         # Construct a table of default parameters for Win32 app
         $Win32AppArgs = @{
             "FilePath"                 = $IntuneAppPackage.Path
-            "DisplayName"              = $AppData.Information.DisplayName
+            "DisplayName"              = "$($AppData.Information.DisplayName) (PF)"
             "Description"              = $AppData.Information.Description
             "AppVersion"               = $AppData.PackageInformation.Version
             "Notes"                    = "Created by GitHub Workflow [$env:GITHUB_WORKFLOW] in repository [$env:GITHUB_REPOSITORY] on $(Get-Date -Format "yyyy-MM-dd")."
