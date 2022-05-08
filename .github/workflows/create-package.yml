@@ -1,0 +1,57 @@
+# Creates a Win32 package and optionally imports into a target Intune tenant
+# Uses secrets on the repo - TENANT_ID, CLIENT_ID, and CLIENT_SECRET
+# to import the package into a target tenant
+name: create-package
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      configuration:
+        description: Application name.
+        required: true
+        default: AdobeAcrobatReaderDC
+
+jobs:
+  create-package:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Test for Applications.json
+        id: test-appjson
+        shell: powershell
+        run: |
+          Test-Path -Path "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}"
+
+      - name: Install and cache PowerShell modules
+        id: psmodulecache
+        uses: potatoqualitee/psmodulecache@v4.5
+        with:
+          modules-to-cache: PSIntuneAuth, AzureAD, IntuneWin32App, Microsoft.Graph.Intune, Evergreen
+          shell: powershell
+
+      # Create the app package
+      - name: Authn to the Graph API and create package/s
+        id: upload-package
+        shell: powershell
+        run: |
+          $params = @{
+            TenantId     = "${{ secrets.TENANT_ID }}"
+            ClientID     = "${{ secrets.CLIENT_ID }}"
+            ClientSecret = "${{ secrets.CLIENT_SECRET }}"
+          }
+          $global:AuthToken = Connect-MSIntuneGraph @params
+
+          $Json = Get-Content -Path "${{ github.workspace }}\scripts\Applications.json" | ConvertFrom-Json
+          $Filter = ($Json.Applications | Where-Object { $_.Name -eq "${{ github.event.inputs.configuration }}" }).Filter
+          Invoke-Expression -Command $Filter | Save-EvergreenApp -CustomPath "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source"
+
+          $params = @{
+            Application = "${{ github.event.inputs.configuration }}"
+            Path        = "${{ github.workspace }}\packages"
+          }
+          . ${{ github.workspace }}\scripts\Create-Win32App.ps1 @params

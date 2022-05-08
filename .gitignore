@@ -10,6 +10,7 @@
 *.exe
 *.msi
 *.intunewin
+*.ico
 
 # Package folders
 packages/**/Package
