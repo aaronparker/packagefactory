@@ -1,40 +1,40 @@
 {
-    "PackageInformation": {
-        "SetupType": "MSI",
-        "SetupFile": "Teams_windows_x64.msi",
-        "Version": "1.5.00.9163",
-        "SourceFolder": "Source",
-        "OutputFolder": "Package",
-        "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-Teams.png"
-    },
-    "Information": {
-        "DisplayName": "Microsoft Teams 1.5.00.9163",
-        "Description": "More is possible with Microsoft Teams. Stay connected and access shared content any time to learn, plan, and innovate—together.",
-        "Publisher": "Microsoft",
-        "InformationURL": "https://www.microsoft.com/microsoft-teams/",
-        "PrivacyURL": "https://go.microsoft.com/fwlink/?LinkId=521839"
-    },
-    "Program": {
-        "InstallTemplate": "msiexec.exe /package #SetupFile OPTIONS=\"noAutoStart=true\" ALLUSERS=1 /quiet",
-        "InstallCommand": "msiexec.exe /package #SetupFile OPTIONS=\"noAutoStart=true\" ALLUSERS=1 /quiet",
-        "UninstallCommand": "MsiExec.exe /X{731F6BAA-A986-45A4-8936-7C3AAAAA760B} /qn-",
-        "InstallExperience": "system",
-        "DeviceRestartBehavior": "suppress"
-    },
-    "RequirementRule": {
-        "MinimumRequiredOperatingSystem": "1809",
-        "Architecture": "x64"
-    },
-    "CustomRequirementRule": [],
-    "DetectionRule": [
-        {
-          "Type": "File",
-          "DetectionMethod": "Version",
-          "Path": "C:\\Program Files (x86)\\Teams Installer",
-          "FileOrFolder": "Teams.exe",
-          "Operator": "greaterThanOrEqual",
-          "VersionValue": "3.1.3",
-          "Check32BitOn64System": "false"
-        }
-      ]
+  "PackageInformation": {
+    "SetupType": "MSI",
+    "SetupFile": "Teams_windows_x64.msi",
+    "Version": "1.5.00.9163",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-Teams.png"
+  },
+  "Information": {
+    "DisplayName": "Microsoft Teams 1.5.00.9163 x64",
+    "Description": "More is possible with Microsoft Teams. Stay connected and access shared content any time to learn, plan, and innovate—together.",
+    "Publisher": "Microsoft",
+    "InformationURL": "https://www.microsoft.com/microsoft-teams/",
+    "PrivacyURL": "https://go.microsoft.com/fwlink/?LinkId=521839"
+  },
+  "Program": {
+    "InstallTemplate": "msiexec.exe /package #SetupFile OPTIONS=\"noAutoStart=true\" ALLUSERS=1 /quiet",
+    "InstallCommand": "msiexec.exe /package Teams_windows_x64.msi OPTIONS=\"noAutoStart=true\" ALLUSERS=1 /quiet",
+    "UninstallCommand": "MsiExec.exe /X{731F6BAA-A986-45A4-8936-7C3AAAAA760B} /qn-",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "suppress"
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "1809",
+    "Architecture": "x64"
+  },
+  "CustomRequirementRule": [],
+  "DetectionRule": [
+    {
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "C:\\Program Files (x86)\\Teams Installer",
+      "FileOrFolder": "Teams.exe",
+      "Operator": "greaterThanOrEqual",
+      "VersionValue": "1.5.00.9163",
+      "Check32BitOn64System": "false"
+    }
+  ]
 }
