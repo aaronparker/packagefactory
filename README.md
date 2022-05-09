@@ -1,6 +1,27 @@
-# Evergreen + IntuneWin32AppPackager
+# Evergreen + IntuneWin32App + IntuneWin32AppPackager
 
-Testing integration between [IntuneWin32AppPackager](https://github.com/MSEndpointMgr/IntuneWin32AppPackager) and [Evergreen](https://stealthpuppy.com/evergreen).
+Using [Evergreen](https://stealthpuppy.com/evergreen), [IntuneWin32App](https://github.com/MSEndpointMgr/IntuneWin32App) and [IntuneWin32AppPackager](https://github.com/MSEndpointMgr/IntuneWin32AppPackager) to create a packaging factory for Microsoft Intune.
+
+This approach enables maintaining a library of applications for automatic update, packaging and import into Microsoft Intune. `Create-Win32App.ps1` in this repository has been updated to use Evergreen to download and the latest version of a target application before packaging and importing into Intune.
+
+Additionally, Evergreen is used to keep the library of application definitions (`App.json`) up to date.
+
+Authentication to a tenant can be performed manually via `Connect-MSIntuneGraph`, after which `Create-Win32App.ps1` can be run to create a target application package.
+
+```powershell
+Connect-MSIntuneGraph -TenantID stealthpuppylab.onmicrosoft.com
+```
+
+Or used in a pipeline to authenticate without user interaction and completely automate the full creation of application packages.
+
+```powershell
+$params = @{
+    TenantId     = "${{ secrets.TENANT_ID }}"
+    ClientID     = "${{ secrets.CLIENT_ID }}"
+    ClientSecret = "${{ secrets.CLIENT_SECRET }}"
+}
+$global:AuthToken = Connect-MSIntuneGraph @params
+```
 
 ## IntuneWin32AppPackager Framework Overview
 
@@ -37,7 +58,7 @@ Main framework script that packages, retrieves the required information from the
 
 ## First things first
 
-Using this Win32 application packaging framework requires the IntuneWin32App module, minimum version 1.2.0, to be installed on the device where it's executed. Install the module from the PSGallery using:
+Using this Win32 application packaging framework requires the IntuneWin32App module, minimum version `1.3.3`, to be installed on the device where it's executed. Install the module from the PSGallery using:
 
 ```PowerShell
 Install-Module -Name IntuneWin32App
@@ -75,8 +96,7 @@ This block contains the basic Win32 app information, such as the display name, d
 "Information": {
     "DisplayName": "AppName 1.0.0",
     "Description": "Installs AppName 1.0.0",
-    "Publisher": "AppVendor",
-    "Notes": "AppNote"
+    "Publisher": "AppVendor"
 }
 ```
 
@@ -221,11 +241,6 @@ A File detection rule type can be of different detection methods, such as:
             "ProductVersionOperator": "notConfigured",
             "ProductVersion": ""
         }
-    ],
-    "TenantInformation": {
-        "Name": "tenant.onmicrosoft.com",
-        "PromptBehavior": "Auto",
-        "ApplicationID": "d1ddf0e4-d672-4dae-b554-9d5bdfd93547"
-    }
+    ]
 }
 ```
