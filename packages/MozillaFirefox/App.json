@@ -30,7 +30,7 @@
     {
       "Type": "File",
       "DetectionMethod": "Version",
-      "Path": "C:\\Program Files\\Mozilla Firefox\\Application",
+      "Path": "C:\\Program Files\\Mozilla Firefox",
       "FileOrFolder": "firefox.exe",
       "Operator": "greaterThanOrEqual",
       "VersionValue": "100.0",
