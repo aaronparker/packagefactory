@@ -16,7 +16,7 @@
   },
   "Program": {
     "InstallTemplate": "#SetupFile -silent",
-    "InstallCommand": "msiexec.exe /i \"Firefox Setup 0.58.0.msi\" DESKTOP_SHORTCUT=false TASKBAR_SHORTCUT=false /quiet",
+    "InstallCommand": "PowerToysSetup-0.58.0-x64.exe -silent",
     "UninstallCommand": "MsiExec.exe /X{C5616D86-7D4E-460E-B673-B6BB68159B17} /quiet",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
