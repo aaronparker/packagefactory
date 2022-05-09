@@ -16,8 +16,8 @@
   },
   "Program": {
     "InstallTemplate": "msiexec.exe /i #SetupFile /qn",
-    "InstallCommand": "msiexec.exe /i googlechromestandaloneenterprise64.msi /qn",
-    "UninstallCommand": "msiexec.exe /X {B01A8859-9D45-3472-AD5D-0FB367564035} /QN-",
+    "InstallCommand": "msiexec.exe /i googlechromestandaloneenterprise64.msi /qn-",
+    "UninstallCommand": "msiexec.exe /X {B01A8859-9D45-3472-AD5D-0FB367564035} /qn-",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
   },
