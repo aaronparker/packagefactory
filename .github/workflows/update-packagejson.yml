@@ -9,6 +9,8 @@ on:
   push:
     paths:
       - "/scripts/Update-PackageJson.ps1"
+      - "/scripts/Applications.ps1"
+      - "**/App.json"
   schedule:
       - cron: '15 2 * * *'
 
