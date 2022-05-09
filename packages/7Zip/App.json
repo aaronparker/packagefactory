@@ -15,9 +15,9 @@
     "PrivacyURL": "https://www.7-zip.org/privacy.html"
   },
   "Program": {
-    "InstallTemplate": "msiexec /i #SetupFile ALLUSERS=1 MSIRMSHUTDOWN=2 REBOOT=ReallySuppress /qn",
-    "InstallCommand": "msiexec /i 7z2107-x64.msi ALLUSERS=1 MSIRMSHUTDOWN=2 REBOOT=ReallySuppress /qn",
-    "UninstallCommand": "msiexec.exe /X {AC76BA86-1033-1033-7760-BC15014EA700} /QN-",
+    "InstallTemplate": "msiexec /i #SetupFile ALLUSERS=1 MSIRMSHUTDOWN=2 REBOOT=ReallySuppress /quiet",
+    "InstallCommand": "msiexec /i 7z2107-x64.msi ALLUSERS=1 MSIRMSHUTDOWN=2 REBOOT=ReallySuppress /quiet",
+    "UninstallCommand": "msiexec.exe /X {AC76BA86-1033-1033-7760-BC15014EA700} /quiet",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
   },

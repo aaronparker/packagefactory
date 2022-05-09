@@ -15,9 +15,9 @@
     "PrivacyURL": "https://www.google.com.au/intl/en_au/chrome/privacy/"
   },
   "Program": {
-    "InstallTemplate": "msiexec.exe /i #SetupFile /qn",
-    "InstallCommand": "msiexec.exe /i googlechromestandaloneenterprise64.msi /qn",
-    "UninstallCommand": "msiexec.exe /X {B01A8859-9D45-3472-AD5D-0FB367564035} /qn-",
+    "InstallTemplate": "msiexec.exe /i #SetupFile /quiet",
+    "InstallCommand": "msiexec.exe /i googlechromestandaloneenterprise64.msi /quiet",
+    "UninstallCommand": "msiexec.exe /X {B01A8859-9D45-3472-AD5D-0FB367564035} /quiet",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
   },
@@ -28,12 +28,12 @@
   "CustomRequirementRule": [],
   "DetectionRule": [
     {
-      "Type": "Registry",
-      "DetectionMethod": "VersionComparison",
-      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{B01A8859-9D45-3472-AD5D-0FB367564035}",
-      "ValueName": "DisplayVersion",
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "C:\\Program Files\\Google\\Chrome\\Application",
+      "FileOrFolder": "Chrome.exe",
       "Operator": "greaterThanOrEqual",
-      "Value": "101.0.4951.54",
+      "VersionValue": "101.0.4951.54",
       "Check32BitOn64System": "false"
     }
   ]

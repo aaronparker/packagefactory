@@ -36,6 +36,13 @@
             "Architecture": "x64"
         },
         {
+            "Name": "MozillaFirefox",
+            "Filter": "Get-EvergreenApp -Name \"MozillaFirefox\" | | Where-Object { $_.Channel -eq \"LATEST_FIREFOX_VERSION\" -and $_.Architecture -eq \"x64\" -and $_.Type -eq \"msi\" }",
+            "Title": "MozillaFirefox",
+            "Language": "en-US",
+            "Architecture": "x64"
+        },
+        {
             "Name": "Audacity",
             "Filter": "Get-EvergreenApp -Name \"Audacity\" | Where-Object { $_.Architecture -eq \"x64\" } | Select-Object -First 1",
             "Title": "Audacity",

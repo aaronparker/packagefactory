@@ -17,7 +17,7 @@
   "Program": {
     "InstallTemplate": ".\\#SetupFile /VERYSILENT /NOCLOSEAPPLICATIONS /NORESTARTAPPLICATIONS /NORESTART /SP- /SUPPRESSMSGBOXES /MERGETASKS=!runcode",
     "InstallCommand": ".\\VSCodeSetup-x64-1.67.0.exe /VERYSILENT /NOCLOSEAPPLICATIONS /NORESTARTAPPLICATIONS /NORESTART /SP- /SUPPRESSMSGBOXES /MERGETASKS=!runcode",
-    "UninstallCommand": "msiexec.exe /X {AC76BA86-1033-1033-7760-BC15014EA700} /QN-",
+    "UninstallCommand": "msiexec.exe /X {AC76BA86-1033-1033-7760-BC15014EA700} /quiet",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
   },

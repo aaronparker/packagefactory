@@ -17,7 +17,7 @@
   "Program": {
     "InstallTemplate": "msiexec.exe /package #SetupFile /quiet",
     "InstallCommand": "msiexec.exe /package ZoomInstallerFull.msi /quiet",
-    "UninstallCommand": "MsiExec.exe /X{84929D01-5E7C-4BB7-9799-D9C0D5793E4B} /qn-",
+    "UninstallCommand": "MsiExec.exe /X{84929D01-5E7C-4BB7-9799-D9C0D5793E4B} /quiet",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
   },

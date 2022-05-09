@@ -17,7 +17,7 @@
   "Program": {
     "InstallTemplate": "msiexec.exe /package #SetupFile OPTIONS=\"noAutoStart=true\" ALLUSERS=1 /quiet",
     "InstallCommand": "msiexec.exe /package Teams_windows_x64.msi OPTIONS=\"noAutoStart=true\" ALLUSERS=1 /quiet",
-    "UninstallCommand": "MsiExec.exe /X{731F6BAA-A986-45A4-8936-7C3AAAAA760B} /qn-",
+    "UninstallCommand": "MsiExec.exe /X{731F6BAA-A986-45A4-8936-7C3AAAAA760B} /quiet",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
   },
