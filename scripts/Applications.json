@@ -29,6 +29,13 @@
             "Architecture": "x64"
         },
         {
+            "Name": "MicrosoftPowerToys",
+            "Filter": "Get-EvergreenApp -Name \"MicrosoftPowerToys\" | Select-Object -First 1",
+            "Title": "Microsoft PowerToys",
+            "Language": "en-US",
+            "Architecture": "x64"
+        },
+        {
             "Name": "GoogleChrome",
             "Filter": "Get-EvergreenApp -Name \"GoogleChrome\" | Where-Object { $_.Channel -eq \"stable\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
             "Title": "Google Chrome",
