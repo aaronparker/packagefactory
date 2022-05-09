@@ -8,6 +8,7 @@ on:
   workflow_dispatch:
   push:
     paths:
+      - ".github/workflows/update-packagejson.yml"
       - "/scripts/Update-PackageJson.ps1"
       - "/scripts/Applications.ps1"
       - "**/App.json"
