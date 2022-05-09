@@ -2,13 +2,13 @@
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "vlc-3.0.16-win64.msi",
-    "Version": "0.58.0",
+    "Version": "3.0.16",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/microsoft/PowerToys/raw/v0.58.0/installer/MSIX/Images/logo.png"
   },
   "Information": {
-    "DisplayName": "VideoLAN VLC media player 0.58.0 x64",
+    "DisplayName": "VideoLAN VLC media player 3.0.16 x64",
     "Description": "VLC is a free and open source cross-platform multimedia player and framework that plays most multimedia files as well as DVDs, Audio CDs, VCDs, and various streaming protocols.",
     "Publisher": "VideoLAN",
     "InformationURL": "https://www.videolan.org/vlc/features.html",
@@ -16,7 +16,7 @@
   },
   "Program": {
     "InstallTemplate": "#SetupFile /S",
-    "InstallCommand": "PowerToysSetup-0.58.0-x64.exe -silent",
+    "InstallCommand": "vlc-3.0.16-win64.msi /S",
     "UninstallCommand": "C:\\Program Files\\VideoLAN\\VLC\\uninstall.exe /S",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
@@ -33,7 +33,7 @@
       "Path": "C:\\Program Files\\VideoLAN\\VLC",
       "FileOrFolder": "vlc.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "0.58.0",
+      "VersionValue": "3.0.16",
       "Check32BitOn64System": "false"
     }
   ]
