@@ -14,6 +14,16 @@ Authentication to a tenant can be performed manually via `Connect-MSIntuneGraph`
 
 ```powershell
 Connect-MSIntuneGraph -TenantID stealthpuppylab.onmicrosoft.com
+
+$Json = Get-Content -Path ".\scripts\Applications.json" | ConvertFrom-Json
+$Filter = ($Json.Applications | Where-Object { $_.Name -eq "AdobeAcrobatReaderDC" }).Filter
+Invoke-Expression -Command $Filter | Save-EvergreenApp -CustomPath "\packages\AdobeAcrobatReaderDC\Source"
+
+$params = @{
+  Application = "AdobeAcrobatReaderDC"
+  Path        = ".\packages"
+}
+. \Create-Win32App.ps1 @params
 ```
 
 Or used in a pipeline (e.g., via GitHub Workflows) to authenticate without user interaction and completely automate the full creation of application packages.
@@ -25,6 +35,16 @@ $params = @{
     ClientSecret = "${{ secrets.CLIENT_SECRET }}"
 }
 $global:AuthToken = Connect-MSIntuneGraph @params
+
+$Json = Get-Content -Path "${{ github.workspace }}\scripts\Applications.json" | ConvertFrom-Json
+$Filter = ($Json.Applications | Where-Object { $_.Name -eq "${{ github.event.inputs.configuration }}" }).Filter
+Invoke-Expression -Command $Filter | Save-EvergreenApp -CustomPath "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source"
+
+$params = @{
+  Application = "${{ github.event.inputs.configuration }}"
+  Path        = "${{ github.workspace }}\packages"
+}
+. ${{ github.workspace }}\Create-Win32App.ps1 @params
 ```
 
 ## IntuneWin32AppPackager Framework Overview
