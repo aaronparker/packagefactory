@@ -1,0 +1,37 @@
+{
+    "PackageInformation": {
+        "SetupType": "MSI",
+        "SetupFile": "ZoomInstallerFull.msi",
+        "Version": "5.10.4.5035",
+        "SourceFolder": "Source",
+        "OutputFolder": "Package",
+        "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Zoom.png"
+    },
+    "Information": {
+        "DisplayName": "Zoom Meetings Client 5.10.4.5035",
+        "Description": "Simplified video conferencing and messaging across any device.",
+        "Publisher": "Zoom",
+        "InformationURL": "https://explore.zoom.us/en/products/meetings/",
+        "PrivacyURL": "https://explore.zoom.us/privacy"
+    },
+    "Program": {
+        "InstallTemplate": "msiexec.exe /package #SetupFile /quiet",
+        "InstallCommand": "msiexec.exe /package #SetupFile /quiet",
+        "UninstallCommand": "MsiExec.exe /X{84929D01-5E7C-4BB7-9799-D9C0D5793E4B} /qn-",
+        "InstallExperience": "system",
+        "DeviceRestartBehavior": "suppress"
+    },
+    "RequirementRule": {
+        "MinimumRequiredOperatingSystem": "1809",
+        "Architecture": "x64"
+    },
+    "CustomRequirementRule": [],
+    "DetectionRule": [
+        {
+            "Type": "MSI",
+            "ProductCode": "{84929D01-5E7C-4BB7-9799-D9C0D5793E4B}",
+            "ProductVersionOperator": "greaterThanOrEqual",
+            "ProductVersion": "5.10.4.5035"
+        }
+      ]
+}

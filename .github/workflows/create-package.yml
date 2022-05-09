@@ -54,4 +54,4 @@ jobs:
             Application = "${{ github.event.inputs.configuration }}"
             Path        = "${{ github.workspace }}\packages"
           }
-          . ${{ github.workspace }}\scripts\Create-Win32App.ps1 @params
+          . ${{ github.workspace }}\Create-Win32App.ps1 @params

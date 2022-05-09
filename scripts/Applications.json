@@ -22,6 +22,13 @@
             "Architecture": "x64"
         },
         {
+            "Name": "MicrosoftTeams",
+            "Filter": "Get-EvergreenApp -Name \"MicrosoftTeams\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Ring -eq \"General\" -and $_.Type -eq \"msi\" } | Select-Object -First 1",
+            "Title": "Microsoft Teams",
+            "Language": "en-US",
+            "Architecture": "x64"
+        },
+        {
             "Name": "GoogleChrome",
             "Filter": "Get-EvergreenApp -Name \"GoogleChrome\" | Where-Object { $_.Channel -eq \"stable\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
             "Title": "Google Chrome",
@@ -32,6 +39,13 @@
             "Name": "Audacity",
             "Filter": "Get-EvergreenApp -Name \"Audacity\" | Where-Object { $_.Architecture -eq \"x64\" } | Select-Object -First 1",
             "Title": "Audacity",
+            "Language": "en-US",
+            "Architecture": "x64"
+        },
+        {
+            "Name": "Zoom",
+            "Filter": "Get-EvergreenApp -Name \"Zoom\" | | Where-Object { $_.Platform -eq \"Windows\" -and $_.Type -eq \"Msi\" } | Select-Object -First 1",
+            "Title": "Zoom Meetings Client",
             "Language": "en-US",
             "Architecture": "x64"
         }
