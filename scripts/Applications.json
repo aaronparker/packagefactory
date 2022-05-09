@@ -38,7 +38,7 @@
         {
             "Name": "MozillaFirefox",
             "Filter": "Get-EvergreenApp -Name \"MozillaFirefox\" -ErrorAction \"SilentlyContinue\" -WarningAction \"SilentlyContinue\" | Where-Object { $_.Channel -eq \"LATEST_FIREFOX_VERSION\" -and $_.Architecture -eq \"x64\" -and $_.Type -eq \"msi\" }",
-            "Title": "MozillaFirefox",
+            "Title": "Mozilla Firefox",
             "Language": "en-US",
             "Architecture": "x64"
         },

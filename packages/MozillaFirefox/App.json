@@ -2,14 +2,14 @@
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "Firefox Setup 100.0.msi",
-    "Version": "101.0.4951.54",
+    "Version": "99.0.4951.54",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Mozilla-Firefox.png"
   },
   "Information": {
-    "DisplayName": "Mozilla Firefox 101.0.4951.54 x64",
-    "Description": "Get the browser that protects what’s important. No shady privacy policies or back doors for advertisers. Just a lightning fast browser that doesn’t sell you out.",
+    "DisplayName": "Mozilla Firefox 99.0.4951.54 x64",
+    "Description": "Get the browser that protects what's important. No shady privacy policies or back doors for advertisers. Just a lightning fast browser that doesn't sell you out.",
     "Publisher": "Mozilla",
     "InformationURL": "https://www.mozilla.org/firefox/new/",
     "PrivacyURL": "https://www.mozilla.org/en-US/privacy/"
@@ -33,7 +33,7 @@
       "Path": "C:\\Program Files\\Mozilla Firefox\\Application",
       "FileOrFolder": "firefox.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "101.0.4951.54",
+      "VersionValue": "99.0.4951.54",
       "Check32BitOn64System": "false"
     }
   ]

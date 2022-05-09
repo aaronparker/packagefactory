@@ -1,6 +1,6 @@
 {
   "PackageInformation": {
-    "SetupType": "EXE",
+    "SetupType": "MSI",
     "SetupFile": "7z2107-x64.msi",
     "Version": "21.07",
     "SourceFolder": "Source",
