@@ -35,6 +35,10 @@ param(
     [ValidateNotNullOrEmpty()]
     [System.String] $Path,
 
+    [Parameter(Mandatory = $false, HelpMessage = "Adds a string to the application display name as a suffix.")]
+    [ValidateNotNullOrEmpty()]
+    [System.String] $DisplayNameSuffix,
+
     [Parameter(Mandatory = $false, HelpMessage = "Specify to validate manifest file configuration.")]
     [ValidateNotNullOrEmpty()]
     [System.Management.Automation.SwitchParameter] $Validate
@@ -66,18 +70,6 @@ process {
         else {
             $AppIconFile = [System.IO.Path]::Combine($Path, $AppName, $AppData.PackageInformation.IconFile)
         }
-
-        # if (-not($PSBoundParameters["Validate"])) {
-
-        #     # Connect and retrieve authentication token
-        #     $params = @{
-        #         TenantName     = $AppData.TenantInformation.Name
-        #         PromptBehavior = $AppData.TenantInformation.PromptBehavior
-        #         ApplicationID  = $AppData.TenantInformation.ApplicationID
-        #         Verbose        = $True
-        #     }
-        #     Connect-MSIntuneGraph @params
-        # }
 
         # Create required .intunewin package from source folder
         $params = @{
@@ -458,12 +450,24 @@ process {
         }
 
         # Construct a table of default parameters for Win32 app
+        if ($PSBoundParameters["DisplayNameSuffix"]) { 
+            $DisplayName = "$($AppData.Information.DisplayName) $DisplayNameSuffix" 
+        }
+        else {
+            $DisplayName = $AppData.Information.DisplayName
+        }
+        if (Test-Path -Path "env:GITHUB_WORKFLOW" -ErrorAction "SilentlyContinue" ) {
+            $Notes = "Created by GitHub Workflow [$env:GITHUB_WORKFLOW] in repository [$env:GITHUB_REPOSITORY] on $(Get-Date -Format "yyyy-MM-dd")."
+        }
+        else {
+            $Notes = "Package factory $(Get-Date -Format "yyyy-MM-dd")."
+        }
         $Win32AppArgs = @{
             "FilePath"                 = $IntuneAppPackage.Path
-            "DisplayName"              = "$($AppData.Information.DisplayName) (PF)"
+            "DisplayName"              = $DisplayName
             "Description"              = $AppData.Information.Description
             "AppVersion"               = $AppData.PackageInformation.Version
-            "Notes"                    = "Created by GitHub Workflow [$env:GITHUB_WORKFLOW] in repository [$env:GITHUB_REPOSITORY] on $(Get-Date -Format "yyyy-MM-dd")."
+            "Notes"                    = $Notes
             "Publisher"                = $AppData.Information.Publisher
             "InformationURL"           = $AppData.Information.InformationURL
             "PrivacyURL"               = $AppData.Information.PrivacyURL

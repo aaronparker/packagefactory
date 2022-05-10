@@ -51,7 +51,8 @@ jobs:
           Invoke-Expression -Command $Filter | Save-EvergreenApp -CustomPath "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source"
 
           $params = @{
-            Application = "${{ github.event.inputs.configuration }}"
-            Path        = "${{ github.workspace }}\packages"
+            Application      = "${{ github.event.inputs.configuration }}"
+            Path             = "${{ github.workspace }}\packages"
+            DisplayNameSuffix = "(Package Factory)"
           }
           . ${{ github.workspace }}\Create-Win32App.ps1 @params
