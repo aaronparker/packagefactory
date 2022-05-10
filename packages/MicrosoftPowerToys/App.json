@@ -1,14 +1,14 @@
 {
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "PowerToysSetup-0.58.0-x64.exe",
-    "Version": "0.56.0",
+    "SetupFile": "PowerToysSetup-0.57.2-x64.exe",
+    "Version": "0.57.2",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/microsoft/PowerToys/raw/v0.58.0/installer/MSIX/Images/logo.png"
   },
   "Information": {
-    "DisplayName": "Microsoft PowerToys 0.58.0 x64",
+    "DisplayName": "Microsoft PowerToys 0.57.2 x64",
     "Description": "Microsoft PowerToys is a set of utilities for power users to tune and streamline their Windows experience for greater productivity.",
     "Publisher": "Microsoft",
     "InformationURL": "https://aka.ms/powertoys-docs",
@@ -16,7 +16,7 @@
   },
   "Program": {
     "InstallTemplate": "#SetupFile /install /quiet /norestart",
-    "InstallCommand": "PowerToysSetup-0.58.0-x64.exe -silent",
+    "InstallCommand": "PowerToysSetup-0.57.2-x64.exe /install /quiet /norestart",
     "UninstallCommand": "MsiExec.exe /X \"{C5616D86-7D4E-460E-B673-B6BB68159B17}\" /quiet",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
@@ -33,7 +33,7 @@
       "Path": "C:\\Program Files\\PowerToys",
       "FileOrFolder": "PowerToys.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "0.56.0",
+      "VersionValue": "0.57.2",
       "Check32BitOn64System": "false"
     }
   ]
