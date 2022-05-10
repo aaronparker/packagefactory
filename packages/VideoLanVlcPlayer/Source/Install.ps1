@@ -7,10 +7,9 @@ Param ()
 
 try {
     $Installer = Get-ChildItem -Path $PWD -Filter "vlc*.msi" -Recurse -ErrorAction "SilentlyContinue"
-    $Transform = Get-ChildItem -Path $PWD -Filter "VlcPlayerTransform.mst" -Recurse -ErrorAction "SilentlyContinue"
     $params = @{
         FilePath     = "$Env:SystemRoot\System32\msiexec.exe"
-        ArgumentList = "/package $($Installer.FullName) /t $($Transform.FullName) ALLUSERS=1 /quiet"
+        ArgumentList = "/package $($Installer.FullName) ALLUSERS=1 /quiet"
         NoNewWindow  = $True
         PassThru     = $True
         Wait         = $True
