@@ -15,9 +15,9 @@
     "PrivacyURL": "https://www.videolan.org/"
   },
   "Program": {
-    "InstallTemplate": "#SetupFile /S",
-    "InstallCommand": "vlc-3.0.16-win64.msi /S",
-    "UninstallCommand": "C:\\Program Files\\VideoLAN\\VLC\\uninstall.exe /S",
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+    "UninstallCommand": "MsiExec.exe /X \"{1BB20266-7C52-4909-B075-22156F75D22C}\" /quiet",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
   },

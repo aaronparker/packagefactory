@@ -14,7 +14,7 @@
 
 # Package folders
 packages/**/Package
-packages/**/Source
+#packages/**/Source
 
 # OS generated files
 .DS_Store
