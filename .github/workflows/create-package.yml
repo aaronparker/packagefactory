@@ -31,7 +31,7 @@ jobs:
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v4.5
         with:
-          modules-to-cache: PSIntuneAuth, AzureAD, IntuneWin32App, Microsoft.Graph.Intune, Evergreen
+          modules-to-cache: PSIntuneAuth, AzureAD, IntuneWin32App, Microsoft.Graph.Intune, Evergreen, VcRedist
           shell: powershell
 
       # Create the app package
@@ -47,8 +47,13 @@ jobs:
           $global:AuthToken = Connect-MSIntuneGraph @params
 
           $Json = Get-Content -Path "${{ github.workspace }}\scripts\Applications.json" | ConvertFrom-Json
-          $Filter = ($Json.Applications | Where-Object { $_.Name -eq "${{ github.event.inputs.configuration }}" }).Filter
-          Invoke-Expression -Command $Filter | Save-EvergreenApp -CustomPath "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source"
+          $Filter = ($Json | Where-Object { $_.Name -eq "${{ github.event.inputs.configuration }}" }).Filter
+          if ($Filter -match "Get-VcList") {
+              Invoke-Expression -Command $Filter | Invoke-WebRequest -Uri $_.Url -OutFile "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source\$(Split-Path -Path $_.Url -Leaf)"
+          }
+          else {
+              Invoke-Expression -Command $Filter | Save-EvergreenApp -CustomPath "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source"
+          }
 
           $params = @{
             Application      = "${{ github.event.inputs.configuration }}"

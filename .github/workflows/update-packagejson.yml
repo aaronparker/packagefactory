@@ -26,7 +26,7 @@ jobs:
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v4.5
         with:
-          modules-to-cache: Evergreen
+          modules-to-cache: Evergreen, VcRedist
           shell: powershell
 
       - name: Test for Applications.json

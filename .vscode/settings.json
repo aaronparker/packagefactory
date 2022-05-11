@@ -18,6 +18,7 @@
         "MERGETASKS",
         "Nickolaj",
         "NOCLOSEAPPLICATIONS",
+        "noreboot",
         "NORESTARTAPPLICATIONS",
         "packagefactory",
         "packagejson",

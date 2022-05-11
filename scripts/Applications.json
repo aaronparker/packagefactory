@@ -1,74 +1,86 @@
-{
-    "Applications": [
-        {
-            "Name": "AdobeAcrobatReaderDC",
-            "Filter": "Get-EvergreenApp -Name \"AdobeAcrobatReaderDC\" | Where-Object { $_.Language -eq \"MUI\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
-            "Title": "Adobe Acrobat Reader DC",
-            "Language": "English",
-            "Architecture": "x64"
-        },
-        {
-            "Name": "7Zip",
-            "Filter": "Get-EvergreenApp -Name \"7zip\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Type -eq \"msi\" } | Select-Object -First 1",
-            "Title": "7-Zip",
-            "Language": "en-US",
-            "Architecture": "x64"
-        },
-        {
-            "Name": "MicrosoftVisualStudioCode",
-            "Filter": "Get-EvergreenApp -Name \"MicrosoftVisualStudioCode\" | Where-Object { $_.Channel -eq \"Stable\" -and $_.Architecture -eq \"x64\" -and $_.Platform -eq \"win32-x64\" } | Select-Object -First 1",
-            "Title": "Microsoft Visual Studio Code",
-            "Language": "en-US",
-            "Architecture": "x64"
-        },
-        {
-            "Name": "MicrosoftTeams",
-            "Filter": "Get-EvergreenApp -Name \"MicrosoftTeams\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Ring -eq \"General\" -and $_.Type -eq \"msi\" } | Select-Object -First 1",
-            "Title": "Microsoft Teams",
-            "Language": "en-US",
-            "Architecture": "x64"
-        },
-        {
-            "Name": "MicrosoftPowerToys",
-            "Filter": "Get-EvergreenApp -Name \"MicrosoftPowerToys\" | Select-Object -First 1",
-            "Title": "Microsoft PowerToys",
-            "Language": "en-US",
-            "Architecture": "x64"
-        },
-        {
-            "Name": "GoogleChrome",
-            "Filter": "Get-EvergreenApp -Name \"GoogleChrome\" | Where-Object { $_.Channel -eq \"stable\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
-            "Title": "Google Chrome",
-            "Language": "en-US",
-            "Architecture": "x64"
-        },
-        {
-            "Name": "MozillaFirefox",
-            "Filter": "Get-EvergreenApp -Name \"MozillaFirefox\" -ErrorAction \"SilentlyContinue\" -WarningAction \"SilentlyContinue\" | Where-Object { $_.Channel -eq \"LATEST_FIREFOX_VERSION\" -and $_.Architecture -eq \"x64\" -and $_.Type -eq \"msi\" }",
-            "Title": "Mozilla Firefox",
-            "Language": "en-US",
-            "Architecture": "x64"
-        },
-        {
-            "Name": "Audacity",
-            "Filter": "Get-EvergreenApp -Name \"Audacity\" | Where-Object { $_.Architecture -eq \"x64\" } | Select-Object -First 1",
-            "Title": "Audacity",
-            "Language": "en-US",
-            "Architecture": "x64"
-        },
-        {
-            "Name": "Zoom",
-            "Filter": "Get-EvergreenApp -Name \"Zoom\" | Where-Object { $_.Platform -eq \"Windows\" -and $_.Type -eq \"Msi\" } | Select-Object -First 1",
-            "Title": "Zoom Meetings Client",
-            "Language": "en-US",
-            "Architecture": "x64"
-        },
-        {
-            "Name": "VideoLanVlcPlayer",
-            "Filter": "Get-EvergreenApp -Name \"VideoLanVlcPlayer\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Type -eq \"MSI\" } | Select-Object -First 1",
-            "Title": "VideoLAN VLC media player",
-            "Language": "en-US",
-            "Architecture": "x64"
-        }
-    ]
-}
+[
+    {
+        "Name": "7Zip",
+        "Filter": "Get-EvergreenApp -Name \"7zip\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Type -eq \"msi\" } | Select-Object -First 1",
+        "Title": "7-Zip",
+        "Language": "en-US",
+        "Architecture": "x64"
+    },
+    {
+        "Name": "AdobeAcrobatReaderDC",
+        "Filter": "Get-EvergreenApp -Name \"AdobeAcrobatReaderDC\" | Where-Object { $_.Language -eq \"MUI\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+        "Title": "Adobe Acrobat Reader DC",
+        "Language": "English",
+        "Architecture": "x64"
+    },
+    {
+        "Name": "Audacity",
+        "Filter": "Get-EvergreenApp -Name \"Audacity\" | Where-Object { $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+        "Title": "Audacity",
+        "Language": "en-US",
+        "Architecture": "x64"
+    },
+    {
+        "Name": "GoogleChrome",
+        "Filter": "Get-EvergreenApp -Name \"GoogleChrome\" | Where-Object { $_.Channel -eq \"stable\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+        "Title": "Google Chrome",
+        "Language": "en-US",
+        "Architecture": "x64"
+    },
+    {
+        "Name": "MicrosoftPowerToys",
+        "Filter": "Get-EvergreenApp -Name \"MicrosoftPowerToys\" | Select-Object -First 1",
+        "Title": "Microsoft PowerToys",
+        "Language": "en-US",
+        "Architecture": "x64"
+    },
+    {
+        "Name": "MicrosoftTeams",
+        "Filter": "Get-EvergreenApp -Name \"MicrosoftTeams\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Ring -eq \"General\" -and $_.Type -eq \"msi\" } | Select-Object -First 1",
+        "Title": "Microsoft Teams",
+        "Language": "en-US",
+        "Architecture": "x64"
+    },
+    {
+        "Name": "MicrosoftVisualStudioCode",
+        "Filter": "Get-EvergreenApp -Name \"MicrosoftVisualStudioCode\" | Where-Object { $_.Channel -eq \"Stable\" -and $_.Architecture -eq \"x64\" -and $_.Platform -eq \"win32-x64\" } | Select-Object -First 1",
+        "Title": "Microsoft Visual Studio Code",
+        "Language": "en-US",
+        "Architecture": "x64"
+    },
+    {
+        "Name": "MozillaFirefox",
+        "Filter": "Get-EvergreenApp -Name \"MozillaFirefox\" -ErrorAction \"SilentlyContinue\" -WarningAction \"SilentlyContinue\" | Where-Object { $_.Channel -eq \"LATEST_FIREFOX_VERSION\" -and $_.Architecture -eq \"x64\" -and $_.Type -eq \"msi\" }",
+        "Title": "Mozilla Firefox",
+        "Language": "en-US",
+        "Architecture": "x64"
+    },
+    {
+        "Name": "VideoLanVlcPlayer",
+        "Filter": "Get-EvergreenApp -Name \"VideoLanVlcPlayer\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Type -eq \"MSI\" } | Select-Object -First 1",
+        "Title": "VideoLAN VLC media player",
+        "Language": "en-US",
+        "Architecture": "x64"
+    },
+    {
+        "Name": "Zoom",
+        "Filter": "Get-EvergreenApp -Name \"Zoom\" | Where-Object { $_.Platform -eq \"Windows\" -and $_.Type -eq \"Msi\" } | Select-Object -First 1",
+        "Title": "Zoom Meetings Client",
+        "Language": "en-US",
+        "Architecture": "x64"
+    },
+    {
+        "Name": "MicrosoftVcRedist2022x64",
+        "Filter": "Get-VcList -Release \"2022\" -Architecture \"x64\"",
+        "Title": "Microsoft Visual C++ Redistributable 2022 x64",
+        "Language": "en-US",
+        "Architecture": "x64"
+    },
+    {
+        "Name": "MicrosoftVcRedist2022x86",
+        "Filter": "Get-VcList -Release \"2022\" -Architecture \"x86\"",
+        "Title": "Microsoft Visual C++ Redistributable 2022",
+        "Language": "en-US",
+        "Architecture": "x86"
+    }
+]
