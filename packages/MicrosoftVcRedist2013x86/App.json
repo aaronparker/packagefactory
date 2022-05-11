@@ -1,39 +1,39 @@
 {
-    "PackageInformation": {
-        "SetupType": "EXE",
-        "SetupFile": "VC_redist.x64.exe",
-        "Version": "12.0.40664.0",
-        "SourceFolder": "Source",
-        "OutputFolder": "Package",
-        "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-VisualStudioCode2022.png"
-    },
-    "Information": {
-        "DisplayName": "Visual C++ 2013 Update 5 Redistributable Package 12.0.40664.0 x64",
-        "Description": "This package installs run-time components of Visual C++ libraries and can be used to run such applications on a computer even if it does not have Visual Studio 2022 installed.",
-        "Publisher": "Microsoft",
-        "InformationURL": "https://visualstudio.microsoft.com/downloads/",
-        "PrivacyURL": "https://privacy.microsoft.com/privacystatement"
-    },
-    "Program": {
-        "InstallTemplate": ".\\#SetupFile /install /quiet /norestart",
-        "InstallCommand": ".\\VC_redist.x64.exe /install /quiet /norestart",
-        "UninstallCommand": "\"C:\\ProgramData\\Package Cache\\{9dff3540-fc85-4ed5-ac84-9e3c7fd8bece}\\vcredist_x86.exe\" /uninstall /quiet /noreboot",
-        "InstallExperience": "system",
-        "DeviceRestartBehavior": "suppress"
-    },
-    "RequirementRule": {
-        "MinimumRequiredOperatingSystem": "1809",
-        "Architecture": "All"
-    },
-    "CustomRequirementRule": [],
-    "DetectionRule": [
-        {
-            "Type": "Registry",
-            "DetectionMethod": "Existence",
-            "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{9dff3540-fc85-4ed5-ac84-9e3c7fd8bece}",
-            "ValueName": "",
-            "DetectionType": "exists",
-            "Check32BitOn64System": "true"
-        }
-    ]
+  "PackageInformation": {
+    "SetupType": "EXE",
+    "SetupFile": "vcredist_x86.exe",
+    "Version": "12.0.40664.0",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-VisualStudioCode2022.png"
+  },
+  "Information": {
+    "DisplayName": "Visual C++ 2013 Update 5 Redistributable Package 12.0.40664.0 x86",
+    "Description": "This package installs run-time components of Visual C++ libraries and can be used to run such applications on a computer even if it does not have Visual Studio 2022 installed.",
+    "Publisher": "Microsoft",
+    "InformationURL": "https://visualstudio.microsoft.com/downloads/",
+    "PrivacyURL": "https://privacy.microsoft.com/privacystatement"
+  },
+  "Program": {
+    "InstallTemplate": ".\\#SetupFile /install /quiet /norestart",
+    "InstallCommand": ".\\vcredist_x86.exe /install /quiet /norestart",
+    "UninstallCommand": "\"C:\\ProgramData\\Package Cache\\{9dff3540-fc85-4ed5-ac84-9e3c7fd8bece}\\vcredist_x86.exe\" /uninstall /quiet /noreboot",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "suppress"
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "1809",
+    "Architecture": "All"
+  },
+  "CustomRequirementRule": [],
+  "DetectionRule": [
+    {
+      "Type": "Registry",
+      "DetectionMethod": "Existence",
+      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{9dff3540-fc85-4ed5-ac84-9e3c7fd8bece}",
+      "ValueName": "",
+      "DetectionType": "exists",
+      "Check32BitOn64System": "true"
+    }
+  ]
 }
