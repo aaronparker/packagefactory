@@ -110,5 +110,12 @@
         "Title": "Visual C++ Redistributable for Visual Studio 2012 Update 4",
         "Language": "en-US",
         "Architecture": "x86"
+    },
+    {
+        "Name": "Microsoft.NET",
+        "Filter": "Get-EvergreenApp -Name \"Microsoft.NET\" | Where-Object { $_.Installer -eq \"LTS\" -and $_.Architecture -eq \"x64\" -and $_.Channel -eq \"Current\" } | Select-Object -First 1",
+        "Title": "Microsoft .NET Desktop Runtime",
+        "Language": "en-US",
+        "Architecture": "x64"
     }
 ]
