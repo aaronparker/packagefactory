@@ -1,37 +1,39 @@
 {
-  "PackageInformation": {
-    "SetupType": "EXE",
-    "SetupFile": "vcredist_x64.exe",
-    "Version": "11.0.61030.0",
-    "SourceFolder": "Source",
-    "OutputFolder": "Package",
-    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-VisualStudioCode2022.png"
-  },
-  "Information": {
-    "DisplayName": "Visual C++ Redistributable for Visual Studio 2012 Update 4 11.0.61030.0 x64",
-    "Description": "This package installs run-time components of Visual C++ libraries and can be used to run such applications on a computer even if it does not have Visual Studio 2022 installed.",
-    "Publisher": "Microsoft",
-    "InformationURL": "https://visualstudio.microsoft.com/downloads/",
-    "PrivacyURL": "https://privacy.microsoft.com/privacystatement"
-  },
-  "Program": {
-    "InstallTemplate": ".\\#SetupFile /install /quiet /norestart",
-    "InstallCommand": ".\\vcredist_x64.exe /install /quiet /norestart",
-    "UninstallCommand": "\"C:\\ProgramData\\Package Cache\\{ca67548a-5ebe-413a-b50c-4b9ceb6d66c6}\\vcredist_x64.exe\" /uninstall /quiet /noreboot",
-    "InstallExperience": "system",
-    "DeviceRestartBehavior": "suppress"
-  },
-  "RequirementRule": {
-    "MinimumRequiredOperatingSystem": "1809",
-    "Architecture": "x64"
-  },
-  "CustomRequirementRule": [],
-  "DetectionRule": [
-    {
-      "Type": "MSI",
-      "ProductCode": "{ca67548a-5ebe-413a-b50c-4b9ceb6d66c6}",
-      "ProductVersionOperator": "notConfigured",
-      "ProductVersion": "11.0.61030.0"
-    }
-  ]
+    "PackageInformation": {
+        "SetupType": "EXE",
+        "SetupFile": "vcredist_x64.exe",
+        "Version": "11.0.61030.0",
+        "SourceFolder": "Source",
+        "OutputFolder": "Package",
+        "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-VisualStudioCode2022.png"
+    },
+    "Information": {
+        "DisplayName": "Visual C++ Redistributable for Visual Studio 2012 Update 4 11.0.61030.0 x64",
+        "Description": "This package installs run-time components of Visual C++ libraries and can be used to run such applications on a computer even if it does not have Visual Studio 2022 installed.",
+        "Publisher": "Microsoft",
+        "InformationURL": "https://visualstudio.microsoft.com/downloads/",
+        "PrivacyURL": "https://privacy.microsoft.com/privacystatement"
+    },
+    "Program": {
+        "InstallTemplate": ".\\#SetupFile /install /quiet /norestart",
+        "InstallCommand": ".\\vcredist_x64.exe /install /quiet /norestart",
+        "UninstallCommand": "\"C:\\ProgramData\\Package Cache\\{ca67548a-5ebe-413a-b50c-4b9ceb6d66c6}\\vcredist_x64.exe\" /uninstall /quiet /noreboot",
+        "InstallExperience": "system",
+        "DeviceRestartBehavior": "suppress"
+    },
+    "RequirementRule": {
+        "MinimumRequiredOperatingSystem": "1809",
+        "Architecture": "x64"
+    },
+    "CustomRequirementRule": [],
+    "DetectionRule": [
+        {
+            "Type": "Registry",
+            "DetectionMethod": "Existence",
+            "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{ca67548a-5ebe-413a-b50c-4b9ceb6d66c6}",
+            "ValueName": "",
+            "DetectionType": "exists",
+            "Check32BitOn64System": "true"
+        }
+    ]
 }
