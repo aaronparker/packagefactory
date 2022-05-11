@@ -89,7 +89,9 @@ foreach ($Application in $ApplicationList) {
             }
 
             if ("ProductCode" -in ($AppJson.DetectionRule[$i] | Get-Member -MemberType "NoteProperty" | Select-Object -ExpandProperty "Name")) {
-                $AppJson.DetectionRule[$i].ProductCode = $AppUpdate.ProductCode
+                if ($Null -ne $AppUpdate.ProductCode) {
+                    $AppJson.DetectionRule[$i].ProductCode = $AppUpdate.ProductCode
+                }
             }
         }
 

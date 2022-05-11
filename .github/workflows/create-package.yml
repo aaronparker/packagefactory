@@ -49,7 +49,10 @@ jobs:
           $Json = Get-Content -Path "${{ github.workspace }}\scripts\Applications.json" | ConvertFrom-Json
           $Filter = ($Json | Where-Object { $_.Name -eq "${{ github.event.inputs.configuration }}" }).Filter
           if ($Filter -match "Get-VcList") {
-              Invoke-Expression -Command $Filter | Invoke-WebRequest -Uri $_.Download -OutFile "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source\$(Split-Path -Path $_.Download -Leaf)" -UseBasicParsing
+              $App = Invoke-Expression -Command $Filter
+              $Filename = $(Split-Path -Path $App.Download -Leaf)
+              Write-Host "Package: $($App.Name); $Filename."
+              Invoke-WebRequest -Uri $App.Download -OutFile "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source\$Filename" -UseBasicParsing
           }
           else {
               Invoke-Expression -Command $Filter | Save-EvergreenApp -CustomPath "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source"
