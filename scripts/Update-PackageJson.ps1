@@ -83,12 +83,12 @@ foreach ($Application in $ApplicationList) {
 
         # Write the application manifest back to disk
         Write-Host -ForegroundColor "Cyan" "Output: $AppConfiguration."
-        $AppJson | ConvertTo-Json | Out-File -Path $AppConfiguration -Force
+        $AppJson | ConvertTo-Json | Out-File -FilePath $AppConfiguration -Force
     }
     elseif ([System.Version]$AppUpdate.Version -lt [System.Version]$AppJson.PackageInformation.Version) {
         Write-Host -ForegroundColor "Cyan" "$($AppUpdate.Version) less than or equal to $($AppJson.PackageInformation.Version)."
     }
     else {
-        Write-Host -ForegroundColor "Cyan" "Could not compare package version between Evergreen and the application manifest."
+        Write-Host -ForegroundColor "Cyan" "Could not compare package version."
     }
 }
