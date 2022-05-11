@@ -52,6 +52,7 @@ jobs:
               $App = Invoke-Expression -Command $Filter
               $Filename = $(Split-Path -Path $App.Download -Leaf)
               Write-Host "Package: $($App.Name); $Filename."
+              New-Item -Path "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source" -ItemType "Directory" -Force | Out-Null
               Invoke-WebRequest -Uri $App.Download -OutFile "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source\$Filename" -UseBasicParsing
           }
           else {
