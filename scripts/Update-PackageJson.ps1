@@ -38,69 +38,69 @@ foreach ($Application in $ApplicationList) {
     $AppConfiguration = $([System.IO.Path]::Combine($Path, $Application.Name, $AppManifest))
     Write-Host -ForegroundColor "Cyan" "Read: $AppConfiguration."
     if (Test-Path -Path $AppConfiguration) {
-        $AppJson = Get-Content -Path $AppConfiguration | ConvertFrom-Json
+        $AppData = Get-Content -Path $AppConfiguration | ConvertFrom-Json
     }
     else {
         Write-Warning -Message "Cannot find: $AppConfiguration."
     }
 
     # If the version that Evergreen returns is higher than the version in the manifest
-    if ([System.Version]$AppUpdate.Version -ge [System.Version]$AppJson.PackageInformation.Version -or [System.String]::IsNullOrEmpty($AppJson.PackageInformation.Version)) {
+    if ([System.Version]$AppUpdate.Version -ge [System.Version]$AppData.PackageInformation.Version -or [System.String]::IsNullOrEmpty($AppData.PackageInformation.Version)) {
 
         # Update the manifest with the application setup file
         # TODO: some applications may require unpacking the installer
         Write-Host -ForegroundColor "Cyan" "Update package."
-        $AppJson.PackageInformation.Version = $AppUpdate.Version
+        $AppData.PackageInformation.Version = $AppUpdate.Version
 
         if ([System.Boolean]($AppUpdate.PSobject.Properties.Name -match "URI")) {
-            $AppJson.PackageInformation.SetupFile = $(Split-Path -Path $AppUpdate.URI -Leaf) -replace "%20", " "
-            $AppJson.Program.InstallCommand = $AppJson.Program.InstallTemplate -replace "#SetupFile", $(Split-Path -Path $AppUpdate.URI -Leaf) -replace "%20", " "
+            $AppData.PackageInformation.SetupFile = $(Split-Path -Path $AppUpdate.URI -Leaf) -replace "%20", " "
+            $AppData.Program.InstallCommand = $AppData.Program.InstallTemplate -replace "#SetupFile", $(Split-Path -Path $AppUpdate.URI -Leaf) -replace "%20", " "
         }
         else {
-            $AppJson.PackageInformation.SetupFile = $(Split-Path -Path $AppUpdate.Download -Leaf) -replace "%20", " "
-            $AppJson.Program.InstallCommand = $AppJson.Program.InstallTemplate -replace "#SetupFile", $(Split-Path -Path $AppUpdate.Download -Leaf)
+            $AppData.PackageInformation.SetupFile = $(Split-Path -Path $AppUpdate.Download -Leaf) -replace "%20", " "
+            $AppData.Program.InstallCommand = $AppData.Program.InstallTemplate -replace "#SetupFile", $(Split-Path -Path $AppUpdate.Download -Leaf)
         }
 
         if ([System.Boolean]($AppUpdate.PSobject.Properties.Name -match "SilentUninstall")) {
-            $AppJson.Program.UninstallCommand = $AppUpdate.SilentUninstall -replace "%ProgramData%", "C:\ProgramData"
+            $AppData.Program.UninstallCommand = $AppUpdate.SilentUninstall -replace "%ProgramData%", "C:\ProgramData"
         }
 
         # Update the application display name
         if ([System.Boolean]($AppUpdate.PSobject.Properties.Name -match "Architecture")) {
-            $AppJson.Information.DisplayName = "$($Application.Title) $($AppUpdate.Version) $($AppUpdate.Architecture)"
+            $AppData.Information.DisplayName = "$($Application.Title) $($AppUpdate.Version) $($AppUpdate.Architecture)"
         }
         else {
-            $AppJson.Information.DisplayName = "$($Application.Title) $($AppUpdate.Version)"
+            $AppData.Information.DisplayName = "$($Application.Title) $($AppUpdate.Version)"
         }
 
         # Step through each DetectionRule to update version properties
-        for ($i = 0; $i -le $AppJson.DetectionRule.Count - 1; $i++) {
+        for ($i = 0; $i -le $AppData.DetectionRule.Count - 1; $i++) {
 
-            if ("Value" -in ($AppJson.DetectionRule[$i] | Get-Member -MemberType "NoteProperty" | Select-Object -ExpandProperty "Name")) {
-                $AppJson.DetectionRule[$i].Value = $AppUpdate.Version
+            if ("Value" -in ($AppData.DetectionRule[$i] | Get-Member -MemberType "NoteProperty" | Select-Object -ExpandProperty "Name")) {
+                $AppData.DetectionRule[$i].Value = $AppUpdate.Version
             }
 
-            if ("VersionValue" -in ($AppJson.DetectionRule[$i] | Get-Member -MemberType "NoteProperty" | Select-Object -ExpandProperty "Name")) {
-                $AppJson.DetectionRule[$i].VersionValue = $AppUpdate.Version
+            if ("VersionValue" -in ($AppData.DetectionRule[$i] | Get-Member -MemberType "NoteProperty" | Select-Object -ExpandProperty "Name")) {
+                $AppData.DetectionRule[$i].VersionValue = $AppUpdate.Version
             }
 
-            if ("ProductVersion" -in ($AppJson.DetectionRule[$i] | Get-Member -MemberType "NoteProperty" | Select-Object -ExpandProperty "Name")) {
-                $AppJson.DetectionRule[$i].ProductVersion = $AppUpdate.Version
+            if ("ProductVersion" -in ($AppData.DetectionRule[$i] | Get-Member -MemberType "NoteProperty" | Select-Object -ExpandProperty "Name")) {
+                $AppData.DetectionRule[$i].ProductVersion = $AppUpdate.Version
             }
 
-            if ("ProductCode" -in ($AppJson.DetectionRule[$i] | Get-Member -MemberType "NoteProperty" | Select-Object -ExpandProperty "Name")) {
+            if ("ProductCode" -in ($AppData.DetectionRule[$i] | Get-Member -MemberType "NoteProperty" | Select-Object -ExpandProperty "Name")) {
                 if ($Null -ne $AppUpdate.ProductCode) {
-                    $AppJson.DetectionRule[$i].ProductCode = $AppUpdate.ProductCode
+                    $AppData.DetectionRule[$i].ProductCode = $AppUpdate.ProductCode
                 }
             }
         }
 
         # Write the application manifest back to disk
         Write-Host -ForegroundColor "Cyan" "Output: $AppConfiguration."
-        $AppJson | ConvertTo-Json | Out-File -FilePath $AppConfiguration -Force
+        $AppData | ConvertTo-Json | Out-File -FilePath $AppConfiguration -Force
     }
-    elseif ([System.Version]$AppUpdate.Version -lt [System.Version]$AppJson.PackageInformation.Version) {
-        Write-Host -ForegroundColor "Cyan" "$($AppUpdate.Version) less than $($AppJson.PackageInformation.Version)."
+    elseif ([System.Version]$AppUpdate.Version -lt [System.Version]$AppData.PackageInformation.Version) {
+        Write-Host -ForegroundColor "Cyan" "$($AppUpdate.Version) less than $($AppData.PackageInformation.Version)."
     }
     else {
         Write-Host -ForegroundColor "Cyan" "Could not compare package version."
