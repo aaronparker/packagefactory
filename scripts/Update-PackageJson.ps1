@@ -54,12 +54,12 @@ foreach ($Application in $ApplicationList) {
 
         if ([System.Boolean]($AppUpdate.PSobject.Properties.Name -match "URI")) {
             $AppJson.PackageInformation.SetupFile = $(Split-Path -Path $AppUpdate.URI -Leaf) -replace "%20", " "
+            $AppJson.Program.InstallCommand = $AppJson.Program.InstallTemplate -replace "#SetupFile", $(Split-Path -Path $AppUpdate.URI -Leaf) -replace "%20", " "
         }
         else {
-            $AppJson.PackageInformation.SetupFile = $(Split-Path -Path $AppUpdate.URL -Leaf) -replace "%20", " "
+            $AppJson.PackageInformation.SetupFile = $(Split-Path -Path $AppUpdate.Download -Leaf) -replace "%20", " "
+            $AppJson.Program.InstallCommand = $AppJson.Program.InstallTemplate -replace "#SetupFile", $(Split-Path -Path $AppUpdate.Download -Leaf)
         }
-
-        $AppJson.Program.InstallCommand = $AppJson.Program.InstallTemplate -replace "#SetupFile", $(Split-Path -Path $AppUpdate.URI -Leaf) -replace "%20", " "
 
         if ([System.Boolean]($AppUpdate.PSobject.Properties.Name -match "SilentUninstall")) {
             $AppJson.Program.UninstallCommand = $AppUpdate.SilentUninstall -replace "%ProgramData%", "C:\ProgramData"
