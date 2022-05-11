@@ -15,6 +15,7 @@
 # Package folders
 packages/**/Package
 #packages/**/Source
+auth.ps1
 
 # OS generated files
 .DS_Store

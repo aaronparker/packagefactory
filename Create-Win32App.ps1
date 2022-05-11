@@ -1,4 +1,5 @@
 ﻿#Requires -RunAsAdministrator
+#Requires -Modules Evergreen, VcRedist
 <#
     .SYNOPSIS
         Create a Win32 app in Microsoft Intune based on input from app manifest file.
@@ -457,10 +458,10 @@ process {
             $DisplayName = $AppData.Information.DisplayName
         }
         if (Test-Path -Path "env:GITHUB_WORKFLOW" -ErrorAction "SilentlyContinue" ) {
-            $Notes = "Created by GitHub Workflow [$env:GITHUB_WORKFLOW] in repository [$env:GITHUB_REPOSITORY] on $(Get-Date -Format "yyyy-MM-dd")."
+            $Notes = "PSPackageFactory: GitHub Workflow [$env:GITHUB_WORKFLOW]; Repository [$env:GITHUB_REPOSITORY]; Date $(Get-Date -Format "yyyy-MM-dd")."
         }
         else {
-            $Notes = "Package factory $(Get-Date -Format "yyyy-MM-dd")."
+            $Notes = "PSPackageFactory: Date $(Get-Date -Format "yyyy-MM-dd")."
         }
         $Win32AppArgs = @{
             "FilePath"                 = $IntuneAppPackage.Path

@@ -25,7 +25,7 @@ jobs:
         id: test-appjson
         shell: powershell
         run: |
-          Test-Path -Path "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}"
+          Test-Path -Path "${{ github.workspace }}\scripts\Applications.json"
 
       - name: Install and cache PowerShell modules
         id: psmodulecache
@@ -46,8 +46,8 @@ jobs:
           }
           $global:AuthToken = Connect-MSIntuneGraph @params
 
-          $Json = Get-Content -Path "${{ github.workspace }}\scripts\Applications.json" | ConvertFrom-Json
-          $Filter = ($Json | Where-Object { $_.Name -eq "${{ github.event.inputs.configuration }}" }).Filter
+          $Apps = Get-Content -Path "${{ github.workspace }}\scripts\Applications.json" | ConvertFrom-Json
+          $Filter = ($Apps | Where-Object { $_.Name -eq "${{ github.event.inputs.configuration }}" }).Filter
           if ($Filter -match "Get-VcList") {
               $App = Invoke-Expression -Command $Filter
               $Filename = $(Split-Path -Path $App.Download -Leaf)

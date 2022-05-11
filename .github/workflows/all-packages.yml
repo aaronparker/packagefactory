@@ -1,0 +1,63 @@
+# Creates a Win32 package and optionally imports into a target Intune tenant
+# Uses secrets on the repo - TENANT_ID, CLIENT_ID, and CLIENT_SECRET
+# to import the package into a target tenant
+name: all-packages
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+on:
+  workflow_dispatch:
+
+jobs:
+  create-packages:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Test for Applications.json
+        id: test-appjson
+        shell: powershell
+        run: |
+          Test-Path -Path "${{ github.workspace }}\scripts\Applications.json"
+
+      - name: Install and cache PowerShell modules
+        id: psmodulecache
+        uses: potatoqualitee/psmodulecache@v4.5
+        with:
+          modules-to-cache: PSIntuneAuth, AzureAD, IntuneWin32App, Microsoft.Graph.Intune, Evergreen, VcRedist
+          shell: powershell
+
+      # Create the app package
+      - name: Authn to the Graph API and create packages
+        id: upload-package
+        shell: powershell
+        run: |
+          $params = @{
+            TenantId     = "${{ secrets.TENANT_ID }}"
+            ClientID     = "${{ secrets.CLIENT_ID }}"
+            ClientSecret = "${{ secrets.CLIENT_SECRET }}"
+          }
+          $global:AuthToken = Connect-MSIntuneGraph @params
+
+          $Apps = Get-Content -Path "${{ github.workspace }}\scripts\Applications.json" | ConvertFrom-Json
+          foreach ($App in $Apps) {
+            if ($App.Filter -match "Get-VcList") {
+                $AppUpdate = Invoke-Expression -Command $App.Filter
+                $Filename = $(Split-Path -Path $AppUpdate.Download -Leaf)
+                Write-Host "Package: $($AppUpdate.Name); $Filename."
+                New-Item -Path "${{ github.workspace }}\packages\$($App.Name)\Source" -ItemType "Directory" -Force | Out-Null
+                Invoke-WebRequest -Uri $AppUpdate.Download -OutFile "${{ github.workspace }}\packages\$($App.Name)\Source\$Filename" -UseBasicParsing
+            }
+            else {
+                Invoke-Expression -Command $App.Filter | Save-EvergreenApp -CustomPath "${{ github.workspace }}\packages\$($App.Name)\Source"
+            }
+
+            $params = @{
+                Application       = $App.Name
+                Path              = "${{ github.workspace }}\packages"
+                DisplayNameSuffix  = "(Package Factory)"
+            }
+            . ${{ github.workspace }}\Create-Win32App.ps1 @params
+          }
