@@ -82,5 +82,19 @@
         "Title": "Visual C++ Redistributable for Visual Studio 2022",
         "Language": "en-US",
         "Architecture": "x86"
+    },
+    {
+        "Name": "MicrosoftVcRedist2013x64",
+        "Filter": "Get-VcList -Release \"2013\" -Architecture \"x64\"",
+        "Title": "Visual C++ 2013 Update 5 Redistributable Package",
+        "Language": "en-US",
+        "Architecture": "x64"
+    },
+    {
+        "Name": "MicrosoftVcRedist2013x86",
+        "Filter": "Get-VcList -Release \"2013\" -Architecture \"x86\"",
+        "Title": "Visual C++ 2013 Update 5 Redistributable Package",
+        "Language": "en-US",
+        "Architecture": "x86"
     }
 ]
