@@ -1,4 +1,4 @@
-#Requires -Modules Evergreen
+#Requires -Modules Evergreen, VcRedist
 <#
     Update the App.json for packages
 #>
