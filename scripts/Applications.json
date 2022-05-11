@@ -1,12 +1,5 @@
 [
     {
-        "Name": "7Zip",
-        "Filter": "Get-EvergreenApp -Name \"7zip\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Type -eq \"msi\" } | Select-Object -First 1",
-        "Title": "7-Zip",
-        "Language": "en-US",
-        "Architecture": "x64"
-    },
-    {
         "Name": "AdobeAcrobatReaderDC",
         "Filter": "Get-EvergreenApp -Name \"AdobeAcrobatReaderDC\" | Where-Object { $_.Language -eq \"MUI\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
         "Title": "Adobe Acrobat Reader DC",
