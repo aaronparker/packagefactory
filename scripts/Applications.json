@@ -72,14 +72,14 @@
     {
         "Name": "MicrosoftVcRedist2022x64",
         "Filter": "Get-VcList -Release \"2022\" -Architecture \"x64\"",
-        "Title": "Microsoft Visual C++ Redistributable 2022 x64",
+        "Title": "Visual C++ Redistributable for Visual Studio 2022",
         "Language": "en-US",
         "Architecture": "x64"
     },
     {
         "Name": "MicrosoftVcRedist2022x86",
         "Filter": "Get-VcList -Release \"2022\" -Architecture \"x86\"",
-        "Title": "Microsoft Visual C++ Redistributable 2022",
+        "Title": "Visual C++ Redistributable for Visual Studio 2022",
         "Language": "en-US",
         "Architecture": "x86"
     }

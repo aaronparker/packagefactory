@@ -37,7 +37,12 @@ foreach ($Application in $ApplicationList) {
     # Get the application package manifest and update it
     $AppConfiguration = $([System.IO.Path]::Combine($Path, $Application.Name, $AppManifest))
     Write-Host -ForegroundColor "Cyan" "Read: $AppConfiguration."
-    $AppJson = Get-Content -Path $AppConfiguration | ConvertFrom-Json
+    if (Test-Path -Path $AppConfiguration) {
+        $AppJson = Get-Content -Path $AppConfiguration | ConvertFrom-Json
+    }
+    else {
+        Write-Warning -Message "Cannot find: $AppConfiguration."
+    }
 
     # If the version that Evergreen returns is higher than the version in the manifest
     if ([System.Version]$AppUpdate.Version -ge [System.Version]$AppJson.PackageInformation.Version -or [System.String]::IsNullOrEmpty($AppJson.PackageInformation.Version)) {
@@ -46,10 +51,17 @@ foreach ($Application in $ApplicationList) {
         # TODO: some applications may require unpacking the installer
         Write-Host -ForegroundColor "Cyan" "Update package."
         $AppJson.PackageInformation.Version = $AppUpdate.Version
-        $AppJson.PackageInformation.SetupFile = $(Split-Path -Path $AppUpdate.URI -Leaf) -replace "%20", " "
+
+        if ([System.Boolean]($AppUpdate.PSobject.Properties.Name -match "URI")) {
+            $AppJson.PackageInformation.SetupFile = $(Split-Path -Path $AppUpdate.URI -Leaf) -replace "%20", " "
+        }
+        else {
+            $AppJson.PackageInformation.SetupFile = $(Split-Path -Path $AppUpdate.URL -Leaf) -replace "%20", " "
+        }
+
         $AppJson.Program.InstallCommand = $AppJson.Program.InstallTemplate -replace "#SetupFile", $(Split-Path -Path $AppUpdate.URI -Leaf) -replace "%20", " "
 
-        If ([System.Boolean]($AppUpdate.PSobject.Properties.Name -match "SilentUninstall")) {
+        if ([System.Boolean]($AppUpdate.PSobject.Properties.Name -match "SilentUninstall")) {
             $AppJson.Program.UninstallCommand = $AppUpdate.SilentUninstall -replace "%ProgramData%", "C:\ProgramData"
         }
 
@@ -86,7 +98,7 @@ foreach ($Application in $ApplicationList) {
         $AppJson | ConvertTo-Json | Out-File -FilePath $AppConfiguration -Force
     }
     elseif ([System.Version]$AppUpdate.Version -lt [System.Version]$AppJson.PackageInformation.Version) {
-        Write-Host -ForegroundColor "Cyan" "$($AppUpdate.Version) less than or equal to $($AppJson.PackageInformation.Version)."
+        Write-Host -ForegroundColor "Cyan" "$($AppUpdate.Version) less than $($AppJson.PackageInformation.Version)."
     }
     else {
         Write-Host -ForegroundColor "Cyan" "Could not compare package version."
