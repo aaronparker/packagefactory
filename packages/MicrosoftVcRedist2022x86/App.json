@@ -29,9 +29,9 @@
   "DetectionRule": [
     {
       "Type": "MSI",
-      "ProductCode": "{2d507699-404c-4c8b-a54a-38e352f32cdd}",
+      "ProductCode": "{817e21c1-6b3a-4bc1-8c49-67e4e1887b3a}",
       "ProductVersionOperator": "notConfigured",
-      "ProductVersion": "{817e21c1-6b3a-4bc1-8c49-67e4e1887b3a}"
+      "ProductVersion": "14.32.31326.0"
     }
   ]
 }
