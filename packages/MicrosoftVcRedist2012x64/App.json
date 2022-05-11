@@ -8,7 +8,7 @@
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-VisualStudioCode2022.png"
   },
   "Information": {
-    "DisplayName": "Visual C++ 2013 Update 5 Redistributable Package 11.0.61030.0 x64",
+    "DisplayName": "Visual C++ Redistributable for Visual Studio 2012 Update 4 11.0.61030.0 x64",
     "Description": "This package installs run-time components of Visual C++ libraries and can be used to run such applications on a computer even if it does not have Visual Studio 2022 installed.",
     "Publisher": "Microsoft",
     "InformationURL": "https://visualstudio.microsoft.com/downloads/",
@@ -17,7 +17,7 @@
   "Program": {
     "InstallTemplate": ".\\#SetupFile /install /quiet /norestart",
     "InstallCommand": ".\\vcredist_x64.exe /install /quiet /norestart",
-    "UninstallCommand": "\"C:\\ProgramData\\Package Cache\\{042d26ef-3dbe-4c25-95d3-4c1b11b235a7}\\vcredist_x64.exe\" /uninstall /quiet /noreboot",
+    "UninstallCommand": "\"C:\\ProgramData\\Package Cache\\{ca67548a-5ebe-413a-b50c-4b9ceb6d66c6}\\vcredist_x64.exe\" /uninstall /quiet /noreboot",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
   },
@@ -29,7 +29,7 @@
   "DetectionRule": [
     {
       "Type": "MSI",
-      "ProductCode": "{042d26ef-3dbe-4c25-95d3-4c1b11b235a7}",
+      "ProductCode": "{ca67548a-5ebe-413a-b50c-4b9ceb6d66c6}",
       "ProductVersionOperator": "notConfigured",
       "ProductVersion": "11.0.61030.0"
     }
