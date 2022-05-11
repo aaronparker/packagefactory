@@ -451,8 +451,8 @@ process {
         }
 
         # Construct a table of default parameters for Win32 app
-        if ($PSBoundParameters["DisplayNameSuffix"]) { 
-            $DisplayName = "$($AppData.Information.DisplayName) $DisplayNameSuffix" 
+        if ($PSBoundParameters["DisplayNameSuffix"]) {
+            $DisplayName = "$($AppData.Information.DisplayName) $DisplayNameSuffix"
         }
         else {
             $DisplayName = $AppData.Information.DisplayName

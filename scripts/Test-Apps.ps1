@@ -4,6 +4,7 @@
 #>
 [CmdletBinding()]
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingWriteHost", "")]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingInvokeExpression", "")]
 param (
     [Parameter()]
     [System.String] $Path = "~/projects/packagefactory/packages",
