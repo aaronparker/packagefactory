@@ -9,8 +9,8 @@ on:
   push:
     paths:
       - ".github/workflows/update-packagejson.yml"
-      - "/scripts/Update-PackageJson.ps1"
-      - "/scripts/Applications.ps1"
+      - "scripts/Update-PackageJson.ps1"
+      - "scripts/Applications.ps1"
       - "**/App.json"
   schedule:
       - cron: '15 2 * * *'
