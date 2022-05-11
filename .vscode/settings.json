@@ -30,6 +30,7 @@
         "stefanzweifel",
         "SUPPRESSMSGBOXES",
         "THUMBNAILPREVIEW",
-        "VERYSILENT"
+        "VERYSILENT",
+        "windowsdesktop"
     ]
 }
