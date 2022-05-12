@@ -58,7 +58,7 @@ foreach ($Application in $ApplicationList) {
                 if (Test-Path -Path Env:Temp -ErrorAction "SilentlyContinue") { $ZipPath = $Env:Temp } else { $ZipPath = $HOME }
                 $Download = $AppUpdate | Save-EvergreenApp -CustomPath $ZipPath
                 [Reflection.Assembly]::LoadWithPartialName('System.IO.Compression.FileSystem')
-                $SetupFile = $[IO.Compression.ZipFile]::OpenRead($Download.FullName).Entries.FullName
+                $SetupFile = [IO.Compression.ZipFile]::OpenRead($Download.FullName).Entries.FullName
                 Remove-Item -Path $Download.FullName -Force
 
                 $AppData.PackageInformation.SetupFile = $SetupFile -replace "%20", " "
