@@ -15,9 +15,9 @@
     "PrivacyURL": "https://www.adobe.com/au/privacy.html"
   },
   "Program": {
-    "InstallTemplate": ".\\#SetupFile -sfx_nu /sALL /rps /l /msi EULA_ACCEPT=YES ENABLE_CHROMEEXT=0 DISABLE_BROWSER_INTEGRATION=1 ENABLE_OPTIMIZATION=YES ADD_THUMBNAILPREVIEW=0 DISABLEDESKTOPSHORTCUT=1",
+    "InstallTemplate": "#SetupFile /quiet",
     "InstallCommand": ".\\AcroRdrDCx64Upd2200120117_MUI.msp -sfx_nu /sALL /rps /l /msi EULA_ACCEPT=YES ENABLE_CHROMEEXT=0 DISABLE_BROWSER_INTEGRATION=1 ENABLE_OPTIMIZATION=YES ADD_THUMBNAILPREVIEW=0 DISABLEDESKTOPSHORTCUT=1",
-    "UninstallCommand": "msiexec.exe /X \"{AC76BA86-1033-1033-7760-BC15014EA700}\" /quiet",
+    "UninstallCommand": "",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
   },
