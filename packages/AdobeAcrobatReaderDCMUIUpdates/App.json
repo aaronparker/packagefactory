@@ -16,7 +16,7 @@
   },
   "Program": {
     "InstallTemplate": "#SetupFile /quiet",
-    "InstallCommand": ".\\AcroRdrDCx64Upd2200120117_MUI.msp -sfx_nu /sALL /rps /l /msi EULA_ACCEPT=YES ENABLE_CHROMEEXT=0 DISABLE_BROWSER_INTEGRATION=1 ENABLE_OPTIMIZATION=YES ADD_THUMBNAILPREVIEW=0 DISABLEDESKTOPSHORTCUT=1",
+    "InstallCommand": "AcroRdrDCx64Upd2200120117_MUI.msp /quiet",
     "UninstallCommand": "",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
