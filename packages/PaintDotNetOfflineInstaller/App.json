@@ -16,7 +16,7 @@
   },
   "Program": {
     "InstallTemplate": "msiexec.exe /i #SetupFile DESKTOPSHORTCUT=0 /quiet",
-    "InstallCommand": "msiexec.exe /i paint.net.4.3.10.winmsi.x64.msi /quiet",
+    "InstallCommand": "msiexec.exe /i paint.net.4.3.10.winmsi.x64.msi DESKTOPSHORTCUT=0 /quiet",
     "UninstallCommand": "MsiExec.exe /X \"{E56D2CED-CCAE-4902-A559-17B452752DA5}\" /quiet",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
