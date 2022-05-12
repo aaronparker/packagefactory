@@ -1,0 +1,40 @@
+{
+  "PackageInformation": {
+    "SetupType": "EXE",
+    "SetupFile": "SSMS-Setup-ENU.exe",
+    "Version": "15.0.18410.0",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Adobe-AcrobatReader.png"
+  },
+  "Information": {
+    "DisplayName": "Microsoft SQL Server Management Studio 22.001.20117 x64",
+    "Description": "SQL Server Management Studio (SSMS) is an integrated environment for managing any SQL infrastructure, from SQL Server to Azure SQL Database. SSMS provides tools to configure, monitor, and administer instances of SQL Server and databases. Use SSMS to deploy, monitor, and upgrade the data-tier components used by your applications, and build queries and scripts.",
+    "Publisher": "Microsoft",
+    "InformationURL": "https://docs.microsoft.com/en-au/sql/ssms/download-sql-server-management-studio-ssms",
+    "PrivacyURL": "https://go.microsoft.com/fwlink/?LinkId=521839"
+  },
+  "Program": {
+    "InstallTemplate": ".\\#SetupFile /passive /install",
+    "InstallCommand": ".\\AcroRdrDCx642200120117_MUI.exe -sfx_nu /sALL /rps /l /msi EULA_ACCEPT=YES ENABLE_CHROMEEXT=0 DISABLE_BROWSER_INTEGRATION=1 ENABLE_OPTIMIZATION=YES ADD_THUMBNAILPREVIEW=0 DISABLEDESKTOPSHORTCUT=1",
+    "UninstallCommand": "msiexec.exe /X \"{03FFD0DE-C109-45D1-9C19-C010A02CFC73}\" /quiet",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "suppress"
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "1809",
+    "Architecture": "x64"
+  },
+  "CustomRequirementRule": [],
+  "DetectionRule": [
+    {
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "C:\\Program Files (x86)\\Microsoft SQL Server Management Studio 18\\Common7\\IDE",
+      "FileOrFolder": "Ssms.exe",
+      "Operator": "greaterThanOrEqual",
+      "VersionValue": "1.5.00.11163",
+      "Check32BitOn64System": "false"
+    }
+  ]
+}
