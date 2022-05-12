@@ -17,7 +17,7 @@
   "Program": {
     "InstallTemplate": "#SetupFile /quiet",
     "InstallCommand": "AcroRdrDCx64Upd2200120117_MUI.msp /quiet",
-    "UninstallCommand": "",
+    "UninstallCommand": "msiexec.exe /X \"AdobeAcrobatReaderDCMUIUpdates\" /quiet",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
   },
