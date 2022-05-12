@@ -1,0 +1,50 @@
+{
+    "PackageInformation": {
+        "SetupType": "MSI",
+        "SetupFile": "AcroRdrDCx64Upd2200120117_MUI.msp",
+        "Version": "22.001.20117",
+        "SourceFolder": "Source",
+        "OutputFolder": "Package",
+        "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Adobe-AcrobatReader.png"
+    },
+    "Information": {
+        "DisplayName": "Adobe Acrobat Reader DC MUI Update 22.001.20117 x64",
+        "Description": "Update for Adobe Acrobat Reader, Standard and Pro DC.",
+        "Publisher": "Adobe",
+        "InformationURL": "https://www.adobe.com/devnet-docs/acrobatetk/tools/ReleaseNotesDC/index.html",
+        "PrivacyURL": "https://www.adobe.com/au/privacy.html"
+    },
+    "Program": {
+        "InstallTemplate": ".\\#SetupFile -sfx_nu /sALL /rps /l /msi EULA_ACCEPT=YES ENABLE_CHROMEEXT=0 DISABLE_BROWSER_INTEGRATION=1 ENABLE_OPTIMIZATION=YES ADD_THUMBNAILPREVIEW=0 DISABLEDESKTOPSHORTCUT=1",
+        "InstallCommand": ".\\AcroRdrDCx642200120117_MUI.exe -sfx_nu /sALL /rps /l /msi EULA_ACCEPT=YES ENABLE_CHROMEEXT=0 DISABLE_BROWSER_INTEGRATION=1 ENABLE_OPTIMIZATION=YES ADD_THUMBNAILPREVIEW=0 DISABLEDESKTOPSHORTCUT=1",
+        "UninstallCommand": "msiexec.exe /X \"{AC76BA86-1033-1033-7760-BC15014EA700}\" /quiet",
+        "InstallExperience": "system",
+        "DeviceRestartBehavior": "suppress"
+    },
+    "RequirementRule": {
+        "MinimumRequiredOperatingSystem": "1809",
+        "Architecture": "x64"
+    },
+    "CustomRequirementRule": [
+        {
+            "Type": "File",
+            "DetectionMethod": "Version",
+            "Path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat",
+            "FileOrFolder": "Acrobat.exe",
+            "Operator": "lessThan",
+            "VersionValue": "22.001.20117",
+            "Check32BitOn64System": "false"
+        }
+    ],
+    "DetectionRule": [
+        {
+            "Type": "File",
+            "DetectionMethod": "Version",
+            "Path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat",
+            "FileOrFolder": "Acrobat.exe",
+            "Operator": "greaterThanOrEqual",
+            "VersionValue": "22.001.20117",
+            "Check32BitOn64System": "false"
+        }
+    ]
+}
