@@ -53,8 +53,18 @@ foreach ($Application in $ApplicationList) {
         $AppData.PackageInformation.Version = $AppUpdate.Version
 
         if ([System.Boolean]($AppUpdate.PSobject.Properties.Name -match "URI")) {
-            $AppData.PackageInformation.SetupFile = $(Split-Path -Path $AppUpdate.URI -Leaf) -replace "%20", " "
-            $AppData.Program.InstallCommand = $AppData.Program.InstallTemplate -replace "#SetupFile", $(Split-Path -Path $AppUpdate.URI -Leaf) -replace "%20", " "
+            if ($AppUpdate.URI -match "\.zip$") {
+                $Download = $AppUpdate | Save-EvergreenApp -CustomPath $Env:Temp
+                [Reflection.Assembly]::LoadWithPartialName('System.IO.Compression.FileSystem')
+                $SetupFile = $[IO.Compression.ZipFile]::OpenRead($Download.FullName).Entries.FullName
+                Remove-Item -Path $Download.FullName -Force
+
+                $AppData.PackageInformation.SetupFile = $SetupFile -replace "%20", " "
+                $AppData.Program.InstallCommand = $AppData.Program.InstallTemplate -replace "#SetupFile", $SetupFile -replace "%20", " "
+            } else {
+                $AppData.PackageInformation.SetupFile = $(Split-Path -Path $AppUpdate.URI -Leaf) -replace "%20", " "
+                $AppData.Program.InstallCommand = $AppData.Program.InstallTemplate -replace "#SetupFile", $(Split-Path -Path $AppUpdate.URI -Leaf) -replace "%20", " "
+            }
         }
         else {
             $AppData.PackageInformation.SetupFile = $(Split-Path -Path $AppUpdate.Download -Leaf) -replace "%20", " "

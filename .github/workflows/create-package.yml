@@ -56,12 +56,16 @@ jobs:
               Invoke-WebRequest -Uri $App.Download -OutFile "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source\$Filename" -UseBasicParsing
           }
           else {
-              Invoke-Expression -Command $Filter | Save-EvergreenApp -CustomPath "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source"
+              $result = Invoke-Expression -Command $Filter | Save-EvergreenApp -CustomPath "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source"
+              If ($result.FullName -match "\.zip$") {
+                  Expand-Archive -DestinationPath "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source"
+                  Remove-Item -Path $result.FullName -Force
+              }
           }
 
           $params = @{
-            Application      = "${{ github.event.inputs.configuration }}"
-            Path             = "${{ github.workspace }}\packages"
-            DisplayNameSuffix = "(Package Factory)"
+              Application      = "${{ github.event.inputs.configuration }}"
+              Path             = "${{ github.workspace }}\packages"
+              DisplayNameSuffix = "(Package Factory)"
           }
           . ${{ github.workspace }}\Create-Win32App.ps1 @params

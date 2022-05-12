@@ -110,5 +110,12 @@
         "Title": "Microsoft .NET Desktop Runtime",
         "Language": "en-US",
         "Architecture": "x64"
+    },
+    {
+        "Name": "PaintDotNetOfflineInstaller",
+        "Filter": "Get-EvergreenApp -Name \"PaintDotNetOfflineInstaller\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.URI -match \"winmsi\" } | Select-Object -First 1",
+        "Title": "Paint.NET",
+        "Language": "en-US",
+        "Architecture": "x64"
     }
 ]

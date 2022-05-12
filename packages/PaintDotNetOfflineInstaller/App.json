@@ -1,0 +1,40 @@
+{
+  "PackageInformation": {
+    "SetupType": "MSI",
+    "SetupFile": "paint.net.4.3.10.winmsi.x64.msi",
+    "Version": "4.3.10",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Paint.Net.png"
+  },
+  "Information": {
+    "DisplayName": "Paint.NET 4.3.10 x64",
+    "Description": "Paint.NET is image and photo editing software for PCs that run Windows. It features an intuitive and innovative user interface with support for layers, unlimited undo, special effects, and a wide variety of useful and powerful tools.",
+    "Publisher": "dotPDN LLC.",
+    "InformationURL": "https://www.getpaint.net/",
+    "PrivacyURL": "https://www.getpaint.net/privacy.html"
+  },
+  "Program": {
+    "InstallTemplate": "msiexec.exe /i #SetupFile DESKTOPSHORTCUT=0 /quiet",
+    "InstallCommand": "msiexec.exe /i paint.net.4.3.10.winmsi.x64.msi /quiet",
+    "UninstallCommand": "msiexec.exe /X \"{B01A8859-9D45-3472-AD5D-0FB367564035}\" /quiet",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "suppress"
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "1809",
+    "Architecture": "x64"
+  },
+  "CustomRequirementRule": [],
+  "DetectionRule": [
+    {
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "C:\\Program Files\\paint.net",
+      "FileOrFolder": "paintdotnet.exe",
+      "Operator": "greaterThanOrEqual",
+      "VersionValue": "4.3.10",
+      "Check32BitOn64System": "false"
+    }
+  ]
+}

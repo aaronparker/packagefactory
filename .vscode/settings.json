@@ -8,6 +8,7 @@
         "CHROMEEXT",
         "codeql",
         "desktopicon",
+        "DESKTOPSHORTCUT",
         "DISABLEDESKTOPSHORTCUT",
         "ehthumbs",
         "ghaction",
@@ -22,6 +23,7 @@
         "NORESTARTAPPLICATIONS",
         "packagefactory",
         "packagejson",
+        "paintdotnet",
         "potatoqualitee",
         "psmodulecache",
         "runcode",
@@ -32,6 +34,7 @@
         "THUMBNAILPREVIEW",
         "vcredist",
         "VERYSILENT",
-        "windowsdesktop"
+        "windowsdesktop",
+        "winmsi"
     ]
 }
