@@ -15,8 +15,8 @@
     "PrivacyURL": "https://privacy.microsoft.com/privacystatement"
   },
   "Program": {
-    "InstallTemplate": ".\\#SetupFile /install /quiet /norestart",
-    "InstallCommand": ".\\VC_redist.x64.exe /install /quiet /norestart",
+    "InstallTemplate": "#SetupFile /install /quiet /norestart",
+    "InstallCommand": "VC_redist.x64.exe /install /quiet /norestart",
     "UninstallCommand": "\"C:\\ProgramData\\Package Cache\\{2d507699-404c-4c8b-a54a-38e352f32cdd}\\VC_redist.x64.exe\" /uninstall /quiet /noreboot",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"

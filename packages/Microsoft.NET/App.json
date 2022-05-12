@@ -15,8 +15,8 @@
     "PrivacyURL": "https://privacy.microsoft.com/privacystatement"
   },
   "Program": {
-    "InstallTemplate": ".\\#SetupFile /install /quiet /norestart",
-    "InstallCommand": ".\\windowsdesktop-runtime-6.0.5-win-x64.exe /install /quiet /norestart",
+    "InstallTemplate": "#SetupFile /install /quiet /norestart",
+    "InstallCommand": "windowsdesktop-runtime-6.0.5-win-x64.exe /install /quiet /norestart",
     "UninstallCommand": "MsiExec.exe /X \"{089A177D-98AE-4195-A115-D3C45613B875}\" /quiet",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"

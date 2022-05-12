@@ -5,7 +5,7 @@
     "Version": "15.0.18410.0",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
-    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Adobe-AcrobatReader.png"
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-SSMS.png"
   },
   "Information": {
     "DisplayName": "Microsoft SQL Server Management Studio 15.0.18410.0",
@@ -15,8 +15,8 @@
     "PrivacyURL": "https://go.microsoft.com/fwlink/?LinkId=521839"
   },
   "Program": {
-    "InstallTemplate": ".\\#SetupFile /passive /install",
-    "InstallCommand": ".\\SSMS-Setup-ENU.exe /passive /install",
+    "InstallTemplate": "#SetupFile /passive /install",
+    "InstallCommand": "SSMS-Setup-ENU.exe /passive /install",
     "UninstallCommand": "msiexec.exe /X \"{03FFD0DE-C109-45D1-9C19-C010A02CFC73}\" /quiet",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"

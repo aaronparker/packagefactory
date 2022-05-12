@@ -15,8 +15,8 @@
     "PrivacyURL": "https://privacy.microsoft.com/privacystatement"
   },
   "Program": {
-    "InstallTemplate": ".\\#SetupFile /install /quiet /norestart",
-    "InstallCommand": ".\\vcredist_x64.exe /install /quiet /norestart",
+    "InstallTemplate": "#SetupFile /install /quiet /norestart",
+    "InstallCommand": "vcredist_x64.exe /install /quiet /norestart",
     "UninstallCommand": "\"C:\\ProgramData\\Package Cache\\{ca67548a-5ebe-413a-b50c-4b9ceb6d66c6}\\vcredist_x64.exe\" /uninstall /quiet /noreboot",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
