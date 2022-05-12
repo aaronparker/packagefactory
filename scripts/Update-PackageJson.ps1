@@ -4,6 +4,7 @@
 #>
 [CmdletBinding()]
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingWriteHost", "")]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingInvokeExpression", "")]
 param (
     [Parameter()]
     [System.String] $Path = "~/projects/packagefactory",
@@ -54,7 +55,8 @@ foreach ($Application in $ApplicationList) {
 
         if ([System.Boolean]($AppUpdate.PSobject.Properties.Name -match "URI")) {
             if ($AppUpdate.URI -match "\.zip$") {
-                $Download = $AppUpdate | Save-EvergreenApp -CustomPath $Env:Temp
+                if (Test-Path -Path Env:Temp -ErrorAction "SilentlyContinue") { $ZipPath = $Env:Temp } else { $ZipPath = $HOME }
+                $Download = $AppUpdate | Save-EvergreenApp -CustomPath $ZipPath
                 [Reflection.Assembly]::LoadWithPartialName('System.IO.Compression.FileSystem')
                 $SetupFile = $[IO.Compression.ZipFile]::OpenRead($Download.FullName).Entries.FullName
                 Remove-Item -Path $Download.FullName -Force

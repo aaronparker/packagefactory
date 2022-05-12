@@ -1,3 +1,8 @@
+[CmdletBinding()]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingWriteHost", "")]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingInvokeExpression", "")]
+param ()
+
 try {
     $ApplicationList = Get-Content -Path ".\Applications.json" | ConvertFrom-Json
 }
