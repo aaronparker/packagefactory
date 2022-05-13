@@ -17,7 +17,7 @@ try {
     $result = Start-Process @params
 
     # Copy the initial_preferences file
-    $File = Get-ChildItem -Path $PWD -Filter "initial_preferences" -Recurse -ErrorAction "SilentlyContinue"
+    $File = Get-ChildItem -Path $PWD -Filter "initial_preferences.txt" -Recurse -ErrorAction "SilentlyContinue"
     Copy-Item -Path $File.FullName -Destination "$Env:ProgramFiles\Google\Chrome\Application\initial_preferences" -Force -ErrorAction "SilentlyContinue" | Out-Null
 }
 catch {

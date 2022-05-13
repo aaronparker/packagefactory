@@ -22,5 +22,3 @@ catch {
 finally {
     exit $result.ExitCode
 }
-
-
