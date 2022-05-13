@@ -8,7 +8,7 @@
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Citrix-WorkspaceApp.png"
   },
   "Information": {
-    "DisplayName": "Citrix Workspace app Current 15.0.18410.0",
+    "DisplayName": "Citrix Workspace app Current Release 22.4.1.62",
     "Description": "When powered by Citrix Workspace services, the new Citrix Workspace app gives users instant access to all their SaaS and web apps, their files and mobile apps, and their virtual apps and desktops from an easy-to-use, all-in-one interface. Citrix Workspace app is a single point of entry to all workspace services for users. Users get seamless and secure access to all the apps that they need to stay productive, including features such as embedded browsing and single sign-on.",
     "Publisher": "Citrix",
     "InformationURL": "https://docs.citrix.com/en-us/citrix-workspace-app-for-windows.html",
@@ -16,7 +16,7 @@
   },
   "Program": {
     "InstallTemplate": "#SetupFile /silent /noreboot /AutoUpdateCheck=auto /AutoUpdateStream=Current /DeferUpdateCount=3 /AURolloutPriority=Auto EnableCEIP=False",
-    "InstallCommand": "SSMS-Setup-ENU.exe /passive /install",
+    "InstallCommand": "CitrixWorkspaceApp22.4.1.62.exe /silent /noreboot /AutoUpdateCheck=auto /AutoUpdateStream=Current /DeferUpdateCount=3 /AURolloutPriority=Auto EnableCEIP=False",
     "UninstallCommand": "\"C:\\Program Files (x86)\\Citrix\\Citrix WorkSpace 2204\\TrolleyExpress.exe\" /silent /uninstall /cleanup",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
