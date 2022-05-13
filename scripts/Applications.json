@@ -21,6 +21,13 @@
         "Architecture": "x64"
     },
     {
+        "Name": "CitrixWorkspaceApp",
+        "Filter": "Get-EvergreenApp -Name \"CitrixWorkspaceApp\" | Where-Object { $_.Stream -eq \"Current\" -and $_.Title -match \"Citrix Workspace\" } | Select-Object -First 1",
+        "Title": "Citrix Workspace app Current Release",
+        "Language": "en-US",
+        "Architecture": "x64"
+    },
+    {
         "Name": "GoogleChrome",
         "Filter": "Get-EvergreenApp -Name \"GoogleChrome\" | Where-Object { $_.Channel -eq \"stable\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
         "Title": "Google Chrome",

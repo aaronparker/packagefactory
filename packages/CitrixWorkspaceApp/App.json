@@ -1,0 +1,40 @@
+{
+  "PackageInformation": {
+    "SetupType": "EXE",
+    "SetupFile": "CitrixWorkspaceApp22.4.1.62.exe",
+    "Version": "22.4.1.62",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Citrix-WorkspaceApp.png"
+  },
+  "Information": {
+    "DisplayName": "Citrix Workspace app Current 15.0.18410.0",
+    "Description": "When powered by Citrix Workspace services, the new Citrix Workspace app gives users instant access to all their SaaS and web apps, their files and mobile apps, and their virtual apps and desktops from an easy-to-use, all-in-one interface. Citrix Workspace app is a single point of entry to all workspace services for users. Users get seamless and secure access to all the apps that they need to stay productive, including features such as embedded browsing and single sign-on.",
+    "Publisher": "Citrix",
+    "InformationURL": "https://docs.citrix.com/en-us/citrix-workspace-app-for-windows.html",
+    "PrivacyURL": "https://www.citrix.com/about/legal/"
+  },
+  "Program": {
+    "InstallTemplate": "#SetupFile /silent /noreboot /AutoUpdateCheck=auto /AutoUpdateStream=Current /DeferUpdateCount=3 /AURolloutPriority=Auto EnableCEIP=False",
+    "InstallCommand": "SSMS-Setup-ENU.exe /passive /install",
+    "UninstallCommand": "\"C:\\Program Files (x86)\\Citrix\\Citrix WorkSpace 2204\\TrolleyExpress.exe\" /silent /uninstall /cleanup",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "suppress"
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "1809",
+    "Architecture": "x64"
+  },
+  "CustomRequirementRule": [],
+  "DetectionRule": [
+    {
+      "Type": "Registry",
+      "DetectionMethod": "VersionComparison",
+      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\CitrixOnlinePluginPackWeb",
+      "ValueName": "DisplayVersion",
+      "Operator": "greaterThanOrEqual",
+      "Value": "22.4.1.62",
+      "Check32BitOn64System": "false"
+    }
+  ]
+}
