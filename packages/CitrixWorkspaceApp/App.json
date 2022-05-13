@@ -15,7 +15,7 @@
     "PrivacyURL": "https://www.citrix.com/about/legal/"
   },
   "Program": {
-    "InstallTemplate": "#SetupFile /silent /noreboot /AutoUpdateCheck=auto /AutoUpdateStream=Current /DeferUpdateCount=3 /AURolloutPriority=Auto EnableCEIP=False",
+    "InstallTemplate": "#SetupFile /silent /noreboot /includeSSON /AutoUpdateCheck=auto /AutoUpdateStream=Current /DeferUpdateCount=3 /AURolloutPriority=Auto EnableCEIP=False",
     "InstallCommand": "CitrixWorkspaceApp22.4.1.62.exe /silent /noreboot /AutoUpdateCheck=auto /AutoUpdateStream=Current /DeferUpdateCount=3 /AURolloutPriority=Auto EnableCEIP=False",
     "UninstallCommand": "\"C:\\Program Files (x86)\\Citrix\\Citrix WorkSpace 2204\\TrolleyExpress.exe\" /silent /uninstall /cleanup",
     "InstallExperience": "system",
