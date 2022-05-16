@@ -64,5 +64,9 @@ catch {
     throw "Failed to install Google Chrome."
 }
 finally {
+    If ($result.ExitCode -eq 0) {
+        $Files = @("$env:PUBLIC\Desktop\Google Chrome.lnk")
+        Remove-Item -Path $Files -Force -ErrorAction "SilentlyContinue"
+    }
     exit $result.ExitCode
 }
