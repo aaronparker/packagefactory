@@ -1,0 +1,49 @@
+{
+  "PackageInformation": {
+    "SetupType": "MSI",
+    "SetupFile": "Teams_windows_x64.msi",
+    "Version": "1.5.00.11163",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-Teams.png"
+  },
+  "Information": {
+    "DisplayName": "Microsoft Teams for VDI 1.5.00.11163 x64",
+    "Description": "Per-machine install for virtual desktop infrastructure. More is possible with Microsoft Teams. Stay connected and access shared content any time to learn, plan, and innovate—together.",
+    "Publisher": "Microsoft",
+    "InformationURL": "https://www.microsoft.com/microsoft-teams/",
+    "PrivacyURL": "https://go.microsoft.com/fwlink/?LinkId=521839"
+  },
+  "Program": {
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+    "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Uninstall.ps1",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "suppress"
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "1809",
+    "Architecture": "x64"
+  },
+  "CustomRequirementRule": [
+    {
+      "Type": "Registry",
+      "DetectionMethod": "Existence",
+      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Teams",
+      "ValueName": "IsWVDEnvironment",
+      "DetectionType": "exists",
+      "Check32BitOn64System": "false"
+    }
+  ],
+  "DetectionRule": [
+    {
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "C:\\Program Files (x86)\\Microsoft\\Teams\\current",
+      "FileOrFolder": "Teams.exe",
+      "Operator": "greaterThanOrEqual",
+      "VersionValue": "1.5.00.11163",
+      "Check32BitOn64System": "false"
+    }
+  ]
+}

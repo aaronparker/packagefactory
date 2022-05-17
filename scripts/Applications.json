@@ -63,6 +63,13 @@
         "Architecture": "x64"
     },
     {
+        "Name": "MicrosoftTeamsVDI",
+        "Filter": "Get-EvergreenApp -Name \"MicrosoftTeams\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Ring -eq \"General\" -and $_.Type -eq \"msi\" } | Select-Object -First 1",
+        "Title": "Microsoft Teams for VDI",
+        "Language": "en-US",
+        "Architecture": "x64"
+    },
+    {
         "Name": "MicrosoftVcRedist2012x64",
         "Filter": "Get-VcList -Release \"2012\" -Architecture \"x64\"",
         "Title": "Visual C++ Redistributable for Visual Studio 2012 Update 4",
