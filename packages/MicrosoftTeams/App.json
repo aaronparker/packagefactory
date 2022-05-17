@@ -25,7 +25,16 @@
     "MinimumRequiredOperatingSystem": "1809",
     "Architecture": "x64"
   },
-  "CustomRequirementRule": [],
+  "CustomRequirementRule": [
+    {
+      "Type": "Registry",
+      "DetectionMethod": "Existence",
+      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Teams",
+      "ValueName": "IsWVDEnvironment",
+      "DetectionType": "notExists",
+      "Check32BitOn64System": "false"
+    }
+  ],
   "DetectionRule": [
     {
       "Type": "File",
