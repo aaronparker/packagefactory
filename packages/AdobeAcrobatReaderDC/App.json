@@ -28,12 +28,12 @@
   "CustomRequirementRule": [],
   "DetectionRule": [
     {
-      "Type": "Registry",
-      "DetectionMethod": "VersionComparison",
-      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{AC76BA86-1033-1033-7760-BC15014EA700}",
-      "ValueName": "DisplayVersion",
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat",
+      "FileOrFolder": "Acrobat.exe",
       "Operator": "greaterThanOrEqual",
-      "Value": "22.001.20117",
+      "VersionValue": "22.001.20117",
       "Check32BitOn64System": "false"
     }
   ]
