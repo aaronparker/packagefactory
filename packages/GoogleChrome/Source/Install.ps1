@@ -3,7 +3,7 @@
     Installs the application
 #>
 [CmdletBinding()]
-Param ()
+param ()
 
 #region Restart if running in a 32-bit session
 If (!([System.Environment]::Is64BitProcess)) {

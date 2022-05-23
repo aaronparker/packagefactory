@@ -3,7 +3,7 @@
     Uninstalls the application
 #>
 [CmdletBinding()]
-Param ()
+param ()
 
 #region Restart if running in a 32-bit session
 If (!([System.Environment]::Is64BitProcess)) {
@@ -24,6 +24,15 @@ If (!([System.Environment]::Is64BitProcess)) {
     }
 }
 #endregion
+
+try {
+    Get-Process -ErrorAction "SilentlyContinue" | `
+        Where-Object { $_.Path -like "$env:ProgramFiles\PowerToys\*" } | `
+        Stop-Process -Force -ErrorAction "SilentlyContinue"
+}
+catch {
+    Write-Warning -Message "Failed to stop PowerToys processes."
+}
 
 try {
     $Path = "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{7f0d7424-d132-4aaf-baa9-5d7d436f0feb}"
