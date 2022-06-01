@@ -37,7 +37,7 @@ param(
     [System.String] $Path,
 
     [Parameter(Mandatory = $false, HelpMessage = "Adds a string to the application display name as a suffix.")]
-    [ValidateNotNullOrEmpty()]
+    #[ValidateNotNullOrEmpty()]
     [System.String] $DisplayNameSuffix,
 
     [Parameter(Mandatory = $false, HelpMessage = "Specify to validate manifest file configuration.")]
