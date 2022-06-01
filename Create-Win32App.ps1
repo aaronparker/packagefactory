@@ -54,8 +54,9 @@ process {
         # Required packaging variables
         $SourceFolder = [System.IO.Path]::Combine($Path, $AppName, $AppData.PackageInformation.SourceFolder)
         $OutputFolder = [System.IO.Path]::Combine($Path, $AppName, $AppData.PackageInformation.OutputFolder)
-        New-Item -Path $OutputFolder -ItemType "Directory" -Force | Out-Null
         $ScriptsFolder = [System.IO.Path]::Combine($Path, $AppName, "Scripts")
+        Write-Verbose -Message "Create directory: $OutputFolder"
+        New-Item -Path $OutputFolder -ItemType "Directory" -Force | Out-Null
 
         # Icon file - download the file, if the property is a URL
         if ($AppData.PackageInformation.IconFile -match "^http") {
@@ -65,6 +66,7 @@ process {
                 OutFile         = $OutFile
                 UseBasicParsing = $True
             }
+            Write-Verbose -Message "Download icon file: $OutFile"
             Invoke-WebRequest @params
             $AppIconFile = $OutFile
         }

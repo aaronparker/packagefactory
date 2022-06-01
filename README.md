@@ -21,10 +21,11 @@ $Filter = ($Json | Where-Object { $_.Name -eq $Application }).Filter
 Invoke-Expression -Command $Filter | Save-EvergreenApp -CustomPath ".\packages\$Application\Source"
 
 $params = @{
-  Application = $Application
-  Path        = "C:\projects\packagefactory\packages"
+    Application = $Application
+    Path        = "C:\projects\packagefactory\packages"
+    DisplayNameSuffix = "(Package Factory)"
 }
-.\scripts\Create-Win32App.ps1 @params
+.\Create-Win32App.ps1 @params
 ```
 
 Or used in a pipeline (e.g., via GitHub Workflows) to authenticate without user interaction and completely automate the full creation of application packages.
