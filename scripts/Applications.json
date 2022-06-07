@@ -43,7 +43,7 @@
     },
     {
         "Name": "MicrosoftPowerToys",
-        "Filter": "Get-EvergreenApp -Name \"MicrosoftPowerToys\" | Select-Object -First 1",
+        "Filter": "Get-EvergreenApp -Name \"MicrosoftPowerToys\" | Where-Object { $_.Architecture -eq \"x64\" } | Select-Object -First 1",
         "Title": "Microsoft PowerToys",
         "Language": "en-US",
         "Architecture": "x64"
