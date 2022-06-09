@@ -20,7 +20,7 @@ jobs:
         id: test-appjson
         shell: powershell
         run: |
-          Test-Path -Path "${{ github.workspace }}\scripts\Applications.json"
+          Test-Path -Path "${{ github.workspace }}\Applications.json"
 
       - name: Install and cache PowerShell modules
         id: psmodulecache
@@ -41,7 +41,7 @@ jobs:
           }
           $global:AuthToken = Connect-MSIntuneGraph @params
 
-          $Apps = Get-Content -Path "${{ github.workspace }}\scripts\Applications.json" | ConvertFrom-Json
+          $Apps = Get-Content -Path "${{ github.workspace }}\Applications.json" | ConvertFrom-Json
           foreach ($App in $Apps) {
             if ($App.Filter -match "Get-VcList") {
                 $AppUpdate = Invoke-Expression -Command $App.Filter

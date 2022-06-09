@@ -34,13 +34,13 @@ jobs:
         id: test-appjson
         shell: pwsh
         run: |
-          Test-Path -Path "${{ github.workspace }}/scripts/Applications.json"
+          Test-Path -Path "${{ github.workspace }}/Applications.json"
 
       - name: Update package JSON
         id: update-json
         shell: pwsh
         run: |
-          . "${{ github.workspace }}/scripts/Update-PackageJson.ps1" -Path "${{ github.workspace }}/packages" -Manifest "${{ github.workspace }}/scripts/Applications.json"
+          . "${{ github.workspace }}/scripts/Update-PackageJson.ps1" -Path "${{ github.workspace }}/packages" -Manifest "${{ github.workspace }}/Applications.json"
 
       # Format the date number for the commit message
       - name: Get date
