@@ -1,5 +1,5 @@
 $Application = "MicrosoftVcRedist2022x86"
-$Apps = Get-Content -Path "E:\Temp\packagefactory\scripts\Applications.json" | ConvertFrom-Json
+$Apps = Get-Content -Path "E:\Temp\packagefactory\Applications.json" | ConvertFrom-Json
 $Filter = ($Apps | Where-Object { $_.Name -eq "$Application" }).Filter
 if ($Filter -match "Get-VcList") {
     $App = Invoke-Expression -Command $Filter

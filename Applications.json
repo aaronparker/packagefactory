@@ -49,6 +49,13 @@
         "Architecture": "x64"
     },
     {
+        "Name": "MicrosoftOneDrive",
+        "Filter": "Get-EvergreenApp -Name \"MicrosoftOneDrive\" | Where-Object { $_.Architecture -eq \"AMD64\" -and $_.Ring -eq \"Production\" } | Select-Object -First 1",
+        "Title": "Microsoft OneDrive",
+        "Language": "en-US",
+        "Architecture": "x64"
+    },
+    {
         "Name": "MicrosoftSsmsEnu",
         "Filter": "Get-EvergreenApp -Name \"MicrosoftSsms\" | Where-Object { $_.Language -eq \"English\" } | Select-Object -First 1",
         "Title": "Microsoft SQL Server Management Studio",

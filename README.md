@@ -16,7 +16,7 @@ Authentication to a tenant can be performed manually via `Connect-MSIntuneGraph`
 Connect-MSIntuneGraph -TenantID stealthpuppylab.onmicrosoft.com
 
 $Application = "AdobeAcrobatReaderDC"
-$Json = Get-Content -Path ".\scripts\Applications.json" | ConvertFrom-Json
+$Json = Get-Content -Path ".\Applications.json" | ConvertFrom-Json
 $Filter = ($Json | Where-Object { $_.Name -eq $Application }).Filter
 Invoke-Expression -Command $Filter | Save-EvergreenApp -CustomPath ".\packages\$Application\Source"
 
@@ -38,7 +38,7 @@ $params = @{
 }
 $global:AuthToken = Connect-MSIntuneGraph @params
 
-$Json = Get-Content -Path "${{ github.workspace }}\scripts\Applications.json" | ConvertFrom-Json
+$Json = Get-Content -Path "${{ github.workspace }}\Applications.json" | ConvertFrom-Json
 $Filter = ($Json | Where-Object { $_.Name -eq "${{ github.event.inputs.configuration }}" }).Filter
 Invoke-Expression -Command $Filter | Save-EvergreenApp -CustomPath "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source"
 
