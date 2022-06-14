@@ -21,6 +21,13 @@
         "Architecture": "x64"
     },
     {
+        "Name": "Cyberduck",
+        "Filter": "Get-EvergreenApp -Name \"Cyberduck\"",
+        "Title": "Cyberduck",
+        "Language": "en-US",
+        "Architecture": "x64"
+    },
+    {
         "Name": "CitrixWorkspaceApp",
         "Filter": "Get-EvergreenApp -Name \"CitrixWorkspaceApp\" | Where-Object { $_.Stream -eq \"Current\" -and $_.Title -match \"Citrix Workspace\" } | Select-Object -First 1",
         "Title": "Citrix Workspace app Current Release",
