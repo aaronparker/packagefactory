@@ -1,0 +1,40 @@
+{
+  "PackageInformation": {
+    "SetupType": "EXE",
+    "SetupFile": "Cyberduck-Installer-8.3.3.37544.exe",
+    "Version": "3.1.3",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Iterate-Cyberduck1.png"
+  },
+  "Information": {
+    "DisplayName": "Cyberduck 3.1.3 x64",
+    "Description": "Cyberduck is a libre server and cloud storage browser for Mac and Windows with support for FTP, SFTP, WebDAV, Amazon S3, OpenStack Swift, Backblaze B2, Microsoft Azure & OneDrive, Google Drive and Dropbox.",
+    "Publisher": "iterate",
+    "InformationURL": "https://cyberduck.io/",
+    "PrivacyURL": "https://cyberduck.io/privacy"
+  },
+  "Program": {
+    "InstallTemplate": "#SetupFile /S",
+    "InstallCommand": "audacity-win-3.1.3-64bit.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP- /MERGETASKS=\"!desktopicon\"",
+    "UninstallCommand": "msiexec.exe /X \"{8FF1F756-1F7C-41C1-880E-B03218DFDD72}\" /quiet",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "suppress"
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "1809",
+    "Architecture": "x64"
+  },
+  "CustomRequirementRule": [],
+  "DetectionRule": [
+    {
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "C:\\Program Files\\Cyberduck",
+      "FileOrFolder": "Cyberduck.exe",
+      "Operator": "greaterThanOrEqual",
+      "VersionValue": "3.1.3",
+      "Check32BitOn64System": "false"
+    }
+  ]
+}
