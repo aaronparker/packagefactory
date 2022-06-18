@@ -35,7 +35,7 @@ jobs:
         shell: pwsh
         run: |
           foreach ($module in @("IntuneWin32App", "Evergreen", "VcRedist")) {
-            Update-Module -Name $module-Force
+            Update-Module -Name $module -Force
             $Version = (Get-Module -Name $module -ListAvailable | Select-Object -First 1).Version.ToString()
             Write-Host "$module version: $Version"
           }
