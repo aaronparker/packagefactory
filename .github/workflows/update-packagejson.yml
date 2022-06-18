@@ -26,7 +26,7 @@ jobs:
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v4.5
         with:
-          modules-to-cache: Evergreen, VcRedist
+          modules-to-cache: IntuneWin32App, Evergreen, VcRedist
           force: true
           shell: pwsh
 
