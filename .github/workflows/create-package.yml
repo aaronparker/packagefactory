@@ -31,8 +31,18 @@ jobs:
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v4.5
         with:
-          modules-to-cache: PSIntuneAuth, AzureAD, IntuneWin32App, Microsoft.Graph.Intune, Evergreen, VcRedist
+          modules-to-cache: IntuneWin32App, Evergreen, VcRedist
           shell: powershell
+
+      - name: List Modules
+        id: list-modules
+        shell: powershell
+        run: |
+          foreach ($module in @("IntuneWin32App", "Evergreen", "VcRedist")) {
+            Update-Module -Name $module-Force
+            $Version = (Get-Module -Name $module -ListAvailable | Select-Object -First 1).Version.ToString()
+            Write-Host "$module version: $Version"
+          }
 
       # Create the app package
       - name: Authn to the Graph API and create package/s

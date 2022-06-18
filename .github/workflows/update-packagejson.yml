@@ -30,6 +30,16 @@ jobs:
           force: true
           shell: pwsh
 
+      - name: List Modules
+        id: list-modules
+        shell: pwsh
+        run: |
+          foreach ($module in @("IntuneWin32App", "Evergreen", "VcRedist")) {
+            Update-Module -Name $module-Force
+            $Version = (Get-Module -Name $module -ListAvailable | Select-Object -First 1).Version.ToString()
+            Write-Host "$module version: $Version"
+          }
+
       - name: Test for Applications.json
         id: test-appjson
         shell: pwsh
