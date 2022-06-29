@@ -1,14 +1,14 @@
 {
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "Firefox Setup 101.0.1.msi",
-    "Version": "101.0.1",
+    "SetupFile": "Firefox Setup 102.0.msi",
+    "Version": "102.0",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Mozilla-Firefox.png"
   },
   "Information": {
-    "DisplayName": "Mozilla Firefox 101.0.1 x64",
+    "DisplayName": "Mozilla Firefox 102.0 x64",
     "Description": "Get the browser that protects what's important. No shady privacy policies or back doors for advertisers. Just a lightning fast browser that doesn't sell you out.",
     "Publisher": "Mozilla",
     "InformationURL": "https://www.mozilla.org/firefox/new/",
@@ -16,7 +16,7 @@
   },
   "Program": {
     "InstallTemplate": "msiexec.exe /i \"#SetupFile\" DESKTOP_SHORTCUT=false TASKBAR_SHORTCUT=false /quiet",
-    "InstallCommand": "msiexec.exe /i \"Firefox Setup 101.0.1.msi\" DESKTOP_SHORTCUT=false TASKBAR_SHORTCUT=false /quiet",
+    "InstallCommand": "msiexec.exe /i \"Firefox Setup 102.0.msi\" DESKTOP_SHORTCUT=false TASKBAR_SHORTCUT=false /quiet",
     "UninstallCommand": "C:\\Program Files\\Mozilla Firefox\\uninstall\\helper.exe /S",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
@@ -33,7 +33,7 @@
       "Path": "C:\\Program Files\\Mozilla Firefox",
       "FileOrFolder": "firefox.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "101.0.1",
+      "VersionValue": "102.0",
       "Check32BitOn64System": "false"
     }
   ]
