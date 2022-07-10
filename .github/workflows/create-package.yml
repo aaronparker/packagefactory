@@ -62,13 +62,29 @@ jobs:
               $App = Invoke-Expression -Command $Filter
               $Filename = $(Split-Path -Path $App.Download -Leaf)
               Write-Host "Package: $($App.Name); $Filename."
-              New-Item -Path "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source" -ItemType "Directory" -Force | Out-Null
-              Invoke-WebRequest -Uri $App.Download -OutFile "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source\$Filename" -UseBasicParsing
+              $params = @{
+                  Path    = "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source"
+                  temType = "Directory"
+                  Force   = $True
+              }
+              New-Item @params | Out-Null
+              $params = @{
+                  Uri             = $App.Download
+                  OutFile         = "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source\$Filename"
+                  UseBasicParsing = $True
+              }
+              Invoke-WebRequest @params
           }
           else {
               $result = Invoke-Expression -Command $Filter | Save-EvergreenApp -CustomPath "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source"
-              If ($result.FullName -match "\.zip$") {
-                  Expand-Archive -DestinationPath "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source"
+              Write-Host "Downloaded: $($result.FullName)"
+              if ($result.FullName -match "\.zip$") {
+                  $params = @{
+                      Path            = $result.FullName
+                      DestinationPath = "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source"
+                      Verbose         = $True
+                  }
+                  Expand-Archive @params
                   Remove-Item -Path $result.FullName -Force
               }
           }
