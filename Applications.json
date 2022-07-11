@@ -166,5 +166,12 @@
         "Title": "Greenshot",
         "Language": "en-US",
         "Architecture": "x86"
+    },
+    {
+        "Name": "FoxitReader",
+        "Filter": "Get-EvergreenApp -Name \"FoxitReader\" | Where-Object { $_.Language -eq \"English\" } | Select-Object -First 1",
+        "Title": "Foxit PDF Reader",
+        "Language": "en-US",
+        "Architecture": "x86"
     }
 ]
