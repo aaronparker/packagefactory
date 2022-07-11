@@ -1,40 +1,40 @@
 {
-    "PackageInformation": {
-        "SetupType": "MSI",
-        "SetupFile": "FoxitPDFReader120_enu_Setup.msi",
-        "Version": "12.0.0.12394",
-        "SourceFolder": "Source",
-        "OutputFolder": "Package",
-        "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/FoxitReader.png"
-    },
-    "Information": {
-        "DisplayName": "Foxit PDF Reader 1.0.0",
-        "Description": "View, annotate, form fill, and sign PDF across desktop, mobile, and web - no matter if you're at the office, home, or on the go.",
-        "Publisher": "Foxit Software Inc.",
-        "InformationURL": "https://www.foxit.com/pdf-reader/",
-        "PrivacyURL": "https://www.foxit.com/company/privacy-policy.html"
-    },
-    "Program": {
-        "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
-        "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
-        "UninstallCommand": "MsiExec.exe /X \"{F398C64A-E282-11EC-8A9F-54BF64A63C26}\" /quiet",
-        "InstallExperience": "system",
-        "DeviceRestartBehavior": "suppress"
-    },
-    "RequirementRule": {
-        "MinimumRequiredOperatingSystem": "1809",
-        "Architecture": "All"
-    },
-    "CustomRequirementRule": [],
-    "DetectionRule": [
-        {
-            "Type": "File",
-            "DetectionMethod": "Version",
-            "Path": "C:\\Program Files\\Foxit Software\\Foxit PDF Reader",
-            "FileOrFolder": "FoxitPDFReader.exe",
-            "Operator": "greaterThanOrEqual",
-            "VersionValue": "12.0.0.12394",
-            "Check32BitOn64System": "true"
-          }
-    ]
+  "PackageInformation": {
+    "SetupType": "MSI",
+    "SetupFile": "FoxitPDFReader120_enu_Setup.msi",
+    "Version": "12.0.0.12394",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/FoxitReader.png"
+  },
+  "Information": {
+    "DisplayName": "Foxit PDF Reader 12.0.0.12394",
+    "Description": "View, annotate, form fill, and sign PDF across desktop, mobile, and web - no matter if you're at the office, home, or on the go.",
+    "Publisher": "Foxit Software Inc.",
+    "InformationURL": "https://www.foxit.com/pdf-reader/",
+    "PrivacyURL": "https://www.foxit.com/company/privacy-policy.html"
+  },
+  "Program": {
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+    "UninstallCommand": "MsiExec.exe /X \"{F398C64A-E282-11EC-8A9F-54BF64A63C26}\" /quiet",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "suppress"
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "1809",
+    "Architecture": "All"
+  },
+  "CustomRequirementRule": [],
+  "DetectionRule": [
+    {
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "C:\\Program Files\\Foxit Software\\Foxit PDF Reader",
+      "FileOrFolder": "FoxitPDFReader.exe",
+      "Operator": "greaterThanOrEqual",
+      "VersionValue": "12.0.0.12394",
+      "Check32BitOn64System": "true"
+    }
+  ]
 }
