@@ -1,14 +1,14 @@
 {
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "VSCodeSetup-x64-1.69.1.exe",
-    "Version": "1.69.1",
+    "SetupFile": "VSCodeSetup-x64-1.69.2.exe",
+    "Version": "1.69.2",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-VisualStudioCode.png"
   },
   "Information": {
-    "DisplayName": "Microsoft Visual Studio Code 1.69.1 x64",
+    "DisplayName": "Microsoft Visual Studio Code 1.69.2 x64",
     "Description": "Visual Studio Code is a lightweight but powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux. It comes with built-in support for JavaScript, TypeScript and Node.js and has a rich ecosystem of extensions for other languages (such as C++, C#, Java, Python, PHP, Go) and runtimes (such as .NET and Unity).",
     "Publisher": "Microsoft",
     "InformationURL": "https://code.visualstudio.com/",
@@ -16,7 +16,7 @@
   },
   "Program": {
     "InstallTemplate": "#SetupFile /VERYSILENT /NOCLOSEAPPLICATIONS /NORESTARTAPPLICATIONS /NORESTART /SP- /SUPPRESSMSGBOXES /MERGETASKS=!runcode",
-    "InstallCommand": "VSCodeSetup-x64-1.69.1.exe /VERYSILENT /NOCLOSEAPPLICATIONS /NORESTARTAPPLICATIONS /NORESTART /SP- /SUPPRESSMSGBOXES /MERGETASKS=!runcode",
+    "InstallCommand": "VSCodeSetup-x64-1.69.2.exe /VERYSILENT /NOCLOSEAPPLICATIONS /NORESTARTAPPLICATIONS /NORESTART /SP- /SUPPRESSMSGBOXES /MERGETASKS=!runcode",
     "UninstallCommand": "msiexec.exe /X \"{AC76BA86-1033-1033-7760-BC15014EA700}\" /quiet",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
@@ -33,7 +33,7 @@
       "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{EA457B21-F73E-494C-ACAB-524FDE069978}_is1",
       "ValueName": "DisplayVersion",
       "Operator": "greaterThanOrEqual",
-      "Value": "1.69.1",
+      "Value": "1.69.2",
       "Check32BitOn64System": "false"
     }
   ]
