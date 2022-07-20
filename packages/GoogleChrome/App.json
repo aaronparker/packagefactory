@@ -2,13 +2,13 @@
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "googlechromestandaloneenterprise64.msi",
-    "Version": "103.0.5060.114",
+    "Version": "103.0.5060.134",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Google-Chrome.png"
   },
   "Information": {
-    "DisplayName": "Google Chrome 103.0.5060.114 x64",
+    "DisplayName": "Google Chrome 103.0.5060.134 x64",
     "Description": "The browser built by Google. Browse with the power of Google. With Google apps like Gmail, Google Pay, and Google Assistant, Chrome can help you stay productive and get more out of your browser.",
     "Publisher": "Google",
     "InformationURL": "https://www.google.com/chrome/",
@@ -33,7 +33,7 @@
       "Path": "C:\\Program Files\\Google\\Chrome\\Application",
       "FileOrFolder": "Chrome.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "103.0.5060.114",
+      "VersionValue": "103.0.5060.134",
       "Check32BitOn64System": "false"
     }
   ]
