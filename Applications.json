@@ -21,13 +21,6 @@
         "Architecture": "x64"
     },
     {
-        "Name": "Cyberduck",
-        "Filter": "Get-EvergreenApp -Name \"Cyberduck\"",
-        "Title": "Cyberduck",
-        "Language": "en-US",
-        "Architecture": "x64"
-    },
-    {
         "Name": "CitrixWorkspaceApp",
         "Filter": "Get-EvergreenApp -Name \"CitrixWorkspaceApp\" | Where-Object { $_.Stream -eq \"Current\" -and $_.Title -match \"Citrix Workspace\" } | Select-Object -First 1",
         "Title": "Citrix Workspace app Current Release",
@@ -35,9 +28,37 @@
         "Architecture": "x64"
     },
     {
+        "Name": "Cyberduck",
+        "Filter": "Get-EvergreenApp -Name \"Cyberduck\"",
+        "Title": "Cyberduck",
+        "Language": "en-US",
+        "Architecture": "x64"
+    },
+    {
+        "Name": "FoxitReader",
+        "Filter": "Get-EvergreenApp -Name \"FoxitReader\" | Where-Object { $_.Language -eq \"English\" } | Select-Object -First 1",
+        "Title": "Foxit PDF Reader",
+        "Language": "en-US",
+        "Architecture": "x86"
+    },
+    {
         "Name": "GoogleChrome",
         "Filter": "Get-EvergreenApp -Name \"GoogleChrome\" | Where-Object { $_.Channel -eq \"stable\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
         "Title": "Google Chrome",
+        "Language": "en-US",
+        "Architecture": "x64"
+    },
+    {
+        "Name": "Greenshot",
+        "Filter": "Get-EvergreenApp -Name \"Greenshot\" | Where-Object { $_.Architecture -eq \"x86\" -and $_.Uri -match \"Greenshot-INSTALLER-\" } | Select-Object -First 1",
+        "Title": "Greenshot",
+        "Language": "en-US",
+        "Architecture": "x86"
+    },
+    {
+        "Name": "ImageGlass",
+        "Filter": "Get-EvergreenApp -Name \"ImageGlass\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Uri -match \"x64.msi$\" } | Select-Object -First 1",
+        "Title": "ImageGlass",
         "Language": "en-US",
         "Architecture": "x64"
     },
@@ -49,9 +70,9 @@
         "Architecture": "x64"
     },
     {
-        "Name": "MicrosoftPowerToys",
-        "Filter": "Get-EvergreenApp -Name \"MicrosoftPowerToys\" | Where-Object { $_.Architecture -eq \"x64\" } | Select-Object -First 1",
-        "Title": "Microsoft PowerToys",
+        "Name": "MicrosoftEdge",
+        "Filter": "Get-EvergreenApp -Name \"MicrosoftEdge\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Channel -eq \"Stable\" -and $_.Release -eq \"Enterprise\" } | Sort-Object -Property @{ Expression = { [System.Version]$_.Version }; Descending = $true } | Select-Object -First 1",
+        "Title": "Microsoft Edge",
         "Language": "en-US",
         "Architecture": "x64"
     },
@@ -59,6 +80,13 @@
         "Name": "MicrosoftOneDrive",
         "Filter": "Get-EvergreenApp -Name \"MicrosoftOneDrive\" | Where-Object { $_.Architecture -eq \"AMD64\" -and $_.Ring -eq \"Production\" } | Select-Object -First 1",
         "Title": "Microsoft OneDrive",
+        "Language": "en-US",
+        "Architecture": "x64"
+    },
+    {
+        "Name": "MicrosoftPowerToys",
+        "Filter": "Get-EvergreenApp -Name \"MicrosoftPowerToys\" | Where-Object { $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+        "Title": "Microsoft PowerToys",
         "Language": "en-US",
         "Architecture": "x64"
     },
@@ -157,27 +185,6 @@
         "Name": "Zoom",
         "Filter": "Get-EvergreenApp -Name \"Zoom\" | Where-Object { $_.Platform -eq \"Windows\" -and $_.Type -eq \"Msi\" } | Select-Object -First 1",
         "Title": "Zoom Meetings Client",
-        "Language": "en-US",
-        "Architecture": "x64"
-    },
-    {
-        "Name": "Greenshot",
-        "Filter": "Get-EvergreenApp -Name \"Greenshot\" | Where-Object { $_.Architecture -eq \"x86\" -and $_.Uri -match \"Greenshot-INSTALLER-\" } | Select-Object -First 1",
-        "Title": "Greenshot",
-        "Language": "en-US",
-        "Architecture": "x86"
-    },
-    {
-        "Name": "FoxitReader",
-        "Filter": "Get-EvergreenApp -Name \"FoxitReader\" | Where-Object { $_.Language -eq \"English\" } | Select-Object -First 1",
-        "Title": "Foxit PDF Reader",
-        "Language": "en-US",
-        "Architecture": "x86"
-    },
-    {
-        "Name": "ImageGlass",
-        "Filter": "Get-EvergreenApp -Name \"ImageGlass\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Uri -match \"x64.msi$\" } | Select-Object -First 1",
-        "Title": "ImageGlass",
         "Language": "en-US",
         "Architecture": "x64"
     }

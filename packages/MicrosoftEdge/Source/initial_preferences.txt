@@ -1,0 +1,36 @@
+{
+    "bookmark_bar": {
+        "show_apps_shortcut": true,
+        "show_managed_bookmarks": true,
+        "show_on_all_tabs": false
+    },
+    "bookmarks": {
+        "editing_enabled": true
+    },
+    "browser": {
+        "dark_theme": true,
+        "first_run_tabs": [
+            "https://www.office.com"
+        ],
+        "show_toolbar_bookmarks_button": true,
+        "show_toolbar_collections_button": true,
+        "show_toolbar_downloads_button": true,
+        "show_home_button": true,
+        "show_prompt_before_closing_tabs": true,
+        "show_toolbar_history_button": true
+    },
+    "default_search_provider": {
+        "enabled": true,
+        "search_url": "www.bing.com"
+    },
+    "fullscreen": {
+        "allowed": true
+    },
+    "homepage": "https://www.office.com/",
+    "homepage_is_newtabpage": false,
+    "history": {
+        "clear_on_exit": false,
+        "deleting_enabled": true
+    },
+    "feedback_allowed": false
+}
