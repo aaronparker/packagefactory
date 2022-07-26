@@ -2,13 +2,13 @@
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "ZoomInstallerFull.msi",
-    "Version": "5.11.3.7123",
+    "Version": "5.11.4.7185",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Zoom.png"
   },
   "Information": {
-    "DisplayName": "Zoom Meetings Client 5.11.3.7123",
+    "DisplayName": "Zoom Meetings Client 5.11.4.7185",
     "Description": "Simplified video conferencing and messaging across any device.",
     "Publisher": "Zoom",
     "InformationURL": "https://explore.zoom.us/en/products/meetings/",
@@ -31,7 +31,7 @@
       "Type": "MSI",
       "ProductCode": "{84929D01-5E7C-4BB7-9799-D9C0D5793E4B}",
       "ProductVersionOperator": "greaterThanOrEqual",
-      "ProductVersion": "5.11.3.7123"
+      "ProductVersion": "5.11.4.7185"
     }
   ]
 }
