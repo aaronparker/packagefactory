@@ -1,0 +1,49 @@
+{
+    "PackageInformation": {
+        "SetupType": "MSI",
+        "SetupFile": "Mimecast for outlook 7.10.1.133 (x64).msi",
+        "Version": "7.10.1.133",
+        "SourceFolder": "Source",
+        "OutputFolder": "Package",
+        "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Mimecast.png"
+    },
+    "Information": {
+        "DisplayName": "Mimecast for Outlook 7.10.1.133 x64",
+        "Description": "Mimecast provides a fully integrated, cloud-based subscription service that combines solutions for email security, archiving and continuity.",
+        "Publisher": "Mimecast",
+        "InformationURL": "https://www.mimecast.com/content/outlook-email-management/",
+        "PrivacyURL": "https://www.mimecast.com/company/mimecast-trust-center/gdpr-center/privacy-statement/"
+    },
+    "Program": {
+        "InstallTemplate": "msiexec.exe /package #SetupFile LAUNCHOUTLOOKONEXIT=0 /quiet",
+        "InstallCommand": "msiexec.exe /package \"Mimecast for outlook 7.10.1.133 (x64).msi\" LAUNCHOUTLOOKONEXIT=0 /quiet",
+        "UninstallCommand": "MsiExec.exe /X \"{83F8DF4E-C625-4DCD-93A3-DE063BC32D49}\" /quiet",
+        "InstallExperience": "system",
+        "DeviceRestartBehavior": "suppress"
+    },
+    "RequirementRule": {
+        "MinimumRequiredOperatingSystem": "1809",
+        "Architecture": "x64"
+    },
+    "CustomRequirementRule": [
+        {
+            "Type": "File",
+            "DetectionMethod": "Existence",
+            "Path": "C:\\Program Files\\Microsoft Office\\root\\Office16",
+            "FileOrFolder": "OUTLOOK.EXE",
+            "DetectionType": "exists",
+            "Check32BitOn64System": "false"
+        }
+    ],
+    "DetectionRule": [
+        {
+            "Type": "File",
+            "DetectionMethod": "Version",
+            "Path": "C:\\Program Files\\Mimecast\\Mimecast Outlook Add-In",
+            "FileOrFolder": "Mimecast.Services.Outlook.AddIn.dll",
+            "Operator": "greaterThanOrEqual",
+            "VersionValue": "7.10.1.133",
+            "Check32BitOn64System": "false"
+        }
+    ]
+}
