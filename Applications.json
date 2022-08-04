@@ -63,6 +63,13 @@
         "Architecture": "x64"
     },
     {
+        "Name": "ImageCustomise",
+        "Filter": "Get-EvergreenApp -Name \"stealthpuppyWindowsCustomisedDefaults\" | Where-Object { $_.Type -eq \"zip\" } | Select-Object -First 1",
+        "Title": "stealthpuppy Windows Customised Defaults",
+        "Language": "en-US",
+        "Architecture": "x64"
+    },
+    {
         "Name": "Microsoft.NET",
         "Filter": "Get-EvergreenApp -Name \"Microsoft.NET\" | Where-Object { $_.Installer -eq \"windowsdesktop\" -and $_.Architecture -eq \"x64\" -and $_.Channel -eq \"LTS\" } | Select-Object -First 1",
         "Title": "Microsoft .NET Desktop Runtime",
