@@ -30,7 +30,7 @@
     {
       "Type": "Registry",
       "DetectionMethod": "Existence",
-      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{2d507699-404c-4c8b-a54a-38e352f32cdd}",
+      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{3746f21b-c990-4045-bb33-1cf98cff7a68}",
       "ValueName": "",
       "DetectionType": "exists",
       "Check32BitOn64System": "true"
