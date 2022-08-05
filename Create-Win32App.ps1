@@ -74,6 +74,10 @@ process {
         }
 
         # Create required .intunewin package from source folder
+        if (Test-Path -Path $(Join-Path -Path $SourceFolder -ChildPath $AppData.PackageInformation.SetupFile)) {}
+        else {
+            throw "Cannot find $(Join-Path -Path $SourceFolder -ChildPath $AppData.PackageInformation.SetupFile)"
+        }
         $params = @{
             SourceFolder = $SourceFolder
             SetupFile    = $AppData.PackageInformation.SetupFile

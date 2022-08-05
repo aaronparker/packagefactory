@@ -15,27 +15,41 @@ param (
 
 foreach ($Application in $Applications) {
 
+    # Get the application details
     $Apps = Get-Content -Path "$Path\Applications.json" | ConvertFrom-Json
     $Filter = ($Apps | Where-Object { $_.Name -eq "$Application" }).Filter
-    if ($Filter -match "Get-VcList") {
-        $App = Invoke-Expression -Command $Filter
-        $Filename = $(Split-Path -Path $App.Download -Leaf)
-        Write-Host "Package: $($App.Name); $Filename."
-        New-Item -Path "$Path\packages\$Application\Source" -ItemType "Directory" -Force | Out-Null
-        Invoke-WebRequest -Uri $App.Download -OutFile "$Path\packages\$Application\Source\$Filename" -UseBasicParsing
-    }
-    else {
-        $result = Invoke-Expression -Command $Filter | Save-EvergreenApp -CustomPath "$Path\packages\$Application\Source"
-        if ($result.FullName -match "\.zip$") {
-            Expand-Archive -Path $result.FullName -DestinationPath "$Path\packages\$Application\Source"
-            Remove-Item -Path $result.FullName -Force
+
+    # Download the application installer
+    if ($Null -ne $Filter) {
+        if ($Filter -match "Get-VcList") {
+            $App = Invoke-Expression -Command $Filter
+            $Filename = $(Split-Path -Path $App.Download -Leaf)
+            Write-Host "Package: $($App.Name); $Filename."
+            New-Item -Path "$Path\packages\$Application\Source" -ItemType "Directory" -Force | Out-Null
+            Invoke-WebRequest -Uri $App.Download -OutFile "$Path\packages\$Application\Source\$Filename" -UseBasicParsing
+        }
+        else {
+            $result = Invoke-Expression -Command $Filter | Save-EvergreenApp -CustomPath "$Path\packages\$Application\Source"
+            if ($result.FullName -match "\.zip$") {
+                Expand-Archive -Path $result.FullName -DestinationPath "$Path\packages\$Application\Source"
+                Remove-Item -Path $result.FullName -Force
+            }
         }
     }
-
-    $params = @{
-        Application       = $Application
-        Path              = "$Path\packages"
-        DisplayNameSuffix = ""
+    else {
+        Write-Host -ForegroundColor "Cyan" "$Application not supported for automatic download."
     }
-    .\Create-Win32App.ps1 @params
+
+    # Package the application
+    if (Test-Path -Path "$Path\packages\$Application\Source") {
+        $params = @{
+            Application       = $Application
+            Path              = "$Path\packages"
+            DisplayNameSuffix = ""
+        }
+        .\Create-Win32App.ps1 @params
+    }
+    else {
+        Write-Error -Message "Cannot find path $("$Path\packages\$Application\Source")"
+    }
 }

@@ -1,0 +1,49 @@
+{
+    "PackageInformation": {
+        "SetupType": "MSI",
+        "SetupFile": "ConnectWiseControl.ClientSetup.msi",
+        "Version": "22.5.7881.8171",
+        "SourceFolder": "Source",
+        "OutputFolder": "Package",
+        "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/ConnectWiseControl.png"
+    },
+    "Information": {
+        "DisplayName": "ConnectWise Control agent 22.5.7881.8171 x86",
+        "Description": "ConnectWise Control / ScreenConnect Client agent for remote control support.",
+        "Publisher": "ConnectWise",
+        "InformationURL": "https://docs.connectwise.com/ConnectWise_Control_Documentation/Get_started",
+        "PrivacyURL": "https://www.connectwise.com/company/privacy-policy"
+    },
+    "Program": {
+        "InstallTemplate": "msiexec /package ConnectWiseControl.ClientSetup.msi /quiet /norestart",
+        "InstallCommand": "msiexec /package ConnectWiseControl.ClientSetup.msi /quiet /norestart",
+        "UninstallCommand": "MsiExec.exe /X \"{CBF0B9B6-05FF-4D3A-B0EA-EDA3438E941F}\" /qn",
+        "InstallExperience": "system",
+        "DeviceRestartBehavior": "suppress"
+    },
+    "RequirementRule": {
+        "MinimumRequiredOperatingSystem": "1809",
+        "Architecture": "All"
+    },
+    "CustomRequirementRule": [],
+    "DetectionRule": [
+        {
+            "Type": "Registry",
+            "DetectionMethod": "VersionComparison",
+            "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{CBF0B9B6-05FF-4D3A-B0EA-EDA3438E941F}",
+            "ValueName": "DisplayVersion",
+            "Operator": "greaterThanOrEqual",
+            "Value": "22.5.7881.8171",
+            "Check32BitOn64System": "false"
+        },
+        {
+            "Type": "File",
+            "DetectionMethod": "Existence",
+            "Path": "C:\\Program Files (x86)\\ScreenConnect Client (1a5d6cc5d5f07e3e)",
+            "FileOrFolder": "ScreenConnect.ClientService.exe",
+            "Operator": "greaterThanOrEqual",
+            "VersionValue": "22.5.7881.8171",
+            "Check32BitOn64System": "false"
+        }
+    ]
+}
