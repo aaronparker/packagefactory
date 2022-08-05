@@ -38,7 +38,7 @@
         },
         {
             "Type": "File",
-            "DetectionMethod": "Existence",
+            "DetectionMethod": "Version",
             "Path": "C:\\Program Files (x86)\\ScreenConnect Client (1a5d6cc5d5f07e3e)",
             "FileOrFolder": "ScreenConnect.ClientService.exe",
             "Operator": "greaterThanOrEqual",
