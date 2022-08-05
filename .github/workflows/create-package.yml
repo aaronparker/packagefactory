@@ -65,9 +65,9 @@ jobs:
                 $Filename = $(Split-Path -Path $App.Download -Leaf)
                 Write-Host "Package: $($App.Name); $Filename."
                 $params = @{
-                    Path    = "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source"
-                    temType = "Directory"
-                    Force   = $True
+                    Path     = "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source"
+                    ItemType = "Directory"
+                    Force    = $True
                 }
                 New-Item @params | Out-Null
                 $params = @{
