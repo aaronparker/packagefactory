@@ -15,8 +15,8 @@
     "PrivacyURL": "https://cyberduck.io/privacy"
   },
   "Program": {
-    "InstallTemplate": "#SetupFile /S",
-    "InstallCommand": "Cyberduck-Installer-8.4.2.38090.exe /S",
+    "InstallTemplate": "#SetupFile /quiet /norestart /log \"C:\\ProgramData\\PackageFactory\\logs\\Cyberduck.log\"",
+    "InstallCommand": "Cyberduck-Installer-8.4.2.38090.exe /quiet /norestart /log \"C:\\ProgramData\\PackageFactory\\logs\\Cyberduck.log\"",
     "UninstallCommand": "msiexec.exe /X \"{8FF1F756-1F7C-41C1-880E-B03218DFDD72}\" /quiet",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
