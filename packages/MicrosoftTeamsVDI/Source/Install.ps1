@@ -40,7 +40,7 @@ if (Test-Path -Path "${env:ProgramFiles(x86)}\Microsoft\Teams\current\Teams.exe"
         $Product = Get-CimInstance -Class "Win32_Product" | Where-Object { $_.Caption -like "Teams Machine-Wide Installer" }
         $params = @{
             FilePath     = "$Env:SystemRoot\System32\msiexec.exe"
-            ArgumentList = "/uninstall `"$($Product.IdentifyingNumber)`" /quiet"
+            ArgumentList = "/uninstall `"$($Product.IdentifyingNumber)`" /quiet /log `"C:\ProgramData\PackageFactory\logs\MicrosoftTeams.log`""
             NoNewWindow  = $True
             PassThru     = $True
             Wait         = $True
@@ -61,7 +61,7 @@ try {
     $Installer = Get-ChildItem -Path $PWD -Filter "Teams_windows_x64.msi" -Recurse -ErrorAction "SilentlyContinue"
     $params = @{
         FilePath     = "$Env:SystemRoot\System32\msiexec.exe"
-        ArgumentList = "/package `"$($Installer.FullName)`" OPTIONS=`"noAutoStart=true`" ALLUSER=1 ALLUSERS=1 /quiet"
+        ArgumentList = "/package `"$($Installer.FullName)`" OPTIONS=`"noAutoStart=true`" ALLUSER=1 ALLUSERS=1 /quiet /log `"C:\ProgramData\PackageFactory\logs\MicrosoftTeams.log`""
         NoNewWindow  = $True
         PassThru     = $True
         Wait         = $True

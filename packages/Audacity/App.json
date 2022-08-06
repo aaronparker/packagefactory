@@ -15,8 +15,8 @@
     "PrivacyURL": "https://www.audacityteam.org/"
   },
   "Program": {
-    "InstallTemplate": "#SetupFile /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP- /MERGETASKS=\"!desktopicon\"",
-    "InstallCommand": "audacity-win-3.1.3-64bit.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP- /MERGETASKS=\"!desktopicon\"",
+    "InstallTemplate": "#SetupFile /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP- /MERGETASKS=\"!desktopicon\" /log \"C:\\ProgramData\\PackageFactory\\logs\\Audacity.log\"",
+    "InstallCommand": "audacity-win-3.1.3-64bit.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP- /MERGETASKS=\"!desktopicon\" /log \"C:\\ProgramData\\PackageFactory\\logs\\Audacity.log\"",
     "UninstallCommand": "msiexec.exe /X \"{AC76BA86-1033-1033-7760-BC15014EA700}\" /quiet",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"

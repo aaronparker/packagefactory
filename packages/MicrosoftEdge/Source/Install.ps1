@@ -68,7 +68,7 @@ try {
     $Installer = Get-ChildItem -Path $PWD -Filter "MicrosoftEdgeEnterpriseX64.msi" -Recurse -ErrorAction "SilentlyContinue"
     $params = @{
         FilePath     = "$Env:SystemRoot\System32\msiexec.exe"
-        ArgumentList = "/package `"$($Installer.FullName)`" ALLUSERS=1 DONOTCREATEDESKTOPSHORTCUT=true DONOTCREATETASKBARSHORTCUT=true /quiet"
+        ArgumentList = "/package `"$($Installer.FullName)`" ALLUSERS=1 DONOTCREATEDESKTOPSHORTCUT=true DONOTCREATETASKBARSHORTCUT=true /quiet /log `"C:\ProgramData\PackageFactory\logs\MicrosoftEdge.log`""
         NoNewWindow  = $True
         PassThru     = $True
         Wait         = $True

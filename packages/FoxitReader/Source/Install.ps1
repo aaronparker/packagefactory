@@ -27,7 +27,7 @@ If (!([System.Environment]::Is64BitProcess)) {
 
 try {
     $Installer = Get-ChildItem -Path $PWD -Filter "FoxitPDFReader*Setup.msi" -Recurse -ErrorAction "SilentlyContinue"
-    $Properties = "AUTO_UPDATE=0 NOTINSTALLUPDATE=1 MAKEDEFAULT=0 LAUNCHCHECKDEFAULT=0 VIEW_IN_BROWSER=0 DESKTOP_SHORTCUT=0 STARTMENU_SHORTCUT_UNINSTALL=0 DISABLE_UNINSTALL_SURVEY=1 ALLUSERS=1"
+    $Properties = "AUTO_UPDATE=0 NOTINSTALLUPDATE=1 MAKEDEFAULT=0 LAUNCHCHECKDEFAULT=0 VIEW_IN_BROWSER=0 DESKTOP_SHORTCUT=0 STARTMENU_SHORTCUT_UNINSTALL=0 DISABLE_UNINSTALL_SURVEY=1 ALLUSERS=1 /log `"C:\ProgramData\PackageFactory\logs\FoxitPDFReader.log`""
     $params = @{
         FilePath     = "$Env:SystemRoot\System32\msiexec.exe"
         ArgumentList = "/package `"$($Installer.FullName)`" $Properties /quiet"
@@ -41,12 +41,5 @@ catch {
     throw "Failed to install Foxit Reader."
 }
 finally {
-    if ($result.ExitCode -eq 0) {
-        $Files = @("$env:PUBLIC\Desktop\Greenshot.lnk",
-            "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\Greenshot\License.txt.lnk",
-            "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\Greenshot\Readme.txt.lnk",
-            "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\Greenshot\Uninstall Greenshot.lnk")
-        Remove-Item -Path $Files -Force -ErrorAction "SilentlyContinue"
-    }
     exit $result.ExitCode
 }

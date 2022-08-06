@@ -63,7 +63,7 @@ try {
     $Installer = Get-ChildItem -Path $PWD -Filter "googlechromestandaloneenterprise64.msi" -Recurse -ErrorAction "SilentlyContinue"
     $params = @{
         FilePath     = "$Env:SystemRoot\System32\msiexec.exe"
-        ArgumentList = "/package `"$($Installer.FullName)`" ALLUSERS=1 /quiet"
+        ArgumentList = "/package `"$($Installer.FullName)`" ALLUSERS=1 /quiet /log `"C:\ProgramData\PackageFactory\logs\GoogleChrome.log`""
         NoNewWindow  = $True
         PassThru     = $True
         Wait         = $True

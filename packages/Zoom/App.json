@@ -15,9 +15,9 @@
     "PrivacyURL": "https://explore.zoom.us/privacy"
   },
   "Program": {
-    "InstallTemplate": "msiexec.exe /package #SetupFile /quiet",
-    "InstallCommand": "msiexec.exe /package ZoomInstallerFull.msi /quiet",
-    "UninstallCommand": "MsiExec.exe /X \"{84929D01-5E7C-4BB7-9799-D9C0D5793E4B}\" /quiet",
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+    "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Uninstall.ps1",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
   },
@@ -28,10 +28,13 @@
   "CustomRequirementRule": [],
   "DetectionRule": [
     {
-      "Type": "MSI",
-      "ProductCode": "{84929D01-5E7C-4BB7-9799-D9C0D5793E4B}",
-      "ProductVersionOperator": "greaterThanOrEqual",
-      "ProductVersion": "5.11.4.7185"
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "C:\\Program Files (x86)\\Zoom\\bin",
+      "FileOrFolder": "Zoom.exe",
+      "Operator": "greaterThanOrEqual",
+      "VersionValue": "5.11.4.7185",
+      "Check32BitOn64System": "false"
     }
   ]
 }

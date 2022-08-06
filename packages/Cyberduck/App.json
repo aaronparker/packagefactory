@@ -16,7 +16,7 @@
   },
   "Program": {
     "InstallTemplate": "#SetupFile /S",
-    "InstallCommand": "Cyberduck-Installer-8.4.2.38090.exe /S",
+    "InstallCommand": "Cyberduck-Installer-8.4.2.38090.exe /quiet /norestart",
     "UninstallCommand": "msiexec.exe /X \"{8FF1F756-1F7C-41C1-880E-B03218DFDD72}\" /quiet",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
