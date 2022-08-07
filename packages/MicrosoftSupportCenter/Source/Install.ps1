@@ -30,7 +30,7 @@ try {
     $Installer = Get-ChildItem -Path $PWD -Filter "SupportCenterInstaller.msi" -Recurse -ErrorAction "SilentlyContinue"
     $params = @{
         FilePath     = "$env:SystemRoot\System32\msiexec.exe"
-        ArgumentList = "/install `"$($Installer.FullName)`" /quiet /log `"C:\ProgramData\PackageFactory\logs\SupportCenterInstaller.log`""
+        ArgumentList = "/package `"$($Installer.FullName)`" /quiet /log `"C:\ProgramData\PackageFactory\logs\SupportCenterInstaller.log`""
         NoNewWindow  = $True
         PassThru     = $True
         Wait         = $True

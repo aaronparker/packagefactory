@@ -30,7 +30,7 @@ try {
     $Installer = Get-ChildItem -Path $PWD -Filter "Firefox*.msi" -Recurse -ErrorAction "SilentlyContinue"
     $params = @{
         FilePath     = "$env:SystemRoot\System32\msiexec.exe"
-        ArgumentList = "/install `"$($Installer.FullName)`" DESKTOP_SHORTCUT=false TASKBAR_SHORTCUT=false /quiet /log `"C:\ProgramData\PackageFactory\logs\MozillaFirefox.log`""
+        ArgumentList = "/package `"$($Installer.FullName)`" DESKTOP_SHORTCUT=false TASKBAR_SHORTCUT=false /quiet /log `"C:\ProgramData\PackageFactory\logs\MozillaFirefox.log`""
         NoNewWindow  = $True
         PassThru     = $True
         Wait         = $True

@@ -30,7 +30,7 @@ try {
     $Installer = Get-ChildItem -Path $PWD -Filter "paint*.msi" -Recurse -ErrorAction "SilentlyContinue"
     $params = @{
         FilePath     = "$env:SystemRoot\System32\msiexec.exe"
-        ArgumentList = "/install `"$($Installer.FullName)`" DESKTOPSHORTCUT=0 /quiet /log `"C:\ProgramData\PackageFactory\logs\Paint.NET.log`""
+        ArgumentList = "/package `"$($Installer.FullName)`" DESKTOPSHORTCUT=0 /quiet /log `"C:\ProgramData\PackageFactory\logs\Paint.NET.log`""
         NoNewWindow  = $True
         PassThru     = $True
         Wait         = $True
