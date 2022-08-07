@@ -26,6 +26,7 @@ If (!([System.Environment]::Is64BitProcess)) {
 #endregion
 
 try {
+    New-Item -Path "$env:ProgramData\PackageFactory\Logs" -ItemType "Directory" -ErrorAction "SilentlyContinue" | Out-Null
     $Installer = Get-ChildItem -Path $PWD -Filter "FoxitPDFReader*Setup.msi" -Recurse -ErrorAction "SilentlyContinue"
     $Properties = "AUTO_UPDATE=0 NOTINSTALLUPDATE=1 MAKEDEFAULT=0 LAUNCHCHECKDEFAULT=0 VIEW_IN_BROWSER=0 DESKTOP_SHORTCUT=0 STARTMENU_SHORTCUT_UNINSTALL=0 DISABLE_UNINSTALL_SURVEY=1 ALLUSERS=1 /log `"C:\ProgramData\PackageFactory\logs\FoxitPDFReader.log`""
     $params = @{

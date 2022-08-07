@@ -27,6 +27,7 @@ if (!([System.Environment]::Is64BitProcess)) {
 #endregion
 
 try {
+    New-Item -Path "$env:ProgramData\PackageFactory\Logs" -ItemType "Directory" -ErrorAction "SilentlyContinue" | Out-Null
     $Installer = Get-ChildItem -Path $PWD -Filter "ZoomInstallerFull.msi" -Recurse -ErrorAction "SilentlyContinue"
     $params = @{
         FilePath     = "$Env:SystemRoot\System32\msiexec.exe"

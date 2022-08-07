@@ -26,6 +26,7 @@ If (!([System.Environment]::Is64BitProcess)) {
 #endregion
 
 try {
+    New-Item -Path "$env:ProgramData\PackageFactory\Logs" -ItemType "Directory" -ErrorAction "SilentlyContinue" | Out-Null
     $Installer = Get-ChildItem -Path $PWD -Filter "Greenshot-INSTALLER-*-RELEASE.exe" -Recurse -ErrorAction "SilentlyContinue"
     $params = @{
         FilePath     = $Installer.FullName

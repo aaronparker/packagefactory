@@ -37,6 +37,7 @@ if (Test-Path -Path "${env:ProgramFiles(x86)}\Microsoft\Teams\current\Teams.exe"
     }
 
     try {
+        New-Item -Path "$env:ProgramData\PackageFactory\Logs" -ItemType "Directory" -ErrorAction "SilentlyContinue" | Out-Null
         $Product = Get-CimInstance -Class "Win32_Product" | Where-Object { $_.Caption -like "Teams Machine-Wide Installer" }
         $params = @{
             FilePath     = "$Env:SystemRoot\System32\msiexec.exe"
