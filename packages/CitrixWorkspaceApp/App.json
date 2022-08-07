@@ -28,12 +28,12 @@
   "CustomRequirementRule": [],
   "DetectionRule": [
     {
-      "Type": "Registry",
-      "DetectionMethod": "VersionComparison",
-      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\CitrixOnlinePluginPackWeb",
-      "ValueName": "DisplayVersion",
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "C:\\Program Files (x86)\\Citrix\\ICA Client\\SelfServicePlugin",
+      "FileOrFolder": "SelfService",
       "Operator": "greaterThanOrEqual",
-      "Value": "22.7.0.24",
+      "VersionValue": "22.7.0.24",
       "Check32BitOn64System": "false"
     }
   ]
