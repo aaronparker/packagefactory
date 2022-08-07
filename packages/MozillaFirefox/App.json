@@ -15,8 +15,8 @@
     "PrivacyURL": "https://www.mozilla.org/en-US/privacy/"
   },
   "Program": {
-    "InstallTemplate": "msiexec.exe /i \"#SetupFile\" DESKTOP_SHORTCUT=false TASKBAR_SHORTCUT=false /quiet /log \"C:\\ProgramData\\PackageFactory\\logs\\MozillaFirefox.log\"",
-    "InstallCommand": "msiexec.exe /i \"Firefox Setup 103.0.1.msi\" DESKTOP_SHORTCUT=false TASKBAR_SHORTCUT=false /quiet /log \"C:\\ProgramData\\PackageFactory\\logs\\MozillaFirefox.log\"",
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
     "UninstallCommand": "C:\\Program Files\\Mozilla Firefox\\uninstall\\helper.exe /S",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"

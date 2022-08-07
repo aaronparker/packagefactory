@@ -15,8 +15,8 @@
     "PrivacyURL": "https://go.microsoft.com/fwlink/?LinkId=521839"
   },
   "Program": {
-    "InstallTemplate": "msiexec.exe /package #SetupFile OPTIONS=\"noAutoStart=true\" ALLUSERS=1 /quiet /log \"C:\\ProgramData\\PackageFactory\\logs\\MicrosoftTeams.log\"",
-    "InstallCommand": "msiexec.exe /package Teams_windows_x64.msi OPTIONS=\"noAutoStart=true\" ALLUSERS=1 /quiet /log \"C:\\ProgramData\\PackageFactory\\logs\\MicrosoftTeams.log\"",
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
     "UninstallCommand": "MsiExec.exe /X \"{731F6BAA-A986-45A4-8936-7C3AAAAA760B}\" /quiet",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"

@@ -15,8 +15,8 @@
     "PrivacyURL": "https://www.adobe.com/au/privacy.html"
   },
   "Program": {
-    "InstallTemplate": "#SetupFile -sfx_nu /sALL /rps /l /msi EULA_ACCEPT=YES ENABLE_CHROMEEXT=0 DISABLE_BROWSER_INTEGRATION=1 ENABLE_OPTIMIZATION=YES ADD_THUMBNAILPREVIEW=0 DISABLEDESKTOPSHORTCUT=1 /log \"C:\\ProgramData\\PackageFactory\\logs\\AdobeAcrobatReaderDC.log\"",
-    "InstallCommand": "AcroRdrDCx642200120169_MUI.exe -sfx_nu /sALL /rps /l /msi EULA_ACCEPT=YES ENABLE_CHROMEEXT=0 DISABLE_BROWSER_INTEGRATION=1 ENABLE_OPTIMIZATION=YES ADD_THUMBNAILPREVIEW=0 DISABLEDESKTOPSHORTCUT=1 /log \"C:\\ProgramData\\PackageFactory\\logs\\AdobeAcrobatReaderDC.log\"",
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
     "UninstallCommand": "msiexec.exe /X \"{AC76BA86-1033-1033-7760-BC15014EA700}\" /quiet",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"

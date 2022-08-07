@@ -15,8 +15,8 @@
     "PrivacyURL": "https://go.microsoft.com/fwlink/?LinkId=521839"
   },
   "Program": {
-    "InstallTemplate": "#SetupFile /passive /install /log \"C:\\ProgramData\\PackageFactory\\logs\\MicrosoftEdge.log\"",
-    "InstallCommand": "SSMS-Setup-ENU.exe /passive /install /log \"C:\\ProgramData\\PackageFactory\\logs\\MicrosoftEdge.log\"",
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
     "UninstallCommand": "msiexec.exe /X \"{03FFD0DE-C109-45D1-9C19-C010A02CFC73}\" /quiet",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"

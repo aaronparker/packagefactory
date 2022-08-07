@@ -15,8 +15,8 @@
     "PrivacyURL": "https://www.adobe.com/au/privacy.html"
   },
   "Program": {
-    "InstallTemplate": "#SetupFile /quiet /log \"C:\\ProgramData\\PackageFactory\\logs\\AdobeAcrobatReaderDCUpdate.log\"",
-    "InstallCommand": "AcroRdrDCx64Upd2200120169_MUI.msp /quiet /log \"C:\\ProgramData\\PackageFactory\\logs\\AdobeAcrobatReaderDCUpdate.log\"",
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
     "UninstallCommand": "msiexec.exe /X \"AdobeAcrobatReaderDCMUIUpdates\" /quiet",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
