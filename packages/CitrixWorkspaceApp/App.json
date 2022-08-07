@@ -17,7 +17,7 @@
   "Program": {
     "InstallTemplate": "#SetupFile /silent /noreboot /includeSSON /AutoUpdateCheck=auto /AutoUpdateStream=Current /DeferUpdateCount=3 /AURolloutPriority=Auto EnableCEIP=False",
     "InstallCommand": "CitrixWorkspaceApp22.7.0.24.exe /silent /noreboot /includeSSON /AutoUpdateCheck=auto /AutoUpdateStream=Current /DeferUpdateCount=3 /AURolloutPriority=Auto EnableCEIP=False",
-    "UninstallCommand": "\"C:\\Program Files (x86)\\Citrix\\Citrix WorkSpace 2204\\TrolleyExpress.exe\" /silent /uninstall /cleanup",
+    "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Uninstall.ps1",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
   },

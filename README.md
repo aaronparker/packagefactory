@@ -45,7 +45,7 @@ Connect-MSIntuneGraph -TenantID stealthpuppylab.onmicrosoft.com
 
 ## Run in a Pipeline
 
-Or used in a pipeline (e.g., via GitHub Workflows) to authenticate without user interaction and completely automate the full creation of application packages. See [./github/workflows/create-package.yml](./github/workflows/create-package.yml)
+Or used in a pipeline (e.g., via GitHub Workflows) to authenticate without user interaction and completely automate the full creation of application packages. See [./github/workflows/create-package.yml](./.github/workflows/create-package.yml)
 
 ```powershell
 $params = @{
