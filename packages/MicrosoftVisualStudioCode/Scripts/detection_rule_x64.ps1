@@ -5,15 +5,15 @@ $ApplicationVersion = "1.62.2"
 $Path = "${Env:ProgramFiles}\Microsoft VS Code"
 $File = "Code.exe"
 
-If (Test-Path -Path $([System.IO.Path]::Combine($Path, $File)) -ErrorAction "SilentlyContinue") {
+if (Test-Path -Path $([System.IO.Path]::Combine($Path, $File)) -ErrorAction "SilentlyContinue") {
     $VersionInfo = (Get-Item -Path $([System.IO.Path]::Combine($Path, $File))).VersionInfo
-    If ([System.Version]$VersionInfo.FileVersion -ge [System.Version]$ApplicationVersion) {
+    if ([System.Version]$VersionInfo.FileVersion -ge [System.Version]$ApplicationVersion) {
         Return 0
     }
-    Else {
+    else {
         Return 1
     }
 }
-Else {
+else {
     Return 1
 }
