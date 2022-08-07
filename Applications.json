@@ -190,9 +190,9 @@
     },
     {
         "Name": "Zoom",
-        "Filter": "Get-EvergreenApp -Name \"Zoom\" | Where-Object { $_.Platform -eq \"Windows\" -and $_.Type -eq \"Msi\" } | Select-Object -First 1",
+        "Filter": "Get-EvergreenApp -Name \"Zoom\" | Where-Object { $_.Platform -eq \"Meetings\" -and $_.Type -eq \"msi\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
         "Title": "Zoom Meetings Client",
         "Language": "en-US",
-        "Architecture": "x86"
+        "Architecture": "x64"
     }
 ]

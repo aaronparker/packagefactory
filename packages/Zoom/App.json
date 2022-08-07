@@ -8,7 +8,7 @@
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Zoom.png"
   },
   "Information": {
-    "DisplayName": "Zoom Meetings Client 5.11.4.7185",
+    "DisplayName": "Zoom Meetings Client 5.11.4.7185 x64",
     "Description": "Simplified video conferencing and messaging across any device. Phone, Meetings, Chat, Whiteboard and more for your desktop.",
     "Publisher": "Zoom",
     "InformationURL": "https://explore.zoom.us/en/products/meetings/",
@@ -30,7 +30,7 @@
     {
       "Type": "File",
       "DetectionMethod": "Version",
-      "Path": "C:\\Program Files (x86)\\Zoom\\bin",
+      "Path": "C:\\Program Files\\Zoom\\bin",
       "FileOrFolder": "Zoom.exe",
       "Operator": "greaterThanOrEqual",
       "VersionValue": "5.11.4.7185",
