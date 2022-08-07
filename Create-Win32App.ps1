@@ -73,11 +73,16 @@ process {
             $AppIconFile = [System.IO.Path]::Combine($Path, $AppName, $AppData.PackageInformation.IconFile)
         }
 
-        # Create required .intunewin package from source folder
+        # Check for the install file
         if (Test-Path -Path $(Join-Path -Path $SourceFolder -ChildPath $AppData.PackageInformation.SetupFile)) {}
         else {
             throw "Cannot find $(Join-Path -Path $SourceFolder -ChildPath $AppData.PackageInformation.SetupFile)"
         }
+
+        # Remove existing intunewin files
+        if (Test-Path -Path "$OutputFolder\*.intunewin") { Remove-Item -Path "$OutputFolder\*.intunewin" }
+
+        # Create required .intunewin package from source folder
         $params = @{
             SourceFolder = $SourceFolder
             SetupFile    = $AppData.PackageInformation.SetupFile

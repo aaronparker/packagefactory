@@ -31,7 +31,7 @@ foreach ($Application in $Applications) {
         else {
             $result = Invoke-Expression -Command $Filter | Save-EvergreenApp -CustomPath "$Path\packages\$Application\Source"
             if ($result.FullName -match "\.zip$") {
-                Expand-Archive -Path $result.FullName -DestinationPath "$Path\packages\$Application\Source"
+                Expand-Archive -Path $result.FullName -DestinationPath "$Path\packages\$Application\Source" -Force
                 Remove-Item -Path $result.FullName -Force
             }
         }
