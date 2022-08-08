@@ -31,7 +31,7 @@
       "Type": "File",
       "DetectionMethod": "Version",
       "Path": "C:\\Program Files (x86)\\Citrix\\ICA Client\\SelfServicePlugin",
-      "FileOrFolder": "SelfService",
+      "FileOrFolder": "SelfService.exe",
       "Operator": "greaterThanOrEqual",
       "VersionValue": "22.7.0.24",
       "Check32BitOn64System": "false"
