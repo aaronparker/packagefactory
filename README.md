@@ -40,6 +40,7 @@ git clone https://github.com/aaronparker/packagefactory.git
 Install-Module -Name "IntuneWin32App", "Evergreen", "VcRedist"
 Connect-MSIntuneGraph -TenantID stealthpuppylab.onmicrosoft.com
 
+Set-Location -Path "E:\projects\packagefactory"
 .\scripts\New-LocalPackage.ps1 -Applications "AdobeAcrobatReaderDC", "CitrixWorkspaceApp"
 ```
 
