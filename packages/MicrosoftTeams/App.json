@@ -31,7 +31,7 @@
       "DetectionMethod": "Existence",
       "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Teams",
       "ValueName": "IsWVDEnvironment",
-      "DetectionType": "notExists",
+      "DetectionType": "doesNotExist",
       "Check32BitOn64System": "false"
     }
   ],
