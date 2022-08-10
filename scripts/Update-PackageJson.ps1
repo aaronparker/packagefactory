@@ -89,6 +89,18 @@ foreach ($Application in $ApplicationList) {
                 $AppData.Information.DisplayName = "$($Application.Title) $($AppUpdate.Version)"
             }
 
+            # Step through each CustomRequirementRule to update version properties
+            for ($i = 0; $i -le $AppData.CustomRequirementRule.Count - 1; $i++) {
+
+                if ("Value" -in ($AppData.CustomRequirementRule[$i] | Get-Member -MemberType "NoteProperty" | Select-Object -ExpandProperty "Name")) {
+                    $AppData.CustomRequirementRule[$i].Value = $AppUpdate.Version
+                }
+
+                if ("VersionValue" -in ($AppData.CustomRequirementRule[$i] | Get-Member -MemberType "NoteProperty" | Select-Object -ExpandProperty "Name")) {
+                    $AppData.CustomRequirementRule[$i].VersionValue = $AppUpdate.Version
+                }
+            }
+
             # Step through each DetectionRule to update version properties
             for ($i = 0; $i -le $AppData.DetectionRule.Count - 1; $i++) {
 

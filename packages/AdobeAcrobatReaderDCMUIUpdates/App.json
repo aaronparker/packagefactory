@@ -32,7 +32,7 @@
       "Path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat",
       "FileOrFolder": "Acrobat.exe",
       "Operator": "lessThan",
-      "VersionValue": "22.001.20117",
+      "VersionValue": "22.002.20191",
       "Check32BitOn64System": "false"
     }
   ],

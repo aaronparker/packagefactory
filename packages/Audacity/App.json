@@ -17,7 +17,7 @@
   "Program": {
     "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
     "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
-    "UninstallCommand": "msiexec.exe /X \"{AC76BA86-1033-1033-7760-BC15014EA700}\" /quiet",
+    "UninstallCommand": "\"C:\\Program Files\\Audacity\\unins000.exe\" /VERYSILENT",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
   },
