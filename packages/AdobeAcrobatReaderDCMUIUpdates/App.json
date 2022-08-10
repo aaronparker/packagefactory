@@ -1,14 +1,14 @@
 {
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "AcroRdrDCx64Upd2200120169_MUI.msp",
-    "Version": "22.001.20169",
+    "SetupFile": "AcroRdrDCx64Upd2200220191_MUI.msp",
+    "Version": "22.002.20191",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Adobe-AcrobatReader.png"
   },
   "Information": {
-    "DisplayName": "Adobe Acrobat Reader DC MUI Update 22.001.20169 x64",
+    "DisplayName": "Adobe Acrobat Reader DC MUI Update 22.002.20191 x64",
     "Description": "Update for Adobe Acrobat Reader, Standard and Pro DC.",
     "Publisher": "Adobe",
     "InformationURL": "https://www.adobe.com/devnet-docs/acrobatetk/tools/ReleaseNotesDC/index.html",
@@ -43,7 +43,7 @@
       "Path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat",
       "FileOrFolder": "Acrobat.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "22.001.20169",
+      "VersionValue": "22.002.20191",
       "Check32BitOn64System": "false"
     }
   ]

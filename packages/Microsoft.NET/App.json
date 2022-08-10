@@ -1,14 +1,14 @@
 {
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "windowsdesktop-runtime-6.0.7-win-x64.exe",
-    "Version": "6.0.7",
+    "SetupFile": "windowsdesktop-runtime-6.0.8-win-x64.exe",
+    "Version": "6.0.8",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-NET.png"
   },
   "Information": {
-    "DisplayName": "Microsoft .NET Desktop Runtime 6.0.7 x64",
+    "DisplayName": "Microsoft .NET Desktop Runtime 6.0.8 x64",
     "Description": "The .NET Desktop Runtime enables you to run existing Windows desktop applications. This release includes the .NET Runtime; you don't need to install it separately.",
     "Publisher": "Microsoft",
     "InformationURL": "https://dotnet.microsoft.com/en-us/",
@@ -16,7 +16,7 @@
   },
   "Program": {
     "InstallTemplate": "#SetupFile /install /quiet /norestart",
-    "InstallCommand": "windowsdesktop-runtime-6.0.7-win-x64.exe /install /quiet /norestart",
+    "InstallCommand": "windowsdesktop-runtime-6.0.8-win-x64.exe /install /quiet /norestart",
     "UninstallCommand": "MsiExec.exe /X \"{089A177D-98AE-4195-A115-D3C45613B875}\" /quiet",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
@@ -33,7 +33,7 @@
       "Path": "C:\\Program Files\\dotnet",
       "FileOrFolder": "dotnet.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "6.0.7",
+      "VersionValue": "6.0.8",
       "Check32BitOn64System": "false"
     }
   ]
