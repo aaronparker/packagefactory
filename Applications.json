@@ -91,6 +91,13 @@
         "Architecture": "x64"
     },
     {
+        "Name": "MicrosoftPowerShell",
+        "Filter": "Get-EvergreenApp -Name \"MicrosoftPowerShell\" | Where-Object { $_.Release -eq \"Stable\" -and $_.Architecture -eq \"x64\" }",
+        "Title": "Microsoft PowerShell",
+        "Language": "en-US",
+        "Architecture": "x64"
+    },
+    {
         "Name": "MicrosoftPowerToys",
         "Filter": "Get-EvergreenApp -Name \"MicrosoftPowerToys\" | Where-Object { $_.Architecture -eq \"x64\" } | Select-Object -First 1",
         "Title": "Microsoft PowerToys",

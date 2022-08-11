@@ -1,0 +1,40 @@
+{
+    "PackageInformation": {
+        "SetupType": "MSI",
+        "SetupFile": "PowerShell-7.2.5-win-x64.msi",
+        "Version": "0.61.1",
+        "SourceFolder": "Source",
+        "OutputFolder": "Package",
+        "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-PowerShellCore.png"
+    },
+    "Information": {
+        "DisplayName": "Microsoft PowerShell 0.61.1 x64",
+        "Description": "PowerShell is a cross-platform task automation solution made up of a command-line shell, a scripting language, and a configuration management framework. PowerShell runs on Windows, Linux, and macOS.",
+        "Publisher": "Microsoft",
+        "InformationURL": "https://aka.ms/PowerShell-docs",
+        "PrivacyURL": "https://privacy.microsoft.com/privacystatement"
+    },
+    "Program": {
+        "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+        "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+        "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Uninstall.ps1",
+        "InstallExperience": "system",
+        "DeviceRestartBehavior": "suppress"
+    },
+    "RequirementRule": {
+        "MinimumRequiredOperatingSystem": "1809",
+        "Architecture": "x64"
+    },
+    "CustomRequirementRule": [],
+    "DetectionRule": [
+        {
+            "Type": "File",
+            "DetectionMethod": "Version",
+            "Path": "C:\\Program Files\\PowerShell\\7",
+            "FileOrFolder": "pwsh.exe",
+            "Operator": "greaterThanOrEqual",
+            "VersionValue": "0.61.1",
+            "Check32BitOn64System": "false"
+        }
+    ]
+}
