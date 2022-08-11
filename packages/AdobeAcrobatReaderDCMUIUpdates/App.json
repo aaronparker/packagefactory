@@ -5,7 +5,7 @@
     "Version": "22.002.20191",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
-    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Adobe-AcrobatReader.png"
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Adobe-AcrobatUpdate.png"
   },
   "Information": {
     "DisplayName": "Adobe Acrobat Reader DC MUI Update 22.002.20191 x64",
