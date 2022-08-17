@@ -10,9 +10,7 @@ if (!([System.Environment]::Is64BitProcess)) {
     if ([System.Environment]::Is64BitOperatingSystem) {
         $Arguments = "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$($MyInvocation.MyCommand.Definition)`""
         $ProcessPath = $(Join-Path -Path $Env:SystemRoot -ChildPath "\Sysnative\WindowsPowerShell\v1.0\powershell.exe")
-        Write-Verbose -Message "Restarting in 64-bit PowerShell."
-        Write-Verbose -Message "FilePath: $ProcessPath."
-        Write-Verbose -Message "Arguments: $Arguments."
+
         $params = @{
             FilePath     = $ProcessPath
             ArgumentList = $Arguments
@@ -37,7 +35,7 @@ try {
     $result = Start-Process @params
 }
 catch {
-    throw "Failed to uninstall Google Chrome."
+    throw $_
 }
 finally {
     exit $result.ExitCode
