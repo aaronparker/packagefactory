@@ -15,8 +15,8 @@
         "PrivacyURL": "https://www.connectwise.com/company/privacy-policy"
     },
     "Program": {
-        "InstallTemplate": "msiexec /package ConnectWiseControl.ClientSetup.msi /quiet /norestart",
-        "InstallCommand": "msiexec /package ConnectWiseControl.ClientSetup.msi /quiet /norestart",
+        "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+        "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
         "UninstallCommand": "MsiExec.exe /X \"{CBF0B9B6-05FF-4D3A-B0EA-EDA3438E941F}\" /qn",
         "InstallExperience": "system",
         "DeviceRestartBehavior": "suppress"
