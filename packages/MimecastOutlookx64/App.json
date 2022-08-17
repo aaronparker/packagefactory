@@ -15,8 +15,8 @@
         "PrivacyURL": "https://www.mimecast.com/company/mimecast-trust-center/gdpr-center/privacy-statement/"
     },
     "Program": {
-        "InstallTemplate": "msiexec.exe /package #SetupFile LAUNCHOUTLOOKONEXIT=0 /quiet",
-        "InstallCommand": "msiexec.exe /package \"Mimecast for outlook 7.10.1.133 (x64).msi\" LAUNCHOUTLOOKONEXIT=0 /quiet /log \"C:\\ProgramData\\PackageFactory\\logs\\MimecastOutlook.log\"",
+        "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+        "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
         "UninstallCommand": "MsiExec.exe /X \"{83F8DF4E-C625-4DCD-93A3-DE063BC32D49}\" /quiet /log \"C:\\ProgramData\\PackageFactory\\logs\\MimecastOutlook.log\"",
         "InstallExperience": "system",
         "DeviceRestartBehavior": "suppress"
