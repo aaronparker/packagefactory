@@ -102,6 +102,7 @@ jobs:
                 Path             = "${{ github.workspace }}\packages"
                 DisplayNameSuffix = "(Package Factory)"
             }
+            $params
             . ${{ github.workspace }}\Create-Win32App.ps1 @params
           }
           else {
