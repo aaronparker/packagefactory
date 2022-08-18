@@ -32,7 +32,7 @@
       "DetectionMethod": "exists",
       "Path": "C:\\Program Files\\dotnet",
       "FileOrFolder": "dotnet.exe",
-      "Operator": "notConfigured",
+      "DetectionType": "notConfigured",
       "Check32BitOn64System": "false"
     },
     {
