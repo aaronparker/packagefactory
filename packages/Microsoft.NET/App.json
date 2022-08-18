@@ -29,7 +29,7 @@
   "DetectionRule": [
     {
       "Type": "File",
-      "DetectionMethod": "exists",
+      "DetectionMethod": "Existence",
       "Path": "C:\\Program Files\\dotnet",
       "FileOrFolder": "dotnet.exe",
       "DetectionType": "notConfigured",
