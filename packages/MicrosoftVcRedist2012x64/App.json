@@ -8,7 +8,7 @@
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-VisualStudioCode2022.png"
   },
   "Information": {
-    "DisplayName": "Visual C++ Redistributable for Visual Studio 2012 Update 4 11.0.61030.0 x64",
+    "DisplayName": "Microsoft Visual C++ Redistributable for Visual Studio 2012 Update 4 11.0.61030.0 x64",
     "Description": "This package installs run-time components of Visual C++ libraries and can be used to run such applications on a computer even if it does not have Visual Studio 2022 installed.",
     "Publisher": "Microsoft",
     "InformationURL": "https://visualstudio.microsoft.com/downloads/",
