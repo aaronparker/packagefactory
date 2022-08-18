@@ -22,6 +22,7 @@ foreach ($Application in $Applications) {
     # Download the application installer
     if ($Null -ne $Filter) {
         if ($Filter -match "Get-VcList") {
+            Write-Host "Filter: $Filter"
             $App = Invoke-Expression -Command $Filter
             $Filename = $(Split-Path -Path $App.Download -Leaf)
             Write-Host "Package: $($App.Name); $Filename."
