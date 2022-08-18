@@ -13,6 +13,7 @@
       "Remove-Defaults.ps1",
       "SetupComplete.cmd",
       "SetupConfig.ini",
+      "User-Windows10.All.json",
       "User.All.json",
       "User.Client.json",
       "User.Server.json",
@@ -25,13 +26,13 @@
       "WindowsRDSStartMenuLayout.xml",
       "WindowsServerStartMenuLayout.xml"
     ],
-    "Version": "2205.23.94",
+    "Version": "2208.18.99",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Package.png"
   },
   "Information": {
-    "DisplayName": "stealthpuppy Windows Customised Defaults 2205.23.94 x86",
+    "DisplayName": "stealthpuppy Windows Customised Defaults 2208.18.99 x86",
     "Description": "Default user and system settings (including default Start menu layout) for Windows 10/11 PCs provisioned via Windows Autopilot. Ensure this package is assigned in the Enrolment Status Page to enable install before user sign-in.",
     "Publisher": "stealthpuppy",
     "InformationURL": "https://stealthpuppy.com/image-customise/",
@@ -56,7 +57,7 @@
       "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{f38de27b-799e-4c30-8a01-bfdedc622944}",
       "ValueName": "DisplayVersion",
       "Operator": "greaterThanOrEqual",
-      "Value": "2205.23.94",
+      "Value": "2208.18.99",
       "Check32BitOn64System": "false"
     }
   ]
