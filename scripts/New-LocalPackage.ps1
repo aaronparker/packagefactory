@@ -30,6 +30,7 @@ foreach ($Application in $Applications) {
             Invoke-WebRequest -Uri $App.Download -OutFile "$Path\packages\$Application\Source\$Filename" -UseBasicParsing
         }
         else {
+            Write-Host "Filter: $Filter"
             $result = Invoke-Expression -Command $Filter | Save-EvergreenApp -CustomPath "$Path\packages\$Application\Source"
             if ($result.FullName -match "\.zip$") {
                 Expand-Archive -Path $result.FullName -DestinationPath "$Path\packages\$Application\Source" -Force
