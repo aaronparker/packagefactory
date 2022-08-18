@@ -24,7 +24,7 @@ if (!([System.Environment]::Is64BitProcess)) {
 
 try {
     New-Item -Path "$env:ProgramData\PackageFactory\Logs" -ItemType "Directory" -ErrorAction "SilentlyContinue" | Out-Null
-    $Installer = Get-ChildItem -Path $PWD -Filter "vcredist*.exe" -Recurse -ErrorAction "SilentlyContinue"
+    $Installer = Get-ChildItem -Path $PWD -Filter "vc_redist*.exe" -Recurse -ErrorAction "SilentlyContinue"
     $params = @{
         FilePath     = $Installer.FullName
         ArgumentList = "/install /quiet /norestart /log `"$env:ProgramData\PackageFactory\Logs\VcRedist2022x64.log`""
