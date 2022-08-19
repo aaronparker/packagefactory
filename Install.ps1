@@ -26,6 +26,7 @@ if (!([System.Environment]::Is64BitProcess)) {
 function Get-InstallConfig {
     try {
         $Path = Join-Path -Path $PWD -ChildPath "Install.json"
+        Write-Verbose -Message "Read: $Path"
         Get-Content -Path $Path -ErrorAction "SilentlyContinue" | ConvertFrom-Json -ErrorAction "SilentlyContinue"
     }
     catch {
@@ -33,23 +34,56 @@ function Get-InstallConfig {
     }
 }
 
-function Get-Installer ($File) {
+function Get-Installer {
+    [CmdletBinding()]
+    param ( $File )
     $Installer = Get-ChildItem -Path $PWD -Filter $File -Recurse -ErrorAction "SilentlyContinue" | Select-Object -First 1
-    if ([System.String]::IsNullOrEmpty($Installer)) {
+    if ([System.String]::IsNullOrEmpty($Installer.FullName)) {
         throw "File not found: $File"
     }
     else {
+        Write-Verbose -Message "Found: $($Installer.FullName)"
         return $Installer.FullName
     }
 }
-#region
+
+function Copy-File {
+    [CmdletBinding()]
+    param ( $File )
+    process {
+        foreach ($Item in $File) {
+            if (Test-Path -Path $Item.Destination) {
+                try {
+                    $FilePath = Get-ChildItem -Path $PWD -Filter $Item.Source -Recurse -ErrorAction "SilentlyContinue"
+                    Write-Verbose -Message "Source: $($FilePath.FullName)"
+                    Write-Verbose -Message "Destination: $($Item.Destination)"
+                    $params = @{
+                        Path        = $FilePath.FullName
+                        Destination = $Item.Destination
+                        Force       = $True
+                        ErrorAction = "SilentlyContinue"
+                    }
+                    Copy-Item @params
+                }
+                catch {
+                    throw $_
+                }
+            }
+        }
+    }
+}
+#endregion
 
 # Get the install details for this application
 $Install = Get-InstallConfig
 $Installer = Get-Installer -File $Install.PackageInformation.SetupFile
 if ([System.String]::IsNullOrEmpty($Installer)) {
-
+    throw "File not found: $($Install.PackageInformation.SetupFile)"
+    exit 1
+}
+else {
     # Create the log folder
+    Write-Verbose -Message "Create directory: $($Install.LogPath)"
     New-Item -Path $Install.LogPath -ItemType "Directory" -ErrorAction "SilentlyContinue" | Out-Null
 
     # Build the argument list
@@ -58,8 +92,11 @@ if ([System.String]::IsNullOrEmpty($Installer)) {
     $ArgumentList = $ArgumentList -replace "#LogPath", $Install.LogPath
 
     try {
+        # Perform the application install
         switch ($Install.PackageInformation.SetupType) {
             "EXE" {
+                Write-Verbose -Message "   Installer: $Installer"
+                Write-Verbose -Message "ArgumentList: $ArgumentList"
                 $params = @{
                     FilePath     = $Installer
                     ArgumentList = $ArgumentList
@@ -70,6 +107,8 @@ if ([System.String]::IsNullOrEmpty($Installer)) {
                 $result = Start-Process @params
             }
             "MSI" {
+                Write-Verbose -Message "   Installer: $Env:SystemRoot\System32\msiexec.exe"
+                Write-Verbose -Message "ArgumentList: $ArgumentList"
                 $params = @{
                     FilePath     = "$Env:SystemRoot\System32\msiexec.exe"
                     ArgumentList = $ArgumentList
@@ -80,18 +119,19 @@ if ([System.String]::IsNullOrEmpty($Installer)) {
                 $result = Start-Process @params
             }
             default {
+                throw "Setup type not found."
                 exit 1
             }
         }
+
+        # Perform post install actions
+        Copy-File -File $Install.PostInstall.Copy
     }
     catch {
         throw $_
     }
     finally {
-        Remove-Item -Path $Install.PostInstall.Remove -Force -ErrorAction "SilentlyContinue"
+        if ($Install.PostInstall.Remove.Count -gt 0) { Remove-Item -Path $Install.PostInstall.Remove -Force -ErrorAction "SilentlyContinue" }
         exit $result.ExitCode
     }
-}
-else {
-    exit 1
 }

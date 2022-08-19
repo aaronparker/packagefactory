@@ -1,0 +1,25 @@
+{
+    "PackageInformation": {
+        "SetupType": "EXE",
+        "SetupFile": "Greenshot-INSTALLER-1.2.10.6-RELEASE.exe",
+        "Version": "1.2.10.6"
+    },
+    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "InstallTasks": {
+        "ArgumentList": "/VERYSILENT /NORESTART /LOG=\"#LogPath\\#LogName.log\""
+    },
+    "PostInstall": {
+        "Remove": [
+            "C:\\Users\\Public\\Desktop\\Greenshot.lnk",
+            "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Greenshot\\License.txt.lnk",
+            "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Greenshot\\Readme.txt.lnk",
+            "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Greenshot\\Uninstall Greenshot.lnk"
+        ],
+        "Copy": [
+            {
+                "Source": "greenshot-defaults.ini",
+                "Destination": "C:\\Program Files\\Greenshot"
+            }
+        ]
+    }
+}

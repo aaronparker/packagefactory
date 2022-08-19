@@ -1,8 +1,7 @@
 {
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "Greenshot-INSTALLER-1.2.10.6-RELEASE.exe",
-    "Version": "1.2.10.6",
+
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Greenshot.png"
