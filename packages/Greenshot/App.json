@@ -1,7 +1,8 @@
 {
   "PackageInformation": {
     "SetupType": "EXE",
-
+    "SetupFile": "Greenshot-INSTALLER-1.2.10.6-RELEASE.exe",
+    "Version": "1.2.10.6",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Greenshot.png"
@@ -11,7 +12,8 @@
     "Description": "Greenshot is a light-weight screenshot software tool for Windows with the following key features:\n\n* Quickly create screenshots of a selected region, window or full screen\n* Easily annotate, highlight or obfuscate parts of the screenshot\n* Export the screenshot in various ways: save to file, send to printer, copy to clipboard, attach to e-mail, send Office programs or upload to photo sites",
     "Publisher": "Greenshot",
     "InformationURL": "https://getgreenshot.org/",
-    "PrivacyURL": "https://getgreenshot.org/privacy-policy/"
+    "PrivacyURL": "https://getgreenshot.org/privacy-policy/",
+    "FeaturedApp": "false"
   },
   "Program": {
     "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
