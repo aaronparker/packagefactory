@@ -1,6 +1,3 @@
-# Creates a Win32 package and optionally imports into a target Intune tenant
-# Uses secrets on the repo - TENANT_ID, CLIENT_ID, and CLIENT_SECRET
-# to import the package into a target tenant
 name: export-win32apps
 
 env:
@@ -33,8 +30,8 @@ jobs:
             Write-Host "$module version: $Version"
           }
 
-      - name: List Modules
-        id: list-modules
+      - name: Create export directory
+        id: create-dir
         shell: pwsh
         run: |
           New-Item -Path "${{ github.workspace }}/export/${{ secrets.TENANT_ID }}" -ItemType "Directory" -ErrorAction "SilentlyContinue"
