@@ -1,0 +1,93 @@
+# Creates a Win32 package and optionally imports into a target Intune tenant
+# Uses secrets on the repo - TENANT_ID, CLIENT_ID, and CLIENT_SECRET
+# to import the package into a target tenant
+name: export-win32apps
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+on:
+  workflow_dispatch:
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install and cache PowerShell modules
+        id: psmodulecache
+        uses: potatoqualitee/psmodulecache@v4.5
+        with:
+          modules-to-cache: IntuneWin32App
+          shell: pwsh
+
+      - name: List Modules
+        id: list-modules
+        shell: pwsh
+        run: |
+          foreach ($module in @("IntuneWin32App")) {
+            Update-Module -Name $module
+            $Version = (Get-Module -Name $module -ListAvailable | Select-Object -First 1).Version.ToString()
+            Write-Host "$module version: $Version"
+          }
+
+      - name: List Modules
+        id: list-modules
+        shell: pwsh
+        run: |
+          New-Item -Path "${{ github.workspace }}/export/${{ secrets.TENANT_ID }}" -ItemType "Directory" -ErrorAction "SilentlyContinue"
+          Test-Path -Path "${{ github.workspace }}/export/${{ secrets.TENANT_ID }}"
+
+      # Create the app package
+      - name: Authn to the Graph API and create package/s
+        id: upload-package
+        shell: pwsh
+        run: |
+          $params = @{
+            TenantId     = "${{ secrets.TENANT_ID }}"
+            ClientID     = "${{ secrets.CLIENT_ID }}"
+            ClientSecret = "${{ secrets.CLIENT_SECRET }}"
+          }
+          $global:AuthToken = Connect-MSIntuneGraph @params
+          $Apps = Get-IntuneWin32App | Select-Object -ExcludeProperty "largeIcon"
+          $params = @{
+              FilePath = "${{ github.workspace }}/export/${{ secrets.TENANT_ID }}/Win32Apps.json"
+              Encoding = "utf8"
+              Force    = $true
+          }
+          $Apps | ConvertTo-Json | Out-File @params
+
+      # Format the date number for the commit message
+      - name: Get date
+        id: get-date
+        shell: pwsh
+        run: |
+          echo "::set-output name=date::$(Get-Date -Format "yyyy.MM.dd")"
+
+      - name: Import GPG key
+        id: import_gpg
+        uses: crazy-max/ghaction-import-gpg@v5
+        with:
+          gpg_private_key: ${{ secrets.GPGKEY }}
+          passphrase: ${{ secrets.GPGPASSPHRASE }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+          git_config_global: true
+          git_tag_gpgsign: true
+          git_push_gpgsign: false
+          git_committer_name: ${{ secrets.COMMIT_NAME }}
+          git_committer_email: ${{ secrets.COMMIT_EMAIL }}
+
+      - name: Commit changes
+        id: commit
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Update Win32 export ${{ steps.get-date.outputs.date }}.${{ github.run_number }} ${{ github.job }}"
+          commit_user_name: ${{ secrets.COMMIT_NAME }}
+          commit_user_email: ${{ secrets.COMMIT_EMAIL }}
+
+      - name: "Run if no changes have been detected"
+        if: steps.commit.outputs.changes_detected == 'false'
+        run: echo "No changes detected."
