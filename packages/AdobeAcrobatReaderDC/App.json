@@ -12,7 +12,8 @@
     "Description": "The leading PDF viewer to print, sign, and annotate PDFs.",
     "Publisher": "Adobe",
     "InformationURL": "https://www.adobe.com/acrobat/pdf-reader.html",
-    "PrivacyURL": "https://www.adobe.com/privacy.html"
+    "PrivacyURL": "https://www.adobe.com/privacy.html",
+    "FeaturedApp": "false"
   },
   "Program": {
     "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
