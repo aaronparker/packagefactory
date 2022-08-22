@@ -32,10 +32,6 @@ Write-Host "Path: $Path"
 Write-Host "Applications: $Application"
 [System.Array] $Applications = $Application.ToString() -split ","
 
-function Join-Dir ([System.String[]] $Path) {
-    [System.IO.Path]::Combine($Path)
-}
-
 try {
     # Authenticate to the Graph API
     # Expects secrets to be passed into environment variables
@@ -54,7 +50,7 @@ catch {
 # Build path to the Applications.json
 if (Test-Path -Path $AppManifest) {}
 else {
-    $AppManifest = Join-Dir -Path $Path, $AppManifest
+    $AppManifest = [System.IO.Path]::Combine($Path, $AppManifest)
 }
 
 try {
@@ -78,14 +74,14 @@ foreach ($App in $Applications) {
             $Filename = $(Split-Path -Path $AppItem.Download -Leaf)
             Write-Host "Package: $($AppItem.Name); $Filename."
             $params = @{
-                Path     = $(Join-Dir -Path $Path, $PackageFolder, $AppItem, $SourceFolder)
+                Path     = $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $SourceFolder))
                 ItemType = "Directory"
                 Force    = $True
             }
             New-Item @params | Out-Null
             $params = @{
                 Uri             = $AppItem.Download
-                OutFile         = $(Join-Dir -Path $Path, $PackageFolder, $AppItem, $SourceFolder, $Filename)
+                OutFile         = $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $SourceFolder, $Filename))
                 UseBasicParsing = $True
             }
             Invoke-WebRequest @params
@@ -93,14 +89,14 @@ foreach ($App in $Applications) {
         else {
 
             # Get the application installer via Evergreen and download
-            $result = Invoke-Expression -Command $Filter | Save-EvergreenApp -CustomPath $(Join-Dir -Path $Path, $PackageFolder, $AppItem, $SourceFolder)
+            $result = Invoke-Expression -Command $Filter | Save-EvergreenApp -CustomPath $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $SourceFolder))
 
             # Unpack the installer file if its a zip file
             Write-Host "Downloaded: $($result.FullName)"
             if ($result.FullName -match "\.zip$") {
                 $params = @{
                     Path            = $result.FullName
-                    DestinationPath = $(Join-Dir -Path $Path, $PackageFolder, $AppItem, $SourceFolder)
+                    DestinationPath = $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $SourceFolder))
                 }
                 Write-Host "Expand: $($result.FullName)"
                 Expand-Archive @params
@@ -109,13 +105,13 @@ foreach ($App in $Applications) {
         }
 
         # Copy Install.ps1 into the source folder
-        if (Test-Path -Path $(Join-Dir -Path $Path, $PackageFolder, $AppItem, $SourceFolder, "Install.json")) {
+        if (Test-Path -Path $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $SourceFolder, "Install.json"))) {
             $params = @{
-                Path        = $(Join-Dir -Path $Path, $InstallScript)
-                Destination = $(Join-Dir -Path $Path, $PackageFolder, $AppItem, $SourceFolder, $InstallScript)
+                Path        = $([System.IO.Path]::Combine($Path, $InstallScript))
+                Destination = $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $SourceFolder, $InstallScript))
                 ErrorAction = "SilentlyContinue"
             }
-            Write-Host "Copy: $(Join-Dir -Path $Path, $PackageFolder, $AppItem, $SourceFolder, $InstallScript)"
+            Write-Host "Copy: $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $SourceFolder, $InstallScript))"
             Copy-Item @params
         }
         else {
@@ -125,7 +121,7 @@ foreach ($App in $Applications) {
         # Import the application into Intune
         $params = @{
             Application       = $AppItem
-            Path              = $(Join-Dir -Path $Path, $PackageFolder)
+            Path              = $([System.IO.Path]::Combine($Path, $PackageFolder))
             DisplayNameSuffix = "(Package Factory)"
         }
         $params
