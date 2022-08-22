@@ -61,7 +61,7 @@ begin {
         throw $_
     }
 
-    # Convert $Application into an array
+    # Convert $Application into an array because we can't pass an array via inputs into the workflow
     $Applications = $Application -split ","
 }
 
@@ -118,6 +118,9 @@ process {
                 }
                 Write-Host "Copy: $(Join-Dir -Path $Path, $PackageFolder, $AppItem, $SourceFolder, $InstallScript)"
                 Copy-Item @params
+            }
+            else {
+                Write-Host "Install.json does not exist."
             }
 
             # Import the application into Intune
