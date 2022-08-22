@@ -36,7 +36,6 @@ param(
     [System.String] $Path,
 
     [Parameter(Mandatory = $false, HelpMessage = "Adds a string to the application display name as a suffix.")]
-    #[ValidateNotNullOrEmpty()]
     [System.String] $DisplayNameSuffix,
 
     [Parameter(Mandatory = $false, HelpMessage = "Specify to validate manifest file configuration.")]
@@ -467,27 +466,29 @@ process {
         else {
             $DisplayName = $AppData.Information.DisplayName
         }
-        if (Test-Path -Path "env:GITHUB_WORKFLOW" -ErrorAction "SilentlyContinue" ) {
-            $Notes = "PSPackageFactory: GitHub Workflow [$env:GITHUB_WORKFLOW]; Repository [$env:GITHUB_REPOSITORY]; Date $(Get-Date -Format "yyyy-MM-dd")."
-        }
-        else {
-            $Notes = "PSPackageFactory: Date $(Get-Date -Format "yyyy-MM-dd")."
-        }
+
+        # Create a Notes property with identifying information
+        $Notes = [PSCustomObject] @{
+            "CreatedBy" = "PSPackageFactory"
+            "Guid"      = $AppData.Information.PSPackageFactoryGuid
+            "Date"      = $(Get-Date -Format "yyyy-MM-dd")
+        } | ConvertTo-Json -Compress
+
+        # Properties object
         $Win32AppArgs = @{
-            "FilePath"                 = $IntuneAppPackage.Path
-            "DisplayName"              = $DisplayName
-            "Description"              = $AppData.Information.Description
-            "AppVersion"               = $AppData.PackageInformation.Version
-            "Notes"                    = $Notes
-            "Publisher"                = $AppData.Information.Publisher
-            "InformationURL"           = $AppData.Information.InformationURL
-            "PrivacyURL"               = $AppData.Information.PrivacyURL
-            "CompanyPortalFeaturedApp" = $false
-            "InstallExperience"        = $AppData.Program.InstallExperience
-            "RestartBehavior"          = $AppData.Program.DeviceRestartBehavior
-            "DetectionRule"            = $DetectionRules
-            "RequirementRule"          = $RequirementRule
-            "Verbose"                  = $true
+            "FilePath"          = $IntuneAppPackage.Path
+            "DisplayName"       = $DisplayName
+            "Description"       = $AppData.Information.Description
+            "AppVersion"        = $AppData.PackageInformation.Version
+            "Notes"             = $Notes
+            "Publisher"         = $AppData.Information.Publisher
+            "Developer"         = $AppData.Information.Publisher
+            "InformationURL"    = $AppData.Information.InformationURL
+            "PrivacyURL"        = $AppData.Information.PrivacyURL
+            "InstallExperience" = $AppData.Program.InstallExperience
+            "RestartBehavior"   = $AppData.Program.DeviceRestartBehavior
+            "DetectionRule"     = $DetectionRules
+            "RequirementRule"   = $RequirementRule
         }
 
         # Dynamically add additional parameters for Win32 app
@@ -497,14 +498,17 @@ process {
         if (Test-Path -Path $AppIconFile) {
             $Win32AppArgs.Add("Icon", $Icon)
         }
-        if (-not([System.String]::IsNullOrEmpty($AppData.Information.Notes))) {
-            $Win32AppArgs.Add("Notes", $AppData.Information.Notes)
-        }
         if (-not([System.String]::IsNullOrEmpty($AppData.Program.InstallCommand))) {
             $Win32AppArgs.Add("InstallCommandLine", $AppData.Program.InstallCommand)
         }
         if (-not([System.String]::IsNullOrEmpty($AppData.Program.UninstallCommand))) {
             $Win32AppArgs.Add("UninstallCommandLine", $AppData.Program.UninstallCommand)
+        }
+        if (-not([System.String]::IsNullOrEmpty($AppData.Information.FeaturedApp))) {
+            $Win32AppArgs.Add("CompanyPortalFeaturedApp", $AppData.Information.FeaturedApp)
+        }
+        else {
+            $Win32AppArgs.Add("CompanyPortalFeaturedApp", $false)
         }
 
         if ($PSBoundParameters["Validate"]) {

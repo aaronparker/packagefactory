@@ -12,7 +12,9 @@
     "Description": "Simplified video conferencing and messaging across any device. Phone, Meetings, Chat, Whiteboard and more for your desktop.",
     "Publisher": "Zoom",
     "InformationURL": "https://explore.zoom.us/en/products/meetings/",
-    "PrivacyURL": "https://explore.zoom.us/privacy"
+    "PrivacyURL": "https://explore.zoom.us/privacy",
+    "Categories": [],
+    "PSPackageFactoryGuid": "b964ee87-b4dd-40f1-845b-3776a5ea79de"
   },
   "Program": {
     "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
@@ -36,5 +38,8 @@
       "VersionValue": "5.11.4.7185",
       "Check32BitOn64System": "false"
     }
-  ]
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
 }

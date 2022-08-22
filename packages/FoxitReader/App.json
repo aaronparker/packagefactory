@@ -12,7 +12,9 @@
     "Description": "View, annotate, form fill, and sign PDF across desktop, mobile, and web - no matter if you're at the office, home, or on the go.",
     "Publisher": "Foxit Software Inc.",
     "InformationURL": "https://www.foxit.com/pdf-reader/",
-    "PrivacyURL": "https://www.foxit.com/company/privacy-policy.html"
+    "PrivacyURL": "https://www.foxit.com/company/privacy-policy.html",
+    "Categories": [],
+    "PSPackageFactoryGuid": "f0c70a2c-6616-4ec3-a203-895e0f15d18a"
   },
   "Program": {
     "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
@@ -36,5 +38,8 @@
       "VersionValue": "12.0.1.12430",
       "Check32BitOn64System": "true"
     }
-  ]
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
 }

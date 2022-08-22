@@ -12,7 +12,10 @@
     "Description": "Greenshot is a light-weight screenshot software tool for Windows with the following key features:\n\n* Quickly create screenshots of a selected region, window or full screen\n* Easily annotate, highlight or obfuscate parts of the screenshot\n* Export the screenshot in various ways: save to file, send to printer, copy to clipboard, attach to e-mail, send Office programs or upload to photo sites",
     "Publisher": "Greenshot",
     "InformationURL": "https://getgreenshot.org/",
-    "PrivacyURL": "https://getgreenshot.org/privacy-policy/"
+    "PrivacyURL": "https://getgreenshot.org/privacy-policy/",
+    "FeaturedApp": "false",
+    "Categories": [],
+    "PSPackageFactoryGuid": "11613277-9517-41c1-81a7-55e2820b8910"
   },
   "Program": {
     "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
@@ -36,5 +39,8 @@
       "VersionValue": "1.2.10.6",
       "Check32BitOn64System": "false"
     }
-  ]
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
 }

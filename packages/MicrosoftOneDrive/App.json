@@ -12,7 +12,9 @@
     "Description": "With Microsoft OneDrive, you can easily and securely store and access your files from all your devices. You can work with others regardless of whether they're inside or outside your organization and terminate that sharing whenever you want.",
     "Publisher": "Microsoft",
     "InformationURL": "https://support.microsoft.com/en-us/onedrive",
-    "PrivacyURL": "https://privacy.microsoft.com/privacystatement"
+    "PrivacyURL": "https://privacy.microsoft.com/privacystatement",
+    "Categories": [],
+    "PSPackageFactoryGuid": "17d5ae82-382e-4f2f-92d9-130fec56964b"
   },
   "Program": {
     "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
@@ -36,5 +38,8 @@
       "VersionValue": "22.161.0731.0002",
       "Check32BitOn64System": "false"
     }
-  ]
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
 }

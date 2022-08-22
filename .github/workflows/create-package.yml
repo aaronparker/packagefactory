@@ -9,9 +9,10 @@ env:
 on:
   workflow_dispatch:
     inputs:
-      configuration:
+      package:
         description: Application name.
         required: true
+        type: string
         default: AdobeAcrobatReaderDC
 
 jobs:
@@ -31,7 +32,7 @@ jobs:
         id: test-package
         shell: powershell
         run: |
-          Test-Path -Path "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}"
+          Test-Path -Path "${{ github.workspace }}\packages\${{ github.event.inputs.package }}"
 
       - name: Install and cache PowerShell modules
         id: psmodulecache
@@ -54,57 +55,15 @@ jobs:
       - name: Authn to the Graph API and create package/s
         id: upload-package
         shell: powershell
+        env:
+          TENANT_ID: ${{ secrets.TENANT_ID }}
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
         run: |
           $params = @{
-            TenantId     = "${{ secrets.TENANT_ID }}"
-            ClientID     = "${{ secrets.CLIENT_ID }}"
-            ClientSecret = "${{ secrets.CLIENT_SECRET }}"
+              Application  = @("${{ github.event.inputs.package }}")
+              AppManifest  = "${{ github.workspace }}\Applications.json"
+              Path         = "${{ github.workspace }}"
           }
-          $global:AuthToken = Connect-MSIntuneGraph @params
-
-          $Apps = Get-Content -Path "${{ github.workspace }}\Applications.json" | ConvertFrom-Json
-          $Filter = ($Apps | Where-Object { $_.Name -eq "${{ github.event.inputs.configuration }}" }).Filter
-
-          if ($Null -ne $Filter) {
-            if ($Filter -match "Get-VcList") {
-                $App = Invoke-Expression -Command $Filter
-                $Filename = $(Split-Path -Path $App.Download -Leaf)
-                Write-Host "Package: $($App.Name); $Filename."
-                $params = @{
-                    Path     = "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source"
-                    ItemType = "Directory"
-                    Force    = $True
-                }
-                New-Item @params | Out-Null
-                $params = @{
-                    Uri             = $App.Download
-                    OutFile         = "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source\$Filename"
-                    UseBasicParsing = $True
-                }
-                Invoke-WebRequest @params
-            }
-            else {
-                $result = Invoke-Expression -Command $Filter | Save-EvergreenApp -CustomPath "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source"
-                Write-Host "Downloaded: $($result.FullName)"
-                if ($result.FullName -match "\.zip$") {
-                    $params = @{
-                        Path            = $result.FullName
-                        DestinationPath = "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source"
-                        Verbose         = $True
-                    }
-                    Expand-Archive @params
-                    Remove-Item -Path $result.FullName -Force
-                }
-            }
-
-            $params = @{
-                Application      = "${{ github.event.inputs.configuration }}"
-                Path             = "${{ github.workspace }}\packages"
-                DisplayNameSuffix = "(Package Factory)"
-            }
-            $params
-            . ${{ github.workspace }}\Create-Win32App.ps1 @params
-          }
-          else {
-              Write-Host -Foregroundcolor "Cyan" "Application not supported by this workflow: ${{ github.event.inputs.configuration }}"
-          }
+          $params
+          .\scripts\New-PipelineWin32App.ps1

@@ -12,7 +12,9 @@
     "Description": "The browser built by Google. Browse with the power of Google. With Google apps like Gmail, Google Pay, and Google Assistant, Chrome can help you stay productive and get more out of your browser.",
     "Publisher": "Google",
     "InformationURL": "https://www.google.com/chrome/",
-    "PrivacyURL": "https://www.google.com.au/intl/en_au/chrome/privacy/"
+    "PrivacyURL": "https://www.google.com.au/intl/en_au/chrome/privacy/",
+    "Categories": [],
+    "PSPackageFactoryGuid": "8c8cc1f6-398c-4c0c-b285-b9141dc60a75"
   },
   "Program": {
     "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
@@ -36,5 +38,8 @@
       "VersionValue": "104.0.5112.102",
       "Check32BitOn64System": "false"
     }
-  ]
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
 }

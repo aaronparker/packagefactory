@@ -12,7 +12,9 @@
     "Description": "More is possible with Microsoft Teams. Stay connected and access shared content any time to learn, plan, and innovate—together.",
     "Publisher": "Microsoft",
     "InformationURL": "https://www.microsoft.com/microsoft-teams/",
-    "PrivacyURL": "https://go.microsoft.com/fwlink/?LinkId=521839"
+    "PrivacyURL": "https://go.microsoft.com/fwlink/?LinkId=521839",
+    "Categories": [],
+    "PSPackageFactoryGuid": "5c38e885-d241-48ef-979e-3c0f693b6692"
   },
   "Program": {
     "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
@@ -45,5 +47,8 @@
       "VersionValue": "1.5.00.21463",
       "Check32BitOn64System": "false"
     }
-  ]
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
 }

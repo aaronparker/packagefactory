@@ -12,7 +12,9 @@
     "Description": "Microsoft PowerToys is a set of utilities for power users to tune and streamline their Windows experience for greater productivity.",
     "Publisher": "Microsoft",
     "InformationURL": "https://aka.ms/powertoys-docs",
-    "PrivacyURL": "https://privacy.microsoft.com/privacystatement"
+    "PrivacyURL": "https://privacy.microsoft.com/privacystatement",
+    "Categories": [],
+    "PSPackageFactoryGuid": "3c006ea7-a6e8-4ef4-8364-c93bd9bedb99"
   },
   "Program": {
     "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
@@ -36,5 +38,8 @@
       "VersionValue": "0.61.1",
       "Check32BitOn64System": "false"
     }
-  ]
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
 }

@@ -12,7 +12,9 @@
     "Description": "The .NET Desktop Runtime enables you to run existing Windows desktop applications. This release includes the .NET Runtime; you don't need to install it separately.",
     "Publisher": "Microsoft",
     "InformationURL": "https://dotnet.microsoft.com/en-us/",
-    "PrivacyURL": "https://privacy.microsoft.com/privacystatement"
+    "PrivacyURL": "https://privacy.microsoft.com/privacystatement",
+    "Categories": [],
+    "PSPackageFactoryGuid": "a91c2def-1212-44c6-8b10-91a0aefac41c"
   },
   "Program": {
     "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
@@ -44,5 +46,8 @@
       "Value": "6.0.8",
       "Check32BitOn64System": "false"
     }
-  ]
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
 }

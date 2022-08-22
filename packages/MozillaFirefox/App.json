@@ -12,7 +12,9 @@
     "Description": "Get the browser that protects what's important. No shady privacy policies or back doors for advertisers. Just a lightning fast browser that doesn't sell you out.",
     "Publisher": "Mozilla",
     "InformationURL": "https://www.mozilla.org/firefox/new/",
-    "PrivacyURL": "https://www.mozilla.org/en-US/privacy/"
+    "PrivacyURL": "https://www.mozilla.org/en-US/privacy/",
+    "Categories": [],
+    "PSPackageFactoryGuid": "f06d95c9-d407-4852-a0b8-0fdb1db80a50"
   },
   "Program": {
     "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
@@ -36,5 +38,8 @@
       "VersionValue": "103.0.2",
       "Check32BitOn64System": "false"
     }
-  ]
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
 }

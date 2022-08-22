@@ -11,8 +11,11 @@
     "DisplayName": "Adobe Acrobat Reader DC 22.002.20191 x64",
     "Description": "The leading PDF viewer to print, sign, and annotate PDFs.",
     "Publisher": "Adobe",
-    "InformationURL": "https://www.adobe.com/au/acrobat/pdf-reader.html",
-    "PrivacyURL": "https://www.adobe.com/au/privacy.html"
+    "InformationURL": "https://www.adobe.com/acrobat/pdf-reader.html",
+    "PrivacyURL": "https://www.adobe.com/privacy.html",
+    "FeaturedApp": "false",
+    "Categories": [],
+    "PSPackageFactoryGuid": "a0042672-7240-4312-892e-39623320c0a3"
   },
   "Program": {
     "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
@@ -36,5 +39,8 @@
       "VersionValue": "22.002.20191",
       "Check32BitOn64System": "false"
     }
-  ]
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
 }

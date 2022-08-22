@@ -12,7 +12,9 @@
     "Description": "Visual Studio Code is a lightweight but powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux. It comes with built-in support for JavaScript, TypeScript and Node.js and has a rich ecosystem of extensions for other languages (such as C++, C#, Java, Python, PHP, Go) and runtimes (such as .NET and Unity).",
     "Publisher": "Microsoft",
     "InformationURL": "https://code.visualstudio.com/",
-    "PrivacyURL": "https://privacy.microsoft.com/privacystatement"
+    "PrivacyURL": "https://privacy.microsoft.com/privacystatement",
+    "Categories": [],
+    "PSPackageFactoryGuid": "e7835fa1-1fcb-4abc-a88e-cbc6bf7c09fd"
   },
   "Program": {
     "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
@@ -36,5 +38,8 @@
       "Value": "1.70.2",
       "Check32BitOn64System": "false"
     }
-  ]
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
 }

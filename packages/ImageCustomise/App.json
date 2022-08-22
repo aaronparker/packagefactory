@@ -36,7 +36,9 @@
     "Description": "Default user and system settings (including default Start menu layout) for Windows 10/11 PCs provisioned via Windows Autopilot. Ensure this package is assigned in the Enrolment Status Page to enable install before user sign-in.",
     "Publisher": "stealthpuppy",
     "InformationURL": "https://stealthpuppy.com/image-customise/",
-    "PrivacyURL": "https://stealthpuppy.com/image-customise/"
+    "PrivacyURL": "https://stealthpuppy.com/image-customise/",
+    "Categories": [],
+    "PSPackageFactoryGuid": "9fddd581-f505-4760-9bb3-2365db204b38"
   },
   "Program": {
     "InstallTemplate": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -ExecutionPolicy RemoteSigned -File .\\Install-Defaults.ps1",
@@ -60,5 +62,8 @@
       "Value": "2208.18.99",
       "Check32BitOn64System": "false"
     }
-  ]
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
 }

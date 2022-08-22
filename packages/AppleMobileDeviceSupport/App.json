@@ -12,7 +12,9 @@
     "Description": "Installs device drivers to enable communication with iPhones and iPads.",
     "Publisher": "Apple",
     "InformationURL": "https://support.apple.com/en-au/HT201352",
-    "PrivacyURL": "https://www.apple.com/au/legal/privacy/en-ww/"
+    "PrivacyURL": "https://www.apple.com/au/legal/privacy/en-ww/",
+    "Categories": [],
+    "PSPackageFactoryGuid": "887f6218-b04d-4cf6-bce1-facedc4bdb7a"
   },
   "Program": {
     "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
@@ -36,5 +38,8 @@
       "VersionValue": "15.6.0.32",
       "Check32BitOn64System": "false"
     }
-  ]
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
 }

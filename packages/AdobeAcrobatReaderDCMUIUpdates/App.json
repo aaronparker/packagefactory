@@ -12,7 +12,9 @@
     "Description": "Update for Adobe Acrobat Reader, Standard and Pro DC.",
     "Publisher": "Adobe",
     "InformationURL": "https://www.adobe.com/devnet-docs/acrobatetk/tools/ReleaseNotesDC/index.html",
-    "PrivacyURL": "https://www.adobe.com/au/privacy.html"
+    "PrivacyURL": "https://www.adobe.com/au/privacy.html",
+    "Categories": [],
+    "PSPackageFactoryGuid": "ef33ecdc-4ab1-41ad-99f9-7a06c26b2733"
   },
   "Program": {
     "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
@@ -46,5 +48,8 @@
       "VersionValue": "22.002.20191",
       "Check32BitOn64System": "false"
     }
-  ]
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
 }
