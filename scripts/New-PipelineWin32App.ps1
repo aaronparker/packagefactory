@@ -32,15 +32,20 @@ begin {
         [System.IO.Path]::Combine($Path)
     }
 
-    # Authenticate to the Graph API
-    # Expects secrets to be passed into environment variables
-    Write-Host "Authenticate to the Graph API"
-    $params = @{
-        TenantId     = "$env:TENANT_ID"
-        ClientId     = "$env:CLIENT_ID"
-        ClientSecret = "$env:CLIENT_SECRET"
+    try {
+        # Authenticate to the Graph API
+        # Expects secrets to be passed into environment variables
+        Write-Host "Authenticate to the Graph API"
+        $params = @{
+            TenantId     = "$env:TENANT_ID"
+            ClientId     = "$env:CLIENT_ID"
+            ClientSecret = "$env:CLIENT_SECRET"
+        }
+        $global:AuthToken = Connect-MSIntuneGraph @params
     }
-    $global:AuthToken = Connect-MSIntuneGraph @params
+    catch {
+        throw $_
+    }
 
     # Build path to the Applications.json
     if (Test-Path -Path $AppManifest) {}
@@ -58,76 +63,71 @@ begin {
 }
 
 process {
-    if ($Null -ne $global:AuthToken) {
-        foreach ($App in $Application) {
-            Write-Host "Application: $App"
-            $Filter = ($SupportedApps | Where-Object { $_.Name -eq $App }).Filter
+    foreach ($App in $Application) {
+        Write-Host "Application: $App"
+        $Filter = ($SupportedApps | Where-Object { $_.Name -eq $App }).Filter
 
-            if ($Null -ne $Filter) {
-                if ($Filter -match "Get-VcList") {
+        if ($Null -ne $Filter) {
+            if ($Filter -match "Get-VcList") {
 
-                    # Handle the Visual C++ Redistributables via VcRedist
-                    $App = Invoke-Expression -Command $Filter
-                    $Filename = $(Split-Path -Path $App.Download -Leaf)
-                    Write-Host "Package: $($App.Name); $Filename."
-                    $params = @{
-                        Path     = $(Join-Dir -Path $Path, $PackageFolder, $App, $SourceFolder)
-                        ItemType = "Directory"
-                        Force    = $True
-                    }
-                    New-Item @params | Out-Null
-                    $params = @{
-                        Uri             = $App.Download
-                        OutFile         = $(Join-Dir -Path $Path, $PackageFolder, $App, $SourceFolder, $Filename)
-                        UseBasicParsing = $True
-                    }
-                    Invoke-WebRequest @params
-                }
-                else {
-
-                    # Get the application installer via Evergreen and download
-                    $result = Invoke-Expression -Command $Filter | Save-EvergreenApp -CustomPath $(Join-Dir -Path $Path, $PackageFolder, $App, $SourceFolder)
-
-                    # Unpack the installer file if its a zip file
-                    Write-Host "Downloaded: $($result.FullName)"
-                    if ($result.FullName -match "\.zip$") {
-                        $params = @{
-                            Path            = $result.FullName
-                            DestinationPath = $(Join-Dir -Path $Path, $PackageFolder, $App, $SourceFolder)
-                        }
-                        Write-Host "Expand: $($result.FullName)"
-                        Expand-Archive @params
-                        Remove-Item -Path $result.FullName -Force
-                    }
-                }
-
-                # Copy Install.ps1 into the source folder
-                if (Test-Path -Path $(Join-Dir -Path $Path, $PackageFolder, $App, $SourceFolder, "Install.json")) {
-                    $params = @{
-                        Path        = $(Join-Dir -Path $Path, $InstallScript)
-                        Destination = $(Join-Dir -Path $Path, $PackageFolder, $App, $SourceFolder, $InstallScript)
-                        ErrorAction = "SilentlyContinue"
-                    }
-                    Write-Host "Copy: $(Join-Dir -Path $Path, $PackageFolder, $App, $SourceFolder, $InstallScript)"
-                    Copy-Item @params
-                }
-
-                # Import the application into Intune
+                # Handle the Visual C++ Redistributables via VcRedist
+                $App = Invoke-Expression -Command $Filter
+                $Filename = $(Split-Path -Path $App.Download -Leaf)
+                Write-Host "Package: $($App.Name); $Filename."
                 $params = @{
-                    Application      = $App
-                    Path             = $(Join-Dir -Path $Path, $PackageFolder)
-                    DisplayNameSuffix = "(Package Factory)"
+                    Path     = $(Join-Dir -Path $Path, $PackageFolder, $App, $SourceFolder)
+                    ItemType = "Directory"
+                    Force    = $True
                 }
-                $params
-                Write-Host "Run: Create-Win32App.ps1"
-                . [System.IO.Path]::Combine($Path, "Create-Win32App.ps1") @params
+                New-Item @params | Out-Null
+                $params = @{
+                    Uri             = $App.Download
+                    OutFile         = $(Join-Dir -Path $Path, $PackageFolder, $App, $SourceFolder, $Filename)
+                    UseBasicParsing = $True
+                }
+                Invoke-WebRequest @params
             }
             else {
-                Write-Host "Application not supported by this workflow: $App"
+
+                # Get the application installer via Evergreen and download
+                $result = Invoke-Expression -Command $Filter | Save-EvergreenApp -CustomPath $(Join-Dir -Path $Path, $PackageFolder, $App, $SourceFolder)
+
+                # Unpack the installer file if its a zip file
+                Write-Host "Downloaded: $($result.FullName)"
+                if ($result.FullName -match "\.zip$") {
+                    $params = @{
+                        Path            = $result.FullName
+                        DestinationPath = $(Join-Dir -Path $Path, $PackageFolder, $App, $SourceFolder)
+                    }
+                    Write-Host "Expand: $($result.FullName)"
+                    Expand-Archive @params
+                    Remove-Item -Path $result.FullName -Force
+                }
             }
+
+            # Copy Install.ps1 into the source folder
+            if (Test-Path -Path $(Join-Dir -Path $Path, $PackageFolder, $App, $SourceFolder, "Install.json")) {
+                $params = @{
+                    Path        = $(Join-Dir -Path $Path, $InstallScript)
+                    Destination = $(Join-Dir -Path $Path, $PackageFolder, $App, $SourceFolder, $InstallScript)
+                    ErrorAction = "SilentlyContinue"
+                }
+                Write-Host "Copy: $(Join-Dir -Path $Path, $PackageFolder, $App, $SourceFolder, $InstallScript)"
+                Copy-Item @params
+            }
+
+            # Import the application into Intune
+            $params = @{
+                Application       = $App
+                Path              = $(Join-Dir -Path $Path, $PackageFolder)
+                DisplayNameSuffix = "(Package Factory)"
+            }
+            $params
+            Write-Host "Run: Create-Win32App.ps1"
+            . [System.IO.Path]::Combine($Path, "Create-Win32App.ps1") @params
         }
-    }
-    else {
-        throw "Cannot find authentication token."
+        else {
+            Write-Host "Application not supported by this workflow: $App"
+        }
     }
 }
