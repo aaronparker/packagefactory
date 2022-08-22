@@ -7,11 +7,11 @@
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingInvokeExpression", "", Justification = "Needed to execute Evergreen or VcRedist commands.")]
 param (
     [Parameter()]
-    [ValidateNotNullOrEmpty]
+    [ValidateNotNullOrEmpty()]
     [System.String] $Application,
 
     [Parameter()]
-    [ValidateNotNullOrEmpty]
+    [ValidateNotNullOrEmpty()]
     [System.String] $Path,
 
     [Parameter()]
@@ -26,10 +26,6 @@ param (
     [Parameter()]
     [System.String] $InstallScript = "Install.ps1"
 )
-
-# Convert $Application into an array because we can't pass an array via inputs into the workflow
-Write-Host "Applications: $Application"
-[System.Array] $Applications = $Application.ToString() -split ","
 
 function Join-Dir ([System.String[]] $Path) {
     [System.IO.Path]::Combine($Path)
@@ -63,6 +59,10 @@ try {
 catch {
     throw $_
 }
+
+# Convert $Application into an array because we can't pass an array via inputs into the workflow
+Write-Host "Applications: $Application"
+[System.Array] $Applications = $Application.ToString() -split ","
 
 foreach ($App in $Applications) {
     $AppItem = $App.Trim()
