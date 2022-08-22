@@ -8,9 +8,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - ".github/workflows/update-packagejson.yml"
       - "scripts/Update-PackageJson.ps1"
-      - "scripts/Applications.ps1"
       - "**/App.json"
   schedule:
       - cron: '15 2 * * *'
@@ -50,7 +48,11 @@ jobs:
         id: update-json
         shell: pwsh
         run: |
-          . "${{ github.workspace }}/scripts/Update-PackageJson.ps1" -Path "${{ github.workspace }}/packages" -Manifest "${{ github.workspace }}/Applications.json"
+          $params = @{
+              Path     = "${{ github.workspace }}/packages"
+              Manifest = "${{ github.workspace }}/Applications.json"
+          }
+          . "${{ github.workspace }}/scripts/Update-PackageJson.ps1" @params
 
       # Format the date number for the commit message
       - name: Get date

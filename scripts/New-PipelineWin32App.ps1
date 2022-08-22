@@ -28,6 +28,7 @@ param (
 )
 
 # Convert $Application into an array because we can't pass an array via inputs into the workflow
+Write-Host "Path: $Path"
 Write-Host "Applications: $Application"
 [System.Array] $Applications = $Application.ToString() -split ","
 
