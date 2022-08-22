@@ -8,7 +8,7 @@
 param (
     [Parameter()]
     [ValidateNotNullOrEmpty]
-    [System.String[]] $Application,
+    [System.String] $Application,
 
     [Parameter()]
     [ValidateNotNullOrEmpty]
@@ -60,29 +60,33 @@ begin {
     catch {
         throw $_
     }
+
+    # Convert $Application into an array
+    $Applications = $Application -split ","
 }
 
 process {
-    foreach ($App in $Application) {
-        Write-Host "Application: $App"
-        $Filter = ($SupportedApps | Where-Object { $_.Name -eq $App }).Filter
+    foreach ($App in $Applications) {
+        $AppItem = $App.Trim()
+        Write-Host "Application: $AppItem"
+        $Filter = ($SupportedApps | Where-Object { $_.Name -eq $AppItem }).Filter
 
         if ($Null -ne $Filter) {
             if ($Filter -match "Get-VcList") {
 
                 # Handle the Visual C++ Redistributables via VcRedist
-                $App = Invoke-Expression -Command $Filter
-                $Filename = $(Split-Path -Path $App.Download -Leaf)
-                Write-Host "Package: $($App.Name); $Filename."
+                $AppItem = Invoke-Expression -Command $Filter
+                $Filename = $(Split-Path -Path $AppItem.Download -Leaf)
+                Write-Host "Package: $($AppItem.Name); $Filename."
                 $params = @{
-                    Path     = $(Join-Dir -Path $Path, $PackageFolder, $App, $SourceFolder)
+                    Path     = $(Join-Dir -Path $Path, $PackageFolder, $AppItem, $SourceFolder)
                     ItemType = "Directory"
                     Force    = $True
                 }
                 New-Item @params | Out-Null
                 $params = @{
-                    Uri             = $App.Download
-                    OutFile         = $(Join-Dir -Path $Path, $PackageFolder, $App, $SourceFolder, $Filename)
+                    Uri             = $AppItem.Download
+                    OutFile         = $(Join-Dir -Path $Path, $PackageFolder, $AppItem, $SourceFolder, $Filename)
                     UseBasicParsing = $True
                 }
                 Invoke-WebRequest @params
@@ -90,14 +94,14 @@ process {
             else {
 
                 # Get the application installer via Evergreen and download
-                $result = Invoke-Expression -Command $Filter | Save-EvergreenApp -CustomPath $(Join-Dir -Path $Path, $PackageFolder, $App, $SourceFolder)
+                $result = Invoke-Expression -Command $Filter | Save-EvergreenApp -CustomPath $(Join-Dir -Path $Path, $PackageFolder, $AppItem, $SourceFolder)
 
                 # Unpack the installer file if its a zip file
                 Write-Host "Downloaded: $($result.FullName)"
                 if ($result.FullName -match "\.zip$") {
                     $params = @{
                         Path            = $result.FullName
-                        DestinationPath = $(Join-Dir -Path $Path, $PackageFolder, $App, $SourceFolder)
+                        DestinationPath = $(Join-Dir -Path $Path, $PackageFolder, $AppItem, $SourceFolder)
                     }
                     Write-Host "Expand: $($result.FullName)"
                     Expand-Archive @params
@@ -106,19 +110,19 @@ process {
             }
 
             # Copy Install.ps1 into the source folder
-            if (Test-Path -Path $(Join-Dir -Path $Path, $PackageFolder, $App, $SourceFolder, "Install.json")) {
+            if (Test-Path -Path $(Join-Dir -Path $Path, $PackageFolder, $AppItem, $SourceFolder, "Install.json")) {
                 $params = @{
                     Path        = $(Join-Dir -Path $Path, $InstallScript)
-                    Destination = $(Join-Dir -Path $Path, $PackageFolder, $App, $SourceFolder, $InstallScript)
+                    Destination = $(Join-Dir -Path $Path, $PackageFolder, $AppItem, $SourceFolder, $InstallScript)
                     ErrorAction = "SilentlyContinue"
                 }
-                Write-Host "Copy: $(Join-Dir -Path $Path, $PackageFolder, $App, $SourceFolder, $InstallScript)"
+                Write-Host "Copy: $(Join-Dir -Path $Path, $PackageFolder, $AppItem, $SourceFolder, $InstallScript)"
                 Copy-Item @params
             }
 
             # Import the application into Intune
             $params = @{
-                Application       = $App
+                Application       = $AppItem
                 Path              = $(Join-Dir -Path $Path, $PackageFolder)
                 DisplayNameSuffix = "(Package Factory)"
             }
@@ -127,7 +131,7 @@ process {
             . [System.IO.Path]::Combine($Path, "Create-Win32App.ps1") @params
         }
         else {
-            Write-Host "Application not supported by this workflow: $App"
+            Write-Host "Application not supported by this workflow: $AppItem"
         }
     }
 }
