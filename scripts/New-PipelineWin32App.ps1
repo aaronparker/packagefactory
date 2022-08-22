@@ -27,6 +27,9 @@ param (
     [System.String] $InstallScript = "Install.ps1"
 )
 
+# Convert $Application into an array because we can't pass an array via inputs into the workflow
+Write-Host "Applications: $Application"
+[System.Array] $Applications = $Application.ToString() -split ","
 
 function Join-Dir ([System.String[]] $Path) {
     [System.IO.Path]::Combine($Path)
@@ -60,10 +63,6 @@ try {
 catch {
     throw $_
 }
-
-# Convert $Application into an array because we can't pass an array via inputs into the workflow
-Write-Host "Applications: $Application"
-[System.Array] $Applications = $Application.ToString() -split ","
 
 foreach ($App in $Applications) {
     $AppItem = $App.Trim()
