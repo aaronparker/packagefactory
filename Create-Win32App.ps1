@@ -466,15 +466,15 @@ process {
         else {
             $DisplayName = $AppData.Information.DisplayName
         }
-        if (Test-Path -Path "env:GITHUB_WORKFLOW" -ErrorAction "SilentlyContinue" ) {
-            $Notes = "PSPackageFactory: GitHub Workflow [$env:GITHUB_WORKFLOW]; Repository [$env:GITHUB_REPOSITORY]; Date $(Get-Date -Format "yyyy-MM-dd")."
-        }
-        else {
-            $Notes = "PSPackageFactory: Date $(Get-Date -Format "yyyy-MM-dd")."
-        }
-        if (-not([System.String]::IsNullOrEmpty($AppData.Information.Notes))) {
-            $Notes += " $($AppData.Information.Notes)"
-        }
+
+        # Create a Notes property with identifying information
+        $Notes = [PSCustomObject] @{
+            "CreatedBy" = "PSPackageFactory"
+            "Guid"      = $AppData.Information.PSPackageFactoryGuid
+            "Date"      = $(Get-Date -Format "yyyy-MM-dd")
+        } | ConvertTo-Json -Compress
+
+        # Properties object
         $Win32AppArgs = @{
             "FilePath"          = $IntuneAppPackage.Path
             "DisplayName"       = $DisplayName
@@ -489,7 +489,6 @@ process {
             "RestartBehavior"   = $AppData.Program.DeviceRestartBehavior
             "DetectionRule"     = $DetectionRules
             "RequirementRule"   = $RequirementRule
-            #"Verbose"                  = $true
         }
 
         # Dynamically add additional parameters for Win32 app
