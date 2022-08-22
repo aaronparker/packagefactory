@@ -65,4 +65,4 @@ jobs:
               AppManifest  = "${{ github.workspace }}\Applications.json"
               Path         = "${{ github.workspace }}"
           }
-          .\scripts\New-PipelineWin32App.ps1
+          .\scripts\New-PipelineWin32App.ps1 @params
