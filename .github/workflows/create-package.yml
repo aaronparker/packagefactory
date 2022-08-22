@@ -57,10 +57,11 @@ jobs:
         run: |
           $params = @{
               TenantId     = "${{ secrets.TENANT_ID }}"
-              ClientID     = "${{ secrets.CLIENT_ID }}"
+              ClientId     = "${{ secrets.CLIENT_ID }}"
               ClientSecret = "${{ secrets.CLIENT_SECRET }}"
               Application  = "${{ github.event.inputs.configuration }}"
               AppManifest  = "${{ github.workspace }}\Applications.json"
               Path         = "${{ github.workspace }}"
           }
+          $params
           .\scripts\New-PipelineWin32App.ps1

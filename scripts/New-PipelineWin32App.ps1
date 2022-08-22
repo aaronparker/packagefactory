@@ -7,18 +7,23 @@
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingInvokeExpression", "", Justification = "Needed to execute Evergreen or VcRedist commands.")]
 param (
     [Parameter()]
+    [ValidateNotNullOrEmpty]
     [System.String] $TenantId,
 
     [Parameter()]
+    [ValidateNotNullOrEmpty]
     [System.String] $ClientId,
 
     [Parameter()]
+    [ValidateNotNullOrEmpty]
     [System.String] $ClientSecret,
 
     [Parameter()]
+    [ValidateNotNullOrEmpty]
     [System.String[]] $Application,
 
     [Parameter()]
+    [ValidateNotNullOrEmpty]
     [System.String] $Path,
 
     [Parameter()]
