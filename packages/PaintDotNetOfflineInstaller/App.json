@@ -12,7 +12,9 @@
     "Description": "Paint.NET is image and photo editing software for PCs that run Windows. It features an intuitive and innovative user interface with support for layers, unlimited undo, special effects, and a wide variety of useful and powerful tools.",
     "Publisher": "dotPDN LLC.",
     "InformationURL": "https://www.getpaint.net/",
-    "PrivacyURL": "https://www.getpaint.net/privacy.html"
+    "PrivacyURL": "https://www.getpaint.net/privacy.html",
+    "Categories": [],
+    "PSPackageFactoryGuid": "8217c760-01fe-4e0e-8389-76bd2bce5620"
   },
   "Program": {
     "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
@@ -36,5 +38,8 @@
       "VersionValue": "4.3.12",
       "Check32BitOn64System": "false"
     }
-  ]
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
 }

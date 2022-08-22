@@ -12,7 +12,9 @@
     "Description": "SQL Server Management Studio (SSMS) is an integrated environment for managing any SQL infrastructure, from SQL Server to Azure SQL Database. SSMS provides tools to configure, monitor, and administer instances of SQL Server and databases. Use SSMS to deploy, monitor, and upgrade the data-tier components used by your applications, and build queries and scripts.",
     "Publisher": "Microsoft",
     "InformationURL": "https://docs.microsoft.com/en-au/sql/ssms/download-sql-server-management-studio-ssms",
-    "PrivacyURL": "https://go.microsoft.com/fwlink/?LinkId=521839"
+    "PrivacyURL": "https://go.microsoft.com/fwlink/?LinkId=521839",
+    "Categories": [],
+    "PSPackageFactoryGuid": "73c06042-b651-4074-9cce-1dc28bf5cb4e"
   },
   "Program": {
     "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
@@ -36,5 +38,8 @@
       "VersionValue": "15.0.18410.0",
       "Check32BitOn64System": "false"
     }
-  ]
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
 }

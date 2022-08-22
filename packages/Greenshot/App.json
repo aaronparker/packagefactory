@@ -13,7 +13,9 @@
     "Publisher": "Greenshot",
     "InformationURL": "https://getgreenshot.org/",
     "PrivacyURL": "https://getgreenshot.org/privacy-policy/",
-    "FeaturedApp": "false"
+    "FeaturedApp": "false",
+    "Categories": [],
+    "PSPackageFactoryGuid": "11613277-9517-41c1-81a7-55e2820b8910"
   },
   "Program": {
     "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
@@ -37,5 +39,8 @@
       "VersionValue": "1.2.10.6",
       "Check32BitOn64System": "false"
     }
-  ]
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
 }

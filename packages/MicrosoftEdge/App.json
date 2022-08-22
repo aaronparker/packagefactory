@@ -12,7 +12,9 @@
     "Description": "Microsoft Edge is the fast and secure browser that helps you protect your data and save time and money.",
     "Publisher": "Microsoft",
     "InformationURL": "https://www.microsoft.com/en-us/edge/features",
-    "PrivacyURL": "https://go.microsoft.com/fwlink/?LinkId=521839"
+    "PrivacyURL": "https://go.microsoft.com/fwlink/?LinkId=521839",
+    "Categories": [],
+    "PSPackageFactoryGuid": "8d6b09d2-466b-4430-a102-9ea9cfb6ddbc"
   },
   "Program": {
     "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
@@ -36,5 +38,8 @@
       "VersionValue": "104.0.1293.63",
       "Check32BitOn64System": "false"
     }
-  ]
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
 }

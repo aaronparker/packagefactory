@@ -12,7 +12,9 @@
     "Description": "Use Support Center for client troubleshooting, real-time log viewing, or capturing the state of a Configuration Manager client computer for later analysis. Support Center is a single tool to combine many administrator troubleshooting tools.",
     "Publisher": "Microsoft",
     "InformationURL": "https://docs.microsoft.com/en-us/mem/configmgr/core/support/support-center",
-    "PrivacyURL": "https://go.microsoft.com/fwlink/?LinkId=521839"
+    "PrivacyURL": "https://go.microsoft.com/fwlink/?LinkId=521839",
+    "Categories": [],
+    "PSPackageFactoryGuid": "b8b12446-c8d8-45bf-a53a-734800f2b553"
   },
   "Program": {
     "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
@@ -35,5 +37,8 @@
       "DetectionType": "exists",
       "Check32BitOn64System": "true"
     }
-  ]
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
 }
