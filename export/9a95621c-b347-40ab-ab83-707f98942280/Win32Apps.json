@@ -2,18 +2,18 @@
   {
     "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileApps/$entity",
     "@odata.type": "#microsoft.graph.win32LobApp",
-    "id": "e9e6911d-8208-4222-ac02-a79b8064048e",
+    "id": "423774be-6183-45ae-b69e-f2c728ff2779",
     "displayName": "Adobe Acrobat Reader DC 22.002.20191 x64 (Package Factory)",
     "description": "The leading PDF viewer to print, sign, and annotate PDFs.",
     "publisher": "Adobe",
-    "createdDateTime": "2022-08-18T01:41:05.7149788Z",
-    "lastModifiedDateTime": "2022-08-21T08:03:53.6161413Z",
+    "createdDateTime": "2022-08-22T10:31:13.887548Z",
+    "lastModifiedDateTime": "2022-08-22T12:43:51.06474Z",
     "isFeatured": false,
     "privacyInformationUrl": "https://www.adobe.com/au/privacy.html",
     "informationUrl": "https://www.adobe.com/au/acrobat/pdf-reader.html",
     "owner": "",
     "developer": "",
-    "notes": "PSPackageFactory: GitHub Workflow [create-package]; Repository [aaronparker/packagefactory]; Date 2022-08-18.",
+    "notes": "{\"CreatedBy\":\"PSPackageFactory\",\"Guid\":\"a0042672-7240-4312-892e-39623320c0a3\",\"Date\":\"2022-08-22\"}",
     "uploadState": 1,
     "publishingState": "published",
     "isAssigned": false,
@@ -35,7 +35,7 @@
     "minimumCpuSpeedInMHz": null,
     "msiInformation": null,
     "setupFilePath": "AcroRdrDCx642200220191_MUI.exe",
-    "minimumSupportedWindowsRelease": "2H20",
+    "minimumSupportedWindowsRelease": "1809",
     "displayVersion": "22.002.20191",
     "allowAvailableUninstall": false,
     "minimumSupportedOperatingSystem": {
@@ -46,11 +46,11 @@
       "v10_1703": false,
       "v10_1709": false,
       "v10_1803": false,
-      "v10_1809": false,
+      "v10_1809": true,
       "v10_1903": false,
       "v10_1909": false,
       "v10_2004": false,
-      "v10_2H20": true,
+      "v10_2H20": false,
       "v10_21H1": false
     },
     "detectionRules": [
@@ -205,6 +205,79 @@
     "requirementRules": [],
     "rules": [
       "@{@odata.type=#microsoft.graph.win32LobAppRegistryRule; ruleType=detection; check32BitOn64System=False; keyPath=HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\CitrixOnlinePluginPackWeb; valueName=DisplayVersion; operationType=version; operator=greaterThanOrEqual; comparisonValue=22.7.0.24}"
+    ],
+    "installExperience": {
+      "runAsAccount": "system",
+      "deviceRestartBehavior": "suppress"
+    },
+    "returnCodes": [
+      "@{returnCode=0; type=success}",
+      "@{returnCode=1707; type=success}",
+      "@{returnCode=3010; type=softReboot}",
+      "@{returnCode=1641; type=hardReboot}",
+      "@{returnCode=1618; type=retry}"
+    ]
+  },
+  {
+    "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileApps/$entity",
+    "@odata.type": "#microsoft.graph.win32LobApp",
+    "id": "f8ec024f-0bd0-4ae5-94cc-fe43bb8e33fa",
+    "displayName": "Google Chrome 104.0.5112.102 x64 (Package Factory)",
+    "description": "The browser built by Google. Browse with the power of Google. With Google apps like Gmail, Google Pay, and Google Assistant, Chrome can help you stay productive and get more out of your browser.",
+    "publisher": "Google",
+    "createdDateTime": "2022-08-22T22:42:05.4566656Z",
+    "lastModifiedDateTime": "2022-08-22T22:42:05.4566656Z",
+    "isFeatured": false,
+    "privacyInformationUrl": "https://www.google.com.au/intl/en_au/chrome/privacy/",
+    "informationUrl": "https://www.google.com/chrome/",
+    "owner": "",
+    "developer": "Google",
+    "notes": "{\"CreatedBy\":\"PSPackageFactory\",\"Guid\":\"8c8cc1f6-398c-4c0c-b285-b9141dc60a75\",\"Date\":\"2022-08-22\"}",
+    "uploadState": 1,
+    "publishingState": "published",
+    "isAssigned": false,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "dependentAppCount": 0,
+    "supersedingAppCount": 0,
+    "supersededAppCount": 0,
+    "committedContentVersion": "1",
+    "fileName": "IntunePackage.intunewin",
+    "size": 92253424,
+    "installCommandLine": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+    "uninstallCommandLine": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Uninstall.ps1",
+    "applicableArchitectures": "x64",
+    "minimumFreeDiskSpaceInMB": null,
+    "minimumMemoryInMB": null,
+    "minimumNumberOfProcessors": null,
+    "minimumCpuSpeedInMHz": null,
+    "msiInformation": null,
+    "setupFilePath": "googlechromestandaloneenterprise64.msi",
+    "minimumSupportedWindowsRelease": "1809",
+    "displayVersion": "104.0.5112.102",
+    "allowAvailableUninstall": false,
+    "minimumSupportedOperatingSystem": {
+      "v8_0": false,
+      "v8_1": false,
+      "v10_0": false,
+      "v10_1607": false,
+      "v10_1703": false,
+      "v10_1709": false,
+      "v10_1803": false,
+      "v10_1809": true,
+      "v10_1903": false,
+      "v10_1909": false,
+      "v10_2004": false,
+      "v10_2H20": false,
+      "v10_21H1": false
+    },
+    "detectionRules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemDetection; path=C:\\Program Files\\Google\\Chrome\\Application; fileOrFolderName=Chrome.exe; check32BitOn64System=False; detectionType=version; operator=greaterThanOrEqual; detectionValue=104.0.5112.102}"
+    ],
+    "requirementRules": [],
+    "rules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemRule; ruleType=detection; path=C:\\Program Files\\Google\\Chrome\\Application; fileOrFolderName=Chrome.exe; check32BitOn64System=False; operationType=version; operator=greaterThanOrEqual; comparisonValue=104.0.5112.102}"
     ],
     "installExperience": {
       "runAsAccount": "system",
