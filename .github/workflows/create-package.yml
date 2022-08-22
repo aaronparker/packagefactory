@@ -59,7 +59,7 @@ jobs:
               TenantId     = "${{ secrets.TENANT_ID }}"
               ClientID     = "${{ secrets.CLIENT_ID }}"
               ClientSecret = "${{ secrets.CLIENT_SECRET }}"
-              Application  = ${{ github.event.inputs.configuration }}
+              Application  = "${{ github.event.inputs.configuration }}"
               AppManifest  = "${{ github.workspace }}\Applications.json"
               Path         = "${{ github.workspace }}"
           }
