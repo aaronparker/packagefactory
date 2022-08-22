@@ -15,7 +15,7 @@ Additionally, Evergreen is used to keep the library of application definitions (
 Authentication to a tenant can be performed manually via `Connect-MSIntuneGraph`, after which `Create-Win32App.ps1` can be run to create a target application package.
 
 ```powershell
-Connect-MSIntuneGraph -TenantID stealthpuppylab.onmicrosoft.com
+Connect-MSIntuneGraph -TenantId stealthpuppylab.onmicrosoft.com
 
 $Application = "AdobeAcrobatReaderDC"
 $Json = Get-Content -Path ".\Applications.json" | ConvertFrom-Json

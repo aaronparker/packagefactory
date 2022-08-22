@@ -54,11 +54,12 @@ jobs:
       - name: Authn to the Graph API and create package/s
         id: upload-package
         shell: powershell
+        env:
+          TENANT_ID: ${{ secrets.TENANT_ID }}
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
         run: |
           $params = @{
-              TenantId     = "${{ secrets.TENANT_ID }}"
-              ClientId     = "${{ secrets.CLIENT_ID }}"
-              ClientSecret = "${{ secrets.CLIENT_SECRET }}"
               Application  = "${{ github.event.inputs.configuration }}"
               AppManifest  = "${{ github.workspace }}\Applications.json"
               Path         = "${{ github.workspace }}"

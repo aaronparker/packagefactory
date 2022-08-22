@@ -8,18 +8,6 @@
 param (
     [Parameter()]
     [ValidateNotNullOrEmpty]
-    [System.String] $TenantId,
-
-    [Parameter()]
-    [ValidateNotNullOrEmpty]
-    [System.String] $ClientId,
-
-    [Parameter()]
-    [ValidateNotNullOrEmpty]
-    [System.String] $ClientSecret,
-
-    [Parameter()]
-    [ValidateNotNullOrEmpty]
     [System.String[]] $Application,
 
     [Parameter()]
@@ -45,11 +33,12 @@ begin {
     }
 
     # Authenticate to the Graph API
+    # Expects secrets to be passed into environment variables
     Write-Host "Authenticate to the Graph API"
     $params = @{
-        TenantId     = $TenantId
-        ClientID     = $ClientId
-        ClientSecret = $ClientSecret
+        TenantId     = "$env:TENANT_ID"
+        ClientId     = "$env:CLIENT_ID"
+        ClientSecret = "$env:CLIENT_SECRET"
     }
     $global:AuthToken = Connect-MSIntuneGraph @params
 
