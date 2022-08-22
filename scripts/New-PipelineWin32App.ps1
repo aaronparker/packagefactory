@@ -130,7 +130,7 @@ foreach ($App in $Applications) {
         }
         $params
         Write-Host "Run: Create-Win32App.ps1"
-        . [System.IO.Path]::Combine($Path, "Create-Win32App.ps1") @params
+        . $([System.IO.Path]::Combine($Path, "Create-Win32App.ps1")) @params
     }
     else {
         Write-Host "Application not supported by this workflow: $AppItem"
