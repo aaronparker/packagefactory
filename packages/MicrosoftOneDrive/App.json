@@ -2,13 +2,13 @@
   "PackageInformation": {
     "SetupType": "EXE",
     "SetupFile": "OneDriveSetup.exe",
-    "Version": "22.161.0731.0002",
+    "Version": "22.166.0807.0002",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-OneDrive.png"
   },
   "Information": {
-    "DisplayName": "Microsoft OneDrive 22.161.0731.0002 AMD64",
+    "DisplayName": "Microsoft OneDrive 22.166.0807.0002 AMD64",
     "Description": "With Microsoft OneDrive, you can easily and securely store and access your files from all your devices. You can work with others regardless of whether they're inside or outside your organization and terminate that sharing whenever you want.",
     "Publisher": "Microsoft",
     "InformationURL": "https://support.microsoft.com/en-us/onedrive",
@@ -35,7 +35,7 @@
       "Path": "C:\\Program Files\\Microsoft OneDrive",
       "FileOrFolder": "OneDrive.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "22.161.0731.0002",
+      "VersionValue": "22.166.0807.0002",
       "Check32BitOn64System": "false"
     }
   ],
