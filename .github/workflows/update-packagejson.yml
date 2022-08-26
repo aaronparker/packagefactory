@@ -24,7 +24,7 @@ jobs:
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v4.5
         with:
-          modules-to-cache: IntuneWin32App, Evergreen, VcRedist
+          modules-to-cache: Evergreen, VcRedist
           force: true
           shell: pwsh
 
@@ -32,17 +32,11 @@ jobs:
         id: list-modules
         shell: pwsh
         run: |
-          foreach ($module in @("IntuneWin32App", "Evergreen", "VcRedist")) {
+          foreach ($module in @("Evergreen", "VcRedist")) {
             Update-Module -Name $module -Force
             $Version = (Get-Module -Name $module -ListAvailable | Select-Object -First 1).Version.ToString()
             Write-Host "$module version: $Version"
           }
-
-      - name: Test for Applications.json
-        id: test-appjson
-        shell: pwsh
-        run: |
-          Test-Path -Path "${{ github.workspace }}/Applications.json"
 
       - name: Update package JSON
         id: update-json
@@ -50,7 +44,6 @@ jobs:
         run: |
           $params = @{
               Path     = "${{ github.workspace }}/packages"
-              Manifest = "${{ github.workspace }}/Applications.json"
           }
           . "${{ github.workspace }}/scripts/Update-PackageJson.ps1" @params
 
