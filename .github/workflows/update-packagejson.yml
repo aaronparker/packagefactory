@@ -43,7 +43,11 @@ jobs:
         shell: pwsh
         run: |
           $params = @{
-              Path     = "${{ github.workspace }}/packages"
+              Path            = "${{ github.workspace }}"
+              PackageFolder   = "packages"
+              PackageManifest = "App.json"
+              InstallManifest = "Install.json"
+              Verbose         = $true
           }
           . "${{ github.workspace }}/scripts/Update-PackageJson.ps1" @params
 
