@@ -5,7 +5,7 @@
     "Title": "Adobe Acrobat Reader DC MUI Update",
     "Language": "en-US",
     "Architecture": "x64"
-},
+  },
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "AcroRdrDCx64Upd2200220191_MUI.msp",
