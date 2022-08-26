@@ -1,4 +1,11 @@
 {
+  "Application": {
+    "Name": "AdobeAcrobatReaderDCMUIUpdates",
+    "Filter": "Get-EvergreenApp -Name \"AdobeAcrobatDC\" | Where-Object { $_.Type -eq \"ReaderMUI\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+    "Title": "Adobe Acrobat Reader DC MUI Update",
+    "Language": "en-US",
+    "Architecture": "x64"
+},
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "AcroRdrDCx64Upd2200220191_MUI.msp",

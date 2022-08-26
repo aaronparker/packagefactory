@@ -1,4 +1,7 @@
 {
+  "Application": {
+
+  },
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "SupportCenterInstaller.msi",

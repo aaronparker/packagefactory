@@ -1,4 +1,11 @@
 {
+  "Application": {
+    "Name": "Cyberduck",
+    "Filter": "Get-EvergreenApp -Name \"Cyberduck\"",
+    "Title": "Cyberduck",
+    "Language": "en-US",
+    "Architecture": "x64"
+  },
   "PackageInformation": {
     "SetupType": "EXE",
     "SetupFile": "Cyberduck-Installer-8.4.3.38269.exe",

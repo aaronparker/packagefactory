@@ -1,4 +1,11 @@
 {
+  "Application": {
+    "Name": "MicrosoftPowerShell",
+    "Filter": "Get-EvergreenApp -Name \"MicrosoftPowerShell\" | Where-Object { $_.Release -eq \"Stable\" -and $_.Architecture -eq \"x64\" }",
+    "Title": "Microsoft PowerShell",
+    "Language": "en-US",
+    "Architecture": "x64"
+  },
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "PowerShell-7.2.6-win-x64.msi",

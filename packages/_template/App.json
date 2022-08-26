@@ -1,4 +1,7 @@
 {
+  "Application": {
+
+  },
   "PackageInformation": {
     "SetupType": "MSI \\ EXE",
     "SetupFile": "Setup.exe",

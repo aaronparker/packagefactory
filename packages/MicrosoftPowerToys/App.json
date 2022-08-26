@@ -1,4 +1,11 @@
 {
+  "Application": {
+    "Name": "MicrosoftPowerToys",
+    "Filter": "Get-EvergreenApp -Name \"MicrosoftPowerToys\" | Where-Object { $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+    "Title": "Microsoft PowerToys",
+    "Language": "en-US",
+    "Architecture": "x64"
+  },
   "PackageInformation": {
     "SetupType": "EXE",
     "SetupFile": "PowerToysSetup-0.61.1-x64.exe",

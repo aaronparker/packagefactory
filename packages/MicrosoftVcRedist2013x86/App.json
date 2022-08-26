@@ -1,4 +1,11 @@
 {
+  "Application": {
+    "Name": "MicrosoftVcRedist2013x86",
+    "Filter": "Get-VcList -Release \"2013\" -Architecture \"x86\"",
+    "Title": "Visual C++ 2013 Update 5 Redistributable Package",
+    "Language": "en-US",
+    "Architecture": "x86"
+  },
   "PackageInformation": {
     "SetupType": "EXE",
     "SetupFile": "vcredist_x86.exe",

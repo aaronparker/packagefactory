@@ -1,4 +1,11 @@
 {
+  "Application": {
+    "Name": "MicrosoftOneDrive",
+    "Filter": "Get-EvergreenApp -Name \"MicrosoftOneDrive\" | Where-Object { $_.Architecture -eq \"AMD64\" -and $_.Ring -eq \"Production\" } | Select-Object -First 1",
+    "Title": "Microsoft OneDrive",
+    "Language": "en-US",
+    "Architecture": "x64"
+  },
   "PackageInformation": {
     "SetupType": "EXE",
     "SetupFile": "OneDriveSetup.exe",

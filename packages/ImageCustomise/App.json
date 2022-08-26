@@ -1,4 +1,11 @@
 {
+  "Application": {
+    "Name": "ImageCustomise",
+    "Filter": "Get-EvergreenApp -Name \"stealthpuppyWindowsCustomisedDefaults\" | Where-Object { $_.Type -eq \"zip\" } | Select-Object -First 1",
+    "Title": "stealthpuppy Windows Customised Defaults",
+    "Language": "en-US",
+    "Architecture": "x64"
+  },
   "PackageInformation": {
     "SetupType": "EXE",
     "SetupFile": [

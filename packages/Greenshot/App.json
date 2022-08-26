@@ -1,4 +1,11 @@
 {
+  "Application": {
+    "Name": "Greenshot",
+    "Filter": "Get-EvergreenApp -Name \"Greenshot\" | Where-Object { $_.Architecture -eq \"x86\" -and $_.Uri -match \"Greenshot-INSTALLER-\" } | Select-Object -First 1",
+    "Title": "Greenshot",
+    "Language": "en-US",
+    "Architecture": "x86"
+  },
   "PackageInformation": {
     "SetupType": "EXE",
     "SetupFile": "Greenshot-INSTALLER-1.2.10.6-RELEASE.exe",
