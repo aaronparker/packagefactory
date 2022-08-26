@@ -50,7 +50,7 @@ foreach ($ManifestJson in $ManifestList) {
         # Get the details of the application
         Write-Verbose -Message "Application: $($Manifest.Application.Title)"
         Write-Verbose -Message "Running: $($Manifest.Application.Filter)."
-        $AppUpdate = Invoke-Expression -Command $Manifest.Application.Filter -Verbose $false -ErrorAction "SilentlyContinue" -WarningAction "SilentlyContinue"
+        $AppUpdate = Invoke-Expression -Command $Manifest.Application.Filter -Verbose:$false -ErrorAction "SilentlyContinue" -WarningAction "SilentlyContinue"
 
         if ($Null -ne $AppUpdate) {
             Write-Verbose -Message "Found: $($Manifest.Application.Title) $($AppUpdate.Version) $($AppUpdate.Architecture)."
