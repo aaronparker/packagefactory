@@ -36,6 +36,7 @@ foreach ($ManifestJson in $ManifestList) {
         # Read the manifest file and convert from JSON
         Write-Verbose -Message "Read manifest: $($ManifestJson.FullName)"
         $Manifest = Get-Content -Path $ManifestJson.FullName -ErrorAction "SilentlyContinue" | ConvertFrom-Json -ErrorAction "SilentlyContinue"
+        $Manifest
     }
     catch {
         throw $_
@@ -49,13 +50,13 @@ foreach ($ManifestJson in $ManifestList) {
         # Get the details of the application
         Write-Verbose -Message "Application: $($Manifest.Application.Title)"
         Write-Verbose -Message "Running: $($Manifest.Application.Filter)."
-        $AppUpdate = Invoke-Expression -Command $Manifest.Application.Filter -ErrorAction "SilentlyContinue" -WarningAction "SilentlyContinue"
+        $AppUpdate = Invoke-Expression -Command $Manifest.Application.Filter -Verbose $false -ErrorAction "SilentlyContinue" -WarningAction "SilentlyContinue"
 
         if ($Null -ne $AppUpdate) {
             Write-Verbose -Message "Found: $($Manifest.Application.Title) $($AppUpdate.Version) $($AppUpdate.Architecture)."
 
             # If the version that Evergreen returns is higher than the version in the manifest
-            if ([System.Version]$AppUpdate.Version -ge [System.Version]$Manifest.PackageInformation.Version -or [System.String]::IsNullOrEmpty($Manifest.PackageInformation.Version)) {
+            if ([System.Version]$AppUpdate.Version -gt [System.Version]$Manifest.PackageInformation.Version -or [System.String]::IsNullOrEmpty($Manifest.PackageInformation.Version)) {
 
                 # Update the manifest with the application setup file
                 Write-Verbose -Message "Update package to: $($AppUpdate.Version)."
@@ -67,6 +68,7 @@ foreach ($ManifestJson in $ManifestList) {
                         $Download = $AppUpdate | Save-EvergreenApp -CustomPath $ZipPath
                         [Reflection.Assembly]::LoadWithPartialName('System.IO.Compression.FileSystem')
                         $SetupFile = [IO.Compression.ZipFile]::OpenRead($Download.FullName).Entries.FullName
+
                         $Manifest.PackageInformation.SetupFile = $SetupFile -replace "%20", " "
                         $Manifest.Program.InstallCommand = $Manifest.Program.InstallTemplate -replace "#SetupFile", $SetupFile -replace "%20", " "
                     }
