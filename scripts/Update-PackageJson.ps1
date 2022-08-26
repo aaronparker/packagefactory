@@ -56,10 +56,13 @@ foreach ($ManifestJson in $ManifestList) {
             Write-Verbose -Message "Found: $($Manifest.Application.Title) $($AppUpdate.Version) $($AppUpdate.Architecture)."
 
             # If the version that Evergreen returns is higher than the version in the manifest
-            if ([System.Version]$AppUpdate.Version -gt [System.Version]$Manifest.PackageInformation.Version -or [System.String]::IsNullOrEmpty($Manifest.PackageInformation.Version)) {
+            if ([System.Version]$AppUpdate.Version -eq [System.Version]$Manifest.PackageInformation.Version) {
+                Write-Verbose -Message "Update version: $($AppUpdate.Version) matches manifest version: $($Manifest.PackageInformation.Version)."
+            }
+            elseif ([System.Version]$AppUpdate.Version -gt [System.Version]$Manifest.PackageInformation.Version -or [System.String]::IsNullOrEmpty($Manifest.PackageInformation.Version)) {
 
                 # Update the manifest with the application setup file
-                Write-Verbose -Message "Update package to: $($AppUpdate.Version)."
+                Write-Verbose -Message "Update package from: $($Manifest.PackageInformation.Version) to: $($AppUpdate.Version)."
                 $Manifest.PackageInformation.Version = $AppUpdate.Version
 
                 if ([System.Boolean]($AppUpdate.PSobject.Properties.Name -match "URI")) {
@@ -132,7 +135,7 @@ foreach ($ManifestJson in $ManifestList) {
                 $Manifest | ConvertTo-Json | Out-File -FilePath $ManifestJson.FullName -Force
             }
             elseif ([System.Version]$AppUpdate.Version -lt [System.Version]$Manifest.PackageInformation.Version) {
-                Write-Verbose -Message "$($AppUpdate.Version) less than $($Manifest.PackageInformation.Version)."
+                Write-Verbose -Message "Update version: $($AppUpdate.Version) less than manifest version: $($Manifest.PackageInformation.Version)."
             }
             else {
                 Write-Verbose -Message "Could not compare package version."
@@ -152,10 +155,13 @@ foreach ($ManifestJson in $ManifestList) {
                 }
 
                 # If the version that Evergreen returns is higher than the version in the manifest
-                if ([System.Version]$AppUpdate.Version -ge [System.Version]$InstallData.PackageInformation.Version -or [System.String]::IsNullOrEmpty($InstallData.PackageInformation.Version)) {
+                if ([System.Version]$AppUpdate.Version -eq [System.Version]$InstallData.PackageInformation.Version) {
+                    Write-Verbose -Message "Update version: $($AppUpdate.Version) matches install script version: $($Manifest.PackageInformation.Version)."
+                }
+                elseif ([System.Version]$AppUpdate.Version -gt [System.Version]$InstallData.PackageInformation.Version -or [System.String]::IsNullOrEmpty($InstallData.PackageInformation.Version)) {
 
                     # Update the manifest with the application setup file
-                    Write-Verbose -Message "Update package."
+                    Write-Verbose -Message "Update install script: $InstallConfiguration"
                     $InstallData.PackageInformation.Version = $AppUpdate.Version
 
                     if ([System.Boolean]($AppUpdate.PSobject.Properties.Name -match "URI")) {
@@ -165,27 +171,24 @@ foreach ($ManifestJson in $ManifestList) {
                             [Reflection.Assembly]::LoadWithPartialName('System.IO.Compression.FileSystem')
                             $SetupFile = [IO.Compression.ZipFile]::OpenRead($Download.FullName).Entries.FullName
                             $InstallData.PackageInformation.SetupFile = $SetupFile -replace "%20", " "
-                            $InstallData.Program.InstallCommand = $InstallData.Program.InstallTemplate -replace "#SetupFile", $SetupFile -replace "%20", " "
                         }
                         else {
                             $InstallData.PackageInformation.SetupFile = $(Split-Path -Path $AppUpdate.URI -Leaf) -replace "%20", " "
-                            $InstallData.Program.InstallCommand = $InstallData.Program.InstallTemplate -replace "#SetupFile", $(Split-Path -Path $AppUpdate.URI -Leaf) -replace "%20", " "
                         }
                     }
                     else {
                         $InstallData.PackageInformation.SetupFile = $(Split-Path -Path $AppUpdate.Download -Leaf) -replace "%20", " "
-                        $InstallData.Program.InstallCommand = $InstallData.Program.InstallTemplate -replace "#SetupFile", $(Split-Path -Path $AppUpdate.Download -Leaf)
                     }
 
                     # Write the application install manifest back to disk
                     Write-Verbose -Message "Output: $InstallConfiguration."
                     $InstallData | ConvertTo-Json | Out-File -FilePath $InstallConfiguration -Force
                 }
-                elseif ([System.Version]$AppUpdate.Version -lt [System.Version]$Manifest.PackageInformation.Version) {
-                    Write-Verbose -Message "$($AppUpdate.Version) less than $($Manifest.PackageInformation.Version)."
+                elseif ([System.Version]$AppUpdate.Version -lt [System.Version]$InstallData.PackageInformation.Version) {
+                    Write-Verbose -Message "Update version: $($AppUpdate.Version) less than install script version: $($InstallData.PackageInformation.Version)."
                 }
                 else {
-                    Write-Verbose -Message "Could not compare package version."
+                    Write-Verbose -Message "Could not compare install script version."
                 }
 
                 # Remove the zip file if it exists
