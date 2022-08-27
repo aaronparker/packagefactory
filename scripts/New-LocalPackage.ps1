@@ -52,7 +52,7 @@ foreach ($Application in $Applications) {
         }
         else {
 
-            Write-Host -ForegroundColor "Cyan" "Filter: $Manifest.Application.Filter"
+            Write-Host -ForegroundColor "Cyan" "Filter: $($Manifest.Application.Filter)"
             $result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -CustomPath $([System.IO.Path]::Combine($AppPath, $Manifest.PackageInformation.SourceFolder))
             if ($result.FullName -match "\.zip$") {
                 Expand-Archive -Path $result.FullName -DestinationPath $([System.IO.Path]::Combine($AppPath, $Manifest.PackageInformation.SourceFolder)) -Force
@@ -62,7 +62,7 @@ foreach ($Application in $Applications) {
     }
 
     # Package the application
-    if (Test-Path -Path [System.IO.Path]::Combine($AppPath, $Manifest.PackageInformation.SourceFolder)) {
+    if (Test-Path -Path $([System.IO.Path]::Combine($AppPath, $Manifest.PackageInformation.SourceFolder))) {
         $params = @{
             Application       = $Application
             Path              = $([System.IO.Path]::Combine($Path, $PackageFolder))
