@@ -9,6 +9,9 @@
 *.zip
 *.exe
 *.msi
+*.msix
+*.msp
+*.msu
 *.intunewin
 *.ico
 
