@@ -192,7 +192,7 @@ foreach ($ManifestJson in $ManifestList) {
                 }
 
                 # Remove the zip file if it exists
-                if (Test-Path -Path $Download.FullName) { Remove-Item -Path $Download.FullName -Force -ErrorAction "SilentlyContinue" }
+                if (Test-Path -Path $Download.FullName -ErrorAction "SilentlyContinue") { Remove-Item -Path $Download.FullName -Force -ErrorAction "SilentlyContinue" }
             }
             else {
                 Write-Warning -Message "Cannot find: $InstallConfiguration."
