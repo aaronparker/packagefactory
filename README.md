@@ -18,19 +18,18 @@ Authentication to a tenant can be performed manually via `Connect-MSIntuneGraph`
 Connect-MSIntuneGraph -TenantId stealthpuppylab.onmicrosoft.com
 
 $Application = "AdobeAcrobatReaderDC"
-$Json = Get-Content -Path ".\Applications.json" | ConvertFrom-Json
-$Filter = ($Json | Where-Object { $_.Name -eq $Application }).Filter
-Invoke-Expression -Command $Filter | Save-EvergreenApp -CustomPath ".\packages\$Application\Source"
+$Manifest = Get-Content -Path "E:\projects\packagefactory\packages\$Application\App.json" | ConvertFrom-Json
+Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -CustomPath "E:\projects\packagefactory\packages\$Application\Source"
 
 $params = @{
-    Application = $Application
-    Path        = "C:\projects\packagefactory\packages"
+    Application      = $Application
+    Path             = "C:\projects\packagefactory\packages"
     DisplayNameSuffix = "(Package Factory)"
 }
 .\Create-Win32App.ps1 @params
 ```
 
-This process is simplified with `New-LocalPackage.ps1`. Here's how to clone the repository, install the required modules, and import Adobe Acrobat Reader DC and Citrix Workspace app into your Intune tenant:
+This process is simplified with `New-LocalWin32App.ps1`. Here's how to clone the repository, install the required modules, and import Adobe Acrobat Reader DC and Citrix Workspace app into your Intune tenant:
 
 ```powershell
 New-Item -Path "E:\projects" --ItemType "Directory"
@@ -41,7 +40,7 @@ Install-Module -Name "IntuneWin32App", "Evergreen", "VcRedist"
 Connect-MSIntuneGraph -TenantID stealthpuppylab.onmicrosoft.com
 
 Set-Location -Path "E:\projects\packagefactory"
-.\scripts\New-LocalPackage.ps1 -Applications "AdobeAcrobatReaderDC", "CitrixWorkspaceApp"
+.\scripts\New-LocalWin32App.ps1 -Applications "AdobeAcrobatReaderDC", "CitrixWorkspaceApp"
 ```
 
 ## Run in a Pipeline
@@ -56,9 +55,8 @@ $params = @{
 }
 $global:AuthToken = Connect-MSIntuneGraph @params
 
-$Json = Get-Content -Path "${{ github.workspace }}\Applications.json" | ConvertFrom-Json
-$Filter = ($Json | Where-Object { $_.Name -eq "${{ github.event.inputs.configuration }}" }).Filter
-Invoke-Expression -Command $Filter | Save-EvergreenApp -CustomPath "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source"
+$Manifest = Get-Content -Path "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\App.json | ConvertFrom-Json
+Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -CustomPath "${{ github.workspace }}\packages\${{ github.event.inputs.configuration }}\Source"
 
 $params = @{
   Application = "${{ github.event.inputs.configuration }}"
