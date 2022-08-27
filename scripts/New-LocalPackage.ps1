@@ -41,19 +41,19 @@ foreach ($Application in $Applications) {
     else {
         if ($Manifest.Application.Filter -match "Get-VcList") {
 
-            Write-Host -ForegroundColor "Cyan" "Filter: $Manifest.Application.Filter"
+            Write-Host -ForegroundColor "Cyan" "Filter: $($Manifest.Application.Filter)"
             $App = Invoke-Expression -Command $Manifest.Application.Filter
             $Filename = $(Split-Path -Path $App.Download -Leaf)
             Write-Host -ForegroundColor "Cyan" "Package: $($App.Name); $Filename."
             New-Item -Path [System.IO.Path]::Combine($AppPath, $Manifest.PackageInformation.SourceFolder) -ItemType "Directory" -Force | Out-Null
-            Invoke-WebRequest -Uri $App.Download -OutFile [System.IO.Path]::Combine($AppPath, $Manifest.PackageInformation.SourceFolder, $Filename) -UseBasicParsing
+            Invoke-WebRequest -Uri $App.Download -OutFile $([System.IO.Path]::Combine($AppPath, $Manifest.PackageInformation.SourceFolder, $Filename)) -UseBasicParsing
         }
         else {
 
             Write-Host -ForegroundColor "Cyan" "Filter: $Manifest.Application.Filter"
-            $result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -CustomPath [System.IO.Path]::Combine($AppPath, $Manifest.PackageInformation.SourceFolder)
+            $result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -CustomPath $([System.IO.Path]::Combine($AppPath, $Manifest.PackageInformation.SourceFolder))
             if ($result.FullName -match "\.zip$") {
-                Expand-Archive -Path $result.FullName -DestinationPath [System.IO.Path]::Combine($AppPath, $Manifest.PackageInformation.SourceFolder) -Force
+                Expand-Archive -Path $result.FullName -DestinationPath $([System.IO.Path]::Combine($AppPath, $Manifest.PackageInformation.SourceFolder)) -Force
                 Remove-Item -Path $result.FullName -Force
             }
         }
@@ -63,7 +63,7 @@ foreach ($Application in $Applications) {
     if (Test-Path -Path [System.IO.Path]::Combine($AppPath, $Manifest.PackageInformation.SourceFolder)) {
         $params = @{
             Application       = $Application
-            Path              = [System.IO.Path]::Combine($Path, $PackageFolder)
+            Path              = $([System.IO.Path]::Combine($Path, $PackageFolder))
             DisplayNameSuffix  = ""
         }
         .\Create-Win32App.ps1 @params
