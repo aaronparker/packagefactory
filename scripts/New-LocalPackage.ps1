@@ -27,7 +27,9 @@ param (
 foreach ($Application in $Applications) {
     try {
         # Get the application details
+        Write-Host "Application: $Application"
         $AppPath = [System.IO.Path]::Combine($Path, $PackageFolder, $Application)
+        Write-Host -ForegroundColor "Cyan" "Read: $([System.IO.Path]::Combine($AppPath, $PackageManifest))"
         $Manifest = Get-Content -Path $([System.IO.Path]::Combine($AppPath, $PackageManifest)) | ConvertFrom-Json
     }
     catch {
