@@ -8,29 +8,21 @@
 param (
     [Parameter()]
     [ValidateNotNullOrEmpty()]
-    [System.String] $Application,
+    [System.String] $Application = "AdobeAcrobatReaderDC",
 
     [Parameter()]
     [ValidateNotNullOrEmpty()]
-    [System.String] $Path,
-
-    [Parameter()]
-    [System.String] $AppManifest = "Applications.json",
+    [System.String] $Path = $PWD,
 
     [Parameter()]
     [System.String] $PackageFolder = "packages",
 
     [Parameter()]
-    [System.String] $SourceFolder = "Source",
+    [System.String] $PackageManifest = "App.json",
 
     [Parameter()]
     [System.String] $InstallScript = "Install.ps1"
 )
-
-# Convert $Application into an array because we can't pass an array via inputs into the workflow
-Write-Host "Path: $Path"
-Write-Host "Applications: $Application"
-[System.Array] $Applications = $Application.ToString() -split ","
 
 try {
     # Authenticate to the Graph API
@@ -47,41 +39,44 @@ catch {
     throw $_
 }
 
-# Build path to the Applications.json
-if (Test-Path -Path $AppManifest) {}
-else {
-    $AppManifest = [System.IO.Path]::Combine($Path, $AppManifest)
-}
 
-try {
-    # Get the application manifest
-    $SupportedApps = Get-Content -Path $AppManifest -ErrorAction "SilentlyContinue" | ConvertFrom-Json -ErrorAction "SilentlyContinue"
-}
-catch {
-    throw $_
-}
+# Convert $Application into an array because we can't pass an array via inputs into the workflow
+Write-Host "Path: $Path"
+Write-Host "Applications: $Application"
+[System.Array] $Applications = $Application.ToString() -split ","
 
 foreach ($App in $Applications) {
     $AppItem = $App.Trim()
     Write-Host "Application: $AppItem"
-    $Filter = ($SupportedApps | Where-Object { $_.Name -eq $AppItem }).Filter
 
-    if ($Null -ne $Filter) {
-        if ($Filter -match "Get-VcList") {
+    try {
+        # Read the package manifest JSON
+        $Manifest = Get-Content -Path $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $PackageManifest)) -ErrorAction "SilentlyContinue" | `
+            ConvertFrom-Json -ErrorAction "SilentlyContinue"
+    }
+    catch {
+        throw $_
+    }
+
+    if ($Null -eq $Manifest.Application.Filter) {
+        Write-Host "Application not supported by this workflow: $AppItem"
+    }
+    else {
+        if ($Manifest.Application.Filter -match "Get-VcList") {
 
             # Handle the Visual C++ Redistributables via VcRedist
-            $AppItem = Invoke-Expression -Command $Filter
+            $AppItem = Invoke-Expression -Command $Manifest.Application.Filter
             $Filename = $(Split-Path -Path $AppItem.Download -Leaf)
             Write-Host "Package: $($AppItem.Name); $Filename."
             $params = @{
-                Path     = $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $SourceFolder))
+                Path     = $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $Manifest.PackageInformation.SourceFolder))
                 ItemType = "Directory"
                 Force    = $True
             }
             New-Item @params | Out-Null
             $params = @{
                 Uri             = $AppItem.Download
-                OutFile         = $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $SourceFolder, $Filename))
+                OutFile         = $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $Manifest.PackageInformation.SourceFolder, $Filename))
                 UseBasicParsing = $True
             }
             Invoke-WebRequest @params
@@ -89,14 +84,14 @@ foreach ($App in $Applications) {
         else {
 
             # Get the application installer via Evergreen and download
-            $result = Invoke-Expression -Command $Filter | Save-EvergreenApp -CustomPath $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $SourceFolder))
+            $result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -CustomPath $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $Manifest.PackageInformation.SourceFolder))
 
             # Unpack the installer file if its a zip file
             Write-Host "Downloaded: $($result.FullName)"
             if ($result.FullName -match "\.zip$") {
                 $params = @{
                     Path            = $result.FullName
-                    DestinationPath = $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $SourceFolder))
+                    DestinationPath = $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $Manifest.PackageInformation.SourceFolder))
                 }
                 Write-Host "Expand: $($result.FullName)"
                 Expand-Archive @params
@@ -105,13 +100,13 @@ foreach ($App in $Applications) {
         }
 
         # Copy Install.ps1 into the source folder
-        if (Test-Path -Path $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $SourceFolder, "Install.json"))) {
+        if (Test-Path -Path $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $Manifest.PackageInformation.SourceFolder, "Install.json"))) {
             $params = @{
                 Path        = $([System.IO.Path]::Combine($Path, $InstallScript))
-                Destination = $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $SourceFolder, $InstallScript))
+                Destination = $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $Manifest.PackageInformation.SourceFolder, $InstallScript))
                 ErrorAction = "SilentlyContinue"
             }
-            Write-Host "Copy: $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $SourceFolder, $InstallScript))"
+            Write-Host "Copy: $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $Manifest.PackageInformation.SourceFolder, $InstallScript))"
             Copy-Item @params
         }
         else {
@@ -127,8 +122,5 @@ foreach ($App in $Applications) {
         $params
         Write-Host "Run: Create-Win32App.ps1"
         . $([System.IO.Path]::Combine($Path, "Create-Win32App.ps1")) @params
-    }
-    else {
-        Write-Host "Application not supported by this workflow: $AppItem"
     }
 }

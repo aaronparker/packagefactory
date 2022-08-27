@@ -1,4 +1,11 @@
 {
+  "Application": {
+    "Name": "ImageGlass",
+    "Filter": "Get-EvergreenApp -Name \"ImageGlass\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Uri -match \"x64.msi$\" } | Select-Object -First 1",
+    "Title": "ImageGlass",
+    "Language": "en-US",
+    "Architecture": "x64"
+  },
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "ImageGlass_Kobe_8.6.7.13_x64.msi",

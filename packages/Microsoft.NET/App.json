@@ -1,4 +1,11 @@
 {
+  "Application": {
+    "Name": "Microsoft.NET",
+    "Filter": "Get-EvergreenApp -Name \"Microsoft.NET\" | Where-Object { $_.Installer -eq \"windowsdesktop\" -and $_.Architecture -eq \"x64\" -and $_.Channel -eq \"LTS\" } | Select-Object -First 1",
+    "Title": "Microsoft .NET Desktop Runtime",
+    "Language": "en-US",
+    "Architecture": "x64"
+  },
   "PackageInformation": {
     "SetupType": "EXE",
     "SetupFile": "windowsdesktop-runtime-6.0.8-win-x64.exe",

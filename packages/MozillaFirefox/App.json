@@ -1,4 +1,11 @@
 {
+  "Application": {
+    "Name": "MozillaFirefox",
+    "Filter": "Get-EvergreenApp -Name \"MozillaFirefox\" -ErrorAction \"SilentlyContinue\" -WarningAction \"SilentlyContinue\" | Where-Object { $_.Channel -eq \"LATEST_FIREFOX_VERSION\" -and $_.Architecture -eq \"x64\" -and $_.Type -eq \"msi\" }",
+    "Title": "Mozilla Firefox",
+    "Language": "en-US",
+    "Architecture": "x64"
+  },
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "Firefox Setup 104.0.msi",

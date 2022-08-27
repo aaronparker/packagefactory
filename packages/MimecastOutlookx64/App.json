@@ -1,4 +1,7 @@
 {
+  "Application": {
+
+  },
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "Mimecast for outlook 7.10.1.133 (x64).msi",

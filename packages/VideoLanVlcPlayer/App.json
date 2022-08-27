@@ -1,4 +1,11 @@
 {
+  "Application": {
+    "Name": "VideoLanVlcPlayer",
+    "Filter": "Get-EvergreenApp -Name \"VideoLanVlcPlayer\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Type -eq \"MSI\" } | Select-Object -First 1",
+    "Title": "VideoLAN VLC media player",
+    "Language": "en-US",
+    "Architecture": "x64"
+  },
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "vlc-3.0.16-win64.msi",

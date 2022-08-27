@@ -1,4 +1,11 @@
 {
+  "Application": {
+    "Name": "MicrosoftVcRedist2012x86",
+    "Filter": "Get-VcList -Release \"2012\" -Architecture \"x86\"",
+    "Title": "Visual C++ Redistributable for Visual Studio 2012 Update 4",
+    "Language": "en-US",
+    "Architecture": "x86"
+  },
   "PackageInformation": {
     "SetupType": "EXE",
     "SetupFile": "vcredist_x86.exe",

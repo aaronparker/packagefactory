@@ -1,4 +1,11 @@
 {
+  "Application": {
+    "Name": "MicrosoftTeams",
+    "Filter": "Get-EvergreenApp -Name \"MicrosoftTeams\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Ring -eq \"General\" -and $_.Type -eq \"msi\" } | Select-Object -First 1",
+    "Title": "Microsoft Teams",
+    "Language": "en-US",
+    "Architecture": "x64"
+  },
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "Teams_windows_x64.msi",

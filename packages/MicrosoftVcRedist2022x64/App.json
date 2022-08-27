@@ -1,4 +1,11 @@
 {
+  "Application": {
+    "Name": "MicrosoftVcRedist2022x64",
+    "Filter": "Get-VcList -Release \"2022\" -Architecture \"x64\"",
+    "Title": "Visual C++ Redistributable for Visual Studio 2022",
+    "Language": "en-US",
+    "Architecture": "x64"
+  },
   "PackageInformation": {
     "SetupType": "EXE",
     "SetupFile": "VC_redist.x64.exe",

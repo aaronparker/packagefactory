@@ -9,11 +9,15 @@
 *.zip
 *.exe
 *.msi
+*.msix
+*.msp
+*.msu
 *.intunewin
 *.ico
 
 # Package folders
 packages/**/Package
+packages/**/*.png
 #packages/**/Source
 auth.ps1
 auth.json

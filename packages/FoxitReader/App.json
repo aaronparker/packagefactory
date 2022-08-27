@@ -1,4 +1,11 @@
 {
+  "Application": {
+    "Name": "FoxitReader",
+    "Filter": "Get-EvergreenApp -Name \"FoxitReader\" | Where-Object { $_.Language -eq \"English\" } | Select-Object -First 1",
+    "Title": "Foxit PDF Reader",
+    "Language": "en-US",
+    "Architecture": "x86"
+  },
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "FoxitPDFReader1201_enu_Setup.msi",
@@ -32,7 +39,7 @@
     {
       "Type": "File",
       "DetectionMethod": "Version",
-      "Path": "C:\\Program Files\\Foxit Software\\Foxit PDF Reader",
+      "Path": "C:\\Program Files (x86)\\Foxit Software\\Foxit PDF Reader",
       "FileOrFolder": "FoxitPDFReader.exe",
       "Operator": "greaterThanOrEqual",
       "VersionValue": "12.0.1.12430",

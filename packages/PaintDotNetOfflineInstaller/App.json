@@ -1,4 +1,11 @@
 {
+  "Application": {
+    "Name": "PaintDotNetOfflineInstaller",
+    "Filter": "Get-EvergreenApp -Name \"PaintDotNetOfflineInstaller\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.URI -match \"winmsi\" } | Select-Object -First 1",
+    "Title": "Paint.NET",
+    "Language": "en-US",
+    "Architecture": "x64"
+  },
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "paint.net.4.3.12.winmsi.x64.msi",

@@ -11,9 +11,6 @@ param (
     [System.String] $Path = $PWD,
 
     [Parameter()]
-    [System.String] $AppManifest = "Applications.json",
-
-    [Parameter()]
     [System.String] $PackageFolder = "packages",
 
     [Parameter()]
@@ -43,23 +40,8 @@ catch {
     throw $_
 }
 
-if (Test-Path -Path $AppManifest) {}
-else {
-    # Build path to the Applications.json
-    $AppManifest = [System.IO.Path]::Combine($Path, $AppManifest)
-}
-
 try {
     # Get the application manifest
-    # $SupportedAppData = @()
-    # $SupportedApps = Get-Content -Path $AppManifest -ErrorAction "SilentlyContinue" | ConvertFrom-Json -ErrorAction "SilentlyContinue"
-    # foreach ($Application in $SupportedApps) {
-
-    #     # Read app data from JSON manifest
-    #     $AppDataFile = [System.IO.Path]::Combine($Path, $PackageFolder, $Application.Name, $PackageManifest)
-    #     $SupportedAppData += Get-Content -Path $AppDataFile -ErrorAction "SilentlyContinue" | ConvertFrom-Json -ErrorAction "SilentlyContinue"
-    # }
-
     $SupportedAppData = @()
     $SupportedAppData = Get-ChildItem -Path $([System.IO.Path]::Combine($Path, $PackageFolder)) -Recurse -Filter $PackageManifest | `
         ForEach-Object { Get-Content -Path $_.FullName -ErrorAction "SilentlyContinue" | ConvertFrom-Json -ErrorAction "SilentlyContinue" }
