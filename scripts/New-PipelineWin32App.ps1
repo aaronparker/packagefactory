@@ -24,11 +24,6 @@ param (
     [System.String] $InstallScript = "Install.ps1"
 )
 
-# Convert $Application into an array because we can't pass an array via inputs into the workflow
-Write-Host "Path: $Path"
-Write-Host "Applications: $Application"
-[System.Array] $Applications = $Application.ToString() -split ","
-
 try {
     # Authenticate to the Graph API
     # Expects secrets to be passed into environment variables
@@ -44,6 +39,12 @@ catch {
     throw $_
 }
 
+
+# Convert $Application into an array because we can't pass an array via inputs into the workflow
+Write-Host "Path: $Path"
+Write-Host "Applications: $Application"
+[System.Array] $Applications = $Application.ToString() -split ","
+
 foreach ($App in $Applications) {
     $AppItem = $App.Trim()
     Write-Host "Application: $AppItem"
@@ -57,7 +58,10 @@ foreach ($App in $Applications) {
         throw $_
     }
 
-    if ($Null -ne $Manifest.Application.Filter) {
+    if ($Null -eq $Manifest.Application.Filter) {
+        Write-Host "Application not supported by this workflow: $AppItem"
+    }
+    else {
         if ($Manifest.Application.Filter -match "Get-VcList") {
 
             # Handle the Visual C++ Redistributables via VcRedist
@@ -118,8 +122,5 @@ foreach ($App in $Applications) {
         $params
         Write-Host "Run: Create-Win32App.ps1"
         . $([System.IO.Path]::Combine($Path, "Create-Win32App.ps1")) @params
-    }
-    else {
-        Write-Host "Application not supported by this workflow: $AppItem"
     }
 }
