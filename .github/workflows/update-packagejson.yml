@@ -47,7 +47,7 @@ jobs:
               PackageFolder   = "packages"
               PackageManifest = "App.json"
               InstallManifest = "Install.json"
-              Verbose         = $true
+              Verbose         = $false
           }
           . "${{ github.workspace }}/scripts/Update-PackageJson.ps1" @params
 

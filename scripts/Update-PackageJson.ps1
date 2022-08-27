@@ -21,9 +21,9 @@ param (
 
 try {
     # Read the list of applications; we're assuming that $Manifest exists
-    Write-Verbose -Message "Get package list from: $([System.IO.Path]::Combine($Path, $PackageFolder))."
+    Write-Host -ForegroundColor "Cyan" "Get package list from: $([System.IO.Path]::Combine($Path, $PackageFolder))."
     $ManifestList = Get-ChildItem -Path $([System.IO.Path]::Combine($Path, $PackageFolder)) -Recurse -Filter $PackageManifest
-    Write-Verbose -Message "Found packages: $($ManifestList.Count)"
+    Write-Host -ForegroundColor "Cyan" "Found packages: $($ManifestList.Count)"
 }
 catch {
     throw $_
@@ -34,35 +34,34 @@ foreach ($ManifestJson in $ManifestList) {
 
     try {
         # Read the manifest file and convert from JSON
-        Write-Verbose -Message "Read manifest: $($ManifestJson.FullName)"
+        Write-Host -ForegroundColor "Cyan" "Read manifest: $($ManifestJson.FullName)"
         $Manifest = Get-Content -Path $ManifestJson.FullName -ErrorAction "SilentlyContinue" | ConvertFrom-Json -ErrorAction "SilentlyContinue"
-        $Manifest
     }
     catch {
         throw $_
     }
 
     if ($null -eq $Manifest.Application.Filter) {
-        Write-Verbose -Message "Not supported for automatic update: $($ManifestJson.FullName)."
+        Write-Host -ForegroundColor "Cyan" "Not supported for automatic update: $($ManifestJson.FullName)."
     }
     else {
         # Determine the application download and version number via Evergreen or VcRedist
         # Get the details of the application
-        Write-Verbose -Message "Application: $($Manifest.Application.Title)"
-        Write-Verbose -Message "Running: $($Manifest.Application.Filter)."
-        $AppUpdate = Invoke-Expression -Command $Manifest.Application.Filter -Verbose:$false -ErrorAction "SilentlyContinue" -WarningAction "SilentlyContinue"
+        Write-Host -ForegroundColor "Cyan" "Application: $($Manifest.Application.Title)"
+        Write-Host -ForegroundColor "Cyan" "Running: $($Manifest.Application.Filter)."
+        $AppUpdate = Invoke-Expression -Command $Manifest.Application.Filter -ErrorAction "SilentlyContinue" -WarningAction "SilentlyContinue"
 
         if ($Null -ne $AppUpdate) {
-            Write-Verbose -Message "Found: $($Manifest.Application.Title) $($AppUpdate.Version) $($AppUpdate.Architecture)."
+            Write-Host -ForegroundColor "Cyan" "Found: $($Manifest.Application.Title) $($AppUpdate.Version) $($AppUpdate.Architecture)."
 
             # If the version that Evergreen returns is higher than the version in the manifest
             if ([System.Version]$AppUpdate.Version -eq [System.Version]$Manifest.PackageInformation.Version) {
-                Write-Verbose -Message "Update version: $($AppUpdate.Version) matches manifest version: $($Manifest.PackageInformation.Version)."
+                Write-Host -ForegroundColor "Cyan" "Update version: $($AppUpdate.Version) matches manifest version: $($Manifest.PackageInformation.Version)."
             }
             elseif ([System.Version]$AppUpdate.Version -gt [System.Version]$Manifest.PackageInformation.Version -or [System.String]::IsNullOrEmpty($Manifest.PackageInformation.Version)) {
 
                 # Update the manifest with the application setup file
-                Write-Verbose -Message "Update package from: $($Manifest.PackageInformation.Version) to: $($AppUpdate.Version)."
+                Write-Host -ForegroundColor "Cyan" "Update package from: $($Manifest.PackageInformation.Version) to: $($AppUpdate.Version)."
                 $Manifest.PackageInformation.Version = $AppUpdate.Version
 
                 if ([System.Boolean]($AppUpdate.PSobject.Properties.Name -match "URI")) {
@@ -131,21 +130,21 @@ foreach ($ManifestJson in $ManifestList) {
                 }
 
                 # Write the application manifest back to disk
-                Write-Verbose -Message "Output: $($ManifestJson.FullName)."
+                Write-Host -ForegroundColor "Cyan" "Output: $($ManifestJson.FullName)."
                 $Manifest | ConvertTo-Json | Out-File -FilePath $ManifestJson.FullName -Force
             }
             elseif ([System.Version]$AppUpdate.Version -lt [System.Version]$Manifest.PackageInformation.Version) {
-                Write-Verbose -Message "Update version: $($AppUpdate.Version) less than manifest version: $($Manifest.PackageInformation.Version)."
+                Write-Host -ForegroundColor "Cyan" "Update version: $($AppUpdate.Version) less than manifest version: $($Manifest.PackageInformation.Version)."
             }
             else {
-                Write-Verbose -Message "Could not compare package version."
+                Write-Host -ForegroundColor "Cyan" "Could not compare package version."
             }
             #endregion
 
 
             #region Get the application install manifest and update it
             $InstallConfiguration = $([System.IO.Path]::Combine($Path, $PackageFolder, $Manifest.Application.Name, $Manifest.PackageInformation.SourceFolder, $InstallManifest))
-            Write-Verbose -Message "Read: $InstallConfiguration."
+            Write-Host -ForegroundColor "Cyan" "Read: $InstallConfiguration."
             if (Test-Path -Path $InstallConfiguration) {
                 try {
                     $InstallData = Get-Content -Path $InstallConfiguration -ErrorAction "SilentlyContinue" | ConvertFrom-Json -ErrorAction "SilentlyContinue"
@@ -156,12 +155,12 @@ foreach ($ManifestJson in $ManifestList) {
 
                 # If the version that Evergreen returns is higher than the version in the manifest
                 if ([System.Version]$AppUpdate.Version -eq [System.Version]$InstallData.PackageInformation.Version) {
-                    Write-Verbose -Message "Update version: $($AppUpdate.Version) matches install script version: $($Manifest.PackageInformation.Version)."
+                    Write-Host -ForegroundColor "Cyan" "Update version: $($AppUpdate.Version) matches install script version: $($Manifest.PackageInformation.Version)."
                 }
                 elseif ([System.Version]$AppUpdate.Version -gt [System.Version]$InstallData.PackageInformation.Version -or [System.String]::IsNullOrEmpty($InstallData.PackageInformation.Version)) {
 
                     # Update the manifest with the application setup file
-                    Write-Verbose -Message "Update install script: $InstallConfiguration"
+                    Write-Host -ForegroundColor "Cyan" "Update install script: $InstallConfiguration"
                     $InstallData.PackageInformation.Version = $AppUpdate.Version
 
                     if ([System.Boolean]($AppUpdate.PSobject.Properties.Name -match "URI")) {
@@ -181,14 +180,14 @@ foreach ($ManifestJson in $ManifestList) {
                     }
 
                     # Write the application install manifest back to disk
-                    Write-Verbose -Message "Output: $InstallConfiguration."
+                    Write-Host -ForegroundColor "Cyan" "Output: $InstallConfiguration."
                     $InstallData | ConvertTo-Json | Out-File -FilePath $InstallConfiguration -Force
                 }
                 elseif ([System.Version]$AppUpdate.Version -lt [System.Version]$InstallData.PackageInformation.Version) {
-                    Write-Verbose -Message "Update version: $($AppUpdate.Version) less than install script version: $($InstallData.PackageInformation.Version)."
+                    Write-Host -ForegroundColor "Cyan" "Update version: $($AppUpdate.Version) less than install script version: $($InstallData.PackageInformation.Version)."
                 }
                 else {
-                    Write-Verbose -Message "Could not compare install script version."
+                    Write-Host -ForegroundColor "Cyan" "Could not compare install script version."
                 }
 
                 # Remove the zip file if it exists
