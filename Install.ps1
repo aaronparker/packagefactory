@@ -2,7 +2,7 @@
     .SYNOPSIS
     Installs the application
 #>
-[CmdletBinding()]
+[CmdletBinding(SupportsShouldProcess = $True)]
 param ()
 
 #region Restart if running in a 32-bit session
@@ -24,10 +24,14 @@ if (!([System.Environment]::Is64BitProcess)) {
 
 #region Functions
 function Get-InstallConfig {
+    param (
+        [System.String] $File = "Install.json",
+        [System.Management.Automation.PathInfo] $Path = $PWD
+    )
     try {
-        $Path = Join-Path -Path $PWD -ChildPath "Install.json"
-        Write-Verbose -Message "Read: $Path"
-        Get-Content -Path $Path -ErrorAction "SilentlyContinue" | ConvertFrom-Json -ErrorAction "SilentlyContinue"
+        $InstallFile = Join-Path -Path $Path -ChildPath $File
+        Write-Verbose -Message "Read package install config: $InstallFile"
+        Get-Content -Path $InstallFile -ErrorAction "SilentlyContinue" | ConvertFrom-Json -ErrorAction "SilentlyContinue"
     }
     catch {
         throw $_
@@ -35,26 +39,31 @@ function Get-InstallConfig {
 }
 
 function Get-Installer {
-    [CmdletBinding()]
-    param ( $File )
-    $Installer = Get-ChildItem -Path $PWD -Filter $File -Recurse -ErrorAction "SilentlyContinue" | Select-Object -First 1
+    param (
+        [System.String] $File,
+        [System.Management.Automation.PathInfo] $Path = $PWD
+    )
+    $Installer = Get-ChildItem -Path $Path -Filter $File -Recurse -ErrorAction "SilentlyContinue" | Select-Object -First 1
     if ([System.String]::IsNullOrEmpty($Installer.FullName)) {
         throw "File not found: $File"
     }
     else {
-        Write-Verbose -Message "Found: $($Installer.FullName)"
+        Write-Verbose -Message "Found installer: $($Installer.FullName)"
         return $Installer.FullName
     }
 }
 
 function Copy-File {
-    [CmdletBinding()]
-    param ( $File )
+    [CmdletBinding(SupportsShouldProcess = $true)]
+    param (
+        [System.Array] $File,
+        [System.Management.Automation.PathInfo] $Path = $PWD
+    )
     process {
         foreach ($Item in $File) {
-            if (Test-Path -Path $Item.Destination) {
+            if (Test-Path -Path $Item.Destination -PathType "Container") {
                 try {
-                    $FilePath = Get-ChildItem -Path $PWD -Filter $Item.Source -Recurse -ErrorAction "SilentlyContinue"
+                    $FilePath = Get-ChildItem -Path $Path -Filter $Item.Source -Recurse -ErrorAction "SilentlyContinue"
                     Write-Verbose -Message "Source: $($FilePath.FullName)"
                     Write-Verbose -Message "Destination: $($Item.Destination)"
                     $params = @{
@@ -68,6 +77,9 @@ function Copy-File {
                 catch {
                     throw $_
                 }
+            }
+            else {
+                throw "Cannot find destination: $($Item.Destination)"
             }
         }
     }
@@ -95,7 +107,7 @@ else {
         # Perform the application install
         switch ($Install.PackageInformation.SetupType) {
             "EXE" {
-                Write-Verbose -Message "   Installer: $Installer"
+                Write-Verbose -Message "Installer: $Installer"
                 Write-Verbose -Message "ArgumentList: $ArgumentList"
                 $params = @{
                     FilePath     = $Installer
@@ -104,10 +116,12 @@ else {
                     PassThru     = $True
                     Wait         = $True
                 }
-                $result = Start-Process @params
+                if ($PSCmdlet.ShouldProcess($Installer, $ArgumentList)) {
+                    $result = Start-Process @params
+                }
             }
             "MSI" {
-                Write-Verbose -Message "   Installer: $Env:SystemRoot\System32\msiexec.exe"
+                Write-Verbose -Message "Installer: $Env:SystemRoot\System32\msiexec.exe"
                 Write-Verbose -Message "ArgumentList: $ArgumentList"
                 $params = @{
                     FilePath     = "$Env:SystemRoot\System32\msiexec.exe"
@@ -116,10 +130,12 @@ else {
                     PassThru     = $True
                     Wait         = $True
                 }
-                $result = Start-Process @params
+                if ($PSCmdlet.ShouldProcess("$Env:SystemRoot\System32\msiexec.exe", $ArgumentList)) {
+                    $result = Start-Process @params
+                }
             }
             default {
-                throw "Setup type not found."
+                throw "$($Install.PackageInformation.SetupType) not found in the supported setup types - EXE, MSI."
                 exit 1
             }
         }
