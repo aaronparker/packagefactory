@@ -84,6 +84,31 @@ function Copy-File {
         }
     }
 }
+
+function Stop-PathProcess {
+    [CmdletBinding(SupportsShouldProcess = $true)]
+    param (
+        [System.String[]] $Path,
+        [System.Management.Automation.SwitchParameter] $Force
+    )
+    process {
+        foreach ($Item in $Path) {
+            try {
+                if ($PSBoundParameters.ContainsKey("Force")) {
+                    Get-Process | Where-Object { $_.Path -like $Item } | `
+                        Stop-Process -Force -ErrorAction "SilentlyContinue"
+                }
+                else {
+                    Get-Process | Where-Object { $_.Path -like $Item } | `
+                        Stop-Process -ErrorAction "SilentlyContinue"
+                }
+            }
+            catch {
+                Write-Warning -Message $_.Exception.Message
+            }
+        }
+    }
+}
 #endregion
 
 # Get the install details for this application
@@ -97,6 +122,9 @@ else {
     # Create the log folder
     Write-Verbose -Message "Create directory: $($Install.LogPath)"
     New-Item -Path $Install.LogPath -ItemType "Directory" -ErrorAction "SilentlyContinue" | Out-Null
+
+    # Stop processes before installing the application
+    if ($Install.InstallTasks.Path.Count -gt 0) { Stop-PathProcess -Path $Install.InstallTasks.Path }
 
     # Build the argument list
     $ArgumentList = $Install.InstallTasks.ArgumentList -replace "#SetupFile", $Installer

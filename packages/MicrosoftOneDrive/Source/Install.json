@@ -6,9 +6,9 @@
     },
     "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
     "InstallTasks": {
-        "StopProcess": {
-            "Path": "C:\\Program Files\\Microsoft OneDrive\\*.exe"
-        },
+        "StopProcess": [
+            "C:\\Program Files\\Microsoft OneDrive\\*.exe"
+        ],
         "ArgumentList": "/install /quiet /norestart /log \"#LogPath\\#LogName.log\""
     },
     "PostInstall": {
