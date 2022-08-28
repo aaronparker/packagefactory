@@ -1,0 +1,20 @@
+{
+    "PackageInformation": {
+        "SetupType": "MSI",
+        "SetupFile": "Teams_windows_x64.msi",
+        "Version": "1.5.00.21463"
+    },
+    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "InstallTasks": {
+        "UninstallMsi": "Teams Machine-Wide Installer",
+        "Remove": [
+            "C:\\Program Files (x86)\\Microsoft\\Teams",
+            "C:\\Program Files (x86)\\Microsoft\\TeamsPresenceAddin"
+        ],
+        "ArgumentList": "/package \"#SetupFile\" OPTIONS=\"noAutoStart=true\" ALLUSERS=TRUE /quiet /log \"#LogPath\\#LogName.log\""
+    },
+    "PostInstall": {
+        "Remove": [],
+        "Copy": []
+    }
+}

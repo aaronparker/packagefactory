@@ -85,6 +85,39 @@ function Copy-File {
     }
 }
 
+function Remove-Path {
+    [CmdletBinding(SupportsShouldProcess = $true)]
+    param (
+        [System.String[]] $Path
+    )
+    process {
+        foreach ($Item in $Path) {
+            try {
+                if (Test-Path -Path $Item.Destination -PathType "Container") {
+                    $params = @{
+                        Path        = $Item
+                        Recurse     = $True
+                        Force       = $true
+                        ErrorAction = "SilentlyContinue"
+                    }
+                    Remove-Item @params
+                }
+                else {
+                    $params = @{
+                        Path        = $Item
+                        Force       = $true
+                        ErrorAction = "SilentlyContinue"
+                    }
+                    Remove-Item @params
+                }
+            }
+            catch {
+                throw $_
+            }
+        }
+    }   
+}
+
 function Stop-PathProcess {
     [CmdletBinding(SupportsShouldProcess = $true)]
     param (
@@ -109,6 +142,35 @@ function Stop-PathProcess {
         }
     }
 }
+
+function Uninstall-Msi {
+    [CmdletBinding(SupportsShouldProcess = $true)]
+    param (
+        [System.String[]] $Caption,
+        [System.String] $LogPath
+    )
+    process {
+        foreach ($Item in $Caption) {
+            try {
+                $Product = Get-CimInstance -Class "Win32_Product" | Where-Object { $_.Caption -like $Item }
+                $params = @{
+                    FilePath     = "$Env:SystemRoot\System32\msiexec.exe"
+                    ArgumentList = "/uninstall `"$($Product.IdentifyingNumber)`" /quiet /log `"$LogPath\Uninstall-$($Item -replace " ").log`""
+                    NoNewWindow  = $True
+                    PassThru     = $True
+                    Wait         = $True
+                }
+                if ($PSCmdlet.ShouldProcess("$Env:SystemRoot\System32\msiexec.exe", $ArgumentList)) {
+                    $result = Start-Process @params
+                }
+                return $result.ExitCode
+            }
+            catch {
+                throw $_
+            }
+        }
+    }
+}
 #endregion
 
 # Get the install details for this application
@@ -125,6 +187,10 @@ else {
 
     # Stop processes before installing the application
     if ($Install.InstallTasks.Path.Count -gt 0) { Stop-PathProcess -Path $Install.InstallTasks.Path }
+
+    # Uninstall the application
+    if ($Install.InstallTasks.UninstallMsi.Count -gt 0) { Uninstall-Msi -Caption $Install.InstallTasks.UninstallMsi -LogPath $Install.LogPath }
+    if ($Install.InstallTasks.Remove.Count -gt 0) { Remove-Path -Path $Install.InstallTasks.Remove }
 
     # Build the argument list
     $ArgumentList = $Install.InstallTasks.ArgumentList -replace "#SetupFile", $Installer
@@ -175,7 +241,7 @@ else {
         throw $_
     }
     finally {
-        if ($Install.PostInstall.Remove.Count -gt 0) { Remove-Item -Path $Install.PostInstall.Remove -Force -ErrorAction "SilentlyContinue" }
+        if ($Install.PostInstall.Remove.Count -gt 0) { Remove-Path -Path $Install.PostInstall.Remove }
         exit $result.ExitCode
     }
 }

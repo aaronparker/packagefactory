@@ -1,0 +1,21 @@
+{
+    "PackageInformation": {
+        "SetupType": "MSI",
+        "SetupFile": "vlc-3.0.16-win64.msi",
+        "Version": "3.0.16"
+    },
+    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "InstallTasks": {
+        "StopProcess": [],
+        "ArgumentList": "/package \"#SetupFile\" ALLUSERS=1 /quiet /log \"#LogPath\\#LogName.log\""
+    },
+    "PostInstall": {
+        "Remove": [
+            "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\VideoLAN\\VLC\\VideoLAN website.lnk",
+            "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\VideoLAN\\VLC\\Release Notes.lnk",
+            "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\VideoLAN\\VLC\\Documentation.lnk",
+            "C:\\Users\\Public\\Desktop\\VLC media player.lnk"
+        ],
+        "Copy": []
+    }
+}

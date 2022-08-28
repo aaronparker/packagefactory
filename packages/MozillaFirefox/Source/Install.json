@@ -1,0 +1,16 @@
+{
+    "PackageInformation": {
+        "SetupType": "MSI",
+        "SetupFile": "Firefox Setup 104.0.msi",
+        "Version": "104.0"
+    },
+    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "InstallTasks": {
+        "StopProcess": [],
+        "ArgumentList": "/package \"#SetupFile\" DESKTOP_SHORTCUT=false TASKBAR_SHORTCUT=false /quiet /log \"#LogPath\\#LogName.log\""
+    },
+    "PostInstall": {
+        "Remove": [],
+        "Copy": []
+    }
+}

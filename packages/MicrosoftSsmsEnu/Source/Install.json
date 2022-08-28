@@ -1,0 +1,16 @@
+{
+    "PackageInformation": {
+        "SetupType": "EXE",
+        "SetupFile": "SSMS-Setup-ENU.exe",
+        "Version": "15.0.18410.0"
+    },
+    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "InstallTasks": {
+        "StopProcess": [],
+        "ArgumentList": "/install /quiet /norestart /log \"#LogPath\\#LogName.log\""
+    },
+    "PostInstall": {
+        "Remove": [],
+        "Copy": []
+    }
+}

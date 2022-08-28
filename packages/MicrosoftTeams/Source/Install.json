@@ -1,0 +1,15 @@
+{
+    "PackageInformation": {
+        "SetupType": "MSI",
+        "SetupFile": "Teams_windows_x64.msi",
+        "Version": "1.5.00.21463"
+    },
+    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "InstallTasks": {
+        "ArgumentList": "/package \"#SetupFile\" OPTIONS=\"noAutoStart=true\" ALLUSERS=TRUE /quiet /log \"#LogPath\\#LogName.log\""
+    },
+    "PostInstall": {
+        "Remove": [],
+        "Copy": []
+    }
+}

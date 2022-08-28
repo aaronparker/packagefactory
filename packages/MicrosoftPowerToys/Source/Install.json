@@ -1,0 +1,18 @@
+{
+    "PackageInformation": {
+        "SetupType": "EXE",
+        "SetupFile": "PowerToysSetup-0.61.1-x64.exe",
+        "Version": "0.61.1"
+    },
+    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "InstallTasks": {
+        "StopProcess": [
+            "C:\\Program Files\\PowerToys\\*.exe"
+        ],
+        "ArgumentList": "/install /quiet /norestart /log \"#LogPath\\#LogName.log\""
+    },
+    "PostInstall": {
+        "Remove": [],
+        "Copy": []
+    }
+}

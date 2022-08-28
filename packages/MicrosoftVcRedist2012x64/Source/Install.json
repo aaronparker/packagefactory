@@ -1,0 +1,16 @@
+{
+    "PackageInformation": {
+        "SetupType": "EXE",
+        "SetupFile": "vcredist_x64.exe",
+        "Version": "11.0.61030.0"
+    },
+    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "InstallTasks": {
+        "StopProcess": [],
+        "ArgumentList": "/install /quiet /norestart /log \"#LogPath\\#LogName.log\""
+    },
+    "PostInstall": {
+        "Remove": [],
+        "Copy": []
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "PackageInformation": {
+        "SetupType": "MSI",
+        "SetupFile": "camo-windows-latest.msi",
+        "Version": "1.2.0.7873"
+    },
+    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "InstallTasks": {
+        "StopProcess": [],
+        "ArgumentList": "/package \"#SetupFile\" ALLUSERS=1 /quiet /log \"#LogPath\\#LogName.log\""
+    },
+    "PostInstall": {
+        "Remove": [],
+        "Copy": []
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "PackageInformation": {
+        "SetupType": "MSI",
+        "SetupFile": "ZoomInstallerFull.msi",
+        "Version": "5.11.9.8040"
+    },
+    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "InstallTasks": {
+        "StopProcess": [],
+        "ArgumentList": "/package \"#SetupFile\" ALLUSERS=1 zSilentStart=false zNoDesktopShortCut=true /quiet /log \"#LogPath\\#LogName.log\""
+    },
+    "PostInstall": {
+        "Remove": [
+            "C:\\Users\\Public\\Desktop\\Zoom.lnk"
+        ],
+        "Copy": []
+    }
+}
