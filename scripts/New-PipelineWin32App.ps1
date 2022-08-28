@@ -3,6 +3,7 @@
     Import application packages into Intune
 #>
 [CmdletBinding(SupportsShouldProcess = $false)]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidGlobalVars", "", Justification = "Writes status to the pipeline log.")]
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingWriteHost", "", Justification = "Writes status to the pipeline log.")]
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingInvokeExpression", "", Justification = "Needed to execute Evergreen or VcRedist commands.")]
 param (
@@ -33,7 +34,7 @@ try {
         ClientId     = "$env:CLIENT_ID"
         ClientSecret = "$env:CLIENT_SECRET"
     }
-    $global:AuthToken = Connect-MSIntuneGraph @params
+    $script:AuthToken = Connect-MSIntuneGraph @params
 }
 catch {
     throw $_

@@ -17,21 +17,6 @@ param (
     [System.String] $PackageManifest = "App.json"
 )
 
-# try {
-#     # Authenticate to the Graph API
-#     # Expects secrets to be passed into environment variables
-#     Write-Host "Authenticate to the Graph API"
-#     $params = @{
-#         TenantId     = "$env:TENANT_ID"
-#         ClientId     = "$env:CLIENT_ID"
-#         ClientSecret = "$env:CLIENT_SECRET"
-#     }
-#     $global:AuthToken = Connect-MSIntuneGraph @params
-# }
-# catch {
-#     throw $_
-# }
-
 try {
     # Get the existing Win32 applications from Intune
     $ExistingIntuneApps = Get-IntuneWin32App | Select-Object -ExcludeProperty "largeIcon"
@@ -53,9 +38,14 @@ catch {
 foreach ($Application in $ExistingIntuneApps) {
     try {
         $AppNote = $Application.notes | ConvertFrom-Json -ErrorAction "SilentlyContinue"
+    }
+    catch {
+        $AppNote = $null
+    }
+
+    if ($null -ne $AppNote) {
         $App = $SupportedAppData | Where-Object { $_.Information.PSPackageFactoryGuid -eq $AppNote.Guid }
         if ($null -ne $App) {
-
             $Update = $false
             if ([System.Version]$App.PackageInformation.Version -gt [System.Version]$Application.displayVersion) {
                 $Update = $true
@@ -69,7 +59,7 @@ foreach ($Application in $ExistingIntuneApps) {
             Write-Output -InputObject $Object
         }
     }
-    catch {
-        #Write-Host "  App package notes not configured for PSPackageFactory"
+    else {
+        Write-Verbose -Message "$($Application.displayName): application notes not configured for PSPackageFactory."
     }
 }

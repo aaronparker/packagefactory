@@ -35,7 +35,7 @@ foreach ($Application in $Applications) {
     catch {
         throw $_
     }
-    
+
     # Download the application installer
     if ($Null -eq $Manifest.Application.Filter) {
         Write-Host -ForegroundColor "Cyan" "$Application not supported for automatic download."

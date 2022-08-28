@@ -24,7 +24,6 @@ catch {
 
 # Walk through the list of applications
 foreach ($ManifestJson in $ManifestList) {
-    
     try {
         # Read the manifest file and convert from JSON
         Write-Host -ForegroundColor "Cyan" "Read manifest: $($ManifestJson.FullName)"
@@ -33,6 +32,5 @@ foreach ($ManifestJson in $ManifestList) {
     catch {
         throw $_
     }
-
     $Manifest.Application.Filter
 }
