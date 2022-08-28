@@ -1,0 +1,9 @@
+
+try {
+    Get-Process -ErrorAction "SilentlyContinue" | `
+        Where-Object { $_.Path -like "$env:ProgramFiles\Microsoft OneDrive\*" } | `
+        Stop-Process -Force -ErrorAction "SilentlyContinue"
+}
+catch {
+    Write-Warning -Message "Failed to stop OneDrive processes."
+}

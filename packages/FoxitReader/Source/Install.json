@@ -1,0 +1,17 @@
+{
+    "PackageInformation": {
+        "SetupType": "MSI",
+        "SetupFile": "FoxitPDFReader1201_enu_Setup.msi",
+        "Version": "12.0.1.12430"
+    },
+    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "InstallTasks": {
+        "ArgumentList": "/package \"#SetupFile\" AUTO_UPDATE=0 NOTINSTALLUPDATE=1 MAKEDEFAULT=0 LAUNCHCHECKDEFAULT=0 VIEW_IN_BROWSER=0 DESKTOP_SHORTCUT=0 STARTMENU_SHORTCUT_UNINSTALL=0 DISABLE_UNINSTALL_SURVEY=1 ALLUSERS=1 /log \"#LogPath\\#LogName.log\""
+    },
+    "PostInstall": {
+        "Remove": [
+        ],
+        "Copy": [
+        ]
+    }
+}

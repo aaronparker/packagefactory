@@ -1,0 +1,17 @@
+{
+    "PackageInformation": {
+        "SetupType": "EXE",
+        "SetupFile": "CitrixWorkspaceApp22.7.0.24.exe",
+        "Version": "22.7.0.24"
+    },
+    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "InstallTasks": {
+        "ArgumentList": "/silent /noreboot /includeSSON /AutoUpdateCheck=auto /AutoUpdateStream=Current /DeferUpdateCount=3 /AURolloutPriority=Auto EnableCEIP=False"
+    },
+    "PostInstall": {
+        "Remove": [
+        ],
+        "Copy": [
+        ]
+    }
+}

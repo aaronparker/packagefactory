@@ -1,0 +1,17 @@
+{
+    "PackageInformation": {
+        "SetupType": "MSI",
+        "SetupFile": "AppleMobileDeviceSupport64.msi",
+        "Version": "15.6.0.32"
+    },
+    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "InstallTasks": {
+        "ArgumentList": "/package \"#SetupFile\" ALLUSERS=1 /quiet /log \"#LogPath\\#LogName.log\""
+    },
+    "PostInstall": {
+        "Remove": [
+        ],
+        "Copy": [
+        ]
+    }
+}
