@@ -6,7 +6,7 @@ Combining [Evergreen](https://stealthpuppy.com/evergreen), [VcRedist](https://vc
 
 This package factory enables maintaining a library of applications for automatic update, packaging and import into Microsoft Intune. `Create-Win32App.ps1` in this repository has been updated to use Evergreen (and VcRedist) to download the latest version of a target application before packaging and importing into Intune.
 
-Additionally, Evergreen is used to keep the library of application definitions (`App.json`) up to date via a GitHub Workflow that runs once every 24 hours.
+Additionally, Evergreen is used to keep the library up to date by updating `App.json` for each package via a GitHub Workflow that runs once every 24 hours.
 
 [![update-packagejson](https://github.com/aaronparker/packagefactory/actions/workflows/update-packagejson.yml/badge.svg)](https://github.com/aaronparker/packagefactory/actions/workflows/update-packagejson.yml)
 

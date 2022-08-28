@@ -1,6 +1,6 @@
 <#
     .SYNOPSIS
-    Installs the application
+    Installs an application based on logic defined in Install.json 
 #>
 [CmdletBinding(SupportsShouldProcess = $True)]
 param ()
@@ -173,6 +173,7 @@ function Uninstall-Msi {
 }
 #endregion
 
+#region Install logic
 # Get the install details for this application
 $Install = Get-InstallConfig
 $Installer = Get-Installer -File $Install.PackageInformation.SetupFile
@@ -245,3 +246,4 @@ else {
         exit $result.ExitCode
     }
 }
+#endregion
