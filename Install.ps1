@@ -169,7 +169,7 @@ else {
         }
 
         # Perform post install actions
-        Copy-File -File $Install.PostInstall.Copy
+        if ($Install.PostInstall.Copy.Count -gt 0) { Copy-File -File $Install.PostInstall.Copy }
     }
     catch {
         throw $_
