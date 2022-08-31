@@ -1,6 +1,6 @@
 <#
     .SYNOPSIS
-    Installs an application based on logic defined in Install.json 
+    Installs an application based on logic defined in Install.json
 #>
 [CmdletBinding(SupportsShouldProcess = $True)]
 param ()
@@ -115,7 +115,7 @@ function Remove-Path {
                 throw $_
             }
         }
-    }   
+    }
 }
 
 function Stop-PathProcess {
