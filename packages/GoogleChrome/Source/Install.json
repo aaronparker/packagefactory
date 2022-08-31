@@ -1,22 +1,19 @@
 {
-    "PackageInformation": {
-        "SetupType": "MSI",
-        "SetupFile": "googlechromestandaloneenterprise64.msi",
-        "Version": "104.0.5112.102"
-    },
-    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
-    "InstallTasks": {
-        "ArgumentList": "/package \"#SetupFile\" ALLUSERS=1 /quiet /log \"#LogPath\\#LogName.log\""
-    },
-    "PostInstall": {
-        "Remove": [
-            "C:\\Users\\Public\\Desktop\\Google Chrome.lnk"
-        ],
-        "Copy": [
-            {
-                "Source": "initial_preferences.txt",
-                "Destination": "C:\\Program Files\\Google\\Chrome\\Application\\initial_preferences"
-            }
-        ]
-    }
+  "PackageInformation": {
+    "SetupType": "MSI",
+    "SetupFile": "googlechromestandaloneenterprise64.msi",
+    "Version": "105.0.5195.54"
+  },
+  "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+  "InstallTasks": {
+    "ArgumentList": "/package \"#SetupFile\" ALLUSERS=1 /quiet /log \"#LogPath\\#LogName.log\""
+  },
+  "PostInstall": {
+    "Remove": [
+      "C:\\Users\\Public\\Desktop\\Google Chrome.lnk"
+    ],
+    "Copy": [
+      "@{Source=initial_preferences.txt; Destination=C:\\Program Files\\Google\\Chrome\\Application\\initial_preferences}"
+    ]
+  }
 }

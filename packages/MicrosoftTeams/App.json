@@ -9,13 +9,13 @@
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "Teams_windows_x64.msi",
-    "Version": "1.5.00.21463",
+    "Version": "1.5.00.21668",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-Teams.png"
   },
   "Information": {
-    "DisplayName": "Microsoft Teams 1.5.00.21463 x64",
+    "DisplayName": "Microsoft Teams 1.5.00.21668 x64",
     "Description": "More is possible with Microsoft Teams. Stay connected and access shared content any time to learn, plan, and innovate—together.",
     "Publisher": "Microsoft",
     "InformationURL": "https://www.microsoft.com/microsoft-teams/",
@@ -51,7 +51,7 @@
       "Path": "C:\\Program Files (x86)\\Teams Installer",
       "FileOrFolder": "Teams.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "1.5.00.21463",
+      "VersionValue": "1.5.00.21668",
       "Check32BitOn64System": "false"
     }
   ],
