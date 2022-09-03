@@ -35,7 +35,7 @@ catch {
     throw $_
 }
 
-foreach ($Application in $ExistingIntuneApps) {
+foreach ($Application in $script:ExistingIntuneApps) {
     try {
         $AppNote = $Application.notes | ConvertFrom-Json -ErrorAction "SilentlyContinue"
     }
@@ -44,22 +44,27 @@ foreach ($Application in $ExistingIntuneApps) {
     }
 
     if ($null -ne $AppNote) {
-        $App = $SupportedAppData | Where-Object { $_.Information.PSPackageFactoryGuid -eq $AppNote.Guid }
-        if ($null -ne $App) {
-            $Update = $false
-            if ([System.Version]$App.PackageInformation.Version -gt [System.Version]$Application.displayVersion) {
-                $Update = $true
+        $MatchedApp = $script:SupportedAppData | Where-Object { $_.Information.PSPackageFactoryGuid -eq $AppNote.Guid }
+        if ($null -ne $MatchedApp) {
+            foreach ($App in $MatchedApp) {
+                $Update = $false
+                if ([System.Version]$App.PackageInformation.Version -gt [System.Version]$Application.displayVersion) {
+                    $Update = $true
+                }
+                $Object = [PSCustomObject]@{
+                    "IntuneWin32Application" = $Application.displayName
+                    "UpdateRequired"         = $Update
+                    "IntuneVersion"          = $Application.displayVersion
+                    "FactoryVersion"         = $App.PackageInformation.Version
+                }
+                Write-Output -InputObject $Object
             }
-            $Object = [PSCustomObject]@{
-                "IntuneWin32Application" = $Application.displayName
-                "UpdateRequired"         = $Update
-                "IntuneVersion"          = $Application.displayVersion
-                "FactoryVersion"         = $App.PackageInformation.Version
-            }
-            Write-Output -InputObject $Object
         }
     }
     else {
         Write-Verbose -Message "$($Application.displayName): application notes not configured for PSPackageFactory."
     }
 }
+
+# Sort-Object -Property "IntuneWin32Application", "UpdateRequired"
+#@{ Expression = { [System.Version]$_.Version }; Descending = $true } 

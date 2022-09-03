@@ -92,8 +92,8 @@ process {
 
         # Create default requirement rule
         $params = @{
-            Architecture                    = $AppData.RequirementRule.Architecture
-            MinimumSupportedOperatingSystem = $AppData.RequirementRule.MinimumRequiredOperatingSystem
+            Architecture                   = $AppData.RequirementRule.Architecture
+            MinimumSupportedWindowsRelease = $AppData.RequirementRule.MinimumRequiredOperatingSystem
         }
         $RequirementRule = New-IntuneWin32AppRequirementRule @params
 
