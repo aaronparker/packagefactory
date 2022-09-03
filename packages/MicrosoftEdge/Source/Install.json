@@ -2,7 +2,7 @@
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "MicrosoftEdgeEnterpriseX64.msi",
-    "Version": "105.0.1343.25"
+    "Version": "105.0.1343.27"
   },
   "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
   "InstallTasks": {

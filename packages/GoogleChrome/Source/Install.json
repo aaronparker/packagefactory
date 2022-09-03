@@ -2,7 +2,7 @@
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "googlechromestandaloneenterprise64.msi",
-    "Version": "105.0.5195.54"
+    "Version": "105.0.5195.102"
   },
   "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
   "InstallTasks": {
