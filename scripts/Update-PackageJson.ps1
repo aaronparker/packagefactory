@@ -35,7 +35,7 @@ foreach ($ManifestJson in $ManifestList) {
     try {
         # Read the manifest file and convert from JSON
         Write-Host -ForegroundColor "Cyan" "Read manifest: $($ManifestJson.FullName)"
-        $Manifest = Get-Content -Path $ManifestJson.FullName -ErrorAction "SilentlyContinue" | ConvertFrom-Json -ErrorAction "SilentlyContinue"
+        $Manifest = Get-Content -Path $ManifestJson.FullName -ErrorAction "SilentlyContinue" | ConvertFrom-Json -Depth 20 -ErrorAction "SilentlyContinue"
     }
     catch {
         throw $_
@@ -131,7 +131,7 @@ foreach ($ManifestJson in $ManifestList) {
 
                 # Write the application manifest back to disk
                 Write-Host -ForegroundColor "Cyan" "Output: $($ManifestJson.FullName)."
-                $Manifest | ConvertTo-Json | Out-File -FilePath $ManifestJson.FullName -Force
+                $Manifest | ConvertTo-Json -Depth 20 | Out-File -FilePath $ManifestJson.FullName -Force
             }
             elseif ([System.Version]$AppUpdate.Version -lt [System.Version]$Manifest.PackageInformation.Version) {
                 Write-Host -ForegroundColor "Cyan" "Update version: $($AppUpdate.Version) less than manifest version: $($Manifest.PackageInformation.Version)."
@@ -147,7 +147,7 @@ foreach ($ManifestJson in $ManifestList) {
             Write-Host -ForegroundColor "Cyan" "Read: $InstallConfiguration."
             if (Test-Path -Path $InstallConfiguration) {
                 try {
-                    $InstallData = Get-Content -Path $InstallConfiguration -ErrorAction "SilentlyContinue" | ConvertFrom-Json -ErrorAction "SilentlyContinue"
+                    $InstallData = Get-Content -Path $InstallConfiguration -ErrorAction "SilentlyContinue" | ConvertFrom-Json -Depth 20 -ErrorAction "SilentlyContinue"
                 }
                 catch {
                     throw $_
@@ -181,7 +181,7 @@ foreach ($ManifestJson in $ManifestList) {
 
                     # Write the application install manifest back to disk
                     Write-Host -ForegroundColor "Cyan" "Output: $InstallConfiguration."
-                    $InstallData | ConvertTo-Json | Out-File -FilePath $InstallConfiguration -Force
+                    $InstallData | ConvertTo-Json -Depth 20 | Out-File -FilePath $InstallConfiguration -Force
                 }
                 elseif ([System.Version]$AppUpdate.Version -lt [System.Version]$InstallData.PackageInformation.Version) {
                     Write-Host -ForegroundColor "Cyan" "Update version: $($AppUpdate.Version) less than install script version: $($InstallData.PackageInformation.Version)."

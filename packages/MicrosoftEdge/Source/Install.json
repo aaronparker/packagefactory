@@ -1,20 +1,23 @@
 {
-  "PackageInformation": {
-    "SetupType": "MSI",
-    "SetupFile": "MicrosoftEdgeEnterpriseX64.msi",
-    "Version": "105.0.1343.27"
-  },
-  "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
-  "InstallTasks": {
-    "ArgumentList": "/package \"#SetupFile\" ALLUSERS=1 DONOTCREATEDESKTOPSHORTCUT=true DONOTCREATETASKBARSHORTCUT=true /quiet /log \"#LogPath\\#LogName.log\""
-  },
-  "PostInstall": {
-    "Remove": [
-      "C:\\Users\\Public\\Desktop\\Microsoft Edge.lnk",
-      "C:\\Users\\Public\\Desktop\\Edge.lnk"
-    ],
-    "Copy": [
-      "@{Source=initial_preferences.txt; Destination=C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\initial_preferences}"
-    ]
-  }
+    "PackageInformation": {
+        "SetupType": "MSI",
+        "SetupFile": "MicrosoftEdgeEnterpriseX64.msi",
+        "Version": "105.0.1343.27"
+    },
+    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "InstallTasks": {
+        "ArgumentList": "/package \"#SetupFile\" ALLUSERS=1 DONOTCREATEDESKTOPSHORTCUT=true DONOTCREATETASKBARSHORTCUT=true /quiet /log \"#LogPath\\#LogName.log\""
+    },
+    "PostInstall": {
+        "Remove": [
+            "C:\\Users\\Public\\Desktop\\Microsoft Edge.lnk",
+            "C:\\Users\\Public\\Desktop\\Edge.lnk"
+        ],
+        "Copy": [
+            {
+                "Source": "initial_preferences.txt",
+                "Destination": "C:\\Program Files\\Microsoft\\Edge\\Application\\initial_preferences"
+            }
+        ]
+    }
 }

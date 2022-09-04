@@ -235,6 +235,9 @@ else {
             }
         }
 
+        # If wait specified, wait the specified seconds
+        if ($Install.InstallTasks.Wait -gt 0) { Start-Sleep -Seconds $Install.InstallTasks.Wait }
+
         # Perform post install actions
         if ($Install.PostInstall.Copy.Count -gt 0) { Copy-File -File $Install.PostInstall.Copy }
     }
