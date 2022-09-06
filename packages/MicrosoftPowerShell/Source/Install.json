@@ -4,7 +4,7 @@
         "SetupFile": "PowerShell-7.2.6-win-x64.msi",
         "Version": "7.2.6"
     },
-    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
     "InstallTasks": {
         "ArgumentList": "/package \"#SetupFile\" /quiet /norestart /log \"#LogPath\\#LogName.log\""
     },

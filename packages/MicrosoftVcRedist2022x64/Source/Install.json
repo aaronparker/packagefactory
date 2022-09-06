@@ -4,7 +4,7 @@
         "SetupFile": "VC_redist.x64.exe",
         "Version": "14.32.31332.0"
     },
-    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
     "InstallTasks": {
         "StopProcess": [],
         "ArgumentList": "/install /quiet /norestart /log \"#LogPath\\#LogName.log\""

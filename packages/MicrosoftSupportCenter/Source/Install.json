@@ -4,7 +4,7 @@
         "SetupFile": "SupportCenterInstaller.msi",
         "Version": "5.2111.1071.1000"
     },
-    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
     "InstallTasks": {
         "ArgumentList": "/package \"#SetupFile\" ALLUSERS=1 /quiet /log \"#LogPath\\#LogName.log\""
     },

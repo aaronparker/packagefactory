@@ -4,7 +4,7 @@
         "SetupFile": "windowsdesktop-runtime-6.0.8-win-x64.exe",
         "Version": "6.0.8"
     },
-    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
     "InstallTasks": {
         "ArgumentList": "/install /quiet /norestart /log \"#LogPath\\#LogName.log\""
     },

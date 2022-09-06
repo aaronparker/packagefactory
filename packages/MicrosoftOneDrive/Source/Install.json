@@ -4,7 +4,7 @@
         "SetupFile": "OneDriveSetup.exe",
         "Version": "22.171.0814.0003"
     },
-    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
     "InstallTasks": {
         "StopProcess": [
             "C:\\Program Files\\Microsoft OneDrive\\*.exe"

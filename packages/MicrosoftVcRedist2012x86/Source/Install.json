@@ -4,7 +4,7 @@
         "SetupFile": "vcredist_x86.exe",
         "Version": "11.0.61030.0"
     },
-    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
     "InstallTasks": {
         "StopProcess": [],
         "ArgumentList": "/install /quiet /norestart /log \"#LogPath\\#LogName.log\""

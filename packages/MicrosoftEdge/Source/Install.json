@@ -4,7 +4,7 @@
         "SetupFile": "MicrosoftEdgeEnterpriseX64.msi",
         "Version": "105.0.1343.27"
     },
-    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
     "InstallTasks": {
         "ArgumentList": "/package \"#SetupFile\" ALLUSERS=1 DONOTCREATEDESKTOPSHORTCUT=true DONOTCREATETASKBARSHORTCUT=true /quiet /log \"#LogPath\\#LogName.log\""
     },

@@ -4,7 +4,7 @@
     "SetupFile": "Teams_windows_x64.msi",
     "Version": "1.5.00.21668"
   },
-  "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+  "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
     "ArgumentList": "/package \"#SetupFile\" OPTIONS=\"noAutoStart=true\" ALLUSERS=TRUE /quiet /log \"#LogPath\\#LogName.log\""
   },

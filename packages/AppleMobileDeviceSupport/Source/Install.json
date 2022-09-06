@@ -4,7 +4,7 @@
         "SetupFile": "AppleMobileDeviceSupport64.msi",
         "Version": "15.6.0.32"
     },
-    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
     "InstallTasks": {
         "ArgumentList": "/package \"#SetupFile\" ALLUSERS=1 /quiet /log \"#LogPath\\#LogName.log\""
     },

@@ -4,7 +4,7 @@
         "SetupFile": "vlc-3.0.16-win64.msi",
         "Version": "3.0.16"
     },
-    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
     "InstallTasks": {
         "StopProcess": [],
         "ArgumentList": "/package \"#SetupFile\" ALLUSERS=1 /quiet /log \"#LogPath\\#LogName.log\""

@@ -4,7 +4,7 @@
         "SetupFile": "googlechromestandaloneenterprise64.msi",
         "Version": "105.0.5195.102"
     },
-    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
     "InstallTasks": {
         "ArgumentList": "/package \"#SetupFile\" ALLUSERS=1 /quiet /log \"#LogPath\\#LogName.log\"",
         "Wait": 10

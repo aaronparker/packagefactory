@@ -4,7 +4,7 @@
         "SetupFile": "camo-windows-latest.msi",
         "Version": "1.2.0.7873"
     },
-    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
     "InstallTasks": {
         "StopProcess": [],
         "ArgumentList": "/package \"#SetupFile\" ALLUSERS=1 /quiet /log \"#LogPath\\#LogName.log\""

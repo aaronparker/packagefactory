@@ -4,7 +4,7 @@
         "SetupFile": "ConnectWiseControl.ClientSetup.msi",
         "Version": "22.5.7881.8171"
     },
-    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
     "InstallTasks": {
         "ArgumentList": "/package \"#SetupFile\" ALLUSERS=1 /quiet /log \"#LogPath\\#LogName.log\""
     },

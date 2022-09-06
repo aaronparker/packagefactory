@@ -4,7 +4,7 @@
     "SetupFile": "Firefox Setup 104.0.1.msi",
     "Version": "104.0.1"
   },
-  "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+  "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
     "StopProcess": [],
     "ArgumentList": "/package \"#SetupFile\" DESKTOP_SHORTCUT=false TASKBAR_SHORTCUT=false /quiet /log \"#LogPath\\#LogName.log\""

@@ -4,7 +4,7 @@
     "SetupFile": "ZoomInstallerFull.msi",
     "Version": "5.11.10.8200"
   },
-  "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+  "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
     "StopProcess": [],
     "ArgumentList": "/package \"#SetupFile\" ALLUSERS=1 zSilentStart=false zNoDesktopShortCut=true /quiet /log \"#LogPath\\#LogName.log\""

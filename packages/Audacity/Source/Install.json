@@ -4,7 +4,7 @@
         "SetupFile": "audacity-win-3.1.3-64bit.exe",
         "Version": "3.1.3"
     },
-    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
     "InstallTasks": {
         "ArgumentList": "/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP- /MERGETASKS=\"!desktopicon\" /log \"#LogPath\\#LogName.log\""
     },

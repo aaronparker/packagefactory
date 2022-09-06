@@ -4,7 +4,7 @@
         "SetupFile": "PowerToysSetup-0.61.1-x64.exe",
         "Version": "0.61.1"
     },
-    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
     "InstallTasks": {
         "StopProcess": [
             "C:\\Program Files\\PowerToys\\*.exe"

@@ -4,7 +4,7 @@
         "SetupFile": "Greenshot-INSTALLER-1.2.10.6-RELEASE.exe",
         "Version": "1.2.10.6"
     },
-    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
     "InstallTasks": {
         "ArgumentList": "/VERYSILENT /NORESTART /LOG=\"#LogPath\\#LogName.log\""
     },

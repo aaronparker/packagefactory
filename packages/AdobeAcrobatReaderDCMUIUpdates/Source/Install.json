@@ -4,7 +4,7 @@
         "SetupFile": "AcroRdrDCx64Upd2200220191_MUI.msp",
         "Version": "22.002.20191"
     },
-    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
     "InstallTasks": {
         "ArgumentList": "/update \"#SetupFile\" /quiet /log \"#LogPath\\#LogName.log\""
     },

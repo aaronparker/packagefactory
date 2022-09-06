@@ -4,7 +4,7 @@
         "SetupFile": "Cyberduck-Installer-8.4.3.38269.exe",
         "Version": "8.4.3.38269"
     },
-    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
     "InstallTasks": {
         "ArgumentList": "/quiet /norestart /log \"#LogPath\\#LogName.log\""
     },

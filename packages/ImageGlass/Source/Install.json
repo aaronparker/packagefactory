@@ -4,7 +4,7 @@
         "SetupFile": "ImageGlass_Kobe_8.6.7.13_x64.msi",
         "Version": "8.6.7.13"
     },
-    "LogPath": "C:\\ProgramData\\PackageFactory\\Logs",
+    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
     "InstallTasks": {
         "ArgumentList": "/package \"#SetupFile\" RUNAPPLICATION=0 ALLUSERS=1 /quiet /log \"#LogPath\\#LogName.log\""
     },
