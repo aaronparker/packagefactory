@@ -20,7 +20,7 @@
     "Publisher": "Greenshot",
     "InformationURL": "https://getgreenshot.org/",
     "PrivacyURL": "https://getgreenshot.org/privacy-policy/",
-    "FeaturedApp": "false",
+    "FeaturedApp": false,
     "Categories": [],
     "PSPackageFactoryGuid": "11613277-9517-41c1-81a7-55e2820b8910"
   },

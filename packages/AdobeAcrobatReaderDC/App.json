@@ -20,7 +20,7 @@
     "Publisher": "Adobe",
     "InformationURL": "https://www.adobe.com/acrobat/pdf-reader.html",
     "PrivacyURL": "https://www.adobe.com/privacy.html",
-    "FeaturedApp": "false",
+    "FeaturedApp": false,
     "Categories": [],
     "PSPackageFactoryGuid": "a0042672-7240-4312-892e-39623320c0a3"
   },
