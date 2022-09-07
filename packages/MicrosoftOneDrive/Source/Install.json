@@ -1,18 +1,18 @@
 {
-    "PackageInformation": {
-        "SetupType": "EXE",
-        "SetupFile": "OneDriveSetup.exe",
-        "Version": "22.171.0814.0003"
-    },
-    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
-    "InstallTasks": {
-        "StopProcess": [
-            "C:\\Program Files\\Microsoft OneDrive\\*.exe"
-        ],
-        "ArgumentList": "/install /quiet /norestart /log \"#LogPath\\#LogName.log\""
-    },
-    "PostInstall": {
-        "Remove": [],
-        "Copy": []
-    }
+  "PackageInformation": {
+    "SetupType": "EXE",
+    "SetupFile": "OneDriveSetup.exe",
+    "Version": "22.176.0821.0002"
+  },
+  "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
+  "InstallTasks": {
+    "StopProcess": [
+      "C:\\Program Files\\Microsoft OneDrive\\*.exe"
+    ],
+    "ArgumentList": "/install /quiet /norestart /log \"#LogPath\\#LogName.log\""
+  },
+  "PostInstall": {
+    "Remove": [],
+    "Copy": []
+  }
 }
