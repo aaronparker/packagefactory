@@ -19,7 +19,7 @@ param (
 
 try {
     # Get the existing Win32 applications from Intune
-    $ExistingIntuneApps = Get-IntuneWin32App | Select-Object -ExcludeProperty "largeIcon"
+    $IntuneApps = Get-IntuneWin32App | Select-Object -ExcludeProperty "largeIcon"
 }
 catch {
     throw $_
@@ -27,15 +27,30 @@ catch {
 
 try {
     # Get the application manifest
-    $SupportedAppData = @()
-    $SupportedAppData = Get-ChildItem -Path $([System.IO.Path]::Combine($Path, $PackageFolder)) -Recurse -Filter $PackageManifest | `
+    $SupportedApps = @()
+    $SupportedApps = Get-ChildItem -Path $([System.IO.Path]::Combine($Path, $PackageFolder)) -Recurse -Filter $PackageManifest | `
         ForEach-Object { Get-Content -Path $_.FullName -ErrorAction "SilentlyContinue" | ConvertFrom-Json -ErrorAction "SilentlyContinue" }
 }
 catch {
     throw $_
 }
 
-foreach ($Application in $script:ExistingIntuneApps) {
+$ManagedApps = foreach ($Application in $IntuneApps) {
+    try {
+        $AppNote = $Application.notes | ConvertFrom-Json -ErrorAction "SilentlyContinue"
+    }
+    catch {
+        $AppNote = $null
+    }
+    if ($null -ne $AppNote) {
+        [PSCustomObject]@{
+            Name = $Application.Application.Name
+            Guid = $AppNote.Guid
+        }
+    }
+}
+
+foreach ($Application in $IntuneApps) {
     try {
         $AppNote = $Application.notes | ConvertFrom-Json -ErrorAction "SilentlyContinue"
     }
@@ -44,7 +59,8 @@ foreach ($Application in $script:ExistingIntuneApps) {
     }
 
     if ($null -ne $AppNote) {
-        $MatchedApp = $script:SupportedAppData | Where-Object { $_.Information.PSPackageFactoryGuid -eq $AppNote.Guid }
+
+        $MatchedApp = $SupportedApps | Where-Object { $_.Information.PSPackageFactoryGuid -eq $AppNote.Guid }
         if ($null -ne $MatchedApp) {
             foreach ($App in $MatchedApp) {
                 $Update = $false
@@ -65,6 +81,3 @@ foreach ($Application in $script:ExistingIntuneApps) {
         Write-Verbose -Message "$($Application.displayName): application notes not configured for PSPackageFactory."
     }
 }
-
-# Sort-Object -Property "IntuneWin32Application", "UpdateRequired"
-#@{ Expression = { [System.Version]$_.Version }; Descending = $true }

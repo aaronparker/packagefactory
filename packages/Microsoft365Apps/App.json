@@ -1,0 +1,48 @@
+{
+  "Application": {
+    "Name": "Microsoft365Apps",
+    "Filter": "Get-EvergreenApp -Name \"Microsoft365Apps\" | Select-Object -First 1",
+    "Title": "Microsoft 365 Apps",
+    "Language": "en-US",
+    "Architecture": "x64"
+  },
+  "PackageInformation": {
+    "SetupType": "EXE",
+    "SetupFile": "setup.exe",
+    "Version": "16.0.15427.20220",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-Office.png"
+  },
+  "Information": {
+    "DisplayName": "Microsoft 365 Apps, Monthly Enterprise channel, x64",
+    "Description": "Microsoft 365 Apps for the Windows desktop including Microsoft Word, Excel, PowerPoint, Outlook, OneNote, OneDrive and Teams.",
+    "Publisher": "Microsoft",
+    "InformationURL": "https://www.office.com",
+    "PrivacyURL": "https://privacy.microsoft.com/en-US/privacystatement",
+    "Notes": ""
+  },
+  "Program": {
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+    "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Uninstall.ps1",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "basedOnReturnCode"
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "1809",
+    "Architecture": "x64",
+    "SizeInMBValue": "5120"
+  },
+  "CustomRequirementRule": [],
+  "DetectionRule": [
+    {
+      "Type": "Registry",
+      "DetectionMethod": "Existence",
+      "KeyPath": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\O365ProPlusRetail - en-us",
+      "ValueName": "",
+      "DetectionType": "exists",
+      "Check32BitOn64System": "false"
+    }
+  ]
+}
