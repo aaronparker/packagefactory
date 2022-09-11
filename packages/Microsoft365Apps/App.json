@@ -9,13 +9,13 @@
   "PackageInformation": {
     "SetupType": "EXE",
     "SetupFile": "setup.exe",
-    "Version": "16.0.15427.20220",
+    "Version": "16.0.15629.20058",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-Office.png"
   },
   "Information": {
-    "DisplayName": "Microsoft 365 Apps, Monthly Enterprise channel, x64",
+    "DisplayName": "Microsoft 365 Apps 16.0.15629.20058",
     "Description": "Microsoft 365 Apps for the Windows desktop including Microsoft Word, Excel, PowerPoint, Outlook, OneNote, OneDrive and Teams.",
     "Publisher": "Microsoft",
     "InformationURL": "https://www.office.com",

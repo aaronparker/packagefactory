@@ -1,17 +1,15 @@
 {
-    "PackageInformation": {
-        "SetupType": "EXE",
-        "SetupFile": "setup.exe",
-        "Version": "16.0.15427.20220"
-    },
-    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
-    "InstallTasks": {
-        "ArgumentList": "/configure M365Apps-Monthly-x64-stealthpuppy.xml"
-    },
-    "PostInstall": {
-        "Remove": [
-        ],
-        "Copy": [
-        ]
-    }
+  "PackageInformation": {
+    "SetupType": "EXE",
+    "SetupFile": "setup.exe",
+    "Version": "16.0.15629.20058"
+  },
+  "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
+  "InstallTasks": {
+    "ArgumentList": "/configure M365Apps-Monthly-x64-stealthpuppy.xml"
+  },
+  "PostInstall": {
+    "Remove": [],
+    "Copy": []
+  }
 }
