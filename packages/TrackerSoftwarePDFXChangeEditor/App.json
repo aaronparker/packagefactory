@@ -1,0 +1,52 @@
+{
+  "Application": {
+    "Name": "TrackerSoftwarePDFXChangeEditor",
+    "Filter": "Get-EvergreenApp -Name \"TrackerSoftwarePDFXChangeEditor\" | Where-Object { $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+    "Title": "Tracker Software PDF-XChange Editor",
+    "Language": "en-US",
+    "Architecture": "x64"
+  },
+  "PackageInformation": {
+    "SetupType": "MSI",
+    "SetupFile": "EditorV9.x64.msi",
+    "Version": "9.4.363.0",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/ImageGlass.png"
+  },
+  "Information": {
+    "DisplayName": "Tracker Software PDF-XChange Editor 9.4.363.0 x64",
+    "Description": "PDF-XChange Editor V9 - one of the fastest and most feature-rich options available worldwide to create, view, edit and annotate PDF files. PDF-XChange Lite V9, our award-winning technology that installs as a virtual printer, is included with this product. It can be used to print-to-PDF from Windows applications and features an optimized hybrid engine that significantly increases the quality of conversion for images and image-based text characters.",
+    "Publisher": "Tracker Software",
+    "InformationURL": "https://www.tracker-software.com/product/pdf-xchange-editor",
+    "PrivacyURL": "https://www.tracker-software.com/privacy-policy",
+    "Categories": [],
+    "PSPackageFactoryGuid": "91579d95-539c-43df-b26d-30f110451f1f"
+  },
+  "Program": {
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+    "UninstallCommand": "MsiExec.exe /X \"{2B1A32F0-ABD0-42C4-A123-7CC642AA3B5E}\" /quiet",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "suppress"
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "1809",
+    "Architecture": "x64"
+  },
+  "CustomRequirementRule": [],
+  "DetectionRule": [
+    {
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "C:\\Program Files\\Tracker Software\\PDF Editor",
+      "FileOrFolder": "PDFXEdit.exe",
+      "Operator": "greaterThanOrEqual",
+      "VersionValue": "9.4.363.0",
+      "Check32BitOn64System": "false"
+    }
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
+}

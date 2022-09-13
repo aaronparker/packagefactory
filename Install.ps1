@@ -1,6 +1,10 @@
 <#
     .SYNOPSIS
     Installs an application based on logic defined in Install.json
+
+    .NOTES
+    Version: 1.0
+    Date: 13th September 2022
 #>
 [CmdletBinding(SupportsShouldProcess = $True)]
 param ()
@@ -93,7 +97,7 @@ function Remove-Path {
     process {
         foreach ($Item in $Path) {
             try {
-                if (Test-Path -Path $Item.Destination -PathType "Container") {
+                if (Test-Path -Path $Item -PathType "Container") {
                     $params = @{
                         Path        = $Item
                         Recurse     = $True
@@ -183,8 +187,13 @@ if ([System.String]::IsNullOrEmpty($Installer)) {
 }
 else {
     # Create the log folder
-    Write-Verbose -Message "Create directory: $($Install.LogPath)"
-    New-Item -Path $Install.LogPath -ItemType "Directory" -ErrorAction "SilentlyContinue" | Out-Null
+    if (Test-Path -Path $Install.LogPath -PathType "Container") {
+        Write-Verbose -Message "Directory exists: $($Install.LogPath)"
+    }
+    else {
+        Write-Verbose -Message "Create directory: $($Install.LogPath)"
+        New-Item -Path $Install.LogPath -ItemType "Directory" -ErrorAction "SilentlyContinue" | Out-Null
+    }
 
     # Stop processes before installing the application
     if ($Install.InstallTasks.Path.Count -gt 0) { Stop-PathProcess -Path $Install.InstallTasks.Path }
