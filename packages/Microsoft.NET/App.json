@@ -8,14 +8,14 @@
   },
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "windowsdesktop-runtime-6.0.8-win-x64.exe",
-    "Version": "6.0.8",
+    "SetupFile": "windowsdesktop-runtime-6.0.9-win-x64.exe",
+    "Version": "6.0.9",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-NET.png"
   },
   "Information": {
-    "DisplayName": "Microsoft .NET Desktop Runtime 6.0.8 x64",
+    "DisplayName": "Microsoft .NET Desktop Runtime 6.0.9 x64",
     "Description": "The .NET Desktop Runtime enables you to run existing Windows desktop applications. This release includes the .NET Runtime; you don't need to install it separately.",
     "Publisher": "Microsoft",
     "InformationURL": "https://dotnet.microsoft.com/en-us/",
@@ -50,7 +50,7 @@
       "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\dotnet\\Setup\\InstalledVersions\\x64\\sharedhost",
       "ValueName": "Version",
       "Operator": "greaterThanOrEqual",
-      "Value": "6.0.8",
+      "Value": "6.0.9",
       "Check32BitOn64System": "false"
     }
   ],

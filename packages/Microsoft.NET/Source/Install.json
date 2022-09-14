@@ -1,15 +1,15 @@
 {
-    "PackageInformation": {
-        "SetupType": "EXE",
-        "SetupFile": "windowsdesktop-runtime-6.0.8-win-x64.exe",
-        "Version": "6.0.8"
-    },
-    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
-    "InstallTasks": {
-        "ArgumentList": "/install /quiet /norestart /log \"#LogPath\\#LogName.log\""
-    },
-    "PostInstall": {
-        "Remove": [],
-        "Copy": []
-    }
+  "PackageInformation": {
+    "SetupType": "EXE",
+    "SetupFile": "windowsdesktop-runtime-6.0.9-win-x64.exe",
+    "Version": "6.0.9"
+  },
+  "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
+  "InstallTasks": {
+    "ArgumentList": "/install /quiet /norestart /log \"#LogPath\\#LogName.log\""
+  },
+  "PostInstall": {
+    "Remove": [],
+    "Copy": []
+  }
 }
