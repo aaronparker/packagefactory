@@ -18,17 +18,8 @@ jobs:
         uses: potatoqualitee/psmodulecache@v5.0
         with:
           modules-to-cache: IntuneWin32App
+          updatable: true
           shell: pwsh
-
-      - name: List Modules
-        id: list-modules
-        shell: pwsh
-        run: |
-          foreach ($module in @("IntuneWin32App")) {
-            Update-Module -Name $module
-            $Version = (Get-Module -Name $module -ListAvailable | Select-Object -First 1).Version.ToString()
-            Write-Host "$module version: $Version"
-          }
 
       - name: Create export directory
         id: create-dir

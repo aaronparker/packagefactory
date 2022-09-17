@@ -25,7 +25,7 @@ jobs:
         uses: potatoqualitee/psmodulecache@v5.0
         with:
           modules-to-cache: Evergreen, VcRedist
-          force: true
+          updatable: true
           shell: pwsh
 
       - name: List Modules
@@ -33,7 +33,6 @@ jobs:
         shell: pwsh
         run: |
           foreach ($module in @("Evergreen", "VcRedist")) {
-              Update-Module -Name $module -Force
               $Version = (Get-Module -Name $module -ListAvailable | Select-Object -First 1).Version.ToString()
               Write-Host "$module version: $Version"
           }
