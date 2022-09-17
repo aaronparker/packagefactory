@@ -1,0 +1,16 @@
+{
+  "PackageInformation": {
+    "SetupType": "EXE",
+    "SetupFile": "VSCodeSetup-x64-1.71.2.exe",
+    "Version": "1.71.2"
+  },
+  "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
+  "InstallTasks": {
+    "StopProcess": [],
+    "ArgumentList": "/VERYSILENT /NOCLOSEAPPLICATIONS /NORESTARTAPPLICATIONS /NORESTART /SP- /SUPPRESSMSGBOXES /MERGETASKS=!runcode /LOG=\"#LogPath\\#LogName.log\""
+  },
+  "PostInstall": {
+    "Remove": [],
+    "Copy": []
+  }
+}
