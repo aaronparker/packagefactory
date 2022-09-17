@@ -60,7 +60,7 @@ jobs:
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
         run: |
-          Import-Module -Name "IntuneWin32App, Evergreen, VcRedist" -Force
+          Import-Module -Name "IntuneWin32App", "Evergreen", "VcRedist" -Force
           $params = @{
               Application  = "${{ github.event.inputs.package }}"
               Path         = "${{ github.workspace }}"
