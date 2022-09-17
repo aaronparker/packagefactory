@@ -26,7 +26,7 @@ jobs:
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v5.0
         with:
-          modules-to-cache: Evergreen, VcRedist
+          modules-to-cache: Evergreen, VcRedist::,
           shell: powershell
 
       # Create the app package

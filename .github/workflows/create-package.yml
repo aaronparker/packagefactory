@@ -37,7 +37,7 @@ jobs:
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v5.0
         with:
-          modules-to-cache: IntuneWin32App, Evergreen, VcRedist
+          modules-to-cache: IntuneWin32App, Evergreen, VcRedist::,
           updatable: true
           shell: powershell
 
