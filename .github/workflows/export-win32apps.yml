@@ -17,7 +17,7 @@ jobs:
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v5.0
         with:
-          modules-to-cache: IntuneWin32App::,
+          modules-to-cache: "IntuneWin32App::"
           updatable: true
           shell: pwsh
 
