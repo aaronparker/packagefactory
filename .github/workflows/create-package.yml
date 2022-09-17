@@ -37,7 +37,7 @@ jobs:
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v5.0
         with:
-          modules-to-cache: "IntuneWin32App, Evergreen, VcRedist::"
+          modules-to-cache: "MSAL.PS, IntuneWin32App, Evergreen, VcRedist::"
           updatable: true
           shell: powershell
 
@@ -45,7 +45,7 @@ jobs:
         id: list-modules
         shell: powershell
         run: |
-          foreach ($module in @("IntuneWin32App", "Evergreen", "VcRedist")) {
+          foreach ($module in @("MSAL.PS", "IntuneWin32App", "Evergreen", "VcRedist")) {
               $Version = (Get-Module -Name $module -ListAvailable | Select-Object -First 1).Version.ToString()
               Write-Host "$module version: $Version"
           }
@@ -60,7 +60,7 @@ jobs:
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
         run: |
-          Import-Module -Name "IntuneWin32App", "Evergreen", "VcRedist" -Force
+          Import-Module -Name "MSAL.PS", "IntuneWin32App", "Evergreen", "VcRedist" -Force
           $params = @{
               Application  = "${{ github.event.inputs.package }}"
               Path         = "${{ github.workspace }}"
