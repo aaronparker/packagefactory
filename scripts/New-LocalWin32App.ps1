@@ -25,14 +25,14 @@ param (
 
     [Parameter()]
     [ValidateSet("Apps", "Updates")]
-    [System.String] $Type = $Type
+    [System.String] $Type = "Apps"
 )
 
 foreach ($Application in $Applications) {
     try {
         # Get the application details
         Write-Host "Application: $Application"
-        $AppPath = [System.IO.Path]::Combine($Path, $Type, $PackageFolder, $Application)
+        $AppPath = [System.IO.Path]::Combine($Path, $PackageFolder, $Type, $Application)
         Write-Host -ForegroundColor "Cyan" "Read: $([System.IO.Path]::Combine($AppPath, $PackageManifest))"
         $Manifest = Get-Content -Path $([System.IO.Path]::Combine($AppPath, $PackageManifest)) | ConvertFrom-Json
     }
