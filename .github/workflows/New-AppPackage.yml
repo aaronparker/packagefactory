@@ -1,7 +1,7 @@
-# Creates a Win32 package and optionally imports into a target Intune tenant
+# Creates a Win32 package and imports into a target Intune tenant
 # Uses secrets on the repo - TENANT_ID, CLIENT_ID, and CLIENT_SECRET
 # to import the package into a target tenant
-name: create-package
+name: New-AppPackage
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -13,7 +13,7 @@ on:
         description: Application name.
         required: true
         type: string
-        default: AdobeAcrobatReaderDC
+        default: AdobeAcrobatReaderDCMUI
 
 jobs:
   create-package:
@@ -30,7 +30,7 @@ jobs:
           [System.Array] $Applications = ("${{ github.event.inputs.package }}").ToString() -split ","
           foreach ($App in $Applications) {
               $AppItem = $App.Trim()
-              Test-Path -Path "${{ github.workspace }}\packages\$AppItem"
+              Test-Path -Path "${{ github.workspace }}\packages\Apps\$AppItem"
           }
 
       - name: Install and cache PowerShell modules
@@ -64,5 +64,6 @@ jobs:
           $params = @{
               Application  = "${{ github.event.inputs.package }}"
               Path         = "${{ github.workspace }}"
+              Type         = "Apps"
           }
           .\scripts\New-PipelineWin32App.ps1 @params

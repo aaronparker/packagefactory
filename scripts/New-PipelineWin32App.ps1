@@ -9,7 +9,7 @@
 param (
     [Parameter()]
     [ValidateNotNullOrEmpty()]
-    [System.String] $Application = "AdobeAcrobatReaderDC",
+    [System.String] $Application = "AdobeAcrobatReaderDCMUI",
 
     [Parameter()]
     [ValidateNotNullOrEmpty()]
@@ -22,7 +22,11 @@ param (
     [System.String] $PackageManifest = "App.json",
 
     [Parameter()]
-    [System.String] $InstallScript = "Install.ps1"
+    [System.String] $InstallScript = "Install.ps1",
+
+    [Parameter()]
+    [ValidateSet("Apps", "Updates")]
+    [System.String] $Type = $Type
 )
 
 try {
@@ -52,7 +56,7 @@ foreach ($App in $Applications) {
 
     try {
         # Read the package manifest JSON
-        $Manifest = Get-Content -Path $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $PackageManifest)) -ErrorAction "SilentlyContinue" | `
+        $Manifest = Get-Content -Path $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $PackageManifest)) -ErrorAction "SilentlyContinue" | `
             ConvertFrom-Json -ErrorAction "SilentlyContinue"
     }
     catch {
@@ -70,14 +74,14 @@ foreach ($App in $Applications) {
             $Filename = $(Split-Path -Path $AppItem.Download -Leaf)
             Write-Host "Package: $($AppItem.Name); $Filename."
             $params = @{
-                Path     = $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $Manifest.PackageInformation.SourceFolder))
+                Path     = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder))
                 ItemType = "Directory"
                 Force    = $True
             }
             New-Item @params | Out-Null
             $params = @{
                 Uri             = $AppItem.Download
-                OutFile         = $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $Manifest.PackageInformation.SourceFolder, $Filename))
+                OutFile         = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder, $Filename))
                 UseBasicParsing = $True
             }
             Invoke-WebRequest @params
@@ -85,14 +89,14 @@ foreach ($App in $Applications) {
         else {
 
             # Get the application installer via Evergreen and download
-            $result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -CustomPath $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $Manifest.PackageInformation.SourceFolder))
+            $result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -CustomPath $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder))
 
             # Unpack the installer file if its a zip file
             Write-Host "Downloaded: $($result.FullName)"
             if ($result.FullName -match "\.zip$") {
                 $params = @{
                     Path            = $result.FullName
-                    DestinationPath = $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $Manifest.PackageInformation.SourceFolder))
+                    DestinationPath = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder))
                 }
                 Write-Host "Expand: $($result.FullName)"
                 Expand-Archive @params
@@ -101,13 +105,13 @@ foreach ($App in $Applications) {
         }
 
         # Copy Install.ps1 into the source folder
-        if (Test-Path -Path $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $Manifest.PackageInformation.SourceFolder, "Install.json"))) {
+        if (Test-Path -Path $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder, "Install.json"))) {
             $params = @{
                 Path        = $([System.IO.Path]::Combine($Path, $InstallScript))
-                Destination = $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $Manifest.PackageInformation.SourceFolder, $InstallScript))
+                Destination = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder, $InstallScript))
                 ErrorAction = "SilentlyContinue"
             }
-            Write-Host "Copy: $([System.IO.Path]::Combine($Path, $PackageFolder, $AppItem, $Manifest.PackageInformation.SourceFolder, $InstallScript))"
+            Write-Host "Copy: $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder, $InstallScript))"
             Copy-Item @params
         }
         else {
@@ -117,8 +121,8 @@ foreach ($App in $Applications) {
         # Import the application into Intune
         $params = @{
             Application       = $AppItem
-            Path              = $([System.IO.Path]::Combine($Path, $PackageFolder))
-            DisplayNameSuffix = "(Package Factory)"
+            Path              = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type))
+            DisplayNameSuffix  = "(Package Factory)"
         }
         $params
         Write-Host "Run: Create-Win32App.ps1"
