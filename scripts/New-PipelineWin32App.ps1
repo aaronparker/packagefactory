@@ -122,6 +122,7 @@ foreach ($App in $Applications) {
         $params = @{
             Application       = $AppItem
             Path              = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type))
+            Type              = $Type
             DisplayNameSuffix  = "(Package Factory)"
         }
         $params

@@ -70,7 +70,8 @@ foreach ($Application in $Applications) {
         $params = @{
             Application       = $Application
             Path              = $([System.IO.Path]::Combine($Path, $PackageFolder))
-            DisplayNameSuffix = ""
+            Type              = $Type
+            DisplayNameSuffix  = ""
         }
         .\Create-Win32App.ps1 @params
     }
