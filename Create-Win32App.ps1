@@ -35,6 +35,13 @@ param(
     [ValidateNotNullOrEmpty()]
     [System.String] $Path,
 
+    [Parameter()]
+    [System.String] $PackageManifest = "App.json",
+
+    [Parameter()]
+    [ValidateSet("Apps", "Updates")]
+    [System.String] $Type = "Apps",
+
     [Parameter(Mandatory = $false, HelpMessage = "Adds a string to the application display name as a suffix.")]
     [System.String] $DisplayNameSuffix,
 
@@ -46,19 +53,19 @@ process {
     foreach ($AppName in $Application) {
 
         # Read app data from JSON manifest
-        $AppDataFile = [System.IO.Path]::Combine($Path, $AppName, "App.json")
+        $AppDataFile = [System.IO.Path]::Combine($Path, $Type, $AppName, $PackageManifest)
         $AppData = Get-Content -Path $AppDataFile | ConvertFrom-Json
 
         # Required packaging variables
-        $SourceFolder = [System.IO.Path]::Combine($Path, $AppName, $AppData.PackageInformation.SourceFolder)
-        $OutputFolder = [System.IO.Path]::Combine($Path, $AppName, $AppData.PackageInformation.OutputFolder)
-        $ScriptsFolder = [System.IO.Path]::Combine($Path, $AppName, "Scripts")
+        $SourceFolder = [System.IO.Path]::Combine($Path, $Type, $AppName, $AppData.PackageInformation.SourceFolder)
+        $OutputFolder = [System.IO.Path]::Combine($Path, $Type, $AppName, $AppData.PackageInformation.OutputFolder)
+        $ScriptsFolder = [System.IO.Path]::Combine($Path, $Type, $AppName, "Scripts")
         Write-Verbose -Message "Create directory: $OutputFolder"
         New-Item -Path $OutputFolder -ItemType "Directory" -Force | Out-Null
 
         # Icon file - download the file, if the property is a URL
         if ($AppData.PackageInformation.IconFile -match "^http") {
-            $OutFile = [System.IO.Path]::Combine($Path, $AppName, $(Split-Path -Path $AppData.PackageInformation.IconFile -Leaf))
+            $OutFile = [System.IO.Path]::Combine($Path, $Type, $AppName, $(Split-Path -Path $AppData.PackageInformation.IconFile -Leaf))
             $params = @{
                 Uri             = $AppData.PackageInformation.IconFile
                 OutFile         = $OutFile
@@ -69,7 +76,7 @@ process {
             $AppIconFile = $OutFile
         }
         else {
-            $AppIconFile = [System.IO.Path]::Combine($Path, $AppName, $AppData.PackageInformation.IconFile)
+            $AppIconFile = [System.IO.Path]::Combine($Path, $Type, $AppName, $AppData.PackageInformation.IconFile)
         }
 
         # Check for the install file

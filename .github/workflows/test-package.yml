@@ -1,6 +1,3 @@
-# Creates a Win32 package and optionally imports into a target Intune tenant
-# Uses secrets on the repo - TENANT_ID, CLIENT_ID, and CLIENT_SECRET
-# to import the package into a target tenant
 name: test-package
 
 env:

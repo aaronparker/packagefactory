@@ -21,14 +21,18 @@ param (
         "MicrosoftVcRedist2022x86",
         "MicrosoftVcRedist2022x64",
         "AdobeAcrobatReaderDC",
-        "ImageCustomise")
+        "ImageCustomise"),
+
+    [Parameter()]
+    [ValidateSet("Apps", "Updates")]
+    [System.String] $Type = "Apps"
 )
 
 foreach ($Application in $Applications) {
     try {
         # Get the application details
         Write-Host "Application: $Application"
-        $AppPath = [System.IO.Path]::Combine($Path, $PackageFolder, $Application)
+        $AppPath = [System.IO.Path]::Combine($Path, $PackageFolder, $Type, $Application)
         Write-Host -ForegroundColor "Cyan" "Read: $([System.IO.Path]::Combine($AppPath, $PackageManifest))"
         $Manifest = Get-Content -Path $([System.IO.Path]::Combine($AppPath, $PackageManifest)) | ConvertFrom-Json
     }
@@ -66,6 +70,7 @@ foreach ($Application in $Applications) {
         $params = @{
             Application       = $Application
             Path              = $([System.IO.Path]::Combine($Path, $PackageFolder))
+            Type              = $Type
             DisplayNameSuffix  = ""
         }
         .\Create-Win32App.ps1 @params
