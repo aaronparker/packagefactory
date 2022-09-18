@@ -143,7 +143,7 @@ foreach ($ManifestJson in $ManifestList) {
 
 
             #region Get the application install manifest and update it
-            $InstallConfiguration = $([System.IO.Path]::Combine($Path, $PackageFolder, $Manifest.Application.Name, $Manifest.PackageInformation.SourceFolder, $InstallManifest))
+            $InstallConfiguration = $([System.IO.Path]::Combine($ManifestJson.Directory, $Manifest.PackageInformation.SourceFolder, $InstallManifest))
             Write-Host -ForegroundColor "Cyan" "Read: $InstallConfiguration."
             if (Test-Path -Path $InstallConfiguration) {
                 try {
