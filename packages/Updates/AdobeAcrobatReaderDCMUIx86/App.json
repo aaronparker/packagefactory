@@ -21,7 +21,7 @@
     "InformationURL": "https://www.adobe.com/devnet-docs/acrobatetk/tools/ReleaseNotesDC/index.html",
     "PrivacyURL": "https://www.adobe.com/au/privacy.html",
     "Categories": [],
-    "PSPackageFactoryGuid": "ef33ecdc-4ab1-41ad-99f9-7a06c26b2733"
+    "PSPackageFactoryGuid": "79df6213-29bb-43e7-9f77-b19974dd18c6"
   },
   "Program": {
     "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
