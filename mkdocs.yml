@@ -1,0 +1,109 @@
+site_name: PSPackageFactory
+site_url: https://stealthpuppy.com/packagefactory
+site_author: Aaron Parker
+site_description: >-
+  Integrating Evergreen, VcRedist, and IntuneWin32App to create a packaging factory for Microsoft Intune
+
+# Repository
+repo_name: aaronparker/packagefactory
+repo_url: https://github.com/aaronparker/packagefactory
+
+# Copyright
+copyright: Copyright &copy; 2022 Aaron Parker
+
+# Configuration
+theme:
+  name: material
+
+  # Default values, taken from mkdocs_theme.yml
+  language: en
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - toc.integrate
+  palette:
+    - scheme: default
+      primary: blue grey
+      accent: blue grey
+      toggle:
+        icon: material/lightbulb
+        name: Switch to dark mode
+    - scheme: slate
+      primary: blue grey
+      accent: blue grey
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+  favicon: assets/favicon.png
+  #icon:
+    #logo: logo
+  logo: assets/img/deployment.png
+
+# Plugins
+plugins:
+  - search
+  - minify:
+      minify_html: true
+      minify_js: true
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - abbr
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+# Customization
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/aaronparker
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/stealthpuppy
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/aaronedwardparker/
+  generator: true
+
+  # Page tree
+nav:
+  - Package Factory: index.md
+  - IntuneWin32: intunewin32.md
