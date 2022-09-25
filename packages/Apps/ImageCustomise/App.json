@@ -13,6 +13,7 @@
       "Build.All.json",
       "desktop-config.json",
       "Install-Defaults.ps1",
+      "Install-Defaults.psm1",
       "Machine-Windows11.All.json",
       "Machine.All.json",
       "Machine.Client.json",
@@ -20,7 +21,6 @@
       "Remove-AppxApps.ps1",
       "Remove-Defaults.ps1",
       "SetupComplete.cmd",
-      "SetupConfig.ini",
       "User-Windows10.All.json",
       "User-Windows11.All.json",
       "User.All.json",
@@ -35,13 +35,13 @@
       "WindowsRDSStartMenuLayout.xml",
       "WindowsServerStartMenuLayout.xml"
     ],
-    "Version": "2209.22.116",
+    "Version": "2209.24.122",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Package.png"
   },
   "Information": {
-    "DisplayName": "stealthpuppy Windows Customised Defaults 2209.22.116 x86",
+    "DisplayName": "stealthpuppy Windows Customised Defaults 2209.24.122 x86",
     "Description": "Default user and system settings (including default Start menu layout) for Windows 10/11 PCs provisioned via Windows Autopilot. Ensure this package is assigned in the Enrolment Status Page to enable install before user sign-in.",
     "Publisher": "stealthpuppy",
     "InformationURL": "https://stealthpuppy.com/image-customise/",
@@ -68,7 +68,7 @@
       "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{f38de27b-799e-4c30-8a01-bfdedc622944}",
       "ValueName": "DisplayVersion",
       "Operator": "greaterThanOrEqual",
-      "Value": "2209.22.116",
+      "Value": "2209.24.122",
       "Check32BitOn64System": "false"
     }
   ],
