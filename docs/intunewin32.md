@@ -1,6 +1,6 @@
 # IntuneWin32AppPackager Framework Overview
 
-This project aims at making it easier to package, create and at the same time document Win32 applications for Microsoft Intune. A manifest file named `App.json` needs to be configured to control how the application is created. Configurations such as application name, description, requirement rules, detection roles and other is defined within the manifest file. `Create-Win32App.ps1` is used to start the creation of the application, based upon configurations specified in the manifest file, `App.json`.
+[IntuneWin32AppPackager](https://github.com/MSEndpointMgr/IntuneWin32App) aims at making it easier to package, create and at the same time document Win32 applications for Microsoft Intune. A manifest file named `App.json` needs to be configured to control how the application is created. Configurations such as application name, description, requirement rules, detection roles and other is defined within the manifest file. `Create-Win32App.ps1` is used to start the creation of the application, based upon configurations specified in the manifest file, `App.json`.
 
 ## File and folder structure
 

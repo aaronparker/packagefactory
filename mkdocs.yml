@@ -105,5 +105,8 @@ extra:
 
   # Page tree
 nav:
-  - Package Factory: index.md
+  - Home: index.md
+  - Using PSPackageFactory: use.md
   - IntuneWin32: intunewin32.md
+  - Evergreen: https://stealthpuppy.com/evergreen/
+  - VcRedist: https://vcredist.com/
