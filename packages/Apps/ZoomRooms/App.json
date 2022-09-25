@@ -1,7 +1,7 @@
 {
   "Application": {
-    "Name": "Zoom",
-    "Filter": "Get-EvergreenApp -Name \"Zoom\" | Where-Object { $_.Platform -eq \"Meetings\" -and $_.Type -eq \"msi\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+    "Name": "Zoom Rooms",
+    "Filter": "Get-EvergreenApp -Name \"Zoom\" | Where-Object { $_.Platform -eq \"Rooms\" -and $_.Type -eq \"msi\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
     "Title": "Zoom Meetings Client",
     "Language": "en-US",
     "Architecture": "x64"
@@ -9,19 +9,19 @@
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "ZoomInstallerFull.msi",
-    "Version": "5.11.11.8425",
+    "Version": "5.11.3.1634",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Zoom.png"
   },
   "Information": {
-    "DisplayName": "Zoom Meetings Client 5.11.11.8425 x64",
-    "Description": "Simplified video conferencing and messaging across any device. Phone, Meetings, Chat, Whiteboard and more for your desktop.",
+    "DisplayName": "Zoom Rooms Client 5.11.3.1634 x64",
+    "Description": "Conference rooms that make it easy to run or join video meetings with a tap of a button.",
     "Publisher": "Zoom",
-    "InformationURL": "https://explore.zoom.us/en/products/meetings/",
+    "InformationURL": "https://explore.zoom.us/en/products/zoom-rooms/",
     "PrivacyURL": "https://explore.zoom.us/privacy",
     "Categories": [],
-    "PSPackageFactoryGuid": "b964ee87-b4dd-40f1-845b-3776a5ea79de"
+    "PSPackageFactoryGuid": "a918abe7-620c-438f-b9ee-000383ad5f9e"
   },
   "Program": {
     "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
@@ -39,10 +39,10 @@
     {
       "Type": "File",
       "DetectionMethod": "Version",
-      "Path": "C:\\Program Files\\Zoom\\bin",
-      "FileOrFolder": "Zoom.exe",
+      "Path": "C:\\Program Files\\ZoomRooms\\bin",
+      "FileOrFolder": "ZoomRooms.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "5.11.11.8425",
+      "VersionValue": "5.11.3.1634",
       "Check32BitOn64System": "false"
     }
   ],
