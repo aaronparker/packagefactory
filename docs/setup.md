@@ -18,16 +18,35 @@ Update-Module -Name IntuneWin32, Evergreen, VcRedist, MSAL.PS
 
 ## Download the Packaging Factory
 
-Clone the packaging factory - you can download the zip file containing the entire repository; however, to ensure your locally copy can be updated from the repository, it will be easier to clone the repository via [git](https://git-scm.com/).
+Clone the packaging factory - you can download the zip file containing the entire repository; however, to ensure your local copy can be updated with changes to the source repository, it will be easier to clone the repository with git [git](https://git-scm.com/).
 
-```powershell
-New-Item -Path "C:\projects" -ItemType "Directory"
-Set-Location -Path "C:\projects"
-git clone https://github.com/aaronparker/packagefactory.git
-```
-
-Git can be easily install with winget:
+Git can be installed easily with winget:
 
 ```cmd
 winget install Git.Git
 ```
+
+With git installed, you can clone the repository into a target directory (e.g. `E:\projects\packagefactory`) with the following commands:
+
+```powershell
+New-Item -Path "E:\projects" -ItemType "Directory"
+Set-Location -Path "E:\projects"
+git clone https://github.com/aaronparker/packagefactory.git
+```
+
+## Keeping in sync with the Package Factory
+
+After creating application packages with the package factory, you will have additional files downloaded including icons and installers in your cloned directory. To reset the package factory back to defaults and synchronise your copy with the source repository, you can reset your local changes and download new changes with:
+
+```bash
+git clean -f
+git restore .
+git pull
+```
+
+## GUI Tools
+
+If you aren't comfortable with the command-line instructions above, there are GUI-based git tools available that can simplify cloning the repository and managing your local copy. We recommend using:
+
+* [GitHub Desktop](https://desktop.github.com/); or
+* [Fork](https://git-fork.com/)

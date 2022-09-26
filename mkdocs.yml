@@ -107,8 +107,8 @@ extra:
 nav:
   - Home: index.md
   - Using PSPackageFactory:
-    - Using PSPackageFactory: use.md
     - Set Up the Packaging Factory: setup.md
+    - Run Locally: use.md
     - About App.json: app.md
     - About Install.json: install.md
   - About IntuneWin32AppPackager: intunewin32.md

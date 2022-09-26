@@ -58,6 +58,7 @@
         "vcredist",
         "VERYSILENT",
         "windowsdesktop",
+        "winget",
         "winmsi"
     ]
 }
