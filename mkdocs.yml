@@ -106,8 +106,12 @@ extra:
   # Page tree
 nav:
   - Home: index.md
-  - Using PSPackageFactory: use.md
-  - IntuneWin32: intunewin32.md
+  - Using PSPackageFactory:
+    - Using PSPackageFactory: use.md
+    - Set Up the Packaging Factory: setup.md
+    - About App.json: app.md
+    - About Install.json: install.md
+  - About IntuneWin32AppPackager: intunewin32.md
   - Evergreen: https://stealthpuppy.com/evergreen/
   - VcRedist: https://vcredist.com/
   - stealthpuppy.com: https://stealthpuppy.com/

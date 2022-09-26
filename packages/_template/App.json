@@ -1,6 +1,10 @@
 {
   "Application": {
-
+    "Name": "Application name",
+    "Filter": "Get-EvergreenApp -Name \"AdobeAcrobatReaderDC\" | Where-Object { $_.Language -eq \"MUI\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+    "Title": "Application name/title used in the Intune package",
+    "Language": "English",
+    "Architecture": "x64"
   },
   "PackageInformation": {
     "SetupType": "MSI \\ EXE",
@@ -18,7 +22,7 @@
     "PrivacyURL": "https://www.appvendor.com/privacy.html",
     "Notes": "AppNote",
     "Categories": [],
-    "PSPackageFactoryGuid": "b422dbe7-a401-4475-b25e-09f0e84844bd"
+    "PSPackageFactoryGuid": "<unique GUID>"
   },
   "Program": {
     "InstallCommand": "<-- Only required when SetupType is set as EXE -->",

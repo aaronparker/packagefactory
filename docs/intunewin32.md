@@ -42,7 +42,7 @@ Install-Module -Name IntuneWin32App
 
 Within the manifest file, there are several segments of configuration that controls different parts in the packaging framework. Below are sample configurations for each segment including their possible values. Since the manifest file is written in JSON, there's no built in commenting support system. Segments consists of static properties, such as PackageInformation for instance. Static properties within the manifest file should never be changed. Sub-properties such as `SetupType` for instance, are referred to as dynamic properties (meaning that they are named differently depending on the configuration scenario, e.g. MSI or EXE, or a detection rule based on a script or registry key). Some dynamic properties have a set of pre-defined values which can be used. Such dynamic properties are documented with their possible values, for instance as shown below:
 
-```Json
+```json
 "DeviceRestartBehavior": "suppress \\ force \\ basedOnReturnCode \\ allow"
 ```
 
@@ -52,7 +52,7 @@ Each possible value are separated with the '\\' character, where the desired val
 
 Below block is the main information related to the packaging of a Win32 app, like the setup file, content source folder and output folder for the .intunewin file, but it also contains other information such as the icon file to use and last but not least, the overall packaging method as either EXE or MSI.
 
-```Json
+```json
 "PackageInformation": {
     "SetupType": "MSI \\ EXE",
     "SetupFile": "Setup.exe",
@@ -66,7 +66,7 @@ Below block is the main information related to the packaging of a Win32 app, lik
 
 This block contains the basic Win32 app information, such as the display name, description and publisher. All properties are required to have a value, with an exception for the Notes property.
 
-```Json
+```json
 "Information": {
     "DisplayName": "AppName 1.0.0",
     "Description": "Installs AppName 1.0.0",
@@ -78,7 +78,7 @@ This block contains the basic Win32 app information, such as the display name, d
 
 This block contains the desired program information of a Win32 app. InstallCommand and UninstallCommand are only required when `SetupType` in the PackageInformation section is set to EXE, otherwise the packaging creation process will automatically construct the installation and uninstallation commands for MSI installations. In addition to this, the install experience, for the installation to run in either System or User context including the restart behavior are specified here.
 
-```Json
+```json
 "Program": {
     "InstallCommand": "<-- Only required when SetupType is set as EXE -->",
     "UninstallCommand": "<-- Only required when SetupType is set as EXE -->",
@@ -106,7 +106,7 @@ Below are example configurations for each supported detection method for a Regis
 
 #### DetectionRule - Registry - Existence
 
-```Json
+```json
 {
     "Type": "Registry",
     "DetectionMethod": "Existence",
@@ -119,7 +119,7 @@ Below are example configurations for each supported detection method for a Regis
 
 #### DetectionRule - Registry - IntegerComparison
 
-```Json
+```json
 {
     "Type": "Registry",
     "DetectionMethod": "IntegerComparison",
@@ -133,7 +133,7 @@ Below are example configurations for each supported detection method for a Regis
 
 #### DetectionRule - Registry - StringComparison
 
-```Json
+```json
 {
     "Type": "Registry",
     "DetectionMethod": "StringComparison",
@@ -147,7 +147,7 @@ Below are example configurations for each supported detection method for a Regis
 
 More: Registry - StringComparison
 
-```Json
+```json
 {
     "Type": "Registry",
     "DetectionMethod": "VersionComparison",
@@ -169,7 +169,7 @@ A File detection rule type can be of different detection methods, such as:
 - Version
 - Size
 
-```Json
+```json
 {
     "Type": "Registry",
     "DetectionMethod": "VersionComparison",
@@ -183,7 +183,7 @@ A File detection rule type can be of different detection methods, such as:
 
 ### MSI Example manifest
 
-```Json
+```json
 {
     "PackageInformation": {
         "SetupType": "MSI",
