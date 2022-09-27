@@ -23,7 +23,7 @@ try {
     # Read the list of applications; we're assuming that $Manifest exists
     Write-Host -ForegroundColor "Cyan" "Get package list from: $([System.IO.Path]::Combine($Path, $PackageFolder))."
     $ManifestList = Get-ChildItem -Path $([System.IO.Path]::Combine($Path, $PackageFolder)) -Recurse -Filter $PackageManifest
-    Write-Host -ForegroundColor "Cyan" "Found packages: $($ManifestList.Count)"
+    Write-Host -ForegroundColor "Cyan" "Found $($ManifestList.Count) packages"
 }
 catch {
     throw $_
@@ -38,7 +38,7 @@ foreach ($ManifestJson in $ManifestList) {
         $Manifest = Get-Content -Path $ManifestJson.FullName -ErrorAction "SilentlyContinue" | ConvertFrom-Json -Depth 20 -ErrorAction "SilentlyContinue"
     }
     catch {
-        throw $_
+        Write-Warning -Message "Error reading $($ManifestJson.FullName) with: $($_.Exception.Message)"
     }
 
     if ($null -eq $Manifest.Application.Filter) {
@@ -51,7 +51,10 @@ foreach ($ManifestJson in $ManifestList) {
         Write-Host -ForegroundColor "Cyan" "Running: $($Manifest.Application.Filter)."
         $AppUpdate = Invoke-Expression -Command $Manifest.Application.Filter -ErrorAction "SilentlyContinue" -WarningAction "SilentlyContinue"
 
-        if ($Null -ne $AppUpdate) {
+        if ([System.String]::IsNullOrEmpty($AppUpdate.Version)) {
+            Write-Warning -Message "Returned null version value from: $($Manifest.Application.Filter)"
+        }
+        else {
             Write-Host -ForegroundColor "Cyan" "Found: $($Manifest.Application.Title) $($AppUpdate.Version) $($AppUpdate.Architecture)."
 
             # If the version that Evergreen returns is higher than the version in the manifest
@@ -199,7 +202,7 @@ foreach ($ManifestJson in $ManifestList) {
             #endregion
         }
         else {
-            Write-Host "Failed to return details from: $($Manifest.Application.Filter )"
+            Write-Warning -Message "Failed to return details from: $($Manifest.Application.Filter)"
         }
     }
 }
