@@ -31,3 +31,4 @@ auth.json
 ehthumbs.db
 Thumbs.db
 *.tmp
+.cache
