@@ -66,4 +66,4 @@ jobs:
               Path         = "${{ github.workspace }}"
               Type         = "Updates"
           }
-          .\scripts\New-PipelineWin32Apps.ps1 @params
+          .\scripts\New-PipelineWin32App.ps1 @params
