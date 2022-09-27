@@ -20,8 +20,8 @@
     "PSPackageFactoryGuid": "887f6218-b04d-4cf6-bce1-facedc4bdb7a"
   },
   "Program": {
-    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
-    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
     "UninstallCommand": "MsiExec.exe /X \"{2B3CA448-5266-480F-85FA-2FCCB3C8712C}\" /quiet",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"

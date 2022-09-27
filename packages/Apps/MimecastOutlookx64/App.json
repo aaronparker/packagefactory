@@ -20,8 +20,8 @@
     "PSPackageFactoryGuid": "c92fdc3e-6bb3-4cce-8955-3ce4bef2a1d8"
   },
   "Program": {
-    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
-    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
     "UninstallCommand": "MsiExec.exe /X \"{83F8DF4E-C625-4DCD-93A3-DE063BC32D49}\" /quiet /log \"C:\\ProgramData\\PackageFactory\\logs\\MimecastOutlook.log\"",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
