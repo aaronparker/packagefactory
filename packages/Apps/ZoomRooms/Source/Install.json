@@ -1,16 +1,16 @@
 {
-    "PackageInformation": {
-        "SetupType": "MSI",
-        "SetupFile": "ZoomInstallerFull.msi",
-        "Version": "5.11.3.1634"
-    },
-    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
-    "InstallTasks": {
-        "StopProcess": [],
-        "ArgumentList": "/package \"#SetupFile\" /quiet Silent=true EnableSSLVerification=true AcceptGDPR=true SystemOption=495 /log \"#LogPath\\#LogName.log\""
-    },
-    "PostInstall": {
-        "Remove": [],
-        "Copy": []
-    }
+  "PackageInformation": {
+    "SetupType": "MSI",
+    "SetupFile": "zoomrooms-5.12.0.1933-x64.msi",
+    "Version": "5.12.0.1933"
+  },
+  "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
+  "InstallTasks": {
+    "StopProcess": [],
+    "ArgumentList": "/package \"#SetupFile\" /quiet Silent=true EnableSSLVerification=true AcceptGDPR=true SystemOption=495 /log \"#LogPath\\#LogName.log\""
+  },
+  "PostInstall": {
+    "Remove": [],
+    "Copy": []
+  }
 }
