@@ -201,8 +201,5 @@ foreach ($ManifestJson in $ManifestList) {
             }
             #endregion
         }
-        else {
-            Write-Warning -Message "Failed to return details from: $($Manifest.Application.Filter)"
-        }
     }
 }
