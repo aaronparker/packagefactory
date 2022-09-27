@@ -8,7 +8,7 @@
   },
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "AcroRdrDCx64Upd2200220191_MUI.msp",
+    "SetupFile": "AcroRdrDCx64Upd2200220212_MUI.msp",
     "Version": "22.002.20212",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
