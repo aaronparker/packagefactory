@@ -121,7 +121,7 @@ foreach ($App in $Applications) {
         # Import the application into Intune
         $params = @{
             Application       = $AppItem
-            Path              = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type))
+            Path              = $([System.IO.Path]::Combine($Path, $PackageFolder))
             Type              = $Type
             DisplayNameSuffix  = "(Package Factory)"
         }
