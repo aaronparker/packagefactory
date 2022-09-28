@@ -1,19 +1,18 @@
 {
-    "PackageInformation": {
-        "SetupType": "MSI",
-        "SetupFile": "EditorV9.x64.msi",
-        "Version": "9.4.363.0"
-    },
-    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
-    "InstallTasks": {
-        "ArgumentList": "/package \"#SetupFile\" /quiet /norestart SET_AS_DEFAULT=\"0\" VIEW_IN_BROWSERS=\"0\" DESKTOP_SHORTCUTS=\"0\" /log \"#LogPath\\#LogName.log\""
-    },
-    "PostInstall": {
-        "Remove": [
-            "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Tracker Software\\PDF-XChange Editor",
-            "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Tracker Software\\PDF-XChange Lite"
-        ],
-        "Copy": [
-        ]
-    }
+  "PackageInformation": {
+    "SetupType": "MSI",
+    "SetupFile": "EditorV9.x64.msi",
+    "Version": "9.4.364.0"
+  },
+  "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
+  "InstallTasks": {
+    "ArgumentList": "/package \"#SetupFile\" /quiet /norestart SET_AS_DEFAULT=\"0\" VIEW_IN_BROWSERS=\"0\" DESKTOP_SHORTCUTS=\"0\" /log \"#LogPath\\#LogName.log\""
+  },
+  "PostInstall": {
+    "Remove": [
+      "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Tracker Software\\PDF-XChange Editor",
+      "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Tracker Software\\PDF-XChange Lite"
+    ],
+    "Copy": []
+  }
 }
