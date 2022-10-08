@@ -1,8 +1,8 @@
 {
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "Firefox Setup 105.0.2.msi",
-    "Version": "105.0.2"
+    "SetupFile": "Firefox Setup 105.0.3.msi",
+    "Version": "105.0.3"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
