@@ -1,17 +1,15 @@
 {
-    "PackageInformation": {
-        "SetupType": "EXE",
-        "SetupFile": "AcroRdrDCx642200220191_MUI.exe",
-        "Version": "22.002.20191"
-    },
-    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
-    "InstallTasks": {
-        "ArgumentList": "-sfx_nu /sALL /rps /l /msi EULA_ACCEPT=YES ENABLE_CHROMEEXT=0 DISABLE_BROWSER_INTEGRATION=1 ENABLE_OPTIMIZATION=YES ADD_THUMBNAILPREVIEW=0 DISABLEDESKTOPSHORTCUT=1 /log \"#LogPath\\#LogName.log\""
-    },
-    "PostInstall": {
-        "Remove": [
-        ],
-        "Copy": [
-        ]
-    }
+  "PackageInformation": {
+    "SetupType": "EXE",
+    "SetupFile": "AcroRdrDCx642200320258_MUI.exe",
+    "Version": "22.003.20258"
+  },
+  "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
+  "InstallTasks": {
+    "ArgumentList": "-sfx_nu /sALL /rps /l /msi EULA_ACCEPT=YES ENABLE_CHROMEEXT=0 DISABLE_BROWSER_INTEGRATION=1 ENABLE_OPTIMIZATION=YES ADD_THUMBNAILPREVIEW=0 DISABLEDESKTOPSHORTCUT=1 /log \"#LogPath\\#LogName.log\""
+  },
+  "PostInstall": {
+    "Remove": [],
+    "Copy": []
+  }
 }
