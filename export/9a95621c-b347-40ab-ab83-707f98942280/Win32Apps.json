@@ -2,18 +2,18 @@
   {
     "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileApps/$entity",
     "@odata.type": "#microsoft.graph.win32LobApp",
-    "id": "245494c7-2d5c-46be-acd4-1419a3b87951",
-    "displayName": "Adobe Acrobat Reader DC 22.002.20191 x64 (Package Factory)",
+    "id": "045b7365-f4bb-4146-b7fd-33cdb699adc2",
+    "displayName": "Adobe Acrobat Reader DC 22.003.20258 x64 (Package Factory)",
     "description": "The leading PDF viewer to print, sign, and annotate PDFs.",
     "publisher": "Adobe",
-    "createdDateTime": "2022-09-06T03:47:32.1839066Z",
-    "lastModifiedDateTime": "2022-09-06T03:47:32.1839066Z",
+    "createdDateTime": "2022-10-13T05:25:22.1538308Z",
+    "lastModifiedDateTime": "2022-10-13T05:25:22.1538308Z",
     "isFeatured": false,
     "privacyInformationUrl": "https://www.adobe.com/privacy.html",
     "informationUrl": "https://www.adobe.com/acrobat/pdf-reader.html",
     "owner": "",
     "developer": "Adobe",
-    "notes": "{\"CreatedBy\":\"PSPackageFactory\",\"Guid\":\"a0042672-7240-4312-892e-39623320c0a3\",\"Date\":\"2022-09-06\"}",
+    "notes": "{\"CreatedBy\":\"PSPackageFactory\",\"Guid\":\"a0042672-7240-4312-892e-39623320c0a3\",\"Date\":\"2022-10-13\"}",
     "uploadState": 1,
     "publishingState": "published",
     "isAssigned": false,
@@ -25,8 +25,8 @@
     "supersededAppCount": 0,
     "committedContentVersion": "1",
     "fileName": "IntunePackage.intunewin",
-    "size": 395719072,
-    "installCommandLine": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+    "size": 483663472,
+    "installCommandLine": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
     "uninstallCommandLine": "msiexec.exe /X \"{AC76BA86-1033-1033-7760-BC15014EA700}\" /quiet",
     "applicableArchitectures": "x64",
     "minimumFreeDiskSpaceInMB": null,
@@ -34,9 +34,9 @@
     "minimumNumberOfProcessors": null,
     "minimumCpuSpeedInMHz": null,
     "msiInformation": null,
-    "setupFilePath": "AcroRdrDCx642200220191_MUI.exe",
+    "setupFilePath": "AcroRdrDCx642200320258_MUI.exe",
     "minimumSupportedWindowsRelease": "1809",
-    "displayVersion": "22.002.20191",
+    "displayVersion": "22.003.20258",
     "allowAvailableUninstall": false,
     "minimumSupportedOperatingSystem": {
       "v8_0": false,
@@ -54,11 +54,11 @@
       "v10_21H1": false
     },
     "detectionRules": [
-      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemDetection; path=C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat; fileOrFolderName=Acrobat.exe; check32BitOn64System=False; detectionType=version; operator=greaterThanOrEqual; detectionValue=22.002.20191}"
+      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemDetection; path=C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat; fileOrFolderName=Acrobat.exe; check32BitOn64System=False; detectionType=version; operator=greaterThanOrEqual; detectionValue=22.003.20258}"
     ],
     "requirementRules": [],
     "rules": [
-      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemRule; ruleType=detection; path=C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat; fileOrFolderName=Acrobat.exe; check32BitOn64System=False; operationType=version; operator=greaterThanOrEqual; comparisonValue=22.002.20191}"
+      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemRule; ruleType=detection; path=C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat; fileOrFolderName=Acrobat.exe; check32BitOn64System=False; operationType=version; operator=greaterThanOrEqual; comparisonValue=22.003.20258}"
     ],
     "installExperience": {
       "runAsAccount": "system",
@@ -148,91 +148,18 @@
   {
     "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileApps/$entity",
     "@odata.type": "#microsoft.graph.win32LobApp",
-    "id": "5648db45-69a7-40d0-97b3-163aae49e608",
-    "displayName": "Foxit PDF Reader 12.0.1.12430 (Package Factory)",
-    "description": "View, annotate, form fill, and sign PDF across desktop, mobile, and web - no matter if you're at the office, home, or on the go.",
-    "publisher": "Foxit Software Inc.",
-    "createdDateTime": "2022-08-26T10:33:16.2877726Z",
-    "lastModifiedDateTime": "2022-08-27T09:47:38.0330841Z",
-    "isFeatured": false,
-    "privacyInformationUrl": "https://www.foxit.com/company/privacy-policy.html",
-    "informationUrl": "https://www.foxit.com/pdf-reader/",
-    "owner": "",
-    "developer": "Foxit Software Inc.",
-    "notes": "{\"CreatedBy\":\"PSPackageFactory\",\"Guid\":\"f0c70a2c-6616-4ec3-a203-895e0f15d18a\",\"Date\":\"2022-08-26\"}",
-    "uploadState": 1,
-    "publishingState": "published",
-    "isAssigned": false,
-    "roleScopeTagIds": [
-      "0"
-    ],
-    "dependentAppCount": 0,
-    "supersedingAppCount": 0,
-    "supersededAppCount": 0,
-    "committedContentVersion": "1",
-    "fileName": "IntunePackage.intunewin",
-    "size": 247103904,
-    "installCommandLine": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
-    "uninstallCommandLine": "MsiExec.exe /X \"{F398C64A-E282-11EC-8A9F-54BF64A63C26}\" /quiet",
-    "applicableArchitectures": "x86,x64",
-    "minimumFreeDiskSpaceInMB": null,
-    "minimumMemoryInMB": null,
-    "minimumNumberOfProcessors": null,
-    "minimumCpuSpeedInMHz": null,
-    "msiInformation": null,
-    "setupFilePath": "FoxitPDFReader1201_enu_Setup.msi",
-    "minimumSupportedWindowsRelease": "1809",
-    "displayVersion": "12.0.1.12430",
-    "allowAvailableUninstall": false,
-    "minimumSupportedOperatingSystem": {
-      "v8_0": false,
-      "v8_1": false,
-      "v10_0": false,
-      "v10_1607": false,
-      "v10_1703": false,
-      "v10_1709": false,
-      "v10_1803": false,
-      "v10_1809": true,
-      "v10_1903": false,
-      "v10_1909": false,
-      "v10_2004": false,
-      "v10_2H20": false,
-      "v10_21H1": false
-    },
-    "detectionRules": [
-      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemDetection; path=C:\\Program Files (x86)\\Foxit Software\\Foxit PDF Reader; fileOrFolderName=FoxitPDFReader.exe; check32BitOn64System=True; detectionType=version; operator=greaterThanOrEqual; detectionValue=12.0.1.12430}"
-    ],
-    "requirementRules": [],
-    "rules": [
-      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemRule; ruleType=detection; path=C:\\Program Files (x86)\\Foxit Software\\Foxit PDF Reader; fileOrFolderName=FoxitPDFReader.exe; check32BitOn64System=True; operationType=version; operator=greaterThanOrEqual; comparisonValue=12.0.1.12430}"
-    ],
-    "installExperience": {
-      "runAsAccount": "system",
-      "deviceRestartBehavior": "suppress"
-    },
-    "returnCodes": [
-      "@{returnCode=0; type=success}",
-      "@{returnCode=1707; type=success}",
-      "@{returnCode=3010; type=softReboot}",
-      "@{returnCode=1641; type=hardReboot}",
-      "@{returnCode=1618; type=retry}"
-    ]
-  },
-  {
-    "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileApps/$entity",
-    "@odata.type": "#microsoft.graph.win32LobApp",
-    "id": "342bc2ea-c0f2-45b6-b011-f869315fb342",
-    "displayName": "Google Chrome 105.0.5195.102 x64 (Package Factory)",
+    "id": "6187ef2e-53c2-40cf-a31d-6d86af9f86e8",
+    "displayName": "Google Chrome 105.0.5195.127 x64",
     "description": "The browser built by Google. Browse with the power of Google. With Google apps like Gmail, Google Pay, and Google Assistant, Chrome can help you stay productive and get more out of your browser.",
     "publisher": "Google",
-    "createdDateTime": "2022-09-06T03:02:02.7073807Z",
-    "lastModifiedDateTime": "2022-09-06T03:02:02.7073807Z",
+    "createdDateTime": "2022-09-18T09:44:28.8687046Z",
+    "lastModifiedDateTime": "2022-09-18T09:44:28.8687046Z",
     "isFeatured": false,
     "privacyInformationUrl": "https://www.google.com.au/intl/en_au/chrome/privacy/",
     "informationUrl": "https://www.google.com/chrome/",
     "owner": "",
     "developer": "Google",
-    "notes": "{\"CreatedBy\":\"PSPackageFactory\",\"Guid\":\"8c8cc1f6-398c-4c0c-b285-b9141dc60a75\",\"Date\":\"2022-09-06\"}",
+    "notes": "{\"CreatedBy\":\"PSPackageFactory\",\"Guid\":\"8c8cc1f6-398c-4c0c-b285-b9141dc60a75\",\"Date\":\"2022-09-18\"}",
     "uploadState": 1,
     "publishingState": "published",
     "isAssigned": false,
@@ -244,7 +171,7 @@
     "supersededAppCount": 0,
     "committedContentVersion": "1",
     "fileName": "IntunePackage.intunewin",
-    "size": 92444752,
+    "size": 92436688,
     "installCommandLine": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
     "uninstallCommandLine": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Uninstall.ps1",
     "applicableArchitectures": "x64",
@@ -255,7 +182,7 @@
     "msiInformation": null,
     "setupFilePath": "googlechromestandaloneenterprise64.msi",
     "minimumSupportedWindowsRelease": "1809",
-    "displayVersion": "105.0.5195.102",
+    "displayVersion": "105.0.5195.127",
     "allowAvailableUninstall": false,
     "minimumSupportedOperatingSystem": {
       "v8_0": false,
@@ -273,11 +200,11 @@
       "v10_21H1": false
     },
     "detectionRules": [
-      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemDetection; path=C:\\Program Files\\Google\\Chrome\\Application; fileOrFolderName=Chrome.exe; check32BitOn64System=False; detectionType=version; operator=greaterThanOrEqual; detectionValue=105.0.5195.102}"
+      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemDetection; path=C:\\Program Files\\Google\\Chrome\\Application; fileOrFolderName=Chrome.exe; check32BitOn64System=False; detectionType=version; operator=greaterThanOrEqual; detectionValue=105.0.5195.127}"
     ],
     "requirementRules": [],
     "rules": [
-      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemRule; ruleType=detection; path=C:\\Program Files\\Google\\Chrome\\Application; fileOrFolderName=Chrome.exe; check32BitOn64System=False; operationType=version; operator=greaterThanOrEqual; comparisonValue=105.0.5195.102}"
+      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemRule; ruleType=detection; path=C:\\Program Files\\Google\\Chrome\\Application; fileOrFolderName=Chrome.exe; check32BitOn64System=False; operationType=version; operator=greaterThanOrEqual; comparisonValue=105.0.5195.127}"
     ],
     "installExperience": {
       "runAsAccount": "system",
@@ -294,18 +221,18 @@
   {
     "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileApps/$entity",
     "@odata.type": "#microsoft.graph.win32LobApp",
-    "id": "8f39d7cd-00b2-49bb-8c29-6c604d1a9d8d",
+    "id": "24b98d8b-eb87-4dd6-b062-e04fcd650d2c",
     "displayName": "ImageGlass 8.6.7.13 x64 (Package Factory)",
     "description": "Free - Open Source Image Viewer. A simple-to-use program that comes packed with basic functions and a nice minimal modern user interface.",
     "publisher": "Dương Diệu Pháp",
-    "createdDateTime": "2022-08-29T01:56:41.0614931Z",
-    "lastModifiedDateTime": "2022-08-29T07:35:16.1221954Z",
+    "createdDateTime": "2022-10-02T21:38:44.4627464Z",
+    "lastModifiedDateTime": "2022-10-02T21:38:44.4627464Z",
     "isFeatured": false,
     "privacyInformationUrl": "https://imageglass.org/",
     "informationUrl": "https://imageglass.org/",
     "owner": "",
     "developer": "Dương Diệu Pháp",
-    "notes": "{\"CreatedBy\":\"PSPackageFactory\",\"Guid\":\"dffc288c-a3c7-4319-9306-4b1e77f37238\",\"Date\":\"2022-08-29\"}",
+    "notes": "{\"CreatedBy\":\"PSPackageFactory\",\"Guid\":\"dffc288c-a3c7-4319-9306-4b1e77f37238\",\"Date\":\"2022-10-02\"}",
     "uploadState": 1,
     "publishingState": "published",
     "isAssigned": false,
@@ -317,8 +244,8 @@
     "supersededAppCount": 0,
     "committedContentVersion": "1",
     "fileName": "IntunePackage.intunewin",
-    "size": 24705152,
-    "installCommandLine": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+    "size": 24705296,
+    "installCommandLine": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
     "uninstallCommandLine": "MsiExec.exe /X \"{15872342-C9E9-4C65-9586-35B4EFDB806B}\" /quiet",
     "applicableArchitectures": "x64",
     "minimumFreeDiskSpaceInMB": null,
@@ -430,6 +357,79 @@
     "installExperience": {
       "runAsAccount": "system",
       "deviceRestartBehavior": "suppress"
+    },
+    "returnCodes": [
+      "@{returnCode=0; type=success}",
+      "@{returnCode=1707; type=success}",
+      "@{returnCode=3010; type=softReboot}",
+      "@{returnCode=1641; type=hardReboot}",
+      "@{returnCode=1618; type=retry}"
+    ]
+  },
+  {
+    "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileApps/$entity",
+    "@odata.type": "#microsoft.graph.win32LobApp",
+    "id": "53fcbd98-defe-4e87-81ee-713ca6045a64",
+    "displayName": "Microsoft 365 Apps, BetaChannel channel, x64",
+    "description": "Microsoft 365 Apps for the Windows desktop including Microsoft Word, Excel, PowerPoint, Outlook, OneNote, OneDrive and Teams.",
+    "publisher": "Microsoft",
+    "createdDateTime": "2022-10-13T22:01:00.6285574Z",
+    "lastModifiedDateTime": "2022-10-13T22:01:00.6285574Z",
+    "isFeatured": false,
+    "privacyInformationUrl": "https://privacy.microsoft.com/en-US/privacystatement",
+    "informationUrl": "https://www.office.com",
+    "owner": "",
+    "developer": "Microsoft",
+    "notes": "Created by GitHub Workflow [new-autopackage] in repository [aaronparker/m365apps] on 2022-10-13 using setup.exe 16.0.15427.20220.",
+    "uploadState": 1,
+    "publishingState": "published",
+    "isAssigned": false,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "dependentAppCount": 0,
+    "supersedingAppCount": 0,
+    "supersededAppCount": 0,
+    "committedContentVersion": "1",
+    "fileName": "IntunePackage.intunewin",
+    "size": 5117648,
+    "installCommandLine": "Deploy-Application.exe -DeploymentType \"Install\" -DeployMode \"Silent\"",
+    "uninstallCommandLine": "Deploy-Application.exe -DeploymentType \"Uninstall\" -DeployMode \"Silent\"",
+    "applicableArchitectures": "x64",
+    "minimumFreeDiskSpaceInMB": null,
+    "minimumMemoryInMB": null,
+    "minimumNumberOfProcessors": null,
+    "minimumCpuSpeedInMHz": null,
+    "msiInformation": null,
+    "setupFilePath": "Files\\setup.exe",
+    "minimumSupportedWindowsRelease": "1809",
+    "displayVersion": "16.0.15427.20220",
+    "allowAvailableUninstall": false,
+    "minimumSupportedOperatingSystem": {
+      "v8_0": false,
+      "v8_1": false,
+      "v10_0": false,
+      "v10_1607": false,
+      "v10_1703": false,
+      "v10_1709": false,
+      "v10_1803": false,
+      "v10_1809": true,
+      "v10_1903": false,
+      "v10_1909": false,
+      "v10_2004": false,
+      "v10_2H20": false,
+      "v10_21H1": false
+    },
+    "detectionRules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppRegistryDetection; check32BitOn64System=False; keyPath=HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\O365ProPlusRetail - en-us; valueName=; detectionType=exists; operator=notConfigured; detectionValue=}"
+    ],
+    "requirementRules": [],
+    "rules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppRegistryRule; ruleType=detection; check32BitOn64System=False; keyPath=HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\O365ProPlusRetail - en-us; valueName=; operationType=exists; operator=notConfigured; comparisonValue=}"
+    ],
+    "installExperience": {
+      "runAsAccount": "system",
+      "deviceRestartBehavior": "basedOnReturnCode"
     },
     "returnCodes": [
       "@{returnCode=0; type=success}",
@@ -572,312 +572,6 @@
     "requirementRules": [],
     "rules": [
       "@{@odata.type=#microsoft.graph.win32LobAppRegistryRule; ruleType=detection; check32BitOn64System=True; keyPath=HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{1BA063EF-A952-47D3-B795-00FF25E39DB6}; valueName=; operationType=exists; operator=notConfigured; comparisonValue=}"
-    ],
-    "installExperience": {
-      "runAsAccount": "system",
-      "deviceRestartBehavior": "suppress"
-    },
-    "returnCodes": [
-      "@{returnCode=0; type=success}",
-      "@{returnCode=1707; type=success}",
-      "@{returnCode=3010; type=softReboot}",
-      "@{returnCode=1641; type=hardReboot}",
-      "@{returnCode=1618; type=retry}"
-    ]
-  },
-  {
-    "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileApps/$entity",
-    "@odata.type": "#microsoft.graph.win32LobApp",
-    "id": "b9c6fcab-e3c7-4dbb-8a3c-a337b4cdbd4b",
-    "displayName": "Microsoft Teams 1.5.00.17656 x64",
-    "description": "More is possible with Microsoft Teams. Stay connected and access shared content any time to learn, plan, and innovate—together.",
-    "publisher": "Microsoft",
-    "createdDateTime": "2022-08-08T12:17:11.794788Z",
-    "lastModifiedDateTime": "2022-08-26T04:23:29.9336076Z",
-    "isFeatured": false,
-    "privacyInformationUrl": "https://go.microsoft.com/fwlink/?LinkId=521839",
-    "informationUrl": "https://www.microsoft.com/microsoft-teams/",
-    "owner": "",
-    "developer": "",
-    "notes": "{\"CreatedBy\":\"PSPackageFactory\",\"Guid\":\"5c38e885-d241-48ef-979e-3c0f693b6692\",\"Date\":\"2022-08-22\"}",
-    "uploadState": 1,
-    "publishingState": "published",
-    "isAssigned": false,
-    "roleScopeTagIds": [
-      "0"
-    ],
-    "dependentAppCount": 0,
-    "supersedingAppCount": 0,
-    "supersededAppCount": 0,
-    "committedContentVersion": "1",
-    "fileName": "Teams_windows_x64.intunewin",
-    "size": 128769504,
-    "installCommandLine": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\\\Install.ps1",
-    "uninstallCommandLine": "msiexec /x \"{731F6BAA-A986-45A4-8936-7C3AAAAA760B}\" /qn",
-    "applicableArchitectures": "x64",
-    "minimumFreeDiskSpaceInMB": null,
-    "minimumMemoryInMB": null,
-    "minimumNumberOfProcessors": null,
-    "minimumCpuSpeedInMHz": null,
-    "setupFilePath": "Teams_windows_x64.msi",
-    "minimumSupportedWindowsRelease": "1809",
-    "displayVersion": "1.5.0.17656",
-    "allowAvailableUninstall": false,
-    "minimumSupportedOperatingSystem": {
-      "v8_0": false,
-      "v8_1": false,
-      "v10_0": false,
-      "v10_1607": false,
-      "v10_1703": false,
-      "v10_1709": false,
-      "v10_1803": false,
-      "v10_1809": true,
-      "v10_1903": false,
-      "v10_1909": false,
-      "v10_2004": false,
-      "v10_2H20": false,
-      "v10_21H1": false
-    },
-    "detectionRules": [
-      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemDetection; path=C:\\Program Files (x86)\\Teams Installer; fileOrFolderName=Teams.exe; check32BitOn64System=False; detectionType=version; operator=greaterThanOrEqual; detectionValue=1.5.00.17656}"
-    ],
-    "requirementRules": [
-      "@{@odata.type=#microsoft.graph.win32LobAppRegistryRequirement; operator=notConfigured; detectionValue=; check32BitOn64System=False; keyPath=HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Teams; valueName=IsWVDEnvironment; detectionType=doesNotExist}"
-    ],
-    "rules": [
-      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemRule; ruleType=detection; path=C:\\Program Files (x86)\\Teams Installer; fileOrFolderName=Teams.exe; check32BitOn64System=False; operationType=version; operator=greaterThanOrEqual; comparisonValue=1.5.00.17656}",
-      "@{@odata.type=#microsoft.graph.win32LobAppRegistryRule; ruleType=requirement; check32BitOn64System=False; keyPath=HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Teams; valueName=IsWVDEnvironment; operationType=doesNotExist; operator=notConfigured; comparisonValue=}"
-    ],
-    "installExperience": {
-      "runAsAccount": "user",
-      "deviceRestartBehavior": "allow"
-    },
-    "returnCodes": [
-      "@{returnCode=0; type=success}",
-      "@{returnCode=1707; type=success}",
-      "@{returnCode=3010; type=softReboot}",
-      "@{returnCode=1641; type=hardReboot}",
-      "@{returnCode=1618; type=retry}"
-    ],
-    "msiInformation": {
-      "productCode": "{731F6BAA-A986-45A4-8936-7C3AAAAA760B}",
-      "productVersion": "1.5.0.17656",
-      "upgradeCode": "{4009BE0E-5D51-5D91-B94C-D00D7B5FE829}",
-      "requiresReboot": false,
-      "packageType": "perUser",
-      "productName": "Teams Machine-Wide Installer",
-      "publisher": "Microsoft Corporation"
-    }
-  },
-  {
-    "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileApps/$entity",
-    "@odata.type": "#microsoft.graph.win32LobApp",
-    "id": "62da6f69-c612-4034-9e9c-cf820e646cba",
-    "displayName": "Microsoft Teams 1.5.00.21668 x64 (Package Factory)",
-    "description": "More is possible with Microsoft Teams. Stay connected and access shared content any time to learn, plan, and innovate together.",
-    "publisher": "Microsoft",
-    "createdDateTime": "2022-09-04T01:37:05.9896066Z",
-    "lastModifiedDateTime": "2022-09-04T01:37:05.9896066Z",
-    "isFeatured": false,
-    "privacyInformationUrl": "https://go.microsoft.com/fwlink/?LinkId=521839",
-    "informationUrl": "https://www.microsoft.com/microsoft-teams/",
-    "owner": "",
-    "developer": "Microsoft",
-    "notes": "{\"CreatedBy\":\"PSPackageFactory\",\"Guid\":\"5c38e885-d241-48ef-979e-3c0f693b6692\",\"Date\":\"2022-09-04\"}",
-    "uploadState": 1,
-    "publishingState": "published",
-    "isAssigned": false,
-    "roleScopeTagIds": [
-      "0"
-    ],
-    "dependentAppCount": 0,
-    "supersedingAppCount": 0,
-    "supersededAppCount": 0,
-    "committedContentVersion": "1",
-    "fileName": "IntunePackage.intunewin",
-    "size": 130380128,
-    "installCommandLine": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
-    "uninstallCommandLine": "MsiExec.exe /X \"{731F6BAA-A986-45A4-8936-7C3AAAAA760B}\" /quiet",
-    "applicableArchitectures": "x64",
-    "minimumFreeDiskSpaceInMB": null,
-    "minimumMemoryInMB": null,
-    "minimumNumberOfProcessors": null,
-    "minimumCpuSpeedInMHz": null,
-    "msiInformation": null,
-    "setupFilePath": "Teams_windows_x64.msi",
-    "minimumSupportedWindowsRelease": "1809",
-    "displayVersion": "1.5.00.21668",
-    "allowAvailableUninstall": false,
-    "minimumSupportedOperatingSystem": {
-      "v8_0": false,
-      "v8_1": false,
-      "v10_0": false,
-      "v10_1607": false,
-      "v10_1703": false,
-      "v10_1709": false,
-      "v10_1803": false,
-      "v10_1809": true,
-      "v10_1903": false,
-      "v10_1909": false,
-      "v10_2004": false,
-      "v10_2H20": false,
-      "v10_21H1": false
-    },
-    "detectionRules": [
-      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemDetection; path=C:\\Program Files (x86)\\Teams Installer; fileOrFolderName=Teams.exe; check32BitOn64System=False; detectionType=version; operator=greaterThanOrEqual; detectionValue=1.5.00.21668}"
-    ],
-    "requirementRules": [
-      "@{@odata.type=#microsoft.graph.win32LobAppRegistryRequirement; operator=notConfigured; detectionValue=; check32BitOn64System=False; keyPath=HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Teams; valueName=IsWVDEnvironment; detectionType=doesNotExist}"
-    ],
-    "rules": [
-      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemRule; ruleType=detection; path=C:\\Program Files (x86)\\Teams Installer; fileOrFolderName=Teams.exe; check32BitOn64System=False; operationType=version; operator=greaterThanOrEqual; comparisonValue=1.5.00.21668}",
-      "@{@odata.type=#microsoft.graph.win32LobAppRegistryRule; ruleType=requirement; check32BitOn64System=False; keyPath=HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Teams; valueName=IsWVDEnvironment; operationType=doesNotExist; operator=notConfigured; comparisonValue=}"
-    ],
-    "installExperience": {
-      "runAsAccount": "system",
-      "deviceRestartBehavior": "suppress"
-    },
-    "returnCodes": [
-      "@{returnCode=0; type=success}",
-      "@{returnCode=1707; type=success}",
-      "@{returnCode=3010; type=softReboot}",
-      "@{returnCode=1641; type=hardReboot}",
-      "@{returnCode=1618; type=retry}"
-    ]
-  },
-  {
-    "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileApps/$entity",
-    "@odata.type": "#microsoft.graph.win32LobApp",
-    "id": "0cd49881-e2aa-45c2-be0a-416717ee0500",
-    "displayName": "Microsoft Visual Studio Code 1.70.2 x64 (Package Factory)",
-    "description": "Visual Studio Code is a lightweight but powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux. It comes with built-in support for JavaScript, TypeScript and Node.js and has a rich ecosystem of extensions for other languages (such as C++, C#, Java, Python, PHP, Go) and runtimes (such as .NET and Unity).",
-    "publisher": "Microsoft",
-    "createdDateTime": "2022-08-18T01:58:54.0815247Z",
-    "lastModifiedDateTime": "2022-08-26T04:16:39.8825906Z",
-    "isFeatured": false,
-    "privacyInformationUrl": "https://privacy.microsoft.com/privacystatement",
-    "informationUrl": "https://code.visualstudio.com/",
-    "owner": "",
-    "developer": "",
-    "notes": "{\"CreatedBy\":\"PSPackageFactory\",\"Guid\":\"e7835fa1-1fcb-4abc-a88e-cbc6bf7c09fd\",\"Date\":\"2022-08-22\"}",
-    "uploadState": 1,
-    "publishingState": "published",
-    "isAssigned": false,
-    "roleScopeTagIds": [
-      "0"
-    ],
-    "dependentAppCount": 0,
-    "supersedingAppCount": 0,
-    "supersededAppCount": 0,
-    "committedContentVersion": "1",
-    "fileName": "IntunePackage.intunewin",
-    "size": 82383392,
-    "installCommandLine": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
-    "uninstallCommandLine": "msiexec.exe /X \"{AC76BA86-1033-1033-7760-BC15014EA700}\" /quiet",
-    "applicableArchitectures": "x64",
-    "minimumFreeDiskSpaceInMB": null,
-    "minimumMemoryInMB": null,
-    "minimumNumberOfProcessors": null,
-    "minimumCpuSpeedInMHz": null,
-    "msiInformation": null,
-    "setupFilePath": "VSCodeSetup-x64-1.70.2.exe",
-    "minimumSupportedWindowsRelease": "1809",
-    "displayVersion": "1.70.2",
-    "allowAvailableUninstall": false,
-    "minimumSupportedOperatingSystem": {
-      "v8_0": false,
-      "v8_1": false,
-      "v10_0": false,
-      "v10_1607": false,
-      "v10_1703": false,
-      "v10_1709": false,
-      "v10_1803": false,
-      "v10_1809": true,
-      "v10_1903": false,
-      "v10_1909": false,
-      "v10_2004": false,
-      "v10_2H20": false,
-      "v10_21H1": false
-    },
-    "detectionRules": [
-      "@{@odata.type=#microsoft.graph.win32LobAppRegistryDetection; check32BitOn64System=False; keyPath=HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{EA457B21-F73E-494C-ACAB-524FDE069978}_is1; valueName=DisplayVersion; detectionType=version; operator=greaterThanOrEqual; detectionValue=1.70.2}"
-    ],
-    "requirementRules": [],
-    "rules": [
-      "@{@odata.type=#microsoft.graph.win32LobAppRegistryRule; ruleType=detection; check32BitOn64System=False; keyPath=HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{EA457B21-F73E-494C-ACAB-524FDE069978}_is1; valueName=DisplayVersion; operationType=version; operator=greaterThanOrEqual; comparisonValue=1.70.2}"
-    ],
-    "installExperience": {
-      "runAsAccount": "system",
-      "deviceRestartBehavior": "suppress"
-    },
-    "returnCodes": [
-      "@{returnCode=0; type=success}",
-      "@{returnCode=1707; type=success}",
-      "@{returnCode=3010; type=softReboot}",
-      "@{returnCode=1641; type=hardReboot}",
-      "@{returnCode=1618; type=retry}"
-    ]
-  },
-  {
-    "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileApps/$entity",
-    "@odata.type": "#microsoft.graph.win32LobApp",
-    "id": "a0f6b639-8bb0-4b17-b984-12e8115fdc2e",
-    "displayName": "Microsoft Visual Studio Code 1.71.0 x64 (Package Factory)",
-    "description": "Visual Studio Code is a lightweight but powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux. It comes with built-in support for JavaScript, TypeScript and Node.js and has a rich ecosystem of extensions for other languages (such as C++, C#, Java, Python, PHP, Go) and runtimes (such as .NET and Unity).",
-    "publisher": "Microsoft",
-    "createdDateTime": "2022-09-02T06:34:11.7062401Z",
-    "lastModifiedDateTime": "2022-09-02T06:34:11.7062401Z",
-    "isFeatured": false,
-    "privacyInformationUrl": "https://privacy.microsoft.com/privacystatement",
-    "informationUrl": "https://code.visualstudio.com/",
-    "owner": "",
-    "developer": "Microsoft",
-    "notes": "{\"CreatedBy\":\"PSPackageFactory\",\"Guid\":\"e7835fa1-1fcb-4abc-a88e-cbc6bf7c09fd\",\"Date\":\"2022-09-02\"}",
-    "uploadState": 1,
-    "publishingState": "published",
-    "isAssigned": false,
-    "roleScopeTagIds": [
-      "0"
-    ],
-    "dependentAppCount": 0,
-    "supersedingAppCount": 0,
-    "supersededAppCount": 0,
-    "committedContentVersion": "1",
-    "fileName": "IntunePackage.intunewin",
-    "size": 82590368,
-    "installCommandLine": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
-    "uninstallCommandLine": "msiexec.exe /X \"{AC76BA86-1033-1033-7760-BC15014EA700}\" /quiet",
-    "applicableArchitectures": "x64",
-    "minimumFreeDiskSpaceInMB": null,
-    "minimumMemoryInMB": null,
-    "minimumNumberOfProcessors": null,
-    "minimumCpuSpeedInMHz": null,
-    "msiInformation": null,
-    "setupFilePath": "VSCodeSetup-x64-1.71.0.exe",
-    "minimumSupportedWindowsRelease": "1809",
-    "displayVersion": "1.71.0",
-    "allowAvailableUninstall": false,
-    "minimumSupportedOperatingSystem": {
-      "v8_0": false,
-      "v8_1": false,
-      "v10_0": false,
-      "v10_1607": false,
-      "v10_1703": false,
-      "v10_1709": false,
-      "v10_1803": false,
-      "v10_1809": true,
-      "v10_1903": false,
-      "v10_1909": false,
-      "v10_2004": false,
-      "v10_2H20": false,
-      "v10_21H1": false
-    },
-    "detectionRules": [
-      "@{@odata.type=#microsoft.graph.win32LobAppRegistryDetection; check32BitOn64System=False; keyPath=HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{EA457B21-F73E-494C-ACAB-524FDE069978}_is1; valueName=DisplayVersion; detectionType=version; operator=greaterThanOrEqual; detectionValue=1.71.0}"
-    ],
-    "requirementRules": [],
-    "rules": [
-      "@{@odata.type=#microsoft.graph.win32LobAppRegistryRule; ruleType=detection; check32BitOn64System=False; keyPath=HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{EA457B21-F73E-494C-ACAB-524FDE069978}_is1; valueName=DisplayVersion; operationType=version; operator=greaterThanOrEqual; comparisonValue=1.71.0}"
     ],
     "installExperience": {
       "runAsAccount": "system",
@@ -1097,6 +791,759 @@
     "requirementRules": [],
     "rules": [
       "@{@odata.type=#microsoft.graph.win32LobAppFileSystemRule; ruleType=detection; path=C:\\Program Files (x86)\\Camo Studio; fileOrFolderName=CamoStudio.exe; check32BitOn64System=False; operationType=version; operator=greaterThanOrEqual; comparisonValue=1.2.0.7873}"
+    ],
+    "installExperience": {
+      "runAsAccount": "system",
+      "deviceRestartBehavior": "suppress"
+    },
+    "returnCodes": [
+      "@{returnCode=0; type=success}",
+      "@{returnCode=1707; type=success}",
+      "@{returnCode=3010; type=softReboot}",
+      "@{returnCode=1641; type=hardReboot}",
+      "@{returnCode=1618; type=retry}"
+    ]
+  },
+  {
+    "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileApps/$entity",
+    "@odata.type": "#microsoft.graph.win32LobApp",
+    "id": "22ba57d3-3f9b-4cc9-a1bc-4880dc1d0375",
+    "displayName": "Save Log Analytics Secrets",
+    "description": "Save secrets to `C:\\Windows\\System32\\config\\systemprofile\\AppData\\Local\\key.xml` for later use in Azure Log Analytics scripts",
+    "publisher": "stealthpuppy",
+    "createdDateTime": "2022-10-17T11:52:25.9225671Z",
+    "lastModifiedDateTime": "2022-10-18T00:15:19.3977456Z",
+    "isFeatured": false,
+    "privacyInformationUrl": null,
+    "informationUrl": "https://github.com/Insentra/mem-foundations/tree/main/reporting",
+    "owner": "",
+    "developer": "",
+    "notes": "",
+    "uploadState": 1,
+    "publishingState": "published",
+    "isAssigned": false,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "dependentAppCount": 0,
+    "supersedingAppCount": 0,
+    "supersededAppCount": 0,
+    "committedContentVersion": "3",
+    "fileName": "Save-LogSecrets.intunewin",
+    "size": 1744,
+    "installCommandLine": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -ExecutionPolicy RemoteSigned -File .\\Save-LogSecrets.ps1",
+    "uninstallCommandLine": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -ExecutionPolicy RemoteSigned -File .\\Remove-LogSecrets.ps1",
+    "applicableArchitectures": "x86,x64",
+    "minimumFreeDiskSpaceInMB": null,
+    "minimumMemoryInMB": null,
+    "minimumNumberOfProcessors": null,
+    "minimumCpuSpeedInMHz": null,
+    "msiInformation": null,
+    "setupFilePath": "Save-LogSecrets.ps1",
+    "minimumSupportedWindowsRelease": "1909",
+    "displayVersion": "",
+    "allowAvailableUninstall": false,
+    "minimumSupportedOperatingSystem": {
+      "v8_0": false,
+      "v8_1": false,
+      "v10_0": false,
+      "v10_1607": false,
+      "v10_1703": false,
+      "v10_1709": false,
+      "v10_1803": false,
+      "v10_1809": false,
+      "v10_1903": false,
+      "v10_1909": true,
+      "v10_2004": false,
+      "v10_2H20": false,
+      "v10_21H1": false
+    },
+    "detectionRules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemDetection; path=C:\\Windows\\System32\\config\\systemprofile\\AppData\\Local; fileOrFolderName=key.xml; check32BitOn64System=False; detectionType=exists; operator=notConfigured; detectionValue=}"
+    ],
+    "requirementRules": [],
+    "rules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemRule; ruleType=detection; path=C:\\Windows\\System32\\config\\systemprofile\\AppData\\Local; fileOrFolderName=key.xml; check32BitOn64System=False; operationType=exists; operator=notConfigured; comparisonValue=}"
+    ],
+    "installExperience": {
+      "runAsAccount": "system",
+      "deviceRestartBehavior": "suppress"
+    },
+    "returnCodes": [
+      "@{returnCode=0; type=success}",
+      "@{returnCode=1707; type=success}",
+      "@{returnCode=3010; type=softReboot}",
+      "@{returnCode=1641; type=hardReboot}",
+      "@{returnCode=1618; type=retry}"
+    ]
+  },
+  {
+    "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileApps/$entity",
+    "@odata.type": "#microsoft.graph.win32LobApp",
+    "id": "60ccfc44-4985-4410-8507-a3b44005f852",
+    "displayName": "Terminals 4.0.1 (PMP)",
+    "description": "Terminals is a secure, multi tab terminal services/remote desktop client. It uses Terminal Services ActiveX Client (mstscax.dll). The project started from the need of controlling multiple connections simultaneously. It is a complete replacement for the mstsc.exe (Terminal Services) client.",
+    "publisher": "Robert Chartier",
+    "createdDateTime": "2022-10-19T03:41:18.2624033Z",
+    "lastModifiedDateTime": "2022-10-19T03:41:18.2624033Z",
+    "isFeatured": false,
+    "privacyInformationUrl": "",
+    "informationUrl": "https://github.com/Terminals-Origin/Terminals/blob/master/Docs/User-documentation.md",
+    "owner": null,
+    "developer": null,
+    "notes": "PmpAppId:653c3bed-26d5-4384-bfaa-7d0873478c2e",
+    "uploadState": 1,
+    "publishingState": "published",
+    "isAssigned": false,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "dependentAppCount": 0,
+    "supersedingAppCount": 0,
+    "supersededAppCount": 0,
+    "committedContentVersion": "1",
+    "fileName": "PatchMyPC-ScriptRunner.intunewin",
+    "size": 4679136,
+    "installCommandLine": "PatchMyPC-ScriptRunner.exe /InstallPackage",
+    "uninstallCommandLine": "PatchMyPC-ScriptRunner.exe /UninstallPackage",
+    "applicableArchitectures": "x86,x64",
+    "minimumFreeDiskSpaceInMB": 4,
+    "minimumMemoryInMB": null,
+    "minimumNumberOfProcessors": null,
+    "minimumCpuSpeedInMHz": null,
+    "msiInformation": null,
+    "setupFilePath": "PatchMyPC-ScriptRunner.exe",
+    "minimumSupportedWindowsRelease": "1607",
+    "displayVersion": "4.0.1",
+    "allowAvailableUninstall": false,
+    "minimumSupportedOperatingSystem": {
+      "v8_0": false,
+      "v8_1": false,
+      "v10_0": false,
+      "v10_1607": true,
+      "v10_1703": false,
+      "v10_1709": false,
+      "v10_1803": false,
+      "v10_1809": false,
+      "v10_1903": false,
+      "v10_1909": false,
+      "v10_2004": false,
+      "v10_2H20": false,
+      "v10_21H1": false
+    },
+    "detectionRules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppPowerShellScriptDetection; enforceSignatureCheck=False; runAs32Bit=False; scriptContent=dHJ5eyRyPSdcZCtcLlxkKyhcLlxkKyk/KFwuXGQrKT8nOyR0PSdzaWxlbnRseWNvbnRpbnVlJzskej0nVGVybWluYWxzJzskbz0nRGV0ZWN0ZWQnOyRkPSc0LjAuMSc7ZnVuY3Rpb24gbCB7cGFyYW0oJGgsJGYsJHMpJHY9W2Jvb2xdKCh3aG9hbWkgL3VzZXIpLW1hdGNoJ1MtMS01LTE4Jyk7JGw9IiQobmkgJGVudjpwcm9ncmFtZGF0YVxQYXRjaE15UENJbnR1bmVMb2dzIC1pdCBkaSAtZm8gLWVhICR0KVwkKCgkcT0nUGF0Y2hNeVBDLVNvZnR3YXJlRGV0ZWN0aW9uU2NyaXB0LmxvZycpKSI7JHA9c3dpdGNoKCR2KXskdHJ1ZXskbH1kZWZhdWx0eyIkZW52OnRlbXBcJHEifX1pZigoKCRpPWdpICRwIC1lYSAkdCkpLmxlbmd0aC1nZTVtYil7cmkgKCR3PSRpLkZ1bGxOYW1lLlJlcGxhY2UoJy5sb2cnLCcubG9fJykpIC1mbyAtZWEgJHQ7cmVuICRpICR3fSIkKEdldC1EYXRlKX5bJHNdfltGb3VuZDokZl1+W1B1cnBvc2U6RGV0ZWN0aW9uXX5bQ29udGV4dDokZW52OnVzZXJuYW1lKV1+W0hpdmU6JGhdInxPdXQtRmlsZSAkcCAtYSAtZm99ZnVuY3Rpb24gY3twYXJhbSgkcyl0cnl7c3dpdGNoKCRzLlRvQ2hhckFycmF5KCkuV2hlcmV7JF8tZXEnLid9LkNvdW50KXsweyRzKz0nLjAnKjN9MXskcys9Jy4wLjAnfTJ7JHMrPScuMCd9fVt2ZXJzaW9uXSRzfWNhdGNoeyRhPWZvcmVhY2goJGMgaW4gJHMuU3BsaXQoJy4nKSl7dHJ5e1tpbnRdJGN9Y2F0Y2h7W2ludF06Ok1heFZhbHVlfX10cnl7YyAoW1N0cmluZ106OkpvaW4oJy4nLCRhKSl9Y2F0Y2h7W3ZlcnNpb25dKCcwLjAuMC4wJyl9fX1mb3JlYWNoKCRoIGluICdIS0xNJyl7Zm9yZWFjaCgkeCBpbiAnc29mdHdhcmUnLCQoaWYoW0ludFB0cl06OlNpemUtZXE4KXsnU09GVFdBUkVcV09XNjQzMk5PREUnfSkpe2ZvcmVhY2goJHMgaW4oZ3AgKCRHPSIkaGA6XCR4XG1pY3Jvc29mdFx3aW5kb3dzXGN1cnJlbnR2ZXJzaW9uXHVuaW5zdGFsbFwqIikgKCRrPSdEaXNwbGF5TmFtZScpLERpc3BsYXlWZXJzaW9uIC1lYSAkdHxzZWxlY3QgQHtsPSdhJztlPXskXy4ka319LEB7bD0nYic7ZT17W3JlZ2V4XTo6bWF0Y2goJF8uRGlzcGxheVZlcnNpb24sJHIpWzBdLnZhbHVlfX0scHNjaGlsZG5hbWUsQHtsPSdjJztlPXtbcmVnZXhdOjptYXRjaCgkXy4kaywkcilbMF0udmFsdWV9fSl8P3tpZigkXy5wc2NoaWxkbmFtZS1lcSgkbT0ne0Y2NTVGRTYwLTREOTgtNDk4My1CMjQzLTk2RDYxMzUzRUQ0OX0nKSl7KCRmPSR0cnVlKX1lbHNlaWYoJGU9JycpeyRfLmEtbm90bGlrZSRlLWFuZCRfLmEtbGlrZSR6LWFuZFtib29sXSgkXy5wc2NoaWxkbmFtZS1hc1tndWlkXS1pc1tndWlkXSl9ZWxzZXskXy5hLWxpa2Ukei1hbmRbYm9vbF0oJF8ucHNjaGlsZG5hbWUtYXNbZ3VpZF0taXNbZ3VpZF0pfX0pe2lmKCRmKXtsICRnICR0cnVlICIkKCRzLmEpICRtIjtyZXR1cm4gJG99aWYoKGMgJHMuYiktZ2UoYyAkZCktb3IoISRzLmItYW5kJHMuYy1uZScnLWFuZChjICRzLmMpLWdlKGMgJGQpKSl7aWYoKCRzLmItbGlrZSgkdj0nKicpLW9yJHMuYy1saWtlJHYpKXtsICRnICR0cnVlICIkKCRzLmEpICRkIjtyZXR1cm4gJG99fX1sICRnICRmYWxzZSAiJHogJG0gJGQifX19Y2F0Y2h7bCAnJyAnJyAkXy5FeGNlcHRpb24uTWVzc2FnZX0=}"
+    ],
+    "requirementRules": [],
+    "rules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppPowerShellScriptRule; ruleType=detection; displayName=; enforceSignatureCheck=False; runAs32Bit=False; runAsAccount=; scriptContent=dHJ5eyRyPSdcZCtcLlxkKyhcLlxkKyk/KFwuXGQrKT8nOyR0PSdzaWxlbnRseWNvbnRpbnVlJzskej0nVGVybWluYWxzJzskbz0nRGV0ZWN0ZWQnOyRkPSc0LjAuMSc7ZnVuY3Rpb24gbCB7cGFyYW0oJGgsJGYsJHMpJHY9W2Jvb2xdKCh3aG9hbWkgL3VzZXIpLW1hdGNoJ1MtMS01LTE4Jyk7JGw9IiQobmkgJGVudjpwcm9ncmFtZGF0YVxQYXRjaE15UENJbnR1bmVMb2dzIC1pdCBkaSAtZm8gLWVhICR0KVwkKCgkcT0nUGF0Y2hNeVBDLVNvZnR3YXJlRGV0ZWN0aW9uU2NyaXB0LmxvZycpKSI7JHA9c3dpdGNoKCR2KXskdHJ1ZXskbH1kZWZhdWx0eyIkZW52OnRlbXBcJHEifX1pZigoKCRpPWdpICRwIC1lYSAkdCkpLmxlbmd0aC1nZTVtYil7cmkgKCR3PSRpLkZ1bGxOYW1lLlJlcGxhY2UoJy5sb2cnLCcubG9fJykpIC1mbyAtZWEgJHQ7cmVuICRpICR3fSIkKEdldC1EYXRlKX5bJHNdfltGb3VuZDokZl1+W1B1cnBvc2U6RGV0ZWN0aW9uXX5bQ29udGV4dDokZW52OnVzZXJuYW1lKV1+W0hpdmU6JGhdInxPdXQtRmlsZSAkcCAtYSAtZm99ZnVuY3Rpb24gY3twYXJhbSgkcyl0cnl7c3dpdGNoKCRzLlRvQ2hhckFycmF5KCkuV2hlcmV7JF8tZXEnLid9LkNvdW50KXsweyRzKz0nLjAnKjN9MXskcys9Jy4wLjAnfTJ7JHMrPScuMCd9fVt2ZXJzaW9uXSRzfWNhdGNoeyRhPWZvcmVhY2goJGMgaW4gJHMuU3BsaXQoJy4nKSl7dHJ5e1tpbnRdJGN9Y2F0Y2h7W2ludF06Ok1heFZhbHVlfX10cnl7YyAoW1N0cmluZ106OkpvaW4oJy4nLCRhKSl9Y2F0Y2h7W3ZlcnNpb25dKCcwLjAuMC4wJyl9fX1mb3JlYWNoKCRoIGluICdIS0xNJyl7Zm9yZWFjaCgkeCBpbiAnc29mdHdhcmUnLCQoaWYoW0ludFB0cl06OlNpemUtZXE4KXsnU09GVFdBUkVcV09XNjQzMk5PREUnfSkpe2ZvcmVhY2goJHMgaW4oZ3AgKCRHPSIkaGA6XCR4XG1pY3Jvc29mdFx3aW5kb3dzXGN1cnJlbnR2ZXJzaW9uXHVuaW5zdGFsbFwqIikgKCRrPSdEaXNwbGF5TmFtZScpLERpc3BsYXlWZXJzaW9uIC1lYSAkdHxzZWxlY3QgQHtsPSdhJztlPXskXy4ka319LEB7bD0nYic7ZT17W3JlZ2V4XTo6bWF0Y2goJF8uRGlzcGxheVZlcnNpb24sJHIpWzBdLnZhbHVlfX0scHNjaGlsZG5hbWUsQHtsPSdjJztlPXtbcmVnZXhdOjptYXRjaCgkXy4kaywkcilbMF0udmFsdWV9fSl8P3tpZigkXy5wc2NoaWxkbmFtZS1lcSgkbT0ne0Y2NTVGRTYwLTREOTgtNDk4My1CMjQzLTk2RDYxMzUzRUQ0OX0nKSl7KCRmPSR0cnVlKX1lbHNlaWYoJGU9JycpeyRfLmEtbm90bGlrZSRlLWFuZCRfLmEtbGlrZSR6LWFuZFtib29sXSgkXy5wc2NoaWxkbmFtZS1hc1tndWlkXS1pc1tndWlkXSl9ZWxzZXskXy5hLWxpa2Ukei1hbmRbYm9vbF0oJF8ucHNjaGlsZG5hbWUtYXNbZ3VpZF0taXNbZ3VpZF0pfX0pe2lmKCRmKXtsICRnICR0cnVlICIkKCRzLmEpICRtIjtyZXR1cm4gJG99aWYoKGMgJHMuYiktZ2UoYyAkZCktb3IoISRzLmItYW5kJHMuYy1uZScnLWFuZChjICRzLmMpLWdlKGMgJGQpKSl7aWYoKCRzLmItbGlrZSgkdj0nKicpLW9yJHMuYy1saWtlJHYpKXtsICRnICR0cnVlICIkKCRzLmEpICRkIjtyZXR1cm4gJG99fX1sICRnICRmYWxzZSAiJHogJG0gJGQifX19Y2F0Y2h7bCAnJyAnJyAkXy5FeGNlcHRpb24uTWVzc2FnZX0=; operationType=notConfigured; operator=notConfigured; comparisonValue=}"
+    ],
+    "installExperience": {
+      "runAsAccount": "system",
+      "deviceRestartBehavior": "basedOnReturnCode"
+    },
+    "returnCodes": [
+      "@{returnCode=0; type=success}",
+      "@{returnCode=1707; type=success}",
+      "@{returnCode=3010; type=softReboot}",
+      "@{returnCode=1641; type=hardReboot}",
+      "@{returnCode=1618; type=retry}"
+    ]
+  },
+  {
+    "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileApps/$entity",
+    "@odata.type": "#microsoft.graph.win32LobApp",
+    "id": "bda645d0-829e-4e37-8f66-fbfaad4789fb",
+    "displayName": "Tracker Software PDF-XChange Editor 9.4.363.0 x64 (Package Factory)",
+    "description": "PDF-XChange Editor V9 - one of the fastest and most feature-rich options available worldwide to create, view, edit and annotate PDF files. PDF-XChange Lite V9, our award-winning technology that installs as a virtual printer, is included with this product. It can be used to print-to-PDF from Windows applications and features an optimized hybrid engine that significantly increases the quality of conversion for images and image-based text characters.",
+    "publisher": "Tracker Software",
+    "createdDateTime": "2022-09-13T00:26:47.4887396Z",
+    "lastModifiedDateTime": "2022-09-13T01:01:58.6797094Z",
+    "isFeatured": false,
+    "privacyInformationUrl": "https://www.tracker-software.com/privacy-policy",
+    "informationUrl": "https://www.tracker-software.com/product/pdf-xchange-editor",
+    "owner": "",
+    "developer": "Tracker Software",
+    "notes": "{\"CreatedBy\":\"PSPackageFactory\",\"Guid\":\"91579d95-539c-43df-b26d-30f110451f1f\",\"Date\":\"2022-09-13\"}",
+    "uploadState": 1,
+    "publishingState": "published",
+    "isAssigned": false,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "dependentAppCount": 0,
+    "supersedingAppCount": 0,
+    "supersededAppCount": 0,
+    "committedContentVersion": "1",
+    "fileName": "IntunePackage.intunewin",
+    "size": 324243072,
+    "installCommandLine": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+    "uninstallCommandLine": "MsiExec.exe /X \"{2B1A32F0-ABD0-42C4-A123-7CC642AA3B5E}\" /quiet",
+    "applicableArchitectures": "x64",
+    "minimumFreeDiskSpaceInMB": null,
+    "minimumMemoryInMB": null,
+    "minimumNumberOfProcessors": null,
+    "minimumCpuSpeedInMHz": null,
+    "msiInformation": null,
+    "setupFilePath": "EditorV9.x64.msi",
+    "minimumSupportedWindowsRelease": "1809",
+    "displayVersion": "9.4.363.0",
+    "allowAvailableUninstall": false,
+    "minimumSupportedOperatingSystem": {
+      "v8_0": false,
+      "v8_1": false,
+      "v10_0": false,
+      "v10_1607": false,
+      "v10_1703": false,
+      "v10_1709": false,
+      "v10_1803": false,
+      "v10_1809": true,
+      "v10_1903": false,
+      "v10_1909": false,
+      "v10_2004": false,
+      "v10_2H20": false,
+      "v10_21H1": false
+    },
+    "detectionRules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemDetection; path=C:\\Program Files\\Tracker Software\\PDF Editor; fileOrFolderName=PDFXEdit.exe; check32BitOn64System=False; detectionType=version; operator=greaterThanOrEqual; detectionValue=9.4.363.0}"
+    ],
+    "requirementRules": [],
+    "rules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemRule; ruleType=detection; path=C:\\Program Files\\Tracker Software\\PDF Editor; fileOrFolderName=PDFXEdit.exe; check32BitOn64System=False; operationType=version; operator=greaterThanOrEqual; comparisonValue=9.4.363.0}"
+    ],
+    "installExperience": {
+      "runAsAccount": "system",
+      "deviceRestartBehavior": "suppress"
+    },
+    "returnCodes": [
+      "@{returnCode=0; type=success}",
+      "@{returnCode=1707; type=success}",
+      "@{returnCode=3010; type=softReboot}",
+      "@{returnCode=1641; type=hardReboot}",
+      "@{returnCode=1618; type=retry}"
+    ]
+  },
+  {
+    "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileApps/$entity",
+    "@odata.type": "#microsoft.graph.win32LobApp",
+    "id": "e5047fd2-38ba-480c-b11c-0581a877f00b",
+    "displayName": "Update for Adobe Acrobat Reader DC MUI 22.003.20258 x64 (Package Factory)",
+    "description": "Update for Adobe Acrobat Reader DC.",
+    "publisher": "Adobe",
+    "createdDateTime": "2022-10-13T05:23:23.2438026Z",
+    "lastModifiedDateTime": "2022-10-13T05:23:23.2438026Z",
+    "isFeatured": false,
+    "privacyInformationUrl": "https://www.adobe.com/au/privacy.html",
+    "informationUrl": "https://www.adobe.com/devnet-docs/acrobatetk/tools/ReleaseNotesDC/index.html",
+    "owner": "",
+    "developer": "Adobe",
+    "notes": "{\"CreatedBy\":\"PSPackageFactory\",\"Guid\":\"ef33ecdc-4ab1-41ad-99f9-7a06c26b2733\",\"Date\":\"2022-10-13\"}",
+    "uploadState": 1,
+    "publishingState": "published",
+    "isAssigned": false,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "dependentAppCount": 0,
+    "supersedingAppCount": 0,
+    "supersededAppCount": 0,
+    "committedContentVersion": "1",
+    "fileName": "IntunePackage.intunewin",
+    "size": 256172560,
+    "installCommandLine": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "uninstallCommandLine": "msiexec.exe /X \"AdobeAcrobatReaderDCMUIUpdates\" /quiet",
+    "applicableArchitectures": "x64",
+    "minimumFreeDiskSpaceInMB": null,
+    "minimumMemoryInMB": null,
+    "minimumNumberOfProcessors": null,
+    "minimumCpuSpeedInMHz": null,
+    "msiInformation": null,
+    "setupFilePath": "AcroRdrDCx64Upd2200320258_MUI.msp",
+    "minimumSupportedWindowsRelease": "1809",
+    "displayVersion": "22.003.20258",
+    "allowAvailableUninstall": false,
+    "minimumSupportedOperatingSystem": {
+      "v8_0": false,
+      "v8_1": false,
+      "v10_0": false,
+      "v10_1607": false,
+      "v10_1703": false,
+      "v10_1709": false,
+      "v10_1803": false,
+      "v10_1809": true,
+      "v10_1903": false,
+      "v10_1909": false,
+      "v10_2004": false,
+      "v10_2H20": false,
+      "v10_21H1": false
+    },
+    "detectionRules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemDetection; path=C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat; fileOrFolderName=Acrobat.exe; check32BitOn64System=False; detectionType=version; operator=greaterThanOrEqual; detectionValue=22.003.20258}"
+    ],
+    "requirementRules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemRequirement; operator=lessThan; detectionValue=22.003.20258; path=C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat; fileOrFolderName=Acrobat.exe; check32BitOn64System=False; detectionType=version}"
+    ],
+    "rules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemRule; ruleType=detection; path=C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat; fileOrFolderName=Acrobat.exe; check32BitOn64System=False; operationType=version; operator=greaterThanOrEqual; comparisonValue=22.003.20258}",
+      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemRule; ruleType=requirement; path=C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat; fileOrFolderName=Acrobat.exe; check32BitOn64System=False; operationType=version; operator=lessThan; comparisonValue=22.003.20258}"
+    ],
+    "installExperience": {
+      "runAsAccount": "system",
+      "deviceRestartBehavior": "suppress"
+    },
+    "returnCodes": [
+      "@{returnCode=0; type=success}",
+      "@{returnCode=1707; type=success}",
+      "@{returnCode=3010; type=softReboot}",
+      "@{returnCode=1641; type=hardReboot}",
+      "@{returnCode=1618; type=retry}"
+    ]
+  },
+  {
+    "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileApps/$entity",
+    "@odata.type": "#microsoft.graph.win32LobApp",
+    "id": "75eb243c-5022-4918-841a-a192899975ba",
+    "displayName": "Update for Microsoft Visual Studio Code 1.71.2 x64 (Package Factory)",
+    "description": "Visual Studio Code is a lightweight but powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux. It comes with built-in support for JavaScript, TypeScript and Node.js and has a rich ecosystem of extensions for other languages (such as C++, C#, Java, Python, PHP, Go) and runtimes (such as .NET and Unity).",
+    "publisher": "Microsoft",
+    "createdDateTime": "2022-09-17T02:27:48.5303645Z",
+    "lastModifiedDateTime": "2022-09-17T02:27:48.5303645Z",
+    "isFeatured": false,
+    "privacyInformationUrl": "https://privacy.microsoft.com/privacystatement",
+    "informationUrl": "https://code.visualstudio.com/",
+    "owner": "",
+    "developer": "Microsoft",
+    "notes": "{\"CreatedBy\":\"PSPackageFactory\",\"Guid\":\"e7835fa1-1fcb-4abc-a88e-cbc6bf7c09fd\",\"Date\":\"2022-09-17\"}",
+    "uploadState": 1,
+    "publishingState": "published",
+    "isAssigned": false,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "dependentAppCount": 0,
+    "supersedingAppCount": 0,
+    "supersededAppCount": 0,
+    "committedContentVersion": "1",
+    "fileName": "IntunePackage.intunewin",
+    "size": 82557008,
+    "installCommandLine": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
+    "uninstallCommandLine": "msiexec.exe /X \"{AC76BA86-1033-1033-7760-BC15014EA700}\" /quiet",
+    "applicableArchitectures": "x64",
+    "minimumFreeDiskSpaceInMB": null,
+    "minimumMemoryInMB": null,
+    "minimumNumberOfProcessors": null,
+    "minimumCpuSpeedInMHz": null,
+    "msiInformation": null,
+    "setupFilePath": "VSCodeSetup-x64-1.71.2.exe",
+    "minimumSupportedWindowsRelease": "1809",
+    "displayVersion": "1.71.2",
+    "allowAvailableUninstall": false,
+    "minimumSupportedOperatingSystem": {
+      "v8_0": false,
+      "v8_1": false,
+      "v10_0": false,
+      "v10_1607": false,
+      "v10_1703": false,
+      "v10_1709": false,
+      "v10_1803": false,
+      "v10_1809": true,
+      "v10_1903": false,
+      "v10_1909": false,
+      "v10_2004": false,
+      "v10_2H20": false,
+      "v10_21H1": false
+    },
+    "detectionRules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppRegistryDetection; check32BitOn64System=False; keyPath=HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{EA457B21-F73E-494C-ACAB-524FDE069978}_is1; valueName=DisplayVersion; detectionType=version; operator=greaterThanOrEqual; detectionValue=1.71.2}",
+      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemDetection; path=C:\\Program Files\\Microsoft VS Code; fileOrFolderName=Code.exe; check32BitOn64System=False; detectionType=version; operator=greaterThanOrEqual; detectionValue=1.71.2}"
+    ],
+    "requirementRules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemRequirement; operator=lessThan; detectionValue=1.71.2; path=C:\\Program Files\\Microsoft VS Code; fileOrFolderName=Code.exe; check32BitOn64System=False; detectionType=version}"
+    ],
+    "rules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppRegistryRule; ruleType=detection; check32BitOn64System=False; keyPath=HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{EA457B21-F73E-494C-ACAB-524FDE069978}_is1; valueName=DisplayVersion; operationType=version; operator=greaterThanOrEqual; comparisonValue=1.71.2}",
+      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemRule; ruleType=detection; path=C:\\Program Files\\Microsoft VS Code; fileOrFolderName=Code.exe; check32BitOn64System=False; operationType=version; operator=greaterThanOrEqual; comparisonValue=1.71.2}",
+      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemRule; ruleType=requirement; path=C:\\Program Files\\Microsoft VS Code; fileOrFolderName=Code.exe; check32BitOn64System=False; operationType=version; operator=lessThan; comparisonValue=1.71.2}"
+    ],
+    "installExperience": {
+      "runAsAccount": "system",
+      "deviceRestartBehavior": "suppress"
+    },
+    "returnCodes": [
+      "@{returnCode=0; type=success}",
+      "@{returnCode=1707; type=success}",
+      "@{returnCode=3010; type=softReboot}",
+      "@{returnCode=1641; type=hardReboot}",
+      "@{returnCode=1618; type=retry}"
+    ]
+  },
+  {
+    "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileApps/$entity",
+    "@odata.type": "#microsoft.graph.win32LobApp",
+    "id": "5fe22f96-3d06-4087-8627-a2b260e81c62",
+    "displayName": "Update for Mozilla Firefox (x64 en-US) 104.0.2 (PMP)",
+    "description": "Fixed a bug making it impossible to use touch or a stylus to drag the scrollbar on pages. Fixed an issue causing some users to crash in out-of-memory conditions. Fixed an issue that would sometimes affect video & audio playback when loaded via a cross-origin iframe src attribute. Fixed an issue that would sometimes affect video & audio playback when served with Content-Security-Policy: sandbox",
+    "publisher": "Mozilla",
+    "createdDateTime": "2022-09-14T07:30:16.6813788Z",
+    "lastModifiedDateTime": "2022-09-14T07:30:16.6813788Z",
+    "isFeatured": false,
+    "privacyInformationUrl": "https://www.mozilla.org/en-US/privacy/",
+    "informationUrl": "https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide",
+    "owner": null,
+    "developer": null,
+    "notes": "PmpUpdateId:9a3e0dd3-02d5-449a-839d-8e9bf69c3236",
+    "uploadState": 1,
+    "publishingState": "published",
+    "isAssigned": false,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "dependentAppCount": 0,
+    "supersedingAppCount": 0,
+    "supersededAppCount": 0,
+    "committedContentVersion": "1",
+    "fileName": "PatchMyPC-ScriptRunner.intunewin",
+    "size": 56804288,
+    "installCommandLine": "PatchMyPC-ScriptRunner.exe /UpdatePackage",
+    "uninstallCommandLine": "PatchMyPC-ScriptRunner.exe /UninstallPackage",
+    "applicableArchitectures": "x64",
+    "minimumFreeDiskSpaceInMB": 54,
+    "minimumMemoryInMB": null,
+    "minimumNumberOfProcessors": null,
+    "minimumCpuSpeedInMHz": null,
+    "msiInformation": null,
+    "setupFilePath": "PatchMyPC-ScriptRunner.exe",
+    "minimumSupportedWindowsRelease": "1607",
+    "displayVersion": "104.0.2",
+    "allowAvailableUninstall": false,
+    "minimumSupportedOperatingSystem": {
+      "v8_0": false,
+      "v8_1": false,
+      "v10_0": false,
+      "v10_1607": true,
+      "v10_1703": false,
+      "v10_1709": false,
+      "v10_1803": false,
+      "v10_1809": false,
+      "v10_1903": false,
+      "v10_1909": false,
+      "v10_2004": false,
+      "v10_2H20": false,
+      "v10_21H1": false
+    },
+    "detectionRules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppPowerShellScriptDetection; enforceSignatureCheck=False; runAs32Bit=False; scriptContent=aWYoW0ludFB0cl06OlNpemUtZXE0KXtleGl0IDB9O3RyeXskcj0nXGQrXC5cZCsoXC5cZCspPyhcLlxkKyk/JzskdD0nc2lsZW50bHljb250aW51ZSc7JHo9J01vemlsbGEgRmlyZWZveCooeDY0IGVuLVVTKSc7JG89J0RldGVjdGVkJzskZD0nMTA0LjAuMic7ZnVuY3Rpb24gbCB7cGFyYW0oJGgsJGYsJHMpJHY9W2Jvb2xdKCh3aG9hbWkgL3VzZXIpLW1hdGNoJ1MtMS01LTE4Jyk7JGw9IiQobmkgJGVudjpwcm9ncmFtZGF0YVxQYXRjaE15UENJbnR1bmVMb2dzIC1pdCBkaSAtZm8gLWVhICR0KVwkKCgkcT0nUGF0Y2hNeVBDLVNvZnR3YXJlVXBkYXRlRGV0ZWN0aW9uU2NyaXB0LmxvZycpKSI7JHA9c3dpdGNoKCR2KXskdHJ1ZXskbH1kZWZhdWx0eyIkZW52OnRlbXBcJHEifX1pZigoKCRpPWdpICRwIC1lYSAkdCkpLmxlbmd0aC1nZTVtYil7cmkgKCR3PSRpLkZ1bGxOYW1lLlJlcGxhY2UoJy5sb2cnLCcubG9fJykpIC1mbyAtZWEgJHQ7cmVuICRpICR3fSIkKEdldC1EYXRlKX5bJHNdfltGb3VuZDokZl1+W1B1cnBvc2U6RGV0ZWN0aW9uXX5bQ29udGV4dDokZW52OnVzZXJuYW1lKV1+W0hpdmU6JGhdInxPdXQtRmlsZSAkcCAtYSAtZm99ZnVuY3Rpb24gY3twYXJhbSgkcyl0cnl7c3dpdGNoKCRzLlRvQ2hhckFycmF5KCkuV2hlcmV7JF8tZXEnLid9LkNvdW50KXsweyRzKz0nLjAnKjN9MXskcys9Jy4wLjAnfTJ7JHMrPScuMCd9fVt2ZXJzaW9uXSRzfWNhdGNoeyRhPWZvcmVhY2goJGMgaW4gJHMuU3BsaXQoJy4nKSl7dHJ5e1tpbnRdJGN9Y2F0Y2h7W2ludF06Ok1heFZhbHVlfX10cnl7YyAoW1N0cmluZ106OkpvaW4oJy4nLCRhKSl9Y2F0Y2h7W3ZlcnNpb25dKCcwLjAuMC4wJyl9fX1mb3JlYWNoKCRoIGluICdIS0xNJyl7Zm9yZWFjaCgkeCBpbiAnc29mdHdhcmUnKXtmb3JlYWNoKCRzIGluKGdwICgkRz0iJGhgOlwkeFxtaWNyb3NvZnRcd2luZG93c1xjdXJyZW50dmVyc2lvblx1bmluc3RhbGxcKiIpICgkaz0nRGlzcGxheU5hbWUnKSxEaXNwbGF5VmVyc2lvbiAtZWEgJHR8c2VsZWN0IEB7bD0nYSc7ZT17JF8uJGt9fSxAe2w9J2InO2U9e1tyZWdleF06Om1hdGNoKCRfLkRpc3BsYXlWZXJzaW9uLCRyKVswXS52YWx1ZX19LHBzY2hpbGRuYW1lLEB7bD0nYyc7ZT17W3JlZ2V4XTo6bWF0Y2goJF8uJGssJHIpWzBdLnZhbHVlfX0pfD97aWYoJF8ucHNjaGlsZG5hbWUtZXEoJG09JycpKXsoJGY9JHRydWUpfWVsc2VpZigkZT0nKkVTUionKXskXy5hLW5vdGxpa2UkZS1hbmQkXy5hLWxpa2Ukei1hbmQhW2Jvb2xdKCRfLnBzY2hpbGRuYW1lLWFzW2d1aWRdLWlzW2d1aWRdKX1lbHNleyRfLmEtbGlrZSR6LWFuZCFbYm9vbF0oJF8ucHNjaGlsZG5hbWUtYXNbZ3VpZF0taXNbZ3VpZF0pfX0pe2lmKCRmKXtsICRnICR0cnVlICIkKCRzLmEpICRtIjtyZXR1cm4gJG99aWYoKGMgJHMuYiktZ2UoYyAkZCktb3IoISRzLmItYW5kJHMuYy1uZScnLWFuZChjICRzLmMpLWdlKGMgJGQpKSl7aWYoKCRzLmItbGlrZSgkdj0nKicpLW9yJHMuYy1saWtlJHYpKXtsICRnICR0cnVlICIkKCRzLmEpICRkIjtyZXR1cm4gJG99fX1sICRnICRmYWxzZSAiJHogJG0gJGQifX19Y2F0Y2h7bCAnJyAnJyAkXy5FeGNlcHRpb24uTWVzc2FnZX0=}"
+    ],
+    "requirementRules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppPowerShellScriptRequirement; operator=equal; detectionValue=Applicable; displayName=Powershell requirement script for Mozilla Firefox 104.0.2 (x64 en-US); enforceSignatureCheck=False; runAs32Bit=False; runAsAccount=system; scriptContent=aWYoW0ludFB0cl06OlNpemUtZXE0KXtleGl0IDB9O3RyeXskcj0nXGQrXC5cZCsoXC5cZCspPyhcLlxkKyk/JzskdD0nc2lsZW50bHljb250aW51ZSc7JHo9J01vemlsbGEgRmlyZWZveCooeDY0IGVuLVVTKSc7JG89J0FwcGxpY2FibGUnOyRkPScxMDQuMC4yJztmdW5jdGlvbiBsIHtwYXJhbSgkaCwkZiwkcykkdj1bYm9vbF0oKHdob2FtaSAvdXNlciktbWF0Y2gnUy0xLTUtMTgnKTskbD0iJChuaSAkZW52OnByb2dyYW1kYXRhXFBhdGNoTXlQQ0ludHVuZUxvZ3MgLWl0IGRpIC1mbyAtZWEgJHQpXCQoKCRxPSdQYXRjaE15UEMtU29mdHdhcmVVcGRhdGVEZXRlY3Rpb25TY3JpcHQubG9nJykpIjskcD1zd2l0Y2goJHYpeyR0cnVleyRsfWRlZmF1bHR7IiRlbnY6dGVtcFwkcSJ9fWlmKCgoJGk9Z2kgJHAgLWVhICR0KSkubGVuZ3RoLWdlNW1iKXtyaSAoJHc9JGkuRnVsbE5hbWUuUmVwbGFjZSgnLmxvZycsJy5sb18nKSkgLWZvIC1lYSAkdDtyZW4gJGkgJHd9IiQoR2V0LURhdGUpflskc11+W0ZvdW5kOiRmXX5bUHVycG9zZTpSZXF1aXJlbWVudF1+W0NvbnRleHQ6JGVudjp1c2VybmFtZSldfltIaXZlOiRoXSJ8T3V0LUZpbGUgJHAgLWEgLWZvfWZ1bmN0aW9uIGN7cGFyYW0oJHMpdHJ5e3N3aXRjaCgkcy5Ub0NoYXJBcnJheSgpLldoZXJleyRfLWVxJy4nfS5Db3VudCl7MHskcys9Jy4wJyozfTF7JHMrPScuMC4wJ30yeyRzKz0nLjAnfX1bdmVyc2lvbl0kc31jYXRjaHskYT1mb3JlYWNoKCRjIGluICRzLlNwbGl0KCcuJykpe3RyeXtbaW50XSRjfWNhdGNoe1tpbnRdOjpNYXhWYWx1ZX19dHJ5e2MgKFtTdHJpbmddOjpKb2luKCcuJywkYSkpfWNhdGNoe1t2ZXJzaW9uXSgnMC4wLjAuMCcpfX19Zm9yZWFjaCgkaCBpbiAnSEtMTScpe2ZvcmVhY2goJHggaW4gJ3NvZnR3YXJlJyl7Zm9yZWFjaCgkcyBpbihncCAoJEc9IiRoYDpcJHhcbWljcm9zb2Z0XHdpbmRvd3NcY3VycmVudHZlcnNpb25cdW5pbnN0YWxsXCoiKSAoJGs9J0Rpc3BsYXlOYW1lJyksRGlzcGxheVZlcnNpb24gLWVhICR0fHNlbGVjdCBAe2w9J2EnO2U9eyRfLiRrfX0sQHtsPSdiJztlPXtbcmVnZXhdOjptYXRjaCgkXy5EaXNwbGF5VmVyc2lvbiwkcilbMF0udmFsdWV9fSxwc2NoaWxkbmFtZSxAe2w9J2MnO2U9e1tyZWdleF06Om1hdGNoKCRfLiRrLCRyKVswXS52YWx1ZX19KXw/e2lmKCRfLnBzY2hpbGRuYW1lLWVxKCRtPScnKSl7KCRmPSR0cnVlKX1lbHNlaWYoJGU9JypFU1IqJyl7JF8uYS1ub3RsaWtlJGUtYW5kJF8uYS1saWtlJHotYW5kIVtib29sXSgkXy5wc2NoaWxkbmFtZS1hc1tndWlkXS1pc1tndWlkXSl9ZWxzZXskXy5hLWxpa2Ukei1hbmQhW2Jvb2xdKCRfLnBzY2hpbGRuYW1lLWFzW2d1aWRdLWlzW2d1aWRdKX19KXtpZigkZil7bCAkZyAkdHJ1ZSAiJCgkcy5hKSAkbSI7cmV0dXJuICRvfWlmKChjICRzLmIpLWx0KGMgJGQpLW9yKCEkcy5iLWFuZCRzLmMtbmUnJy1hbmQoYyAkcy5jKS1sdChjICRkKSkpe2lmKCgkcy5iLWxpa2UoJHY9JyonKS1vciRzLmMtbGlrZSR2KSl7bCAkZyAkdHJ1ZSAiJCgkcy5hKSAkZCI7cmV0dXJuICRvfX19bCAkZyAkZmFsc2UgIiR6ICRtICRkIn19fWNhdGNoe2wgJycgJycgJF8uRXhjZXB0aW9uLk1lc3NhZ2V9; detectionType=string}"
+    ],
+    "rules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppPowerShellScriptRule; ruleType=detection; displayName=; enforceSignatureCheck=False; runAs32Bit=False; runAsAccount=; scriptContent=aWYoW0ludFB0cl06OlNpemUtZXE0KXtleGl0IDB9O3RyeXskcj0nXGQrXC5cZCsoXC5cZCspPyhcLlxkKyk/JzskdD0nc2lsZW50bHljb250aW51ZSc7JHo9J01vemlsbGEgRmlyZWZveCooeDY0IGVuLVVTKSc7JG89J0RldGVjdGVkJzskZD0nMTA0LjAuMic7ZnVuY3Rpb24gbCB7cGFyYW0oJGgsJGYsJHMpJHY9W2Jvb2xdKCh3aG9hbWkgL3VzZXIpLW1hdGNoJ1MtMS01LTE4Jyk7JGw9IiQobmkgJGVudjpwcm9ncmFtZGF0YVxQYXRjaE15UENJbnR1bmVMb2dzIC1pdCBkaSAtZm8gLWVhICR0KVwkKCgkcT0nUGF0Y2hNeVBDLVNvZnR3YXJlVXBkYXRlRGV0ZWN0aW9uU2NyaXB0LmxvZycpKSI7JHA9c3dpdGNoKCR2KXskdHJ1ZXskbH1kZWZhdWx0eyIkZW52OnRlbXBcJHEifX1pZigoKCRpPWdpICRwIC1lYSAkdCkpLmxlbmd0aC1nZTVtYil7cmkgKCR3PSRpLkZ1bGxOYW1lLlJlcGxhY2UoJy5sb2cnLCcubG9fJykpIC1mbyAtZWEgJHQ7cmVuICRpICR3fSIkKEdldC1EYXRlKX5bJHNdfltGb3VuZDokZl1+W1B1cnBvc2U6RGV0ZWN0aW9uXX5bQ29udGV4dDokZW52OnVzZXJuYW1lKV1+W0hpdmU6JGhdInxPdXQtRmlsZSAkcCAtYSAtZm99ZnVuY3Rpb24gY3twYXJhbSgkcyl0cnl7c3dpdGNoKCRzLlRvQ2hhckFycmF5KCkuV2hlcmV7JF8tZXEnLid9LkNvdW50KXsweyRzKz0nLjAnKjN9MXskcys9Jy4wLjAnfTJ7JHMrPScuMCd9fVt2ZXJzaW9uXSRzfWNhdGNoeyRhPWZvcmVhY2goJGMgaW4gJHMuU3BsaXQoJy4nKSl7dHJ5e1tpbnRdJGN9Y2F0Y2h7W2ludF06Ok1heFZhbHVlfX10cnl7YyAoW1N0cmluZ106OkpvaW4oJy4nLCRhKSl9Y2F0Y2h7W3ZlcnNpb25dKCcwLjAuMC4wJyl9fX1mb3JlYWNoKCRoIGluICdIS0xNJyl7Zm9yZWFjaCgkeCBpbiAnc29mdHdhcmUnKXtmb3JlYWNoKCRzIGluKGdwICgkRz0iJGhgOlwkeFxtaWNyb3NvZnRcd2luZG93c1xjdXJyZW50dmVyc2lvblx1bmluc3RhbGxcKiIpICgkaz0nRGlzcGxheU5hbWUnKSxEaXNwbGF5VmVyc2lvbiAtZWEgJHR8c2VsZWN0IEB7bD0nYSc7ZT17JF8uJGt9fSxAe2w9J2InO2U9e1tyZWdleF06Om1hdGNoKCRfLkRpc3BsYXlWZXJzaW9uLCRyKVswXS52YWx1ZX19LHBzY2hpbGRuYW1lLEB7bD0nYyc7ZT17W3JlZ2V4XTo6bWF0Y2goJF8uJGssJHIpWzBdLnZhbHVlfX0pfD97aWYoJF8ucHNjaGlsZG5hbWUtZXEoJG09JycpKXsoJGY9JHRydWUpfWVsc2VpZigkZT0nKkVTUionKXskXy5hLW5vdGxpa2UkZS1hbmQkXy5hLWxpa2Ukei1hbmQhW2Jvb2xdKCRfLnBzY2hpbGRuYW1lLWFzW2d1aWRdLWlzW2d1aWRdKX1lbHNleyRfLmEtbGlrZSR6LWFuZCFbYm9vbF0oJF8ucHNjaGlsZG5hbWUtYXNbZ3VpZF0taXNbZ3VpZF0pfX0pe2lmKCRmKXtsICRnICR0cnVlICIkKCRzLmEpICRtIjtyZXR1cm4gJG99aWYoKGMgJHMuYiktZ2UoYyAkZCktb3IoISRzLmItYW5kJHMuYy1uZScnLWFuZChjICRzLmMpLWdlKGMgJGQpKSl7aWYoKCRzLmItbGlrZSgkdj0nKicpLW9yJHMuYy1saWtlJHYpKXtsICRnICR0cnVlICIkKCRzLmEpICRkIjtyZXR1cm4gJG99fX1sICRnICRmYWxzZSAiJHogJG0gJGQifX19Y2F0Y2h7bCAnJyAnJyAkXy5FeGNlcHRpb24uTWVzc2FnZX0=; operationType=notConfigured; operator=notConfigured; comparisonValue=}",
+      "@{@odata.type=#microsoft.graph.win32LobAppPowerShellScriptRule; ruleType=requirement; displayName=Powershell requirement script for Mozilla Firefox 104.0.2 (x64 en-US); enforceSignatureCheck=False; runAs32Bit=False; runAsAccount=system; scriptContent=aWYoW0ludFB0cl06OlNpemUtZXE0KXtleGl0IDB9O3RyeXskcj0nXGQrXC5cZCsoXC5cZCspPyhcLlxkKyk/JzskdD0nc2lsZW50bHljb250aW51ZSc7JHo9J01vemlsbGEgRmlyZWZveCooeDY0IGVuLVVTKSc7JG89J0FwcGxpY2FibGUnOyRkPScxMDQuMC4yJztmdW5jdGlvbiBsIHtwYXJhbSgkaCwkZiwkcykkdj1bYm9vbF0oKHdob2FtaSAvdXNlciktbWF0Y2gnUy0xLTUtMTgnKTskbD0iJChuaSAkZW52OnByb2dyYW1kYXRhXFBhdGNoTXlQQ0ludHVuZUxvZ3MgLWl0IGRpIC1mbyAtZWEgJHQpXCQoKCRxPSdQYXRjaE15UEMtU29mdHdhcmVVcGRhdGVEZXRlY3Rpb25TY3JpcHQubG9nJykpIjskcD1zd2l0Y2goJHYpeyR0cnVleyRsfWRlZmF1bHR7IiRlbnY6dGVtcFwkcSJ9fWlmKCgoJGk9Z2kgJHAgLWVhICR0KSkubGVuZ3RoLWdlNW1iKXtyaSAoJHc9JGkuRnVsbE5hbWUuUmVwbGFjZSgnLmxvZycsJy5sb18nKSkgLWZvIC1lYSAkdDtyZW4gJGkgJHd9IiQoR2V0LURhdGUpflskc11+W0ZvdW5kOiRmXX5bUHVycG9zZTpSZXF1aXJlbWVudF1+W0NvbnRleHQ6JGVudjp1c2VybmFtZSldfltIaXZlOiRoXSJ8T3V0LUZpbGUgJHAgLWEgLWZvfWZ1bmN0aW9uIGN7cGFyYW0oJHMpdHJ5e3N3aXRjaCgkcy5Ub0NoYXJBcnJheSgpLldoZXJleyRfLWVxJy4nfS5Db3VudCl7MHskcys9Jy4wJyozfTF7JHMrPScuMC4wJ30yeyRzKz0nLjAnfX1bdmVyc2lvbl0kc31jYXRjaHskYT1mb3JlYWNoKCRjIGluICRzLlNwbGl0KCcuJykpe3RyeXtbaW50XSRjfWNhdGNoe1tpbnRdOjpNYXhWYWx1ZX19dHJ5e2MgKFtTdHJpbmddOjpKb2luKCcuJywkYSkpfWNhdGNoe1t2ZXJzaW9uXSgnMC4wLjAuMCcpfX19Zm9yZWFjaCgkaCBpbiAnSEtMTScpe2ZvcmVhY2goJHggaW4gJ3NvZnR3YXJlJyl7Zm9yZWFjaCgkcyBpbihncCAoJEc9IiRoYDpcJHhcbWljcm9zb2Z0XHdpbmRvd3NcY3VycmVudHZlcnNpb25cdW5pbnN0YWxsXCoiKSAoJGs9J0Rpc3BsYXlOYW1lJyksRGlzcGxheVZlcnNpb24gLWVhICR0fHNlbGVjdCBAe2w9J2EnO2U9eyRfLiRrfX0sQHtsPSdiJztlPXtbcmVnZXhdOjptYXRjaCgkXy5EaXNwbGF5VmVyc2lvbiwkcilbMF0udmFsdWV9fSxwc2NoaWxkbmFtZSxAe2w9J2MnO2U9e1tyZWdleF06Om1hdGNoKCRfLiRrLCRyKVswXS52YWx1ZX19KXw/e2lmKCRfLnBzY2hpbGRuYW1lLWVxKCRtPScnKSl7KCRmPSR0cnVlKX1lbHNlaWYoJGU9JypFU1IqJyl7JF8uYS1ub3RsaWtlJGUtYW5kJF8uYS1saWtlJHotYW5kIVtib29sXSgkXy5wc2NoaWxkbmFtZS1hc1tndWlkXS1pc1tndWlkXSl9ZWxzZXskXy5hLWxpa2Ukei1hbmQhW2Jvb2xdKCRfLnBzY2hpbGRuYW1lLWFzW2d1aWRdLWlzW2d1aWRdKX19KXtpZigkZil7bCAkZyAkdHJ1ZSAiJCgkcy5hKSAkbSI7cmV0dXJuICRvfWlmKChjICRzLmIpLWx0KGMgJGQpLW9yKCEkcy5iLWFuZCRzLmMtbmUnJy1hbmQoYyAkcy5jKS1sdChjICRkKSkpe2lmKCgkcy5iLWxpa2UoJHY9JyonKS1vciRzLmMtbGlrZSR2KSl7bCAkZyAkdHJ1ZSAiJCgkcy5hKSAkZCI7cmV0dXJuICRvfX19bCAkZyAkZmFsc2UgIiR6ICRtICRkIn19fWNhdGNoe2wgJycgJycgJF8uRXhjZXB0aW9uLk1lc3NhZ2V9; operationType=string; operator=equal; comparisonValue=Applicable}"
+    ],
+    "installExperience": {
+      "runAsAccount": "system",
+      "deviceRestartBehavior": "basedOnReturnCode"
+    },
+    "returnCodes": [
+      "@{returnCode=0; type=success}",
+      "@{returnCode=1707; type=success}",
+      "@{returnCode=3010; type=softReboot}",
+      "@{returnCode=1641; type=hardReboot}",
+      "@{returnCode=1618; type=retry}"
+    ]
+  },
+  {
+    "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileApps/$entity",
+    "@odata.type": "#microsoft.graph.win32LobApp",
+    "id": "0696cc66-5222-465c-b3e0-bb1b004f5b7d",
+    "displayName": "Update for Mozilla Firefox (x64 en-US) 106.0.0 (PMP)",
+    "description": "This release contains new features, bug fixes, enhancements and security fixes: CVE-2022-42927: Same-origin policy violation could have leaked cross-origin URLs. CVE-2022-42928: Memory Corruption in JS Engine. CVE-2022-42929: Denial of Service via window.print. CVE-2022-42930: Race condition in DOM Workers. CVE-2022-42931: Username saved to a plaintext file on disk. CVE-2022-42932: Memory safety bugs fixed in Firefox 106 and Firefox ESR 102.4",
+    "publisher": "Mozilla",
+    "createdDateTime": "2022-10-19T03:42:02.9426351Z",
+    "lastModifiedDateTime": "2022-10-19T03:42:58.1127666Z",
+    "isFeatured": false,
+    "privacyInformationUrl": "https://www.mozilla.org/en-US/privacy/",
+    "informationUrl": "https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide",
+    "owner": null,
+    "developer": null,
+    "notes": "PmpUpdateId:224eb08c-5084-45fd-8411-145d291e5745",
+    "uploadState": 1,
+    "publishingState": "published",
+    "isAssigned": false,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "dependentAppCount": 0,
+    "supersedingAppCount": 0,
+    "supersededAppCount": 0,
+    "committedContentVersion": "1",
+    "fileName": "PatchMyPC-ScriptRunner.intunewin",
+    "size": 58043152,
+    "installCommandLine": "PatchMyPC-ScriptRunner.exe /UpdatePackage",
+    "uninstallCommandLine": "PatchMyPC-ScriptRunner.exe /UninstallPackage",
+    "applicableArchitectures": "x64",
+    "minimumFreeDiskSpaceInMB": 55,
+    "minimumMemoryInMB": null,
+    "minimumNumberOfProcessors": null,
+    "minimumCpuSpeedInMHz": null,
+    "msiInformation": null,
+    "setupFilePath": "PatchMyPC-ScriptRunner.exe",
+    "minimumSupportedWindowsRelease": "1607",
+    "displayVersion": "106.0.0",
+    "allowAvailableUninstall": false,
+    "minimumSupportedOperatingSystem": {
+      "v8_0": false,
+      "v8_1": false,
+      "v10_0": false,
+      "v10_1607": true,
+      "v10_1703": false,
+      "v10_1709": false,
+      "v10_1803": false,
+      "v10_1809": false,
+      "v10_1903": false,
+      "v10_1909": false,
+      "v10_2004": false,
+      "v10_2H20": false,
+      "v10_21H1": false
+    },
+    "detectionRules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppPowerShellScriptDetection; enforceSignatureCheck=False; runAs32Bit=False; scriptContent=aWYoW0ludFB0cl06OlNpemUtZXE0KXtleGl0IDB9O3RyeXskcj0nXGQrXC5cZCsoXC5cZCspPyhcLlxkKyk/JzskdD0nc2lsZW50bHljb250aW51ZSc7JHo9J01vemlsbGEgRmlyZWZveCooeDY0IGVuLVVTKSc7JG89J0RldGVjdGVkJzskZD0nMTA2LjAuMCc7ZnVuY3Rpb24gbCB7cGFyYW0oJGgsJGYsJHMpJHY9W2Jvb2xdKCh3aG9hbWkgL3VzZXIpLW1hdGNoJ1MtMS01LTE4Jyk7JGw9IiQobmkgJGVudjpwcm9ncmFtZGF0YVxQYXRjaE15UENJbnR1bmVMb2dzIC1pdCBkaSAtZm8gLWVhICR0KVwkKCgkcT0nUGF0Y2hNeVBDLVNvZnR3YXJlVXBkYXRlRGV0ZWN0aW9uU2NyaXB0LmxvZycpKSI7JHA9c3dpdGNoKCR2KXskdHJ1ZXskbH1kZWZhdWx0eyIkZW52OnRlbXBcJHEifX1pZigoKCRpPWdpICRwIC1lYSAkdCkpLmxlbmd0aC1nZTVtYil7cmkgKCR3PSRpLkZ1bGxOYW1lLlJlcGxhY2UoJy5sb2cnLCcubG9fJykpIC1mbyAtZWEgJHQ7cmVuICRpICR3fSIkKEdldC1EYXRlKX5bJHNdfltGb3VuZDokZl1+W1B1cnBvc2U6RGV0ZWN0aW9uXX5bQ29udGV4dDokZW52OnVzZXJuYW1lKV1+W0hpdmU6JGhdInxPdXQtRmlsZSAkcCAtYSAtZm99ZnVuY3Rpb24gY3twYXJhbSgkcyl0cnl7c3dpdGNoKCRzLlRvQ2hhckFycmF5KCkuV2hlcmV7JF8tZXEnLid9LkNvdW50KXsweyRzKz0nLjAnKjN9MXskcys9Jy4wLjAnfTJ7JHMrPScuMCd9fVt2ZXJzaW9uXSRzfWNhdGNoeyRhPWZvcmVhY2goJGMgaW4gJHMuU3BsaXQoJy4nKSl7dHJ5e1tpbnRdJGN9Y2F0Y2h7W2ludF06Ok1heFZhbHVlfX10cnl7YyAoW1N0cmluZ106OkpvaW4oJy4nLCRhKSl9Y2F0Y2h7W3ZlcnNpb25dKCcwLjAuMC4wJyl9fX1mb3JlYWNoKCRoIGluICdIS0xNJyl7Zm9yZWFjaCgkeCBpbiAnc29mdHdhcmUnKXtmb3JlYWNoKCRzIGluKGdwICgkRz0iJGhgOlwkeFxtaWNyb3NvZnRcd2luZG93c1xjdXJyZW50dmVyc2lvblx1bmluc3RhbGxcKiIpICgkaz0nRGlzcGxheU5hbWUnKSxEaXNwbGF5VmVyc2lvbiAtZWEgJHR8c2VsZWN0IEB7bD0nYSc7ZT17JF8uJGt9fSxAe2w9J2InO2U9e1tyZWdleF06Om1hdGNoKCRfLkRpc3BsYXlWZXJzaW9uLCRyKVswXS52YWx1ZX19LHBzY2hpbGRuYW1lLEB7bD0nYyc7ZT17W3JlZ2V4XTo6bWF0Y2goJF8uJGssJHIpWzBdLnZhbHVlfX0pfD97aWYoJF8ucHNjaGlsZG5hbWUtZXEoJG09JycpKXsoJGY9JHRydWUpfWVsc2VpZigkZT0nTW96aWxsYSBGaXJlZm94KkVTUionKXskXy5hLW5vdGxpa2UkZS1hbmQkXy5hLWxpa2Ukei1hbmQhW2Jvb2xdKCRfLnBzY2hpbGRuYW1lLWFzW2d1aWRdLWlzW2d1aWRdKX1lbHNleyRfLmEtbGlrZSR6LWFuZCFbYm9vbF0oJF8ucHNjaGlsZG5hbWUtYXNbZ3VpZF0taXNbZ3VpZF0pfX0pe2lmKCRmKXtsICRnICR0cnVlICIkKCRzLmEpICRtIjtyZXR1cm4gJG99aWYoKGMgJHMuYiktZ2UoYyAkZCktb3IoISRzLmItYW5kJHMuYy1uZScnLWFuZChjICRzLmMpLWdlKGMgJGQpKSl7aWYoKCRzLmItbGlrZSgkdj0nKicpLW9yJHMuYy1saWtlJHYpKXtsICRnICR0cnVlICIkKCRzLmEpICRkIjtyZXR1cm4gJG99fX1sICRnICRmYWxzZSAiJHogJG0gJGQifX19Y2F0Y2h7bCAnJyAnJyAkXy5FeGNlcHRpb24uTWVzc2FnZX0=}"
+    ],
+    "requirementRules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppPowerShellScriptRequirement; operator=equal; detectionValue=Applicable; displayName=Powershell requirement script for Mozilla Firefox 106.0.0 (x64 en-US); enforceSignatureCheck=False; runAs32Bit=False; runAsAccount=system; scriptContent=aWYoW0ludFB0cl06OlNpemUtZXE0KXtleGl0IDB9O3RyeXskcj0nXGQrXC5cZCsoXC5cZCspPyhcLlxkKyk/JzskdD0nc2lsZW50bHljb250aW51ZSc7JHo9J01vemlsbGEgRmlyZWZveCooeDY0IGVuLVVTKSc7JG89J0FwcGxpY2FibGUnOyRkPScxMDYuMC4wJztmdW5jdGlvbiBsIHtwYXJhbSgkaCwkZiwkcykkdj1bYm9vbF0oKHdob2FtaSAvdXNlciktbWF0Y2gnUy0xLTUtMTgnKTskbD0iJChuaSAkZW52OnByb2dyYW1kYXRhXFBhdGNoTXlQQ0ludHVuZUxvZ3MgLWl0IGRpIC1mbyAtZWEgJHQpXCQoKCRxPSdQYXRjaE15UEMtU29mdHdhcmVVcGRhdGVEZXRlY3Rpb25TY3JpcHQubG9nJykpIjskcD1zd2l0Y2goJHYpeyR0cnVleyRsfWRlZmF1bHR7IiRlbnY6dGVtcFwkcSJ9fWlmKCgoJGk9Z2kgJHAgLWVhICR0KSkubGVuZ3RoLWdlNW1iKXtyaSAoJHc9JGkuRnVsbE5hbWUuUmVwbGFjZSgnLmxvZycsJy5sb18nKSkgLWZvIC1lYSAkdDtyZW4gJGkgJHd9IiQoR2V0LURhdGUpflskc11+W0ZvdW5kOiRmXX5bUHVycG9zZTpSZXF1aXJlbWVudF1+W0NvbnRleHQ6JGVudjp1c2VybmFtZSldfltIaXZlOiRoXSJ8T3V0LUZpbGUgJHAgLWEgLWZvfWZ1bmN0aW9uIGN7cGFyYW0oJHMpdHJ5e3N3aXRjaCgkcy5Ub0NoYXJBcnJheSgpLldoZXJleyRfLWVxJy4nfS5Db3VudCl7MHskcys9Jy4wJyozfTF7JHMrPScuMC4wJ30yeyRzKz0nLjAnfX1bdmVyc2lvbl0kc31jYXRjaHskYT1mb3JlYWNoKCRjIGluICRzLlNwbGl0KCcuJykpe3RyeXtbaW50XSRjfWNhdGNoe1tpbnRdOjpNYXhWYWx1ZX19dHJ5e2MgKFtTdHJpbmddOjpKb2luKCcuJywkYSkpfWNhdGNoe1t2ZXJzaW9uXSgnMC4wLjAuMCcpfX19Zm9yZWFjaCgkaCBpbiAnSEtMTScpe2ZvcmVhY2goJHggaW4gJ3NvZnR3YXJlJyl7Zm9yZWFjaCgkcyBpbihncCAoJEc9IiRoYDpcJHhcbWljcm9zb2Z0XHdpbmRvd3NcY3VycmVudHZlcnNpb25cdW5pbnN0YWxsXCoiKSAoJGs9J0Rpc3BsYXlOYW1lJyksRGlzcGxheVZlcnNpb24gLWVhICR0fHNlbGVjdCBAe2w9J2EnO2U9eyRfLiRrfX0sQHtsPSdiJztlPXtbcmVnZXhdOjptYXRjaCgkXy5EaXNwbGF5VmVyc2lvbiwkcilbMF0udmFsdWV9fSxwc2NoaWxkbmFtZSxAe2w9J2MnO2U9e1tyZWdleF06Om1hdGNoKCRfLiRrLCRyKVswXS52YWx1ZX19KXw/e2lmKCRfLnBzY2hpbGRuYW1lLWVxKCRtPScnKSl7KCRmPSR0cnVlKX1lbHNlaWYoJGU9J01vemlsbGEgRmlyZWZveCpFU1IqJyl7JF8uYS1ub3RsaWtlJGUtYW5kJF8uYS1saWtlJHotYW5kIVtib29sXSgkXy5wc2NoaWxkbmFtZS1hc1tndWlkXS1pc1tndWlkXSl9ZWxzZXskXy5hLWxpa2Ukei1hbmQhW2Jvb2xdKCRfLnBzY2hpbGRuYW1lLWFzW2d1aWRdLWlzW2d1aWRdKX19KXtpZigkZil7bCAkZyAkdHJ1ZSAiJCgkcy5hKSAkbSI7cmV0dXJuICRvfWlmKChjICRzLmIpLWx0KGMgJGQpLW9yKCEkcy5iLWFuZCRzLmMtbmUnJy1hbmQoYyAkcy5jKS1sdChjICRkKSkpe2lmKCgkcy5iLWxpa2UoJHY9JyonKS1vciRzLmMtbGlrZSR2KSl7bCAkZyAkdHJ1ZSAiJCgkcy5hKSAkZCI7cmV0dXJuICRvfX19bCAkZyAkZmFsc2UgIiR6ICRtICRkIn19fWNhdGNoe2wgJycgJycgJF8uRXhjZXB0aW9uLk1lc3NhZ2V9; detectionType=string}"
+    ],
+    "rules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppPowerShellScriptRule; ruleType=detection; displayName=; enforceSignatureCheck=False; runAs32Bit=False; runAsAccount=; scriptContent=aWYoW0ludFB0cl06OlNpemUtZXE0KXtleGl0IDB9O3RyeXskcj0nXGQrXC5cZCsoXC5cZCspPyhcLlxkKyk/JzskdD0nc2lsZW50bHljb250aW51ZSc7JHo9J01vemlsbGEgRmlyZWZveCooeDY0IGVuLVVTKSc7JG89J0RldGVjdGVkJzskZD0nMTA2LjAuMCc7ZnVuY3Rpb24gbCB7cGFyYW0oJGgsJGYsJHMpJHY9W2Jvb2xdKCh3aG9hbWkgL3VzZXIpLW1hdGNoJ1MtMS01LTE4Jyk7JGw9IiQobmkgJGVudjpwcm9ncmFtZGF0YVxQYXRjaE15UENJbnR1bmVMb2dzIC1pdCBkaSAtZm8gLWVhICR0KVwkKCgkcT0nUGF0Y2hNeVBDLVNvZnR3YXJlVXBkYXRlRGV0ZWN0aW9uU2NyaXB0LmxvZycpKSI7JHA9c3dpdGNoKCR2KXskdHJ1ZXskbH1kZWZhdWx0eyIkZW52OnRlbXBcJHEifX1pZigoKCRpPWdpICRwIC1lYSAkdCkpLmxlbmd0aC1nZTVtYil7cmkgKCR3PSRpLkZ1bGxOYW1lLlJlcGxhY2UoJy5sb2cnLCcubG9fJykpIC1mbyAtZWEgJHQ7cmVuICRpICR3fSIkKEdldC1EYXRlKX5bJHNdfltGb3VuZDokZl1+W1B1cnBvc2U6RGV0ZWN0aW9uXX5bQ29udGV4dDokZW52OnVzZXJuYW1lKV1+W0hpdmU6JGhdInxPdXQtRmlsZSAkcCAtYSAtZm99ZnVuY3Rpb24gY3twYXJhbSgkcyl0cnl7c3dpdGNoKCRzLlRvQ2hhckFycmF5KCkuV2hlcmV7JF8tZXEnLid9LkNvdW50KXsweyRzKz0nLjAnKjN9MXskcys9Jy4wLjAnfTJ7JHMrPScuMCd9fVt2ZXJzaW9uXSRzfWNhdGNoeyRhPWZvcmVhY2goJGMgaW4gJHMuU3BsaXQoJy4nKSl7dHJ5e1tpbnRdJGN9Y2F0Y2h7W2ludF06Ok1heFZhbHVlfX10cnl7YyAoW1N0cmluZ106OkpvaW4oJy4nLCRhKSl9Y2F0Y2h7W3ZlcnNpb25dKCcwLjAuMC4wJyl9fX1mb3JlYWNoKCRoIGluICdIS0xNJyl7Zm9yZWFjaCgkeCBpbiAnc29mdHdhcmUnKXtmb3JlYWNoKCRzIGluKGdwICgkRz0iJGhgOlwkeFxtaWNyb3NvZnRcd2luZG93c1xjdXJyZW50dmVyc2lvblx1bmluc3RhbGxcKiIpICgkaz0nRGlzcGxheU5hbWUnKSxEaXNwbGF5VmVyc2lvbiAtZWEgJHR8c2VsZWN0IEB7bD0nYSc7ZT17JF8uJGt9fSxAe2w9J2InO2U9e1tyZWdleF06Om1hdGNoKCRfLkRpc3BsYXlWZXJzaW9uLCRyKVswXS52YWx1ZX19LHBzY2hpbGRuYW1lLEB7bD0nYyc7ZT17W3JlZ2V4XTo6bWF0Y2goJF8uJGssJHIpWzBdLnZhbHVlfX0pfD97aWYoJF8ucHNjaGlsZG5hbWUtZXEoJG09JycpKXsoJGY9JHRydWUpfWVsc2VpZigkZT0nTW96aWxsYSBGaXJlZm94KkVTUionKXskXy5hLW5vdGxpa2UkZS1hbmQkXy5hLWxpa2Ukei1hbmQhW2Jvb2xdKCRfLnBzY2hpbGRuYW1lLWFzW2d1aWRdLWlzW2d1aWRdKX1lbHNleyRfLmEtbGlrZSR6LWFuZCFbYm9vbF0oJF8ucHNjaGlsZG5hbWUtYXNbZ3VpZF0taXNbZ3VpZF0pfX0pe2lmKCRmKXtsICRnICR0cnVlICIkKCRzLmEpICRtIjtyZXR1cm4gJG99aWYoKGMgJHMuYiktZ2UoYyAkZCktb3IoISRzLmItYW5kJHMuYy1uZScnLWFuZChjICRzLmMpLWdlKGMgJGQpKSl7aWYoKCRzLmItbGlrZSgkdj0nKicpLW9yJHMuYy1saWtlJHYpKXtsICRnICR0cnVlICIkKCRzLmEpICRkIjtyZXR1cm4gJG99fX1sICRnICRmYWxzZSAiJHogJG0gJGQifX19Y2F0Y2h7bCAnJyAnJyAkXy5FeGNlcHRpb24uTWVzc2FnZX0=; operationType=notConfigured; operator=notConfigured; comparisonValue=}",
+      "@{@odata.type=#microsoft.graph.win32LobAppPowerShellScriptRule; ruleType=requirement; displayName=Powershell requirement script for Mozilla Firefox 106.0.0 (x64 en-US); enforceSignatureCheck=False; runAs32Bit=False; runAsAccount=system; scriptContent=aWYoW0ludFB0cl06OlNpemUtZXE0KXtleGl0IDB9O3RyeXskcj0nXGQrXC5cZCsoXC5cZCspPyhcLlxkKyk/JzskdD0nc2lsZW50bHljb250aW51ZSc7JHo9J01vemlsbGEgRmlyZWZveCooeDY0IGVuLVVTKSc7JG89J0FwcGxpY2FibGUnOyRkPScxMDYuMC4wJztmdW5jdGlvbiBsIHtwYXJhbSgkaCwkZiwkcykkdj1bYm9vbF0oKHdob2FtaSAvdXNlciktbWF0Y2gnUy0xLTUtMTgnKTskbD0iJChuaSAkZW52OnByb2dyYW1kYXRhXFBhdGNoTXlQQ0ludHVuZUxvZ3MgLWl0IGRpIC1mbyAtZWEgJHQpXCQoKCRxPSdQYXRjaE15UEMtU29mdHdhcmVVcGRhdGVEZXRlY3Rpb25TY3JpcHQubG9nJykpIjskcD1zd2l0Y2goJHYpeyR0cnVleyRsfWRlZmF1bHR7IiRlbnY6dGVtcFwkcSJ9fWlmKCgoJGk9Z2kgJHAgLWVhICR0KSkubGVuZ3RoLWdlNW1iKXtyaSAoJHc9JGkuRnVsbE5hbWUuUmVwbGFjZSgnLmxvZycsJy5sb18nKSkgLWZvIC1lYSAkdDtyZW4gJGkgJHd9IiQoR2V0LURhdGUpflskc11+W0ZvdW5kOiRmXX5bUHVycG9zZTpSZXF1aXJlbWVudF1+W0NvbnRleHQ6JGVudjp1c2VybmFtZSldfltIaXZlOiRoXSJ8T3V0LUZpbGUgJHAgLWEgLWZvfWZ1bmN0aW9uIGN7cGFyYW0oJHMpdHJ5e3N3aXRjaCgkcy5Ub0NoYXJBcnJheSgpLldoZXJleyRfLWVxJy4nfS5Db3VudCl7MHskcys9Jy4wJyozfTF7JHMrPScuMC4wJ30yeyRzKz0nLjAnfX1bdmVyc2lvbl0kc31jYXRjaHskYT1mb3JlYWNoKCRjIGluICRzLlNwbGl0KCcuJykpe3RyeXtbaW50XSRjfWNhdGNoe1tpbnRdOjpNYXhWYWx1ZX19dHJ5e2MgKFtTdHJpbmddOjpKb2luKCcuJywkYSkpfWNhdGNoe1t2ZXJzaW9uXSgnMC4wLjAuMCcpfX19Zm9yZWFjaCgkaCBpbiAnSEtMTScpe2ZvcmVhY2goJHggaW4gJ3NvZnR3YXJlJyl7Zm9yZWFjaCgkcyBpbihncCAoJEc9IiRoYDpcJHhcbWljcm9zb2Z0XHdpbmRvd3NcY3VycmVudHZlcnNpb25cdW5pbnN0YWxsXCoiKSAoJGs9J0Rpc3BsYXlOYW1lJyksRGlzcGxheVZlcnNpb24gLWVhICR0fHNlbGVjdCBAe2w9J2EnO2U9eyRfLiRrfX0sQHtsPSdiJztlPXtbcmVnZXhdOjptYXRjaCgkXy5EaXNwbGF5VmVyc2lvbiwkcilbMF0udmFsdWV9fSxwc2NoaWxkbmFtZSxAe2w9J2MnO2U9e1tyZWdleF06Om1hdGNoKCRfLiRrLCRyKVswXS52YWx1ZX19KXw/e2lmKCRfLnBzY2hpbGRuYW1lLWVxKCRtPScnKSl7KCRmPSR0cnVlKX1lbHNlaWYoJGU9J01vemlsbGEgRmlyZWZveCpFU1IqJyl7JF8uYS1ub3RsaWtlJGUtYW5kJF8uYS1saWtlJHotYW5kIVtib29sXSgkXy5wc2NoaWxkbmFtZS1hc1tndWlkXS1pc1tndWlkXSl9ZWxzZXskXy5hLWxpa2Ukei1hbmQhW2Jvb2xdKCRfLnBzY2hpbGRuYW1lLWFzW2d1aWRdLWlzW2d1aWRdKX19KXtpZigkZil7bCAkZyAkdHJ1ZSAiJCgkcy5hKSAkbSI7cmV0dXJuICRvfWlmKChjICRzLmIpLWx0KGMgJGQpLW9yKCEkcy5iLWFuZCRzLmMtbmUnJy1hbmQoYyAkcy5jKS1sdChjICRkKSkpe2lmKCgkcy5iLWxpa2UoJHY9JyonKS1vciRzLmMtbGlrZSR2KSl7bCAkZyAkdHJ1ZSAiJCgkcy5hKSAkZCI7cmV0dXJuICRvfX19bCAkZyAkZmFsc2UgIiR6ICRtICRkIn19fWNhdGNoe2wgJycgJycgJF8uRXhjZXB0aW9uLk1lc3NhZ2V9; operationType=string; operator=equal; comparisonValue=Applicable}"
+    ],
+    "installExperience": {
+      "runAsAccount": "system",
+      "deviceRestartBehavior": "basedOnReturnCode"
+    },
+    "returnCodes": [
+      "@{returnCode=0; type=success}",
+      "@{returnCode=1707; type=success}",
+      "@{returnCode=3010; type=softReboot}",
+      "@{returnCode=1641; type=hardReboot}",
+      "@{returnCode=1618; type=retry}"
+    ]
+  },
+  {
+    "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileApps/$entity",
+    "@odata.type": "#microsoft.graph.win32LobApp",
+    "id": "528fcb9c-2974-4b15-b001-2c18ba06d000",
+    "displayName": "Update for VLC Media Player (x64) - MSI Install 3.0.17 (PMP)",
+    "description": "3.0.17 Fixes: VLC 3.0.17 is the eighteenth update of \"Vetinari\": Allow brackets in path part of URLs. Major adaptive streaming stack overhaul. Add support for more formats. Fix a D3D11 crash when resolution changes. Improve HEVC hardware decoding on Windows. Many third party libraries updates. Improve SMB compatibility. Improve macbooks notch support. Improbe SRT support. Fix potential corruption when editing OGG metadata. Update libflac to 1.3.4 to fix CVE-2020-0499 and CVE-2021-0561",
+    "publisher": "VideoLAN",
+    "createdDateTime": "2022-09-14T07:28:59.5934352Z",
+    "lastModifiedDateTime": "2022-09-14T07:28:59.5934352Z",
+    "isFeatured": false,
+    "privacyInformationUrl": "https://www.videolan.org/privacy.html",
+    "informationUrl": "https://www.videolan.org/doc/",
+    "owner": null,
+    "developer": null,
+    "notes": "PmpUpdateId:706a9d52-1356-4b17-b071-4c4901dca561",
+    "uploadState": 1,
+    "publishingState": "published",
+    "isAssigned": false,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "dependentAppCount": 0,
+    "supersedingAppCount": 0,
+    "supersededAppCount": 0,
+    "committedContentVersion": "1",
+    "fileName": "PatchMyPC-ScriptRunner.intunewin",
+    "size": 57916432,
+    "installCommandLine": "PatchMyPC-ScriptRunner.exe /UpdatePackage",
+    "uninstallCommandLine": "PatchMyPC-ScriptRunner.exe /UninstallPackage",
+    "applicableArchitectures": "x64",
+    "minimumFreeDiskSpaceInMB": 55,
+    "minimumMemoryInMB": null,
+    "minimumNumberOfProcessors": null,
+    "minimumCpuSpeedInMHz": null,
+    "msiInformation": null,
+    "setupFilePath": "PatchMyPC-ScriptRunner.exe",
+    "minimumSupportedWindowsRelease": "1607",
+    "displayVersion": "3.0.17",
+    "allowAvailableUninstall": false,
+    "minimumSupportedOperatingSystem": {
+      "v8_0": false,
+      "v8_1": false,
+      "v10_0": false,
+      "v10_1607": true,
+      "v10_1703": false,
+      "v10_1709": false,
+      "v10_1803": false,
+      "v10_1809": false,
+      "v10_1903": false,
+      "v10_1909": false,
+      "v10_2004": false,
+      "v10_2H20": false,
+      "v10_21H1": false
+    },
+    "detectionRules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppPowerShellScriptDetection; enforceSignatureCheck=False; runAs32Bit=False; scriptContent=aWYoW0ludFB0cl06OlNpemUtZXE0KXtleGl0IDB9O3RyeXskcj0nXGQrXC5cZCsoXC5cZCspPyhcLlxkKyk/JzskdD0nc2lsZW50bHljb250aW51ZSc7JHo9J1ZMQyBNZWRpYSBQbGF5ZXIqJzskbz0nRGV0ZWN0ZWQnOyRkPSczLjAuMTcnO2Z1bmN0aW9uIGwge3BhcmFtKCRoLCRmLCRzKSR2PVtib29sXSgod2hvYW1pIC91c2VyKS1tYXRjaCdTLTEtNS0xOCcpOyRsPSIkKG5pICRlbnY6cHJvZ3JhbWRhdGFcUGF0Y2hNeVBDSW50dW5lTG9ncyAtaXQgZGkgLWZvIC1lYSAkdClcJCgoJHE9J1BhdGNoTXlQQy1Tb2Z0d2FyZVVwZGF0ZURldGVjdGlvblNjcmlwdC5sb2cnKSkiOyRwPXN3aXRjaCgkdil7JHRydWV7JGx9ZGVmYXVsdHsiJGVudjp0ZW1wXCRxIn19aWYoKCgkaT1naSAkcCAtZWEgJHQpKS5sZW5ndGgtZ2U1bWIpe3JpICgkdz0kaS5GdWxsTmFtZS5SZXBsYWNlKCcubG9nJywnLmxvXycpKSAtZm8gLWVhICR0O3JlbiAkaSAkd30iJChHZXQtRGF0ZSl+WyRzXX5bRm91bmQ6JGZdfltQdXJwb3NlOkRldGVjdGlvbl1+W0NvbnRleHQ6JGVudjp1c2VybmFtZSldfltIaXZlOiRoXSJ8T3V0LUZpbGUgJHAgLWEgLWZvfWZ1bmN0aW9uIGN7cGFyYW0oJHMpdHJ5e3N3aXRjaCgkcy5Ub0NoYXJBcnJheSgpLldoZXJleyRfLWVxJy4nfS5Db3VudCl7MHskcys9Jy4wJyozfTF7JHMrPScuMC4wJ30yeyRzKz0nLjAnfX1bdmVyc2lvbl0kc31jYXRjaHskYT1mb3JlYWNoKCRjIGluICRzLlNwbGl0KCcuJykpe3RyeXtbaW50XSRjfWNhdGNoe1tpbnRdOjpNYXhWYWx1ZX19dHJ5e2MgKFtTdHJpbmddOjpKb2luKCcuJywkYSkpfWNhdGNoe1t2ZXJzaW9uXSgnMC4wLjAuMCcpfX19Zm9yZWFjaCgkaCBpbiAnSEtMTScpe2ZvcmVhY2goJHggaW4gJ3NvZnR3YXJlJyl7Zm9yZWFjaCgkcyBpbihncCAoJEc9IiRoYDpcJHhcbWljcm9zb2Z0XHdpbmRvd3NcY3VycmVudHZlcnNpb25cdW5pbnN0YWxsXCoiKSAoJGs9J0Rpc3BsYXlOYW1lJyksRGlzcGxheVZlcnNpb24gLWVhICR0fHNlbGVjdCBAe2w9J2EnO2U9eyRfLiRrfX0sQHtsPSdiJztlPXtbcmVnZXhdOjptYXRjaCgkXy5EaXNwbGF5VmVyc2lvbiwkcilbMF0udmFsdWV9fSxwc2NoaWxkbmFtZSxAe2w9J2MnO2U9e1tyZWdleF06Om1hdGNoKCRfLiRrLCRyKVswXS52YWx1ZX19KXw/e2lmKCRfLnBzY2hpbGRuYW1lLWVxKCRtPSd7RDM1MDlDODAtMEIyNy00MzM3LUJFNjAtQjk4NUE1ODVDMzIwfScpKXsoJGY9JHRydWUpfWVsc2VpZigkZT0nJyl7JF8uYS1ub3RsaWtlJGUtYW5kJF8uYS1saWtlJHotYW5kW2Jvb2xdKCRfLnBzY2hpbGRuYW1lLWFzW2d1aWRdLWlzW2d1aWRdKX1lbHNleyRfLmEtbGlrZSR6LWFuZFtib29sXSgkXy5wc2NoaWxkbmFtZS1hc1tndWlkXS1pc1tndWlkXSl9fSl7aWYoJGYpe2wgJGcgJHRydWUgIiQoJHMuYSkgJG0iO3JldHVybiAkb31pZigoYyAkcy5iKS1nZShjICRkKS1vcighJHMuYi1hbmQkcy5jLW5lJyctYW5kKGMgJHMuYyktZ2UoYyAkZCkpKXtpZigoJHMuYi1saWtlKCR2PScqJyktb3Ikcy5jLWxpa2Ukdikpe2wgJGcgJHRydWUgIiQoJHMuYSkgJGQiO3JldHVybiAkb319fWwgJGcgJGZhbHNlICIkeiAkbSAkZCJ9fX1jYXRjaHtsICcnICcnICRfLkV4Y2VwdGlvbi5NZXNzYWdlfQ==}"
+    ],
+    "requirementRules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppPowerShellScriptRequirement; operator=equal; detectionValue=Applicable; displayName=Powershell requirement script for VLC Media Player 3.0.17 (MSI-x64); enforceSignatureCheck=False; runAs32Bit=False; runAsAccount=system; scriptContent=aWYoW0ludFB0cl06OlNpemUtZXE0KXtleGl0IDB9O3RyeXskcj0nXGQrXC5cZCsoXC5cZCspPyhcLlxkKyk/JzskdD0nc2lsZW50bHljb250aW51ZSc7JHo9J1ZMQyBNZWRpYSBQbGF5ZXIqJzskbz0nQXBwbGljYWJsZSc7JGQ9JzMuMC4xNyc7ZnVuY3Rpb24gbCB7cGFyYW0oJGgsJGYsJHMpJHY9W2Jvb2xdKCh3aG9hbWkgL3VzZXIpLW1hdGNoJ1MtMS01LTE4Jyk7JGw9IiQobmkgJGVudjpwcm9ncmFtZGF0YVxQYXRjaE15UENJbnR1bmVMb2dzIC1pdCBkaSAtZm8gLWVhICR0KVwkKCgkcT0nUGF0Y2hNeVBDLVNvZnR3YXJlVXBkYXRlRGV0ZWN0aW9uU2NyaXB0LmxvZycpKSI7JHA9c3dpdGNoKCR2KXskdHJ1ZXskbH1kZWZhdWx0eyIkZW52OnRlbXBcJHEifX1pZigoKCRpPWdpICRwIC1lYSAkdCkpLmxlbmd0aC1nZTVtYil7cmkgKCR3PSRpLkZ1bGxOYW1lLlJlcGxhY2UoJy5sb2cnLCcubG9fJykpIC1mbyAtZWEgJHQ7cmVuICRpICR3fSIkKEdldC1EYXRlKX5bJHNdfltGb3VuZDokZl1+W1B1cnBvc2U6UmVxdWlyZW1lbnRdfltDb250ZXh0OiRlbnY6dXNlcm5hbWUpXX5bSGl2ZTokaF0ifE91dC1GaWxlICRwIC1hIC1mb31mdW5jdGlvbiBje3BhcmFtKCRzKXRyeXtzd2l0Y2goJHMuVG9DaGFyQXJyYXkoKS5XaGVyZXskXy1lcScuJ30uQ291bnQpezB7JHMrPScuMCcqM30xeyRzKz0nLjAuMCd9Mnskcys9Jy4wJ319W3ZlcnNpb25dJHN9Y2F0Y2h7JGE9Zm9yZWFjaCgkYyBpbiAkcy5TcGxpdCgnLicpKXt0cnl7W2ludF0kY31jYXRjaHtbaW50XTo6TWF4VmFsdWV9fXRyeXtjIChbU3RyaW5nXTo6Sm9pbignLicsJGEpKX1jYXRjaHtbdmVyc2lvbl0oJzAuMC4wLjAnKX19fWZvcmVhY2goJGggaW4gJ0hLTE0nKXtmb3JlYWNoKCR4IGluICdzb2Z0d2FyZScpe2ZvcmVhY2goJHMgaW4oZ3AgKCRHPSIkaGA6XCR4XG1pY3Jvc29mdFx3aW5kb3dzXGN1cnJlbnR2ZXJzaW9uXHVuaW5zdGFsbFwqIikgKCRrPSdEaXNwbGF5TmFtZScpLERpc3BsYXlWZXJzaW9uIC1lYSAkdHxzZWxlY3QgQHtsPSdhJztlPXskXy4ka319LEB7bD0nYic7ZT17W3JlZ2V4XTo6bWF0Y2goJF8uRGlzcGxheVZlcnNpb24sJHIpWzBdLnZhbHVlfX0scHNjaGlsZG5hbWUsQHtsPSdjJztlPXtbcmVnZXhdOjptYXRjaCgkXy4kaywkcilbMF0udmFsdWV9fSl8P3tpZigkXy5wc2NoaWxkbmFtZS1lcSgkbT0nJykpeygkZj0kdHJ1ZSl9ZWxzZWlmKCRlPScnKXskXy5hLW5vdGxpa2UkZS1hbmQkXy5hLWxpa2Ukei1hbmRbYm9vbF0oJF8ucHNjaGlsZG5hbWUtYXNbZ3VpZF0taXNbZ3VpZF0pfWVsc2V7JF8uYS1saWtlJHotYW5kW2Jvb2xdKCRfLnBzY2hpbGRuYW1lLWFzW2d1aWRdLWlzW2d1aWRdKX19KXtpZigkZil7bCAkZyAkdHJ1ZSAiJCgkcy5hKSAkbSI7cmV0dXJuICRvfWlmKChjICRzLmIpLWx0KGMgJGQpLW9yKCEkcy5iLWFuZCRzLmMtbmUnJy1hbmQoYyAkcy5jKS1sdChjICRkKSkpe2lmKCgkcy5iLWxpa2UoJHY9JyonKS1vciRzLmMtbGlrZSR2KSl7bCAkZyAkdHJ1ZSAiJCgkcy5hKSAkZCI7cmV0dXJuICRvfX19bCAkZyAkZmFsc2UgIiR6ICRtICRkIn19fWNhdGNoe2wgJycgJycgJF8uRXhjZXB0aW9uLk1lc3NhZ2V9; detectionType=string}"
+    ],
+    "rules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppPowerShellScriptRule; ruleType=detection; displayName=; enforceSignatureCheck=False; runAs32Bit=False; runAsAccount=; scriptContent=aWYoW0ludFB0cl06OlNpemUtZXE0KXtleGl0IDB9O3RyeXskcj0nXGQrXC5cZCsoXC5cZCspPyhcLlxkKyk/JzskdD0nc2lsZW50bHljb250aW51ZSc7JHo9J1ZMQyBNZWRpYSBQbGF5ZXIqJzskbz0nRGV0ZWN0ZWQnOyRkPSczLjAuMTcnO2Z1bmN0aW9uIGwge3BhcmFtKCRoLCRmLCRzKSR2PVtib29sXSgod2hvYW1pIC91c2VyKS1tYXRjaCdTLTEtNS0xOCcpOyRsPSIkKG5pICRlbnY6cHJvZ3JhbWRhdGFcUGF0Y2hNeVBDSW50dW5lTG9ncyAtaXQgZGkgLWZvIC1lYSAkdClcJCgoJHE9J1BhdGNoTXlQQy1Tb2Z0d2FyZVVwZGF0ZURldGVjdGlvblNjcmlwdC5sb2cnKSkiOyRwPXN3aXRjaCgkdil7JHRydWV7JGx9ZGVmYXVsdHsiJGVudjp0ZW1wXCRxIn19aWYoKCgkaT1naSAkcCAtZWEgJHQpKS5sZW5ndGgtZ2U1bWIpe3JpICgkdz0kaS5GdWxsTmFtZS5SZXBsYWNlKCcubG9nJywnLmxvXycpKSAtZm8gLWVhICR0O3JlbiAkaSAkd30iJChHZXQtRGF0ZSl+WyRzXX5bRm91bmQ6JGZdfltQdXJwb3NlOkRldGVjdGlvbl1+W0NvbnRleHQ6JGVudjp1c2VybmFtZSldfltIaXZlOiRoXSJ8T3V0LUZpbGUgJHAgLWEgLWZvfWZ1bmN0aW9uIGN7cGFyYW0oJHMpdHJ5e3N3aXRjaCgkcy5Ub0NoYXJBcnJheSgpLldoZXJleyRfLWVxJy4nfS5Db3VudCl7MHskcys9Jy4wJyozfTF7JHMrPScuMC4wJ30yeyRzKz0nLjAnfX1bdmVyc2lvbl0kc31jYXRjaHskYT1mb3JlYWNoKCRjIGluICRzLlNwbGl0KCcuJykpe3RyeXtbaW50XSRjfWNhdGNoe1tpbnRdOjpNYXhWYWx1ZX19dHJ5e2MgKFtTdHJpbmddOjpKb2luKCcuJywkYSkpfWNhdGNoe1t2ZXJzaW9uXSgnMC4wLjAuMCcpfX19Zm9yZWFjaCgkaCBpbiAnSEtMTScpe2ZvcmVhY2goJHggaW4gJ3NvZnR3YXJlJyl7Zm9yZWFjaCgkcyBpbihncCAoJEc9IiRoYDpcJHhcbWljcm9zb2Z0XHdpbmRvd3NcY3VycmVudHZlcnNpb25cdW5pbnN0YWxsXCoiKSAoJGs9J0Rpc3BsYXlOYW1lJyksRGlzcGxheVZlcnNpb24gLWVhICR0fHNlbGVjdCBAe2w9J2EnO2U9eyRfLiRrfX0sQHtsPSdiJztlPXtbcmVnZXhdOjptYXRjaCgkXy5EaXNwbGF5VmVyc2lvbiwkcilbMF0udmFsdWV9fSxwc2NoaWxkbmFtZSxAe2w9J2MnO2U9e1tyZWdleF06Om1hdGNoKCRfLiRrLCRyKVswXS52YWx1ZX19KXw/e2lmKCRfLnBzY2hpbGRuYW1lLWVxKCRtPSd7RDM1MDlDODAtMEIyNy00MzM3LUJFNjAtQjk4NUE1ODVDMzIwfScpKXsoJGY9JHRydWUpfWVsc2VpZigkZT0nJyl7JF8uYS1ub3RsaWtlJGUtYW5kJF8uYS1saWtlJHotYW5kW2Jvb2xdKCRfLnBzY2hpbGRuYW1lLWFzW2d1aWRdLWlzW2d1aWRdKX1lbHNleyRfLmEtbGlrZSR6LWFuZFtib29sXSgkXy5wc2NoaWxkbmFtZS1hc1tndWlkXS1pc1tndWlkXSl9fSl7aWYoJGYpe2wgJGcgJHRydWUgIiQoJHMuYSkgJG0iO3JldHVybiAkb31pZigoYyAkcy5iKS1nZShjICRkKS1vcighJHMuYi1hbmQkcy5jLW5lJyctYW5kKGMgJHMuYyktZ2UoYyAkZCkpKXtpZigoJHMuYi1saWtlKCR2PScqJyktb3Ikcy5jLWxpa2Ukdikpe2wgJGcgJHRydWUgIiQoJHMuYSkgJGQiO3JldHVybiAkb319fWwgJGcgJGZhbHNlICIkeiAkbSAkZCJ9fX1jYXRjaHtsICcnICcnICRfLkV4Y2VwdGlvbi5NZXNzYWdlfQ==; operationType=notConfigured; operator=notConfigured; comparisonValue=}",
+      "@{@odata.type=#microsoft.graph.win32LobAppPowerShellScriptRule; ruleType=requirement; displayName=Powershell requirement script for VLC Media Player 3.0.17 (MSI-x64); enforceSignatureCheck=False; runAs32Bit=False; runAsAccount=system; scriptContent=aWYoW0ludFB0cl06OlNpemUtZXE0KXtleGl0IDB9O3RyeXskcj0nXGQrXC5cZCsoXC5cZCspPyhcLlxkKyk/JzskdD0nc2lsZW50bHljb250aW51ZSc7JHo9J1ZMQyBNZWRpYSBQbGF5ZXIqJzskbz0nQXBwbGljYWJsZSc7JGQ9JzMuMC4xNyc7ZnVuY3Rpb24gbCB7cGFyYW0oJGgsJGYsJHMpJHY9W2Jvb2xdKCh3aG9hbWkgL3VzZXIpLW1hdGNoJ1MtMS01LTE4Jyk7JGw9IiQobmkgJGVudjpwcm9ncmFtZGF0YVxQYXRjaE15UENJbnR1bmVMb2dzIC1pdCBkaSAtZm8gLWVhICR0KVwkKCgkcT0nUGF0Y2hNeVBDLVNvZnR3YXJlVXBkYXRlRGV0ZWN0aW9uU2NyaXB0LmxvZycpKSI7JHA9c3dpdGNoKCR2KXskdHJ1ZXskbH1kZWZhdWx0eyIkZW52OnRlbXBcJHEifX1pZigoKCRpPWdpICRwIC1lYSAkdCkpLmxlbmd0aC1nZTVtYil7cmkgKCR3PSRpLkZ1bGxOYW1lLlJlcGxhY2UoJy5sb2cnLCcubG9fJykpIC1mbyAtZWEgJHQ7cmVuICRpICR3fSIkKEdldC1EYXRlKX5bJHNdfltGb3VuZDokZl1+W1B1cnBvc2U6UmVxdWlyZW1lbnRdfltDb250ZXh0OiRlbnY6dXNlcm5hbWUpXX5bSGl2ZTokaF0ifE91dC1GaWxlICRwIC1hIC1mb31mdW5jdGlvbiBje3BhcmFtKCRzKXRyeXtzd2l0Y2goJHMuVG9DaGFyQXJyYXkoKS5XaGVyZXskXy1lcScuJ30uQ291bnQpezB7JHMrPScuMCcqM30xeyRzKz0nLjAuMCd9Mnskcys9Jy4wJ319W3ZlcnNpb25dJHN9Y2F0Y2h7JGE9Zm9yZWFjaCgkYyBpbiAkcy5TcGxpdCgnLicpKXt0cnl7W2ludF0kY31jYXRjaHtbaW50XTo6TWF4VmFsdWV9fXRyeXtjIChbU3RyaW5nXTo6Sm9pbignLicsJGEpKX1jYXRjaHtbdmVyc2lvbl0oJzAuMC4wLjAnKX19fWZvcmVhY2goJGggaW4gJ0hLTE0nKXtmb3JlYWNoKCR4IGluICdzb2Z0d2FyZScpe2ZvcmVhY2goJHMgaW4oZ3AgKCRHPSIkaGA6XCR4XG1pY3Jvc29mdFx3aW5kb3dzXGN1cnJlbnR2ZXJzaW9uXHVuaW5zdGFsbFwqIikgKCRrPSdEaXNwbGF5TmFtZScpLERpc3BsYXlWZXJzaW9uIC1lYSAkdHxzZWxlY3QgQHtsPSdhJztlPXskXy4ka319LEB7bD0nYic7ZT17W3JlZ2V4XTo6bWF0Y2goJF8uRGlzcGxheVZlcnNpb24sJHIpWzBdLnZhbHVlfX0scHNjaGlsZG5hbWUsQHtsPSdjJztlPXtbcmVnZXhdOjptYXRjaCgkXy4kaywkcilbMF0udmFsdWV9fSl8P3tpZigkXy5wc2NoaWxkbmFtZS1lcSgkbT0nJykpeygkZj0kdHJ1ZSl9ZWxzZWlmKCRlPScnKXskXy5hLW5vdGxpa2UkZS1hbmQkXy5hLWxpa2Ukei1hbmRbYm9vbF0oJF8ucHNjaGlsZG5hbWUtYXNbZ3VpZF0taXNbZ3VpZF0pfWVsc2V7JF8uYS1saWtlJHotYW5kW2Jvb2xdKCRfLnBzY2hpbGRuYW1lLWFzW2d1aWRdLWlzW2d1aWRdKX19KXtpZigkZil7bCAkZyAkdHJ1ZSAiJCgkcy5hKSAkbSI7cmV0dXJuICRvfWlmKChjICRzLmIpLWx0KGMgJGQpLW9yKCEkcy5iLWFuZCRzLmMtbmUnJy1hbmQoYyAkcy5jKS1sdChjICRkKSkpe2lmKCgkcy5iLWxpa2UoJHY9JyonKS1vciRzLmMtbGlrZSR2KSl7bCAkZyAkdHJ1ZSAiJCgkcy5hKSAkZCI7cmV0dXJuICRvfX19bCAkZyAkZmFsc2UgIiR6ICRtICRkIn19fWNhdGNoe2wgJycgJycgJF8uRXhjZXB0aW9uLk1lc3NhZ2V9; operationType=string; operator=equal; comparisonValue=Applicable}"
+    ],
+    "installExperience": {
+      "runAsAccount": "system",
+      "deviceRestartBehavior": "basedOnReturnCode"
+    },
+    "returnCodes": [
+      "@{returnCode=0; type=success}",
+      "@{returnCode=1707; type=success}",
+      "@{returnCode=3010; type=softReboot}",
+      "@{returnCode=1641; type=hardReboot}",
+      "@{returnCode=1618; type=retry}"
+    ]
+  },
+  {
+    "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileApps/$entity",
+    "@odata.type": "#microsoft.graph.win32LobApp",
+    "id": "b94dd1a5-6d36-4862-924f-5bd737281ef9",
+    "displayName": "Update for Zoom Meetings (x64) 5.12.9281 (PMP)",
+    "description": "Minor bug fixes. Security enhancements",
+    "publisher": "Zoom",
+    "createdDateTime": "2022-10-19T03:43:21.9949224Z",
+    "lastModifiedDateTime": "2022-10-19T03:43:21.9949224Z",
+    "isFeatured": false,
+    "privacyInformationUrl": "https://zoom.us/privacy",
+    "informationUrl": "https://support.zoom.us/hc/en-us",
+    "owner": null,
+    "developer": null,
+    "notes": "PmpUpdateId:a59c612f-8b73-41e0-9057-3bad6256a3ee",
+    "uploadState": 1,
+    "publishingState": "published",
+    "isAssigned": false,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "dependentAppCount": 0,
+    "supersedingAppCount": 0,
+    "supersededAppCount": 0,
+    "committedContentVersion": "1",
+    "fileName": "PatchMyPC-ScriptRunner.intunewin",
+    "size": 83193472,
+    "installCommandLine": "PatchMyPC-ScriptRunner.exe /UpdatePackage",
+    "uninstallCommandLine": "PatchMyPC-ScriptRunner.exe /UninstallPackage",
+    "applicableArchitectures": "x64",
+    "minimumFreeDiskSpaceInMB": 79,
+    "minimumMemoryInMB": null,
+    "minimumNumberOfProcessors": null,
+    "minimumCpuSpeedInMHz": null,
+    "msiInformation": null,
+    "setupFilePath": "PatchMyPC-ScriptRunner.exe",
+    "minimumSupportedWindowsRelease": "1607",
+    "displayVersion": "5.12.9281",
+    "allowAvailableUninstall": false,
+    "minimumSupportedOperatingSystem": {
+      "v8_0": false,
+      "v8_1": false,
+      "v10_0": false,
+      "v10_1607": true,
+      "v10_1703": false,
+      "v10_1709": false,
+      "v10_1803": false,
+      "v10_1809": false,
+      "v10_1903": false,
+      "v10_1909": false,
+      "v10_2004": false,
+      "v10_2H20": false,
+      "v10_21H1": false
+    },
+    "detectionRules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppPowerShellScriptDetection; enforceSignatureCheck=False; runAs32Bit=False; scriptContent=aWYoW0ludFB0cl06OlNpemUtZXE0KXtleGl0IDB9O3RyeXskcj0nXGQrXC5cZCsoXC5cZCspPyhcLlxkKyk/JzskdD0nc2lsZW50bHljb250aW51ZSc7JHo9J1pvb20qJzskbz0nRGV0ZWN0ZWQnOyRkPSc1LjEyLjkyODEnO2Z1bmN0aW9uIGwge3BhcmFtKCRoLCRmLCRzKSR2PVtib29sXSgod2hvYW1pIC91c2VyKS1tYXRjaCdTLTEtNS0xOCcpOyRsPSIkKG5pICRlbnY6cHJvZ3JhbWRhdGFcUGF0Y2hNeVBDSW50dW5lTG9ncyAtaXQgZGkgLWZvIC1lYSAkdClcJCgoJHE9J1BhdGNoTXlQQy1Tb2Z0d2FyZVVwZGF0ZURldGVjdGlvblNjcmlwdC5sb2cnKSkiOyRwPXN3aXRjaCgkdil7JHRydWV7JGx9ZGVmYXVsdHsiJGVudjp0ZW1wXCRxIn19aWYoKCgkaT1naSAkcCAtZWEgJHQpKS5sZW5ndGgtZ2U1bWIpe3JpICgkdz0kaS5GdWxsTmFtZS5SZXBsYWNlKCcubG9nJywnLmxvXycpKSAtZm8gLWVhICR0O3JlbiAkaSAkd30iJChHZXQtRGF0ZSl+WyRzXX5bRm91bmQ6JGZdfltQdXJwb3NlOkRldGVjdGlvbl1+W0NvbnRleHQ6JGVudjp1c2VybmFtZSldfltIaXZlOiRoXSJ8T3V0LUZpbGUgJHAgLWEgLWZvfWZ1bmN0aW9uIGN7cGFyYW0oJHMpdHJ5e3N3aXRjaCgkcy5Ub0NoYXJBcnJheSgpLldoZXJleyRfLWVxJy4nfS5Db3VudCl7MHskcys9Jy4wJyozfTF7JHMrPScuMC4wJ30yeyRzKz0nLjAnfX1bdmVyc2lvbl0kc31jYXRjaHskYT1mb3JlYWNoKCRjIGluICRzLlNwbGl0KCcuJykpe3RyeXtbaW50XSRjfWNhdGNoe1tpbnRdOjpNYXhWYWx1ZX19dHJ5e2MgKFtTdHJpbmddOjpKb2luKCcuJywkYSkpfWNhdGNoe1t2ZXJzaW9uXSgnMC4wLjAuMCcpfX19Zm9yZWFjaCgkaCBpbiAnSEtMTScpe2ZvcmVhY2goJHggaW4gJ3NvZnR3YXJlJyl7Zm9yZWFjaCgkcyBpbihncCAoJEc9IiRoYDpcJHhcbWljcm9zb2Z0XHdpbmRvd3NcY3VycmVudHZlcnNpb25cdW5pbnN0YWxsXCoiKSAoJGs9J0Rpc3BsYXlOYW1lJyksRGlzcGxheVZlcnNpb24gLWVhICR0fHNlbGVjdCBAe2w9J2EnO2U9eyRfLiRrfX0sQHtsPSdiJztlPXtbcmVnZXhdOjptYXRjaCgkXy5EaXNwbGF5VmVyc2lvbiwkcilbMF0udmFsdWV9fSxwc2NoaWxkbmFtZSxAe2w9J2MnO2U9e1tyZWdleF06Om1hdGNoKCRfLiRrLCRyKVswXS52YWx1ZX19KXw/e2lmKCRfLnBzY2hpbGRuYW1lLWVxKCRtPSd7MzY2NDdBNjUtRDczMi00NDA3LUI2NzQtRDM3OTAyNzNFMkFEfScpKXsoJGY9JHRydWUpfWVsc2VpZigkZT0nJyl7JF8uYS1ub3RsaWtlJGUtYW5kJF8uYS1saWtlJHotYW5kW2Jvb2xdKCRfLnBzY2hpbGRuYW1lLWFzW2d1aWRdLWlzW2d1aWRdKX1lbHNleyRfLmEtbGlrZSR6LWFuZFtib29sXSgkXy5wc2NoaWxkbmFtZS1hc1tndWlkXS1pc1tndWlkXSl9fSl7aWYoJGYtYW5kKGdwdiAtUGEgInJlZ2lzdHJ5OjpIS0VZX0xPQ0FMX01BQ0hJTkVcU09GVFdBUkVcWm9vbVxNU0kiIC1OICdIb21lJyAtZWEgJHQpLWxpa2UnKlpvb21cYmluJyl7bCAkZyAkdHJ1ZSAiJCgkcy5hKSAkbSI7cmV0dXJuICRvfWlmKChjICRzLmIpLWdlKGMgJGQpLW9yKCEkcy5iLWFuZCRzLmMtbmUnJy1hbmQoYyAkcy5jKS1nZShjICRkKSkpe2lmKCgkcy5iLWxpa2UoJHY9JyonKS1vciRzLmMtbGlrZSR2KS1hbmQoZ3B2IC1QYSAicmVnaXN0cnk6OkhLRVlfTE9DQUxfTUFDSElORVxTT0ZUV0FSRVxab29tXE1TSSIgLU4gJ0hvbWUnIC1lYSAkdCktbGlrZScqWm9vbVxiaW4nKXtsICRnICR0cnVlICIkKCRzLmEpICRkIjtyZXR1cm4gJG99fX1sICRnICRmYWxzZSAiJHogJG0gJGQifX19Y2F0Y2h7bCAnJyAnJyAkXy5FeGNlcHRpb24uTWVzc2FnZX0=}"
+    ],
+    "requirementRules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppPowerShellScriptRequirement; operator=equal; detectionValue=Applicable; displayName=Powershell requirement script for Zoom Meetings 5.12.9281 (x64); enforceSignatureCheck=False; runAs32Bit=False; runAsAccount=system; scriptContent=aWYoW0ludFB0cl06OlNpemUtZXE0KXtleGl0IDB9O3RyeXskcj0nXGQrXC5cZCsoXC5cZCspPyhcLlxkKyk/JzskdD0nc2lsZW50bHljb250aW51ZSc7JHo9J1pvb20qJzskbz0nQXBwbGljYWJsZSc7JGQ9JzUuMTIuOTI4MSc7ZnVuY3Rpb24gbCB7cGFyYW0oJGgsJGYsJHMpJHY9W2Jvb2xdKCh3aG9hbWkgL3VzZXIpLW1hdGNoJ1MtMS01LTE4Jyk7JGw9IiQobmkgJGVudjpwcm9ncmFtZGF0YVxQYXRjaE15UENJbnR1bmVMb2dzIC1pdCBkaSAtZm8gLWVhICR0KVwkKCgkcT0nUGF0Y2hNeVBDLVNvZnR3YXJlVXBkYXRlRGV0ZWN0aW9uU2NyaXB0LmxvZycpKSI7JHA9c3dpdGNoKCR2KXskdHJ1ZXskbH1kZWZhdWx0eyIkZW52OnRlbXBcJHEifX1pZigoKCRpPWdpICRwIC1lYSAkdCkpLmxlbmd0aC1nZTVtYil7cmkgKCR3PSRpLkZ1bGxOYW1lLlJlcGxhY2UoJy5sb2cnLCcubG9fJykpIC1mbyAtZWEgJHQ7cmVuICRpICR3fSIkKEdldC1EYXRlKX5bJHNdfltGb3VuZDokZl1+W1B1cnBvc2U6UmVxdWlyZW1lbnRdfltDb250ZXh0OiRlbnY6dXNlcm5hbWUpXX5bSGl2ZTokaF0ifE91dC1GaWxlICRwIC1hIC1mb31mdW5jdGlvbiBje3BhcmFtKCRzKXRyeXtzd2l0Y2goJHMuVG9DaGFyQXJyYXkoKS5XaGVyZXskXy1lcScuJ30uQ291bnQpezB7JHMrPScuMCcqM30xeyRzKz0nLjAuMCd9Mnskcys9Jy4wJ319W3ZlcnNpb25dJHN9Y2F0Y2h7JGE9Zm9yZWFjaCgkYyBpbiAkcy5TcGxpdCgnLicpKXt0cnl7W2ludF0kY31jYXRjaHtbaW50XTo6TWF4VmFsdWV9fXRyeXtjIChbU3RyaW5nXTo6Sm9pbignLicsJGEpKX1jYXRjaHtbdmVyc2lvbl0oJzAuMC4wLjAnKX19fWZvcmVhY2goJGggaW4gJ0hLTE0nKXtmb3JlYWNoKCR4IGluICdzb2Z0d2FyZScpe2ZvcmVhY2goJHMgaW4oZ3AgKCRHPSIkaGA6XCR4XG1pY3Jvc29mdFx3aW5kb3dzXGN1cnJlbnR2ZXJzaW9uXHVuaW5zdGFsbFwqIikgKCRrPSdEaXNwbGF5TmFtZScpLERpc3BsYXlWZXJzaW9uIC1lYSAkdHxzZWxlY3QgQHtsPSdhJztlPXskXy4ka319LEB7bD0nYic7ZT17W3JlZ2V4XTo6bWF0Y2goJF8uRGlzcGxheVZlcnNpb24sJHIpWzBdLnZhbHVlfX0scHNjaGlsZG5hbWUsQHtsPSdjJztlPXtbcmVnZXhdOjptYXRjaCgkXy4kaywkcilbMF0udmFsdWV9fSl8P3tpZigkXy5wc2NoaWxkbmFtZS1lcSgkbT0nJykpeygkZj0kdHJ1ZSl9ZWxzZWlmKCRlPScnKXskXy5hLW5vdGxpa2UkZS1hbmQkXy5hLWxpa2Ukei1hbmRbYm9vbF0oJF8ucHNjaGlsZG5hbWUtYXNbZ3VpZF0taXNbZ3VpZF0pfWVsc2V7JF8uYS1saWtlJHotYW5kW2Jvb2xdKCRfLnBzY2hpbGRuYW1lLWFzW2d1aWRdLWlzW2d1aWRdKX19KXtpZigkZi1hbmQoZ3B2IC1QYSAicmVnaXN0cnk6OkhLRVlfTE9DQUxfTUFDSElORVxTT0ZUV0FSRVxab29tXE1TSSIgLU4gJ0hvbWUnIC1lYSAkdCktbGlrZScqWm9vbVxiaW4nKXtsICRnICR0cnVlICIkKCRzLmEpICRtIjtyZXR1cm4gJG99aWYoKGMgJHMuYiktbHQoYyAkZCktb3IoISRzLmItYW5kJHMuYy1uZScnLWFuZChjICRzLmMpLWx0KGMgJGQpKSl7aWYoKCRzLmItbGlrZSgkdj0nKicpLW9yJHMuYy1saWtlJHYpLWFuZChncHYgLVBhICJyZWdpc3RyeTo6SEtFWV9MT0NBTF9NQUNISU5FXFNPRlRXQVJFXFpvb21cTVNJIiAtTiAnSG9tZScgLWVhICR0KS1saWtlJypab29tXGJpbicpe2wgJGcgJHRydWUgIiQoJHMuYSkgJGQiO3JldHVybiAkb319fWwgJGcgJGZhbHNlICIkeiAkbSAkZCJ9fX1jYXRjaHtsICcnICcnICRfLkV4Y2VwdGlvbi5NZXNzYWdlfQ==; detectionType=string}"
+    ],
+    "rules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppPowerShellScriptRule; ruleType=detection; displayName=; enforceSignatureCheck=False; runAs32Bit=False; runAsAccount=; scriptContent=aWYoW0ludFB0cl06OlNpemUtZXE0KXtleGl0IDB9O3RyeXskcj0nXGQrXC5cZCsoXC5cZCspPyhcLlxkKyk/JzskdD0nc2lsZW50bHljb250aW51ZSc7JHo9J1pvb20qJzskbz0nRGV0ZWN0ZWQnOyRkPSc1LjEyLjkyODEnO2Z1bmN0aW9uIGwge3BhcmFtKCRoLCRmLCRzKSR2PVtib29sXSgod2hvYW1pIC91c2VyKS1tYXRjaCdTLTEtNS0xOCcpOyRsPSIkKG5pICRlbnY6cHJvZ3JhbWRhdGFcUGF0Y2hNeVBDSW50dW5lTG9ncyAtaXQgZGkgLWZvIC1lYSAkdClcJCgoJHE9J1BhdGNoTXlQQy1Tb2Z0d2FyZVVwZGF0ZURldGVjdGlvblNjcmlwdC5sb2cnKSkiOyRwPXN3aXRjaCgkdil7JHRydWV7JGx9ZGVmYXVsdHsiJGVudjp0ZW1wXCRxIn19aWYoKCgkaT1naSAkcCAtZWEgJHQpKS5sZW5ndGgtZ2U1bWIpe3JpICgkdz0kaS5GdWxsTmFtZS5SZXBsYWNlKCcubG9nJywnLmxvXycpKSAtZm8gLWVhICR0O3JlbiAkaSAkd30iJChHZXQtRGF0ZSl+WyRzXX5bRm91bmQ6JGZdfltQdXJwb3NlOkRldGVjdGlvbl1+W0NvbnRleHQ6JGVudjp1c2VybmFtZSldfltIaXZlOiRoXSJ8T3V0LUZpbGUgJHAgLWEgLWZvfWZ1bmN0aW9uIGN7cGFyYW0oJHMpdHJ5e3N3aXRjaCgkcy5Ub0NoYXJBcnJheSgpLldoZXJleyRfLWVxJy4nfS5Db3VudCl7MHskcys9Jy4wJyozfTF7JHMrPScuMC4wJ30yeyRzKz0nLjAnfX1bdmVyc2lvbl0kc31jYXRjaHskYT1mb3JlYWNoKCRjIGluICRzLlNwbGl0KCcuJykpe3RyeXtbaW50XSRjfWNhdGNoe1tpbnRdOjpNYXhWYWx1ZX19dHJ5e2MgKFtTdHJpbmddOjpKb2luKCcuJywkYSkpfWNhdGNoe1t2ZXJzaW9uXSgnMC4wLjAuMCcpfX19Zm9yZWFjaCgkaCBpbiAnSEtMTScpe2ZvcmVhY2goJHggaW4gJ3NvZnR3YXJlJyl7Zm9yZWFjaCgkcyBpbihncCAoJEc9IiRoYDpcJHhcbWljcm9zb2Z0XHdpbmRvd3NcY3VycmVudHZlcnNpb25cdW5pbnN0YWxsXCoiKSAoJGs9J0Rpc3BsYXlOYW1lJyksRGlzcGxheVZlcnNpb24gLWVhICR0fHNlbGVjdCBAe2w9J2EnO2U9eyRfLiRrfX0sQHtsPSdiJztlPXtbcmVnZXhdOjptYXRjaCgkXy5EaXNwbGF5VmVyc2lvbiwkcilbMF0udmFsdWV9fSxwc2NoaWxkbmFtZSxAe2w9J2MnO2U9e1tyZWdleF06Om1hdGNoKCRfLiRrLCRyKVswXS52YWx1ZX19KXw/e2lmKCRfLnBzY2hpbGRuYW1lLWVxKCRtPSd7MzY2NDdBNjUtRDczMi00NDA3LUI2NzQtRDM3OTAyNzNFMkFEfScpKXsoJGY9JHRydWUpfWVsc2VpZigkZT0nJyl7JF8uYS1ub3RsaWtlJGUtYW5kJF8uYS1saWtlJHotYW5kW2Jvb2xdKCRfLnBzY2hpbGRuYW1lLWFzW2d1aWRdLWlzW2d1aWRdKX1lbHNleyRfLmEtbGlrZSR6LWFuZFtib29sXSgkXy5wc2NoaWxkbmFtZS1hc1tndWlkXS1pc1tndWlkXSl9fSl7aWYoJGYtYW5kKGdwdiAtUGEgInJlZ2lzdHJ5OjpIS0VZX0xPQ0FMX01BQ0hJTkVcU09GVFdBUkVcWm9vbVxNU0kiIC1OICdIb21lJyAtZWEgJHQpLWxpa2UnKlpvb21cYmluJyl7bCAkZyAkdHJ1ZSAiJCgkcy5hKSAkbSI7cmV0dXJuICRvfWlmKChjICRzLmIpLWdlKGMgJGQpLW9yKCEkcy5iLWFuZCRzLmMtbmUnJy1hbmQoYyAkcy5jKS1nZShjICRkKSkpe2lmKCgkcy5iLWxpa2UoJHY9JyonKS1vciRzLmMtbGlrZSR2KS1hbmQoZ3B2IC1QYSAicmVnaXN0cnk6OkhLRVlfTE9DQUxfTUFDSElORVxTT0ZUV0FSRVxab29tXE1TSSIgLU4gJ0hvbWUnIC1lYSAkdCktbGlrZScqWm9vbVxiaW4nKXtsICRnICR0cnVlICIkKCRzLmEpICRkIjtyZXR1cm4gJG99fX1sICRnICRmYWxzZSAiJHogJG0gJGQifX19Y2F0Y2h7bCAnJyAnJyAkXy5FeGNlcHRpb24uTWVzc2FnZX0=; operationType=notConfigured; operator=notConfigured; comparisonValue=}",
+      "@{@odata.type=#microsoft.graph.win32LobAppPowerShellScriptRule; ruleType=requirement; displayName=Powershell requirement script for Zoom Meetings 5.12.9281 (x64); enforceSignatureCheck=False; runAs32Bit=False; runAsAccount=system; scriptContent=aWYoW0ludFB0cl06OlNpemUtZXE0KXtleGl0IDB9O3RyeXskcj0nXGQrXC5cZCsoXC5cZCspPyhcLlxkKyk/JzskdD0nc2lsZW50bHljb250aW51ZSc7JHo9J1pvb20qJzskbz0nQXBwbGljYWJsZSc7JGQ9JzUuMTIuOTI4MSc7ZnVuY3Rpb24gbCB7cGFyYW0oJGgsJGYsJHMpJHY9W2Jvb2xdKCh3aG9hbWkgL3VzZXIpLW1hdGNoJ1MtMS01LTE4Jyk7JGw9IiQobmkgJGVudjpwcm9ncmFtZGF0YVxQYXRjaE15UENJbnR1bmVMb2dzIC1pdCBkaSAtZm8gLWVhICR0KVwkKCgkcT0nUGF0Y2hNeVBDLVNvZnR3YXJlVXBkYXRlRGV0ZWN0aW9uU2NyaXB0LmxvZycpKSI7JHA9c3dpdGNoKCR2KXskdHJ1ZXskbH1kZWZhdWx0eyIkZW52OnRlbXBcJHEifX1pZigoKCRpPWdpICRwIC1lYSAkdCkpLmxlbmd0aC1nZTVtYil7cmkgKCR3PSRpLkZ1bGxOYW1lLlJlcGxhY2UoJy5sb2cnLCcubG9fJykpIC1mbyAtZWEgJHQ7cmVuICRpICR3fSIkKEdldC1EYXRlKX5bJHNdfltGb3VuZDokZl1+W1B1cnBvc2U6UmVxdWlyZW1lbnRdfltDb250ZXh0OiRlbnY6dXNlcm5hbWUpXX5bSGl2ZTokaF0ifE91dC1GaWxlICRwIC1hIC1mb31mdW5jdGlvbiBje3BhcmFtKCRzKXRyeXtzd2l0Y2goJHMuVG9DaGFyQXJyYXkoKS5XaGVyZXskXy1lcScuJ30uQ291bnQpezB7JHMrPScuMCcqM30xeyRzKz0nLjAuMCd9Mnskcys9Jy4wJ319W3ZlcnNpb25dJHN9Y2F0Y2h7JGE9Zm9yZWFjaCgkYyBpbiAkcy5TcGxpdCgnLicpKXt0cnl7W2ludF0kY31jYXRjaHtbaW50XTo6TWF4VmFsdWV9fXRyeXtjIChbU3RyaW5nXTo6Sm9pbignLicsJGEpKX1jYXRjaHtbdmVyc2lvbl0oJzAuMC4wLjAnKX19fWZvcmVhY2goJGggaW4gJ0hLTE0nKXtmb3JlYWNoKCR4IGluICdzb2Z0d2FyZScpe2ZvcmVhY2goJHMgaW4oZ3AgKCRHPSIkaGA6XCR4XG1pY3Jvc29mdFx3aW5kb3dzXGN1cnJlbnR2ZXJzaW9uXHVuaW5zdGFsbFwqIikgKCRrPSdEaXNwbGF5TmFtZScpLERpc3BsYXlWZXJzaW9uIC1lYSAkdHxzZWxlY3QgQHtsPSdhJztlPXskXy4ka319LEB7bD0nYic7ZT17W3JlZ2V4XTo6bWF0Y2goJF8uRGlzcGxheVZlcnNpb24sJHIpWzBdLnZhbHVlfX0scHNjaGlsZG5hbWUsQHtsPSdjJztlPXtbcmVnZXhdOjptYXRjaCgkXy4kaywkcilbMF0udmFsdWV9fSl8P3tpZigkXy5wc2NoaWxkbmFtZS1lcSgkbT0nJykpeygkZj0kdHJ1ZSl9ZWxzZWlmKCRlPScnKXskXy5hLW5vdGxpa2UkZS1hbmQkXy5hLWxpa2Ukei1hbmRbYm9vbF0oJF8ucHNjaGlsZG5hbWUtYXNbZ3VpZF0taXNbZ3VpZF0pfWVsc2V7JF8uYS1saWtlJHotYW5kW2Jvb2xdKCRfLnBzY2hpbGRuYW1lLWFzW2d1aWRdLWlzW2d1aWRdKX19KXtpZigkZi1hbmQoZ3B2IC1QYSAicmVnaXN0cnk6OkhLRVlfTE9DQUxfTUFDSElORVxTT0ZUV0FSRVxab29tXE1TSSIgLU4gJ0hvbWUnIC1lYSAkdCktbGlrZScqWm9vbVxiaW4nKXtsICRnICR0cnVlICIkKCRzLmEpICRtIjtyZXR1cm4gJG99aWYoKGMgJHMuYiktbHQoYyAkZCktb3IoISRzLmItYW5kJHMuYy1uZScnLWFuZChjICRzLmMpLWx0KGMgJGQpKSl7aWYoKCRzLmItbGlrZSgkdj0nKicpLW9yJHMuYy1saWtlJHYpLWFuZChncHYgLVBhICJyZWdpc3RyeTo6SEtFWV9MT0NBTF9NQUNISU5FXFNPRlRXQVJFXFpvb21cTVNJIiAtTiAnSG9tZScgLWVhICR0KS1saWtlJypab29tXGJpbicpe2wgJGcgJHRydWUgIiQoJHMuYSkgJGQiO3JldHVybiAkb319fWwgJGcgJGZhbHNlICIkeiAkbSAkZCJ9fX1jYXRjaHtsICcnICcnICRfLkV4Y2VwdGlvbi5NZXNzYWdlfQ==; operationType=string; operator=equal; comparisonValue=Applicable}"
+    ],
+    "installExperience": {
+      "runAsAccount": "system",
+      "deviceRestartBehavior": "basedOnReturnCode"
+    },
+    "returnCodes": [
+      "@{returnCode=0; type=success}",
+      "@{returnCode=1707; type=success}",
+      "@{returnCode=3010; type=softReboot}",
+      "@{returnCode=1641; type=hardReboot}",
+      "@{returnCode=1618; type=retry}"
+    ]
+  },
+  {
+    "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileApps/$entity",
+    "@odata.type": "#microsoft.graph.win32LobApp",
+    "id": "18d66488-23bd-4fd0-8805-0361436f4d89",
+    "displayName": "Update for Zoom Meetings Client 5.12.2.9281 x64 (Package Factory)",
+    "description": "Simplified video conferencing and messaging across any device. Phone, Meetings, Chat, Whiteboard and more for your desktop.",
+    "publisher": "Zoom",
+    "createdDateTime": "2022-10-13T05:37:31.6796547Z",
+    "lastModifiedDateTime": "2022-10-13T05:39:48.2116702Z",
+    "isFeatured": false,
+    "privacyInformationUrl": "https://explore.zoom.us/privacy",
+    "informationUrl": "https://explore.zoom.us/en/products/meetings/",
+    "owner": "",
+    "developer": "Zoom",
+    "notes": "{\"CreatedBy\":\"PSPackageFactory\",\"Guid\":\"b964ee87-b4dd-40f1-845b-3776a5ea79de\",\"Date\":\"2022-10-13\"}",
+    "uploadState": 1,
+    "publishingState": "published",
+    "isAssigned": false,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "dependentAppCount": 0,
+    "supersedingAppCount": 0,
+    "supersededAppCount": 0,
+    "committedContentVersion": "1",
+    "fileName": "IntunePackage.intunewin",
+    "size": 82515104,
+    "installCommandLine": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "uninstallCommandLine": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Uninstall.ps1",
+    "applicableArchitectures": "x64",
+    "minimumFreeDiskSpaceInMB": null,
+    "minimumMemoryInMB": null,
+    "minimumNumberOfProcessors": null,
+    "minimumCpuSpeedInMHz": null,
+    "msiInformation": null,
+    "setupFilePath": "ZoomInstallerFull.msi",
+    "minimumSupportedWindowsRelease": "1809",
+    "displayVersion": "5.12.2.9281",
+    "allowAvailableUninstall": false,
+    "minimumSupportedOperatingSystem": {
+      "v8_0": false,
+      "v8_1": false,
+      "v10_0": false,
+      "v10_1607": false,
+      "v10_1703": false,
+      "v10_1709": false,
+      "v10_1803": false,
+      "v10_1809": true,
+      "v10_1903": false,
+      "v10_1909": false,
+      "v10_2004": false,
+      "v10_2H20": false,
+      "v10_21H1": false
+    },
+    "detectionRules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemDetection; path=C:\\Program Files\\Zoom\\bin; fileOrFolderName=Zoom.exe; check32BitOn64System=False; detectionType=version; operator=greaterThanOrEqual; detectionValue=5.12.2.9281}"
+    ],
+    "requirementRules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemRequirement; operator=lessThan; detectionValue=5.12.2.9281; path=C:\\Program Files\\Zoom\\bin; fileOrFolderName=Zoom.exe; check32BitOn64System=False; detectionType=version}"
+    ],
+    "rules": [
+      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemRule; ruleType=detection; path=C:\\Program Files\\Zoom\\bin; fileOrFolderName=Zoom.exe; check32BitOn64System=False; operationType=version; operator=greaterThanOrEqual; comparisonValue=5.12.2.9281}",
+      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemRule; ruleType=requirement; path=C:\\Program Files\\Zoom\\bin; fileOrFolderName=Zoom.exe; check32BitOn64System=False; operationType=version; operator=lessThan; comparisonValue=5.12.2.9281}"
     ],
     "installExperience": {
       "runAsAccount": "system",
@@ -1333,11 +1780,11 @@
     "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileApps/$entity",
     "@odata.type": "#microsoft.graph.win32LobApp",
     "id": "3519c7b0-f4e3-4a3d-839a-019a3878acfa",
-    "displayName": "Windows Customised Defaults 2209.04.111",
+    "displayName": "Windows Customised Defaults 2209.24.122",
     "description": "Default user and system settings (including default Start menu layout) for Windows 10/11 PCs provisioned via Windows Autopilot. Ensure this package is assigned in the Enrolment Status Page to enable install before user sign-in.",
     "publisher": "stealthpuppy",
     "createdDateTime": "2022-08-06T01:14:24.1040133Z",
-    "lastModifiedDateTime": "2022-09-04T09:40:25.6039427Z",
+    "lastModifiedDateTime": "2022-09-24T04:53:23.5847635Z",
     "isFeatured": false,
     "privacyInformationUrl": "https://stealthpuppy.com/image-customise/",
     "informationUrl": "https://stealthpuppy.com/image-customise/",
@@ -1353,10 +1800,10 @@
     "dependentAppCount": 0,
     "supersedingAppCount": 0,
     "supersededAppCount": 0,
-    "committedContentVersion": "9",
+    "committedContentVersion": "13",
     "fileName": "Install-Defaults.intunewin",
-    "size": 27904,
-    "installCommandLine": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -ExecutionPolicy RemoteSigned -File .\\Install-Defaults.ps1",
+    "size": 32528,
+    "installCommandLine": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -ExecutionPolicy RemoteSigned -File .\\Install-Defaults.ps1 -Language en-AU",
     "uninstallCommandLine": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -ExecutionPolicy RemoteSigned -File .\\Remove-Defaults.ps1",
     "applicableArchitectures": "x86,x64",
     "minimumFreeDiskSpaceInMB": null,
@@ -1366,7 +1813,7 @@
     "msiInformation": null,
     "setupFilePath": "Install-Defaults.ps1",
     "minimumSupportedWindowsRelease": "1909",
-    "displayVersion": "2209.04.111",
+    "displayVersion": "2209.24.122",
     "allowAvailableUninstall": false,
     "minimumSupportedOperatingSystem": {
       "v8_0": false,
@@ -1384,11 +1831,11 @@
       "v10_21H1": false
     },
     "detectionRules": [
-      "@{@odata.type=#microsoft.graph.win32LobAppRegistryDetection; check32BitOn64System=False; keyPath=HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{f38de27b-799e-4c30-8a01-bfdedc622944}; valueName=DisplayVersion; detectionType=version; operator=greaterThanOrEqual; detectionValue=2209.04.111}"
+      "@{@odata.type=#microsoft.graph.win32LobAppRegistryDetection; check32BitOn64System=False; keyPath=HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{f38de27b-799e-4c30-8a01-bfdedc622944}; valueName=DisplayVersion; detectionType=version; operator=greaterThanOrEqual; detectionValue=2209.24.122}"
     ],
     "requirementRules": [],
     "rules": [
-      "@{@odata.type=#microsoft.graph.win32LobAppRegistryRule; ruleType=detection; check32BitOn64System=False; keyPath=HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{f38de27b-799e-4c30-8a01-bfdedc622944}; valueName=DisplayVersion; operationType=version; operator=greaterThanOrEqual; comparisonValue=2209.04.111}"
+      "@{@odata.type=#microsoft.graph.win32LobAppRegistryRule; ruleType=detection; check32BitOn64System=False; keyPath=HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{f38de27b-799e-4c30-8a01-bfdedc622944}; valueName=DisplayVersion; operationType=version; operator=greaterThanOrEqual; comparisonValue=2209.24.122}"
     ],
     "installExperience": {
       "runAsAccount": "system",
@@ -1405,18 +1852,18 @@
   {
     "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileApps/$entity",
     "@odata.type": "#microsoft.graph.win32LobApp",
-    "id": "42cdb5aa-a724-4f5e-a3e2-803af8e12fc0",
-    "displayName": "Zoom Meetings Client 5.11.10.8200 x64 (Package Factory)",
+    "id": "9119bd97-d097-4ff2-99a7-198d3168edd7",
+    "displayName": "Zoom Meetings Client 5.12.2.9281 x64 (Package Factory)",
     "description": "Simplified video conferencing and messaging across any device. Phone, Meetings, Chat, Whiteboard and more for your desktop.",
     "publisher": "Zoom",
-    "createdDateTime": "2022-09-02T06:32:58.9429864Z",
-    "lastModifiedDateTime": "2022-09-02T06:32:58.9429864Z",
+    "createdDateTime": "2022-10-13T05:43:33.6567582Z",
+    "lastModifiedDateTime": "2022-10-13T05:43:33.6567582Z",
     "isFeatured": false,
     "privacyInformationUrl": "https://explore.zoom.us/privacy",
     "informationUrl": "https://explore.zoom.us/en/products/meetings/",
     "owner": "",
     "developer": "Zoom",
-    "notes": "{\"CreatedBy\":\"PSPackageFactory\",\"Guid\":\"b964ee87-b4dd-40f1-845b-3776a5ea79de\",\"Date\":\"2022-09-02\"}",
+    "notes": "{\"CreatedBy\":\"PSPackageFactory\",\"Guid\":\"b964ee87-b4dd-40f1-845b-3776a5ea79de\",\"Date\":\"2022-10-13\"}",
     "uploadState": 1,
     "publishingState": "published",
     "isAssigned": false,
@@ -1428,9 +1875,9 @@
     "supersededAppCount": 0,
     "committedContentVersion": "1",
     "fileName": "IntunePackage.intunewin",
-    "size": 72704192,
-    "installCommandLine": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
-    "uninstallCommandLine": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Uninstall.ps1",
+    "size": 82515104,
+    "installCommandLine": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "uninstallCommandLine": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Uninstall.ps1",
     "applicableArchitectures": "x64",
     "minimumFreeDiskSpaceInMB": null,
     "minimumMemoryInMB": null,
@@ -1439,7 +1886,7 @@
     "msiInformation": null,
     "setupFilePath": "ZoomInstallerFull.msi",
     "minimumSupportedWindowsRelease": "1809",
-    "displayVersion": "5.11.10.8200",
+    "displayVersion": "5.12.2.9281",
     "allowAvailableUninstall": false,
     "minimumSupportedOperatingSystem": {
       "v8_0": false,
@@ -1457,84 +1904,11 @@
       "v10_21H1": false
     },
     "detectionRules": [
-      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemDetection; path=C:\\Program Files\\Zoom\\bin; fileOrFolderName=Zoom.exe; check32BitOn64System=False; detectionType=version; operator=greaterThanOrEqual; detectionValue=5.11.10.8200}"
+      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemDetection; path=C:\\Program Files\\Zoom\\bin; fileOrFolderName=Zoom.exe; check32BitOn64System=False; detectionType=version; operator=greaterThanOrEqual; detectionValue=5.12.2.9281}"
     ],
     "requirementRules": [],
     "rules": [
-      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemRule; ruleType=detection; path=C:\\Program Files\\Zoom\\bin; fileOrFolderName=Zoom.exe; check32BitOn64System=False; operationType=version; operator=greaterThanOrEqual; comparisonValue=5.11.10.8200}"
-    ],
-    "installExperience": {
-      "runAsAccount": "system",
-      "deviceRestartBehavior": "suppress"
-    },
-    "returnCodes": [
-      "@{returnCode=0; type=success}",
-      "@{returnCode=1707; type=success}",
-      "@{returnCode=3010; type=softReboot}",
-      "@{returnCode=1641; type=hardReboot}",
-      "@{returnCode=1618; type=retry}"
-    ]
-  },
-  {
-    "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileApps/$entity",
-    "@odata.type": "#microsoft.graph.win32LobApp",
-    "id": "05794761-bd5d-44d3-8c02-95bfcf700066",
-    "displayName": "Zoom Meetings Client 5.11.4.7185 x64 (Package Factory)",
-    "description": "Simplified video conferencing and messaging across any device. Phone, Meetings, Chat, Whiteboard and more for your desktop.",
-    "publisher": "Zoom",
-    "createdDateTime": "2022-08-07T06:24:36.6624896Z",
-    "lastModifiedDateTime": "2022-08-26T04:17:37.5757329Z",
-    "isFeatured": false,
-    "privacyInformationUrl": "https://explore.zoom.us/privacy",
-    "informationUrl": "https://explore.zoom.us/en/products/meetings/",
-    "owner": "",
-    "developer": "",
-    "notes": "{\"CreatedBy\":\"PSPackageFactory\",\"Guid\":\"b964ee87-b4dd-40f1-845b-3776a5ea79de\",\"Date\":\"2022-08-22\"}",
-    "uploadState": 1,
-    "publishingState": "published",
-    "isAssigned": false,
-    "roleScopeTagIds": [
-      "0"
-    ],
-    "dependentAppCount": 0,
-    "supersedingAppCount": 0,
-    "supersededAppCount": 0,
-    "committedContentVersion": "1",
-    "fileName": "IntunePackage.intunewin",
-    "size": 68858720,
-    "installCommandLine": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
-    "uninstallCommandLine": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Uninstall.ps1",
-    "applicableArchitectures": "x64",
-    "minimumFreeDiskSpaceInMB": null,
-    "minimumMemoryInMB": null,
-    "minimumNumberOfProcessors": null,
-    "minimumCpuSpeedInMHz": null,
-    "msiInformation": null,
-    "setupFilePath": "ZoomInstallerFull.msi",
-    "minimumSupportedWindowsRelease": "1809",
-    "displayVersion": "5.11.4.7185",
-    "allowAvailableUninstall": false,
-    "minimumSupportedOperatingSystem": {
-      "v8_0": false,
-      "v8_1": false,
-      "v10_0": false,
-      "v10_1607": false,
-      "v10_1703": false,
-      "v10_1709": false,
-      "v10_1803": false,
-      "v10_1809": true,
-      "v10_1903": false,
-      "v10_1909": false,
-      "v10_2004": false,
-      "v10_2H20": false,
-      "v10_21H1": false
-    },
-    "detectionRules": [
-      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemDetection; path=C:\\Program Files\\Zoom\\bin; fileOrFolderName=Zoom.exe; check32BitOn64System=False; detectionType=version; operator=greaterThanOrEqual; detectionValue=5.11.4.7185}"
-    ],
-    "requirementRules": [],
-    "rules": [
-      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemRule; ruleType=detection; path=C:\\Program Files\\Zoom\\bin; fileOrFolderName=Zoom.exe; check32BitOn64System=False; operationType=version; operator=greaterThanOrEqual; comparisonValue=5.11.4.7185}"
+      "@{@odata.type=#microsoft.graph.win32LobAppFileSystemRule; ruleType=detection; path=C:\\Program Files\\Zoom\\bin; fileOrFolderName=Zoom.exe; check32BitOn64System=False; operationType=version; operator=greaterThanOrEqual; comparisonValue=5.12.2.9281}"
     ],
     "installExperience": {
       "runAsAccount": "system",
