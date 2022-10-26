@@ -1,20 +1,19 @@
 {
-    "PackageInformation": {
-        "SetupType": "MSI",
-        "SetupFile": "ImageGlass_Kobe_8.6.7.13_x64.msi",
-        "Version": "8.6.7.13"
-    },
-    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
-    "InstallTasks": {
-        "ArgumentList": "/package \"#SetupFile\" RUNAPPLICATION=0 ALLUSERS=1 /quiet /log \"#LogPath\\#LogName.log\""
-    },
-    "PostInstall": {
-        "Remove": [
-            "C:\\Users\\Public\\Desktop\\ImageGlass.lnk",
-            "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\ImageGlass\\ImageGlass' LICENSE.lnk",
-            "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\ImageGlass\\Uninstall ImageGlass*.lnk"
-        ],
-        "Copy": [
-        ]
-    }
+  "PackageInformation": {
+    "SetupType": "MSI",
+    "SetupFile": "ImageGlass_Kobe_8.7.10.26_x64.msi",
+    "Version": "8.7.10.26"
+  },
+  "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
+  "InstallTasks": {
+    "ArgumentList": "/package \"#SetupFile\" RUNAPPLICATION=0 ALLUSERS=1 /quiet /log \"#LogPath\\#LogName.log\""
+  },
+  "PostInstall": {
+    "Remove": [
+      "C:\\Users\\Public\\Desktop\\ImageGlass.lnk",
+      "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\ImageGlass\\ImageGlass' LICENSE.lnk",
+      "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\ImageGlass\\Uninstall ImageGlass*.lnk"
+    ],
+    "Copy": []
+  }
 }
