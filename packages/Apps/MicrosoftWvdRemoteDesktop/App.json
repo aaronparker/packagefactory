@@ -37,15 +37,6 @@
   "CustomRequirementRule": [],
   "DetectionRule": [
     {
-      "Type": "Registry",
-      "DetectionMethod": "VersionComparison",
-      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{435AF226-840F-49ED-8F03-4B1356F7740F}",
-      "ValueName": "DisplayVersion",
-      "Operator": "greaterThanOrEqual",
-      "Value": "1.2.3577.0",
-      "Check32BitOn64System": "false"
-    },
-    {
       "Type": "File",
       "DetectionMethod": "Version",
       "Path": "C:\\Program Files\\Remote Desktop",
