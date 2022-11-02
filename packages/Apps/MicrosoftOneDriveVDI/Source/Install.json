@@ -1,0 +1,18 @@
+{
+  "PackageInformation": {
+    "SetupType": "EXE",
+    "SetupFile": "OneDriveSetup.exe",
+    "Version": "22.217.1016.0002"
+  },
+  "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
+  "InstallTasks": {
+    "StopProcess": [
+      "C:\\Program Files\\Microsoft OneDrive\\*.exe"
+    ],
+    "ArgumentList": "/allusers /quiet /norestart /log \"#LogPath\\#LogName.log\""
+  },
+  "PostInstall": {
+    "Remove": [],
+    "Copy": []
+  }
+}
