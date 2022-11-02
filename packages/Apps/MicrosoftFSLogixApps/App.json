@@ -1,0 +1,70 @@
+{
+  "Application": {
+    "Name": "MicrosoftFSLogixApps",
+    "Filter": "Get-EvergreenApp -Name \"MicrosoftFSLogixApps\" | Where-Object { $_.Channel -eq \"Production\" } | Select-Object -First 1",
+    "Title": "Microsoft FSLogix Apps",
+    "Language": "en-US",
+    "Architecture": "x64"
+  },
+  "PackageInformation": {
+    "SetupType": "EXE",
+    "SetupFile": "FSLogixAppsSetup.exe",
+    "Version": "2.9.8228.50276",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/MicrosoftFSLogixApps.png"
+  },
+  "Information": {
+    "DisplayName": "Microsoft FSLogix Apps 2.9.8228.50276 x64",
+    "Description": "FSLogix enhances and enables user profiles in Windows remote computing environments.",
+    "Publisher": "Microsoft",
+    "InformationURL": "https://learn.microsoft.com/en-us/fslogix/install-ht",
+    "PrivacyURL": "https://privacy.microsoft.com/privacystatement",
+    "Categories": [],
+    "PSPackageFactoryGuid": "1930b1f6-22fc-4932-88bb-bc995bed7457"
+  },
+  "Program": {
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "UninstallCommand": "MsiExec.exe /X \"{089A177D-98AE-4195-A115-D3C45613B875}\" /quiet",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "suppress"
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "1809",
+    "Architecture": "x64"
+  },
+  "CustomRequirementRule": [],
+  "DetectionRule": [
+    {
+      "Type": "File",
+      "DetectionMethod": "Existence",
+      "Path": "C:\\Program Files\\FSLogix\\Apps",
+      "FileOrFolder": "frx.exe",
+      "Operator": "greaterThanOrEqual",
+      "VersionValue": "2.9.8228.50276",
+      "Check32BitOn64System": "false"
+    },
+    {
+      "Type": "File",
+      "DetectionMethod": "Existence",
+      "Path": "C:\\Program Files\\FSLogix\\Apps",
+      "FileOrFolder": "frxshell.exe",
+      "Operator": "greaterThanOrEqual",
+      "VersionValue": "2.9.8228.50276",
+      "Check32BitOn64System": "false"
+    },
+    {
+      "Type": "File",
+      "DetectionMethod": "Existence",
+      "Path": "C:\\Program Files\\FSLogix\\Apps",
+      "FileOrFolder": "frxsvc.exe",
+      "Operator": "greaterThanOrEqual",
+      "VersionValue": "2.9.8228.50276",
+      "Check32BitOn64System": "false"
+    }
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
+}
