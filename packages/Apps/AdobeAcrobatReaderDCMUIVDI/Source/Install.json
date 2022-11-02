@@ -1,0 +1,20 @@
+{
+  "PackageInformation": {
+    "SetupType": "EXE",
+    "SetupFile": "setup.exe",
+    "Version": "22.003.20263"
+  },
+  "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
+  "InstallTasks": {
+    "ArgumentList": "/sALL /rps /l /msi TRANSFORMS=\"#PWD\\VDI-enUS.mst\" EULA_ACCEPT=YES ENABLE_CHROMEEXT=0 DISABLE_BROWSER_INTEGRATION=1 ENABLE_OPTIMIZATION=YES ADD_THUMBNAILPREVIEW=0 DISABLEDESKTOPSHORTCUT=1 /log \"#LogPath\\#LogName.log\""
+  },
+  "PostInstall": {
+    "Remove": [],
+    "Copy": [],
+    "Run": [
+      "Get-Service -Name \"AdobeARMservice\" -ErrorAction \"SilentlyContinue\" | Stop-Service -ErrorAction \"SilentlyContinue\"",
+      "Get-Service -Name \"AdobeARMservice\" -ErrorAction \"SilentlyContinue\" | Set-Service -StartupType \"Disabled\" -ErrorAction \"SilentlyContinue\"",
+      "Get-ScheduledTask \"Adobe Acrobat Update Task*\" | Unregister-ScheduledTask -Confirm:$False -ErrorAction \"SilentlyContinue\""
+    ]
+  }
+}

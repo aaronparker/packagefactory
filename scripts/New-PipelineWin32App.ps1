@@ -102,6 +102,17 @@ foreach ($App in $Applications) {
                 Expand-Archive @params
                 Remove-Item -Path $result.FullName -Force
             }
+            if ($Manifest.Application.PrePackageCmd.Length -gt 0) {
+                $params = @{
+                    FilePath        = $result.FullName
+                    DestinationPath = $($Manifest.Application.PrePackageCmd -replace "#Path", $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder)))
+                    NoNewWindow     = $True
+                    Wait            = $True
+                }
+                Write-Host "Start: $($result.FullName) $($Manifest.Application.PrePackageCmd -replace "#Path", $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder)))"
+                Start-Process @params
+                Remove-Item -Path $result.FullName -Force
+            }
         }
 
         # Copy Install.ps1 into the source folder
@@ -123,7 +134,7 @@ foreach ($App in $Applications) {
             Application       = $AppItem
             Path              = $([System.IO.Path]::Combine($Path, $PackageFolder))
             Type              = $Type
-            DisplayNameSuffix  = "(Package Factory)"
+            DisplayNameSuffix = "(Package Factory)"
         }
         $params
         Write-Host "Run: Create-Win32App.ps1"

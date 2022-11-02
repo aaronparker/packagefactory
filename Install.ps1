@@ -206,6 +206,7 @@ else {
     $ArgumentList = $Install.InstallTasks.ArgumentList -replace "#SetupFile", $Installer
     $ArgumentList = $ArgumentList -replace "#LogName", $Install.PackageInformation.SetupFile
     $ArgumentList = $ArgumentList -replace "#LogPath", $Install.LogPath
+    $ArgumentList = $ArgumentList -replace "#PWD", $PWD.Path
 
     try {
         # Perform the application install
@@ -249,6 +250,11 @@ else {
 
         # Perform post install actions
         if ($Install.PostInstall.Copy.Count -gt 0) { Copy-File -File $Install.PostInstall.Copy }
+
+        # Execute run tasks
+        if ($Install.PostInstall.Run.Count -gt 0) {
+            foreach ($Task in $Install.PostInstall.Run) { Invoke-Expression -Command $Task }
+        }
     }
     catch {
         throw $_
