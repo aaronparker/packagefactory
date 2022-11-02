@@ -38,7 +38,7 @@
   "DetectionRule": [
     {
       "Type": "File",
-      "DetectionMethod": "Existence",
+      "DetectionMethod": "Version",
       "Path": "C:\\Program Files\\FSLogix\\Apps",
       "FileOrFolder": "frx.exe",
       "Operator": "greaterThanOrEqual",
@@ -47,7 +47,7 @@
     },
     {
       "Type": "File",
-      "DetectionMethod": "Existence",
+      "DetectionMethod": "Version",
       "Path": "C:\\Program Files\\FSLogix\\Apps",
       "FileOrFolder": "frxshell.exe",
       "Operator": "greaterThanOrEqual",
@@ -56,7 +56,7 @@
     },
     {
       "Type": "File",
-      "DetectionMethod": "Existence",
+      "DetectionMethod": "Version",
       "Path": "C:\\Program Files\\FSLogix\\Apps",
       "FileOrFolder": "frxsvc.exe",
       "Operator": "greaterThanOrEqual",
