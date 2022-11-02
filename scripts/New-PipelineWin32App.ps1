@@ -102,12 +102,14 @@ foreach ($App in $Applications) {
                 Expand-Archive @params
                 Remove-Item -Path $result.FullName -Force
             }
+
+            # Run the command defined in PrePackageCmd
             if ($Manifest.Application.PrePackageCmd.Length -gt 0) {
                 $params = @{
-                    FilePath        = $result.FullName
-                    DestinationPath = $($Manifest.Application.PrePackageCmd -replace "#Path", $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder)))
-                    NoNewWindow     = $True
-                    Wait            = $True
+                    FilePath     = $result.FullName
+                    ArgumentList = $($Manifest.Application.PrePackageCmd -replace "#Path", $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder)))
+                    NoNewWindow  = $True
+                    Wait         = $True
                 }
                 Write-Host "Start: $($result.FullName) $($Manifest.Application.PrePackageCmd -replace "#Path", $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder)))"
                 Start-Process @params
