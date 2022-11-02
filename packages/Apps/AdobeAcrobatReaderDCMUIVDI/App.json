@@ -9,7 +9,7 @@
   },
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "AcroRdrDCx642200320263_MUI.exe",
+    "SetupFile": "Setup.exe",
     "Version": "22.003.20263",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
