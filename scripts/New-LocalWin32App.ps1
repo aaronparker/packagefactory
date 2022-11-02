@@ -4,8 +4,8 @@
     Import application packages into Intune locally
 #>
 [CmdletBinding()]
-[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingWriteHost", "")]
-[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingInvokeExpression", "")]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingWriteHost", "", Justification = "Writes status to the pipeline log.")]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingInvokeExpression", "", Justification = "Needed to execute Evergreen or VcRedist commands.")]
 param (
     [Parameter()]
     [System.String] $Path = "E:\projects\packagefactory",
@@ -80,11 +80,11 @@ foreach ($Application in $Applications) {
                 if ($Manifest.Application.PrePackageCmd.Length -gt 0) {
                     $params = @{
                         FilePath     = $result.FullName
-                        ArgumentList = $($Manifest.Application.PrePackageCmd -replace "#Path", $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder)))
+                        ArgumentList = $($Manifest.Application.PrePackageCmd -replace "#Path", $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $Application, $Manifest.PackageInformation.SourceFolder)))
                         NoNewWindow  = $True
                         Wait         = $True
                     }
-                    Write-Host "Start: $($result.FullName) $($Manifest.Application.PrePackageCmd -replace "#Path", $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder)))"
+                    Write-Host "Start: $($result.FullName) $($Manifest.Application.PrePackageCmd -replace "#Path", $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $Application, $Manifest.PackageInformation.SourceFolder)))"
                     Start-Process @params
                     Remove-Item -Path $result.FullName -Force
                 }
