@@ -1,0 +1,16 @@
+{
+  "PackageInformation": {
+    "SetupType": "MSI",
+    "SetupFile": "RemoteDesktop_1.2.3577.0_x64.msi",
+    "Version": "1.2.3577.0"
+  },
+  "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
+  "InstallTasks": {
+    "StopProcess": [],
+    "ArgumentList": "/package \"#SetupFile\" ALLUSERS=TRUE /quiet /log \"#LogPath\\#LogName.log\""
+  },
+  "PostInstall": {
+    "Remove": [],
+    "Copy": []
+  }
+}

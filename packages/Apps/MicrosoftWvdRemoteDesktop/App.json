@@ -1,0 +1,61 @@
+{
+  "Application": {
+    "Name": "MicrosoftWvdRemoteDesktop",
+    "Filter": "Get-EvergreenApp -Name \"MicrosoftWvdRemoteDesktop\" | Where-Object { $_.Channel -eq \"Public\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+    "Title": "Microsoft Remote Desktop",
+    "Language": "en-US",
+    "Architecture": "x64"
+  },
+  "PackageInformation": {
+    "SetupType": "MSI",
+    "SetupFile": "RemoteDesktop_1.2.3577.0_x64.msi",
+    "Version": "1.2.3577.0",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-VisualStudioCode.png"
+  },
+  "Information": {
+    "DisplayName": "Microsoft Remote Desktop 1.2.3577.0 x64",
+    "Description": "The Microsoft Remote Desktop client is used to connect to Azure Virtual Desktop to access your desktops and applications. This article shows you how to connect to Azure Virtual Desktop with the Remote Desktop client for Windows.",
+    "Publisher": "Microsoft",
+    "InformationURL": "https://learn.microsoft.com/en-us/azure/virtual-desktop/users/connect-windows",
+    "PrivacyURL": "https://privacy.microsoft.com/privacystatement",
+    "Categories": [],
+    "PSPackageFactoryGuid": "a32b45f9-05dd-4f55-9992-118c40b3404d"
+  },
+  "Program": {
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "UninstallCommand": "msiexec.exe /X \"{435AF226-840F-49ED-8F03-4B1356F7740F}\" /quiet",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "suppress"
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "1809",
+    "Architecture": "x64"
+  },
+  "CustomRequirementRule": [],
+  "DetectionRule": [
+    {
+      "Type": "Registry",
+      "DetectionMethod": "VersionComparison",
+      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{435AF226-840F-49ED-8F03-4B1356F7740F}",
+      "ValueName": "DisplayVersion",
+      "Operator": "greaterThanOrEqual",
+      "Value": "1.2.3577.0",
+      "Check32BitOn64System": "false"
+    },
+    {
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "C:\\Program Files\\Remote Desktop",
+      "FileOrFolder": "msrdc.exe",
+      "Operator": "greaterThanOrEqual",
+      "VersionValue": "1.2.3577.0",
+      "Check32BitOn64System": "false"
+    }
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
+}
