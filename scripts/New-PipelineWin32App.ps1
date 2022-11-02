@@ -50,12 +50,12 @@ Write-Host "Applications: $Application"
 [System.Array] $Applications = $Application.ToString() -split ","
 
 foreach ($App in $Applications) {
-    $AppItem = $App.Trim()
-    Write-Host "Application: $AppItem"
+    $ApplicationName = $App.Trim()
+    Write-Host "Application: $ApplicationName"
 
     try {
         # Read the package manifest JSON
-        $Manifest = Get-Content -Path $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $PackageManifest)) -ErrorAction "SilentlyContinue" | `
+        $Manifest = Get-Content -Path $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $PackageManifest)) -ErrorAction "SilentlyContinue" | `
             ConvertFrom-Json -ErrorAction "SilentlyContinue"
     }
     catch {
@@ -63,24 +63,24 @@ foreach ($App in $Applications) {
     }
 
     if ($Null -eq $Manifest.Application.Filter) {
-        Write-Host "Application not supported by this workflow: $AppItem"
+        Write-Host "Application not supported by this workflow: $ApplicationName"
     }
     else {
         if ($Manifest.Application.Filter -match "Get-VcList") {
 
             # Handle the Visual C++ Redistributables via VcRedist
-            $AppItem = Invoke-Expression -Command $Manifest.Application.Filter
-            $Filename = $(Split-Path -Path $AppItem.Download -Leaf)
-            Write-Host "Package: $($AppItem.Name); $Filename."
+            $ApplicationName = Invoke-Expression -Command $Manifest.Application.Filter
+            $Filename = $(Split-Path -Path $ApplicationName.Download -Leaf)
+            Write-Host "Package: $($ApplicationName.Name); $Filename."
             $params = @{
-                Path     = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder))
+                Path     = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder))
                 ItemType = "Directory"
                 Force    = $True
             }
             New-Item @params | Out-Null
             $params = @{
-                Uri             = $AppItem.Download
-                OutFile         = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder, $Filename))
+                Uri             = $ApplicationName.Download
+                OutFile         = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder, $Filename))
                 UseBasicParsing = $True
             }
             Invoke-WebRequest @params
@@ -88,14 +88,14 @@ foreach ($App in $Applications) {
         else {
 
             # Get the application installer via Evergreen and download
-            $result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -CustomPath $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder))
+            $result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -CustomPath $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder))
 
             # Unpack the installer file if its a zip file
             Write-Host "Downloaded: $($result.FullName)"
             if ($result.FullName -match "\.zip$") {
                 $params = @{
                     Path            = $result.FullName
-                    DestinationPath = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder))
+                    DestinationPath = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder))
                 }
                 Write-Host "Expand: $($result.FullName)"
                 Expand-Archive @params
@@ -106,24 +106,24 @@ foreach ($App in $Applications) {
             if ($Manifest.Application.PrePackageCmd.Length -gt 0) {
                 $params = @{
                     FilePath     = $result.FullName
-                    ArgumentList = $($Manifest.Application.PrePackageCmd -replace "#Path", $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder)))
+                    ArgumentList = $($Manifest.Application.PrePackageCmd -replace "#Path", $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder)))
                     NoNewWindow  = $True
                     Wait         = $True
                 }
-                Write-Host "Start: $($result.FullName) $($Manifest.Application.PrePackageCmd -replace "#Path", $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder)))"
+                Write-Host "Start: $($result.FullName) $($Manifest.Application.PrePackageCmd -replace "#Path", $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder)))"
                 Start-Process @params
                 Remove-Item -Path $result.FullName -Force
             }
         }
 
         # Copy Install.ps1 into the source folder
-        if (Test-Path -Path $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder, "Install.json"))) {
+        if (Test-Path -Path $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder, "Install.json"))) {
             $params = @{
                 Path        = $([System.IO.Path]::Combine($Path, $InstallScript))
-                Destination = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder, $InstallScript))
+                Destination = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder, $InstallScript))
                 ErrorAction = "SilentlyContinue"
             }
-            Write-Host "Copy: $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder, $InstallScript))"
+            Write-Host "Copy: $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder, $InstallScript))"
             Copy-Item @params
         }
         else {
@@ -132,7 +132,7 @@ foreach ($App in $Applications) {
 
         # Import the application into Intune
         $params = @{
-            Application       = $AppItem
+            Application       = $ApplicationName
             Path              = $([System.IO.Path]::Combine($Path, $PackageFolder))
             Type              = $Type
             DisplayNameSuffix = "(Package Factory)"

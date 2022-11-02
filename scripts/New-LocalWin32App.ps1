@@ -28,11 +28,11 @@ param (
     [System.String] $Type = "Apps"
 )
 
-foreach ($Application in $Applications) {
+foreach ($ApplicationName in $Applications) {
     try {
         # Get the application details
-        Write-Host "Application: $Application"
-        $AppPath = [System.IO.Path]::Combine($Path, $PackageFolder, $Type, $Application)
+        Write-Host "Application: $ApplicationName"
+        $AppPath = [System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName)
         Write-Host -ForegroundColor "Cyan" "Read: $([System.IO.Path]::Combine($AppPath, $PackageManifest))"
         $Manifest = Get-Content -Path $([System.IO.Path]::Combine($AppPath, $PackageManifest)) | ConvertFrom-Json
     }
@@ -42,7 +42,7 @@ foreach ($Application in $Applications) {
 
     # Download the application installer
     if ($Null -eq $Manifest.Application.Filter) {
-        Write-Host -ForegroundColor "Cyan" "$Application not supported for automatic download."
+        Write-Host -ForegroundColor "Cyan" "$ApplicationName not supported for automatic download."
     }
     else {
         if ($Manifest.Application.Filter -match "Get-VcList") {
@@ -69,7 +69,7 @@ foreach ($Application in $Applications) {
                 if ($result.FullName -match "\.zip$") {
                     $params = @{
                         Path            = $result.FullName
-                        DestinationPath = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder))
+                        DestinationPath = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder))
                     }
                     Write-Host "Expand: $($result.FullName)"
                     Expand-Archive @params
@@ -78,14 +78,22 @@ foreach ($Application in $Applications) {
 
                 # Run the command defined in PrePackageCmd
                 if ($Manifest.Application.PrePackageCmd.Length -gt 0) {
+                    $TempPath = $([System.IO.Path]::Combine($Env:Temp, $result.BaseName))
                     $params = @{
                         FilePath     = $result.FullName
-                        ArgumentList = $($Manifest.Application.PrePackageCmd -replace "#Path", $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $Application, $Manifest.PackageInformation.SourceFolder)))
+                        ArgumentList = $($Manifest.Application.PrePackageCmd -replace "#Path", $TempPath)
                         NoNewWindow  = $True
                         Wait         = $True
                     }
-                    Write-Host "Start: $($result.FullName) $($Manifest.Application.PrePackageCmd -replace "#Path", $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $Application, $Manifest.PackageInformation.SourceFolder)))"
+                    Write-Host "Start: $($result.FullName) $($Manifest.Application.PrePackageCmd -replace "#Path", $TempPath)"
                     Start-Process @params
+                    $params = @{
+                        Path        = "$TempPath\*"
+                        Destination = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder))
+                        Recurse     = $True
+                        Force       = $True
+                    }
+                    Copy-Item @params
                     Remove-Item -Path $result.FullName -Force
                 }
             }
@@ -95,7 +103,7 @@ foreach ($Application in $Applications) {
     # Package the application
     if (Test-Path -Path $([System.IO.Path]::Combine($AppPath, $Manifest.PackageInformation.SourceFolder))) {
         $params = @{
-            Application       = $Application
+            Application       = $ApplicationName
             Path              = $([System.IO.Path]::Combine($Path, $PackageFolder))
             Type              = $Type
             DisplayNameSuffix = ""
