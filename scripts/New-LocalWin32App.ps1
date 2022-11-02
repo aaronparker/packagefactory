@@ -20,7 +20,7 @@ param (
     [System.String[]] $Applications = @("Microsoft.NET",
         "MicrosoftVcRedist2022x86",
         "MicrosoftVcRedist2022x64",
-        "AdobeAcrobatReaderDC",
+        "AdobeAcrobatReaderDCMUI",
         "ImageCustomise"),
 
     [Parameter()]
@@ -56,11 +56,38 @@ foreach ($Application in $Applications) {
         }
         else {
 
-            Write-Host -ForegroundColor "Cyan" "Filter: $($Manifest.Application.Filter)"
-            $result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -CustomPath $([System.IO.Path]::Combine($AppPath, $Manifest.PackageInformation.SourceFolder))
-            if ($result.FullName -match "\.zip$") {
-                Expand-Archive -Path $result.FullName -DestinationPath $([System.IO.Path]::Combine($AppPath, $Manifest.PackageInformation.SourceFolder)) -Force
-                Remove-Item -Path $result.FullName -Force
+            if (Test-Path -Path $Manifest.PackageInformation.SetupFile) {
+                Write-Information -MessageData "File exists: $($Manifest.PackageInformation.SetupFile)" -InformationAction "Continue"
+            }
+            else {
+
+                # Get the application installer via Evergreen and download
+                $result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -CustomPath $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder))
+
+                # Unpack the installer file if its a zip file
+                Write-Host "Downloaded: $($result.FullName)"
+                if ($result.FullName -match "\.zip$") {
+                    $params = @{
+                        Path            = $result.FullName
+                        DestinationPath = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder))
+                    }
+                    Write-Host "Expand: $($result.FullName)"
+                    Expand-Archive @params
+                    Remove-Item -Path $result.FullName -Force
+                }
+
+                # Run the command defined in PrePackageCmd
+                if ($Manifest.Application.PrePackageCmd.Length -gt 0) {
+                    $params = @{
+                        FilePath     = $result.FullName
+                        ArgumentList = $($Manifest.Application.PrePackageCmd -replace "#Path", $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder)))
+                        NoNewWindow  = $True
+                        Wait         = $True
+                    }
+                    Write-Host "Start: $($result.FullName) $($Manifest.Application.PrePackageCmd -replace "#Path", $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder)))"
+                    Start-Process @params
+                    Remove-Item -Path $result.FullName -Force
+                }
             }
         }
     }
@@ -71,7 +98,7 @@ foreach ($Application in $Applications) {
             Application       = $Application
             Path              = $([System.IO.Path]::Combine($Path, $PackageFolder))
             Type              = $Type
-            DisplayNameSuffix  = ""
+            DisplayNameSuffix = ""
         }
         .\Create-Win32App.ps1 @params
     }
