@@ -17,6 +17,9 @@ param (
     [System.String] $PackageManifest = "App.json",
 
     [Parameter()]
+    [System.String] $InstallScript = "Install.ps1",
+
+    [Parameter()]
     [System.String[]] $Applications = @("Microsoft.NET",
         "MicrosoftVcRedist2022x86",
         "MicrosoftVcRedist2022x64",
@@ -97,6 +100,20 @@ foreach ($ApplicationName in $Applications) {
                     Remove-Item -Path $result.FullName -Force
                 }
             }
+        }
+
+        # Copy Install.ps1 into the source folder
+        if (Test-Path -Path $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder, "Install.json"))) {
+            $params = @{
+                Path        = $([System.IO.Path]::Combine($Path, $InstallScript))
+                Destination = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder, $InstallScript))
+                ErrorAction = "SilentlyContinue"
+            }
+            Write-Host "Copy: $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder, $InstallScript))"
+            Copy-Item @params
+        }
+        else {
+            Write-Host "Install.json does not exist."
         }
     }
 
