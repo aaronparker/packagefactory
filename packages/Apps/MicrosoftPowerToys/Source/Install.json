@@ -1,8 +1,8 @@
 {
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "PowerToysSetup-0.64.0-x64.exe",
-    "Version": "0.64.0"
+    "SetupFile": "PowerToysSetup-0.64.1-x64.exe",
+    "Version": "0.64.1"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {

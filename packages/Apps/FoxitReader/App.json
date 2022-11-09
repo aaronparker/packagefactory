@@ -8,14 +8,14 @@
   },
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "FoxitPDFReader1201_enu_Setup.msi",
-    "Version": "12.0.1.12430",
+    "SetupFile": "latest.html?product=Foxit-Enterprise-Reader&platform=Windows&version=12.0.2.12465&package_type=msi&language=English&distID=",
+    "Version": "12.0.2.12465",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/FoxitReader.png"
   },
   "Information": {
-    "DisplayName": "Foxit PDF Reader 12.0.1.12430",
+    "DisplayName": "Foxit PDF Reader 12.0.2.12465",
     "Description": "View, annotate, form fill, and sign PDF across desktop, mobile, and web - no matter if you're at the office, home, or on the go.",
     "Publisher": "Foxit Software Inc.",
     "InformationURL": "https://www.foxit.com/pdf-reader/",
@@ -42,7 +42,7 @@
       "Path": "C:\\Program Files (x86)\\Foxit Software\\Foxit PDF Reader",
       "FileOrFolder": "FoxitPDFReader.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "12.0.1.12430",
+      "VersionValue": "12.0.2.12465",
       "Check32BitOn64System": "true"
     }
   ],

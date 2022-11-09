@@ -1,17 +1,15 @@
 {
-    "PackageInformation": {
-        "SetupType": "MSI",
-        "SetupFile": "FoxitPDFReader1201_enu_Setup.msi",
-        "Version": "12.0.1.12430"
-    },
-    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
-    "InstallTasks": {
-        "ArgumentList": "/package \"#SetupFile\" AUTO_UPDATE=0 NOTINSTALLUPDATE=1 MAKEDEFAULT=0 LAUNCHCHECKDEFAULT=0 VIEW_IN_BROWSER=0 DESKTOP_SHORTCUT=0 STARTMENU_SHORTCUT_UNINSTALL=0 DISABLE_UNINSTALL_SURVEY=1 ALLUSERS=1 /log \"#LogPath\\#LogName.log\""
-    },
-    "PostInstall": {
-        "Remove": [
-        ],
-        "Copy": [
-        ]
-    }
+  "PackageInformation": {
+    "SetupType": "MSI",
+    "SetupFile": "latest.html?product=Foxit-Enterprise-Reader&platform=Windows&version=12.0.2.12465&package_type=msi&language=English&distID=",
+    "Version": "12.0.2.12465"
+  },
+  "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
+  "InstallTasks": {
+    "ArgumentList": "/package \"#SetupFile\" AUTO_UPDATE=0 NOTINSTALLUPDATE=1 MAKEDEFAULT=0 LAUNCHCHECKDEFAULT=0 VIEW_IN_BROWSER=0 DESKTOP_SHORTCUT=0 STARTMENU_SHORTCUT_UNINSTALL=0 DISABLE_UNINSTALL_SURVEY=1 ALLUSERS=1 /log \"#LogPath\\#LogName.log\""
+  },
+  "PostInstall": {
+    "Remove": [],
+    "Copy": []
+  }
 }
