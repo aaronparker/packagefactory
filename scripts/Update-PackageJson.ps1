@@ -131,8 +131,10 @@ foreach ($ManifestJson in $ManifestList) {
                         }
                     }
 
-                    if ($Manifest.DetectionRule[$i].Path -match "(\d+(\.\d+){1,4})") {
-                        $Manifest.DetectionRule[$i].Path -replace "(\d+(\.\d+){1,4})", $AppUpdate.Version
+                    if ("Path" -in ($Manifest.DetectionRule[$i] | Get-Member -MemberType "NoteProperty" | Select-Object -ExpandProperty "Name")) {
+                        if ($Manifest.DetectionRule[$i].Path -match "(\d+(\.\d+){1,4})") {
+                            $Manifest.DetectionRule[$i].Path -replace "(\d+(\.\d+){1,4})", $AppUpdate.Version
+                        }
                     }
                 }
 
