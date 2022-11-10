@@ -1,16 +1,16 @@
 {
-    "PackageInformation": {
-        "SetupType": "EXE",
-        "SetupFile": "VC_redist.x86.exe",
-        "Version": "14.32.31332.0"
-    },
-    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
-    "InstallTasks": {
-        "StopProcess": [],
-        "ArgumentList": "/install /quiet /norestart /log \"#LogPath\\#LogName.log\""
-    },
-    "PostInstall": {
-        "Remove": [],
-        "Copy": []
-    }
+  "PackageInformation": {
+    "SetupType": "EXE",
+    "SetupFile": "VC_redist.x86.exe",
+    "Version": "14.34.31931.0"
+  },
+  "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
+  "InstallTasks": {
+    "StopProcess": [],
+    "ArgumentList": "/install /quiet /norestart /log \"#LogPath\\#LogName.log\""
+  },
+  "PostInstall": {
+    "Remove": [],
+    "Copy": []
+  }
 }
