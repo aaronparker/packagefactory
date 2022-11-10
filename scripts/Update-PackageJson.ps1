@@ -130,6 +130,10 @@ foreach ($ManifestJson in $ManifestList) {
                             $Manifest.DetectionRule[$i].ProductCode = $AppUpdate.ProductCode
                         }
                     }
+
+                    if ($Manifest.DetectionRule[$i].Path -match "(\d+(\.\d+){1,4})") {
+                        $Manifest.DetectionRule[$i].Path -replace "(\d+(\.\d+){1,4})", $AppUpdate.Version
+                    }
                 }
 
                 # Write the application manifest back to disk

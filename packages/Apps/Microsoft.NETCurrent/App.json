@@ -1,0 +1,59 @@
+{
+  "Application": {
+    "Name": "Microsoft.NETCurrent",
+    "Filter": "Get-EvergreenApp -Name \"Microsoft.NET\" | Where-Object { $_.Installer -eq \"windowsdesktop\" -and $_.Architecture -eq \"x64\" -and $_.Channel -eq \"Current\" } | Select-Object -First 1",
+    "Title": "Microsoft .NET Desktop Runtime Current",
+    "Language": "en-US",
+    "Architecture": "x64"
+  },
+  "PackageInformation": {
+    "SetupType": "EXE",
+    "SetupFile": "windowsdesktop-runtime-6.0.11-win-x64.exe",
+    "Version": "6.0.11",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-NET.png"
+  },
+  "Information": {
+    "DisplayName": "Microsoft .NET Desktop Runtime 6.0.11 x64",
+    "Description": "The .NET Desktop Runtime Current enables you to run existing Windows desktop applications. This release includes the .NET Runtime; you don't need to install it separately.",
+    "Publisher": "Microsoft",
+    "InformationURL": "https://dotnet.microsoft.com/en-us/",
+    "PrivacyURL": "https://privacy.microsoft.com/privacystatement",
+    "Categories": [],
+    "PSPackageFactoryGuid": "a91c2def-1212-44c6-8b10-91a0aefac41c"
+  },
+  "Program": {
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "UninstallCommand": "MsiExec.exe /X \"{089A177D-98AE-4195-A115-D3C45613B875}\" /quiet",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "suppress"
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "1809",
+    "Architecture": "x64"
+  },
+  "CustomRequirementRule": [],
+  "DetectionRule": [
+    {
+      "Type": "File",
+      "DetectionMethod": "Existence",
+      "Path": "C:\\Program Files\\dotnet",
+      "FileOrFolder": "dotnet.exe",
+      "DetectionType": "exists",
+      "Check32BitOn64System": "false"
+    },
+    {
+      "Type": "File",
+      "DetectionMethod": "Existence",
+      "Path": "C:\\Program Files\\dotnet\\host\\fxr\\6.0.11",
+      "FileOrFolder": "hostfxr.dll",
+      "DetectionType": "exists",
+      "Check32BitOn64System": "false"
+    }
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
+}
