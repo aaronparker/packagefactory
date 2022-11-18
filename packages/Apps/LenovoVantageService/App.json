@@ -1,49 +1,43 @@
 {
-  "Application": {
-    "Name": "LenovoVantageService",
-    "Filter": "",
-    "Title": "",
-    "Language": "en-US",
-    "Architecture": "x64"
-  },
-  "PackageInformation": {
-    "SetupType": "EXE",
-    "SetupFile": "Lenovo.Vantage.ServiceSetup",
-    "Version": "3.13.25.0",
-    "SourceFolder": "Source",
-    "OutputFolder": "Package",
-    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Lenovo-Vantage.png"
-  },
-  "Information": {
-    "DisplayName": "Lenovo.Vantage.ServiceSetup 3.13.25.0",
-    "Description": "Lenovo Vantage Service required for the Lenovo Vantage app. Evergreen URL is here: https://filedownload.lenovo.com/enm/vantage30/service/Lenovo.Vantage.ServiceSetup.exe.",
-    "Publisher": "Lenovo",
-    "InformationURL": "https://apps.microsoft.com/store/detail/lenovo-vantage/9WZDNCRFJ4MV",
-    "PrivacyURL": "https://tun-c-hybris.lenovo.com/us/en/privacy/",
-    "Categories": [],
-    "PSPackageFactoryGuid": "3cf78957-f99d-41a5-8cff-e1e84eff588b"
-  },
-  "Program": {
-    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
-    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
-    "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Uninstall.ps1",
-    "InstallExperience": "system",
-    "DeviceRestartBehavior": "suppress"
-  },
-  "RequirementRule": {
-    "MinimumRequiredOperatingSystem": "1809",
-    "Architecture": "x64"
-  },
-  "CustomRequirementRule": [],
-  "DetectionRule": [
-    {
-      "Type": "Script",
-      "ScriptFile": "detection.ps1",
-      "EnforceSignatureCheck": "false",
-      "RunAs32Bit": "false"
-    }
-  ],
-  "Dependencies": [],
-  "Supersedence": [],
-  "Assignments": []
+    "Application": {},
+    "PackageInformation": {
+        "SetupType": "EXE",
+        "SetupFile": "Lenovo.Vantage.ServiceSetup.exe",
+        "Version": "3.13.25.0",
+        "SourceFolder": "Source",
+        "OutputFolder": "Package",
+        "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Lenovo-Vantage.png"
+    },
+    "Information": {
+        "DisplayName": "Lenovo.Vantage.ServiceSetup 3.13.25.0",
+        "Description": "Lenovo Vantage Service required for the Lenovo Vantage app. Evergreen URL is here: https://filedownload.lenovo.com/enm/vantage30/service/Lenovo.Vantage.ServiceSetup.exe.",
+        "Publisher": "Lenovo",
+        "InformationURL": "https://apps.microsoft.com/store/detail/lenovo-vantage/9WZDNCRFJ4MV",
+        "PrivacyURL": "https://tun-c-hybris.lenovo.com/us/en/privacy/",
+        "Categories": [],
+        "PSPackageFactoryGuid": "3cf78957-f99d-41a5-8cff-e1e84eff588b"
+    },
+    "Program": {
+        "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+        "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+        "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Uninstall.ps1",
+        "InstallExperience": "system",
+        "DeviceRestartBehavior": "suppress"
+    },
+    "RequirementRule": {
+        "MinimumRequiredOperatingSystem": "1809",
+        "Architecture": "x64"
+    },
+    "CustomRequirementRule": [],
+    "DetectionRule": [
+        {
+            "Type": "Script",
+            "ScriptFile": "detection.ps1",
+            "EnforceSignatureCheck": "false",
+            "RunAs32Bit": "false"
+        }
+    ],
+    "Dependencies": [],
+    "Supersedence": [],
+    "Assignments": []
 }
