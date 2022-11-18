@@ -1,0 +1,16 @@
+{
+    "PackageInformation": {
+        "SetupType": "EXE",
+        "SetupFile": "Lenovo.Vantage.ServiceSetup.exe",
+        "Version": "3.13.25.0"
+    },
+    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
+    "InstallTasks": {
+        "StopProcess": [],
+        "ArgumentList": "/verysilent /NORESTART /type=installpackageswithreboot"
+    },
+    "PostInstall": {
+        "Remove": [],
+        "Copy": []
+    }
+}
