@@ -12,7 +12,7 @@
     "Version": "16.0.15911.20000",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
-    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-Office.png"
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft365.png"
   },
   "Information": {
     "DisplayName": "Microsoft 365 Apps Monthly Enterprise 16.0.15911.20000",
