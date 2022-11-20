@@ -40,8 +40,9 @@
       "Type": "Registry",
       "DetectionMethod": "Existence",
       "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{042d26ef-3dbe-4c25-95d3-4c1b11b235a7}",
-      "ValueName": "",
-      "DetectionType": "exists",
+      "ValueName": "DisplayVersion",
+      "Operator": "greaterThanOrEqual",
+      "Value": "12.0.40664.0",
       "Check32BitOn64System": "true"
     }
   ],
