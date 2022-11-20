@@ -25,7 +25,7 @@ param (
 
     [Parameter()]
     [ValidateSet("Apps", "Updates")]
-    [System.String] $Type = $Type
+    [System.String] $Type = "Apps"
 )
 
 try {
