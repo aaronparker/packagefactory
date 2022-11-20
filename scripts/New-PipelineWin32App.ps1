@@ -69,9 +69,9 @@ foreach ($App in $Applications) {
         if ($Manifest.Application.Filter -match "Get-VcList") {
 
             # Handle the Visual C++ Redistributables via VcRedist
-            $ApplicationName = Invoke-Expression -Command $Manifest.Application.Filter
-            $Filename = $(Split-Path -Path $ApplicationName.Download -Leaf)
-            Write-Host "Package: $($ApplicationName.Name); $Filename."
+            $result = Invoke-Expression -Command $Manifest.Application.Filter
+            $Filename = $(Split-Path -Path $result.Download -Leaf)
+            Write-Host "Package: $($result.Name); $Filename."
             $params = @{
                 Path     = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder))
                 ItemType = "Directory"
@@ -79,7 +79,7 @@ foreach ($App in $Applications) {
             }
             New-Item @params | Out-Null
             $params = @{
-                Uri             = $ApplicationName.Download
+                Uri             = $result.Download
                 OutFile         = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder, $Filename))
                 UseBasicParsing = $True
             }
