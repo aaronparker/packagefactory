@@ -39,7 +39,7 @@
     {
       "Type": "Registry",
       "DetectionMethod": "Existence",
-      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{3746f21b-c990-4045-bb33-1cf98cff7a68}",
+      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{d4cecf3b-b68f-4995-8840-52ea0fab646e}",
       "ValueName": "DisplayVersion",
       "Operator": "greaterThanOrEqual",
       "Value": "14.34.31931.0",
