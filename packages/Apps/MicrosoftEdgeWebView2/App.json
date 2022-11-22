@@ -1,52 +1,52 @@
 {
-    "Application": {
-        "Name": "MicrosoftEdgeWebView2Runtime",
-        "Filter": "Get-EvergreenApp -Name \"MicrosoftEdgeWebView2Runtime\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Channel -eq \"Stable\" } | Sort-Object -Property @{ Expression = { [System.Version]$_.Version }; Descending = $true } | Select-Object -First 1",
-        "Title": "Microsoft Edge WebView2 Runtime",
-        "Language": "en-US",
-        "Architecture": "x64"
-    },
-    "PackageInformation": {
-        "SetupType": "MSI",
-        "SetupFile": "MicrosoftEdgeWebView2RuntimeInstallerX64.exe",
-        "Version": "107.0.1418.52",
-        "SourceFolder": "Source",
-        "OutputFolder": "Package",
-        "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-Edge.png"
-    },
-    "Information": {
-        "DisplayName": "Microsoft Edge WebView2 Runtime 107.0.1418.52 x64",
-        "Description": "Embed web content (HTML, CSS, and JavaScript) in your native applications with Microsoft Edge WebView2",
-        "Publisher": "Microsoft",
-        "InformationURL": "https://developer.microsoft.com/en-us/microsoft-edge/webview2",
-        "PrivacyURL": "https://go.microsoft.com/fwlink/?LinkId=521839",
-        "Categories": [],
-        "PSPackageFactoryGuid": "8d6b09d2-466b-4430-a102-9ea9cfb6ddbc"
-    },
-    "Program": {
-        "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
-        "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
-        "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Uninstall.ps1",
-        "InstallExperience": "system",
-        "DeviceRestartBehavior": "suppress"
-    },
-    "RequirementRule": {
-        "MinimumRequiredOperatingSystem": "1809",
-        "Architecture": "x64"
-    },
-    "CustomRequirementRule": [],
-    "DetectionRule": [
-        {
-            "Type": "Registry",
-            "DetectionMethod": "VersionComparison",
-            "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\EdgeUpdate\\Clients\\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}",
-            "ValueName": "pv",
-            "Operator": "greaterThanOrEqual",
-            "Value": "107.0.1418.52",
-            "Check32BitOn64System": "false"
-        }
-    ],
-    "Dependencies": [],
-    "Supersedence": [],
-    "Assignments": []
+  "Application": {
+    "Name": "MicrosoftEdgeWebView2Runtime",
+    "Filter": "Get-EvergreenApp -Name \"MicrosoftEdgeWebView2Runtime\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Channel -eq \"Stable\" } | Sort-Object -Property @{ Expression = { [System.Version]$_.Version }; Descending = $true } | Select-Object -First 1",
+    "Title": "Microsoft Edge WebView2 Runtime",
+    "Language": "en-US",
+    "Architecture": "x64"
+  },
+  "PackageInformation": {
+    "SetupType": "MSI",
+    "SetupFile": "MicrosoftEdgeWebView2RuntimeInstallerX64.exe",
+    "Version": "107.0.1418.56",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-Edge.png"
+  },
+  "Information": {
+    "DisplayName": "Microsoft Edge WebView2 Runtime 107.0.1418.56 x64",
+    "Description": "Embed web content (HTML, CSS, and JavaScript) in your native applications with Microsoft Edge WebView2",
+    "Publisher": "Microsoft",
+    "InformationURL": "https://developer.microsoft.com/en-us/microsoft-edge/webview2",
+    "PrivacyURL": "https://go.microsoft.com/fwlink/?LinkId=521839",
+    "Categories": [],
+    "PSPackageFactoryGuid": "8d6b09d2-466b-4430-a102-9ea9cfb6ddbc"
+  },
+  "Program": {
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Uninstall.ps1",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "suppress"
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "1809",
+    "Architecture": "x64"
+  },
+  "CustomRequirementRule": [],
+  "DetectionRule": [
+    {
+      "Type": "Registry",
+      "DetectionMethod": "VersionComparison",
+      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\EdgeUpdate\\Clients\\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}",
+      "ValueName": "pv",
+      "Operator": "greaterThanOrEqual",
+      "Value": "107.0.1418.56",
+      "Check32BitOn64System": "false"
+    }
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
 }
