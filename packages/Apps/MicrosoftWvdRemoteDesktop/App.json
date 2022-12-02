@@ -8,7 +8,7 @@
   },
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "RemoteDesktop_1.2.3667.0_x86.msi",
+    "SetupFile": "RemoteDesktop_1.2.3667.0_x64.msi",
     "Version": "1.2.3667.0",
     "SourceFolder": "Source",
     "OutputFolder": "Package",

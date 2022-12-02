@@ -1,4 +1,4 @@
-name: export-win32apps
+name: Export Win32 apps
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
