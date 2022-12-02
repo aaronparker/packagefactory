@@ -2,7 +2,7 @@
   "Application": {
     "Name": "MicrosoftWvdRemoteDesktop",
     "Filter": "Get-EvergreenApp -Name \"MicrosoftWvdRemoteDesktop\" | Where-Object { $_.Channel -eq \"Public\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
-    "Title": "Microsoft Remote Desktop",
+    "Title": "Update for Microsoft Remote Desktop",
     "Language": "en-US",
     "Architecture": "x64"
   },
@@ -15,7 +15,7 @@
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-RemoteDesktop2.png"
   },
   "Information": {
-    "DisplayName": "Microsoft Remote Desktop 1.2.3667.0 x64",
+    "DisplayName": "Update Microsoft Remote Desktop 1.2.3667.0 x64",
     "Description": "The Microsoft Remote Desktop client is used to connect to Azure Virtual Desktop to access your desktops and applications. This article shows you how to connect to Azure Virtual Desktop with the Remote Desktop client for Windows.",
     "Publisher": "Microsoft",
     "InformationURL": "https://learn.microsoft.com/en-us/azure/virtual-desktop/users/connect-windows",
@@ -34,7 +34,17 @@
     "MinimumRequiredOperatingSystem": "1809",
     "Architecture": "x64"
   },
-  "CustomRequirementRule": [],
+  "CustomRequirementRule": [
+    {
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "C:\\Program Files\\Remote Desktop",
+      "FileOrFolder": "msrdc.exe",
+      "Operator": "lessThan",
+      "VersionValue": "1.2.3667.0",
+      "Check32BitOn64System": "false"
+    }
+  ],
   "DetectionRule": [
     {
       "Type": "File",

@@ -78,8 +78,14 @@ foreach ($ManifestJson in $ManifestList) {
                         $Manifest.Program.InstallCommand = $Manifest.Program.InstallTemplate -replace "#SetupFile", $SetupFile -replace "%20", " "
                     }
                     else {
-                        $Manifest.PackageInformation.SetupFile = $(Split-Path -Path $AppUpdate.URI -Leaf) -replace "%20", " "
-                        $Manifest.Program.InstallCommand = $Manifest.Program.InstallTemplate -replace "#SetupFile", $(Split-Path -Path $AppUpdate.URI -Leaf) -replace "%20", " "
+                        if ([System.Boolean]($AppUpdate.PSobject.Properties.name -match "Filename")) {
+                            $Manifest.PackageInformation.SetupFile = $AppUpdate.Filename -replace "%20", " "
+                            $Manifest.Program.InstallCommand = $Manifest.Program.InstallTemplate -replace "#SetupFile", $AppUpdate.Filename -replace "%20", " "
+                        }
+                        else {    
+                            $Manifest.PackageInformation.SetupFile = $(Split-Path -Path $AppUpdate.URI -Leaf) -replace "%20", " "
+                            $Manifest.Program.InstallCommand = $Manifest.Program.InstallTemplate -replace "#SetupFile", $(Split-Path -Path $AppUpdate.URI -Leaf) -replace "%20", " "
+                        }
                     }
                 }
                 else {
@@ -181,7 +187,12 @@ foreach ($ManifestJson in $ManifestList) {
                             $InstallData.PackageInformation.SetupFile = $SetupFile -replace "%20", " "
                         }
                         else {
-                            $InstallData.PackageInformation.SetupFile = $(Split-Path -Path $AppUpdate.URI -Leaf) -replace "%20", " "
+                            if ([System.Boolean]($AppUpdate.PSobject.Properties.name -match "Filename")) {
+                                $InstallData.PackageInformation.SetupFile = $AppUpdate.Filename -replace "%20", " "
+                            }
+                            else {    
+                                $InstallData.PackageInformation.SetupFile = $(Split-Path -Path $AppUpdate.URI -Leaf) -replace "%20", " "
+                            }
                         }
                     }
                     else {
