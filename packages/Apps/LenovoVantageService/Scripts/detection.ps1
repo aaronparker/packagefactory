@@ -1,14 +1,16 @@
-# Find the 
+<#
+    Detect the application
+#>
+
 try {
     # Get the path to LenovoVantageService.exe
     $Path = "${env:ProgramFiles(x86)}\Lenovo\VantageService"
     $InstallDirectory = Get-ChildItem -Path $Path | Where-Object { $_.Name -match "(\d+(\.\d+){1,4})" } | `
         Sort-Object -Property @{ Expression = { [System.Version]$_.Name }; Descending = $true } | `
         Select-Object -First 1
-    $Application = [System.IO.Path]::Combine($Path, $InstallDirectory.Name, "LenovoVantageService.exe")
 
     # Return success if found
-    if (Test-Path -Path $Application) {
+    if (Test-Path -Path "$Path\$($InstallDirectory.Name)\LenovoVantageService.exe") {
         return 0
     }
     else {
