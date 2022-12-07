@@ -1,8 +1,8 @@
 {
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "audacity-win-3.2.1-64bit.exe",
-    "Version": "3.2.1"
+    "SetupFile": "audacity-win-3.2.2-x64.exe",
+    "Version": "3.2.2"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
