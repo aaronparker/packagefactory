@@ -7,13 +7,13 @@ Running the packaging factory locally requires Windows because the [Microsoft Wi
 Install the required PowerShell modules. **IntuneWin32** (which depends on **MSAL.PS**), **Evergreen** and **VcRedist** are required modules.
 
 ```powershell
-Install-Module -Name IntuneWin32, Evergreen, VcRedist, MSAL.PS
+Install-Module -Name IntuneWin32App, Evergreen, VcRedist, MSAL.PS
 ```
 
 It is always worth ensuring you are running the latest version of each module:
 
 ```powershell
-Update-Module -Name IntuneWin32, Evergreen, VcRedist, MSAL.PS
+Update-Module -Name IntuneWin32App, Evergreen, VcRedist, MSAL.PS
 ```
 
 ## Download the Packaging Factory

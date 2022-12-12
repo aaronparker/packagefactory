@@ -33,10 +33,9 @@ This process is simplified with `New-LocalWin32App.ps1` - this script will perfo
 ```powershell
 Set-Location -Path "E:\projects\packagefactory"
 $params = @{
-    Application      = "AdobeAcrobatReaderDC", "CitrixWorkspaceApp"
-    Path             = "E:\projects\packagefactory\packages"
-    Type             = "Apps"
-    DisplayNameSuffix = "(Package Factory)"
+    Path         = "E:\projects\packagefactory"
+    Applications = "AdobeAcrobatReaderDC", "CitrixWorkspaceApp"
+    Type         = "Apps"
 }
 .\scripts\New-LocalWin32App.ps1 -Applications 
 ```

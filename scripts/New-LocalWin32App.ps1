@@ -59,46 +59,41 @@ foreach ($ApplicationName in $Applications) {
         }
         else {
 
-            if (Test-Path -Path $Manifest.PackageInformation.SetupFile) {
-                Write-Information -MessageData "File exists: $($Manifest.PackageInformation.SetupFile)" -InformationAction "Continue"
+            # Get the application installer via Evergreen and download
+            Write-Information -MessageData "Downloading to: $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder))"
+            $result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -CustomPath $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder))
+
+            # Unpack the installer file if its a zip file
+            Write-Host "Downloaded: $($result.FullName)"
+            if ($result.FullName -match "\.zip$") {
+                $params = @{
+                    Path            = $result.FullName
+                    DestinationPath = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder))
+                }
+                Write-Host "Expand: $($result.FullName)"
+                Expand-Archive @params
+                Remove-Item -Path $result.FullName -Force
             }
-            else {
 
-                # Get the application installer via Evergreen and download
-                $result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -CustomPath $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $AppItem, $Manifest.PackageInformation.SourceFolder))
-
-                # Unpack the installer file if its a zip file
-                Write-Host "Downloaded: $($result.FullName)"
-                if ($result.FullName -match "\.zip$") {
-                    $params = @{
-                        Path            = $result.FullName
-                        DestinationPath = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder))
-                    }
-                    Write-Host "Expand: $($result.FullName)"
-                    Expand-Archive @params
-                    Remove-Item -Path $result.FullName -Force
+            # Run the command defined in PrePackageCmd
+            if ($Manifest.Application.PrePackageCmd.Length -gt 0) {
+                $TempPath = $([System.IO.Path]::Combine($Env:Temp, $result.BaseName))
+                $params = @{
+                    FilePath     = $result.FullName
+                    ArgumentList = $($Manifest.Application.PrePackageCmd -replace "#Path", $TempPath)
+                    NoNewWindow  = $True
+                    Wait         = $True
                 }
-
-                # Run the command defined in PrePackageCmd
-                if ($Manifest.Application.PrePackageCmd.Length -gt 0) {
-                    $TempPath = $([System.IO.Path]::Combine($Env:Temp, $result.BaseName))
-                    $params = @{
-                        FilePath     = $result.FullName
-                        ArgumentList = $($Manifest.Application.PrePackageCmd -replace "#Path", $TempPath)
-                        NoNewWindow  = $True
-                        Wait         = $True
-                    }
-                    Write-Host "Start: $($result.FullName) $($Manifest.Application.PrePackageCmd -replace "#Path", $TempPath)"
-                    Start-Process @params
-                    $params = @{
-                        Path        = "$TempPath\*"
-                        Destination = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder))
-                        Recurse     = $True
-                        Force       = $True
-                    }
-                    Copy-Item @params
-                    Remove-Item -Path $result.FullName -Force
+                Write-Host "Start: $($result.FullName) $($Manifest.Application.PrePackageCmd -replace "#Path", $TempPath)"
+                Start-Process @params
+                $params = @{
+                    Path        = "$TempPath\*"
+                    Destination = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder))
+                    Recurse     = $True
+                    Force       = $True
                 }
+                Copy-Item @params
+                Remove-Item -Path $result.FullName -Force
             }
         }
 
