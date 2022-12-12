@@ -6,7 +6,7 @@
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
-    "ArgumentList": "/configure M365Apps-Monthly-x64-stealthpuppy.xml"
+    "ArgumentList": "/configure M365Apps-Monthly-x64.xml"
   },
   "PostInstall": {
     "Remove": [],

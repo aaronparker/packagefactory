@@ -1,4 +1,4 @@
-<Configuration ID="1810af5c-c16f-499e-9654-404fad40e841">
+<Configuration ID="fa7b3f10-e3a6-48bf-89bf-a41b43bd784f">
   <Add OfficeClientEdition="64" Channel="MonthlyEnterprise" MigrateArch="TRUE">
     <Product ID="O365ProPlusRetail">
       <Language ID="MatchOS" />
@@ -11,14 +11,14 @@
     </Product>
   </Add>
   <Property Name="SharedComputerLicensing" Value="0" />
-  <Property Name="FORCEAPPSHUTDOWN" Value="FALSE" />
+  <Property Name="FORCEAPPSHUTDOWN" Value="TRUE" />
   <Property Name="DeviceBasedLicensing" Value="0" />
   <Property Name="SCLCacheOverride" Value="0" />
-  <Property Name="TenantId" Value="9a95621c-b347-40ab-ab83-707f98942280" />
+  <Property Name="TenantId" Value="" />
   <Updates Enabled="TRUE" />
   <RemoveMSI />
   <AppSettings>
-    <Setup Name="Company" Value="stealthpuppy" />
+    <Setup Name="Company" Value="" />
     <User Key="software\microsoft\office\16.0\common\toolbars" Name="customuiroaming" Value="1" Type="REG_DWORD" App="office16" Id="L_AllowRoamingQuickAccessToolBarRibbonCustomizations" />
     <User Key="software\microsoft\office\16.0\common\general" Name="shownfirstrunoptin" Value="1" Type="REG_DWORD" App="office16" Id="L_DisableOptinWizard" />
     <User Key="software\microsoft\office\16.0\common\languageresources" Name="installlanguage" Value="3081" Type="REG_DWORD" App="office16" Id="L_PrimaryEditingLanguage" />
