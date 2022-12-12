@@ -31,6 +31,10 @@ param (
     [System.String] $Type = "Apps"
 )
 
+# Set information output
+$InformationPreference = "Continue"
+$VerbosePreference = "Continue"
+
 foreach ($ApplicationName in $Applications) {
     try {
         # Get the application details
@@ -122,7 +126,8 @@ foreach ($ApplicationName in $Applications) {
             Application       = $ApplicationName
             Path              = $([System.IO.Path]::Combine($Path, $PackageFolder))
             Type              = $Type
-            DisplayNameSuffix = "(Package Factory)"
+            DisplayNameSuffix  = "(Package Factory)"
+            Verbose           = $true
         }
         Write-Information -MessageData "Invoke: $Path\Create-Win32App.ps1"
         & "$Path\Create-Win32App.ps1" @params

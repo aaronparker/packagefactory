@@ -28,6 +28,9 @@ param (
     [System.String] $Type = "Apps"
 )
 
+# Set information output
+$InformationPreference = "Continue"
+
 try {
     # Authenticate to the Graph API
     # Expects secrets to be passed into environment variables

@@ -14,6 +14,7 @@ It is always worth ensuring you are running the latest version of each module:
 
 ```powershell
 Update-Module -Name IntuneWin32App, Evergreen, VcRedist, MSAL.PS
+Import-Module -Name IntuneWin32App, Evergreen, VcRedist, MSAL.PS -Force
 ```
 
 ## Download the Packaging Factory
