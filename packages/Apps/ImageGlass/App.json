@@ -1,4 +1,4 @@
-{
+﻿{
   "Application": {
     "Name": "ImageGlass",
     "Filter": "Get-EvergreenApp -Name \"ImageGlass\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Uri -match \"x64.msi$\" } | Select-Object -First 1",
