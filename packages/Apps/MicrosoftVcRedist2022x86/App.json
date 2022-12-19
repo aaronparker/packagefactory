@@ -38,7 +38,7 @@
   "DetectionRule": [
     {
       "Type": "Registry",
-      "DetectionMethod": "Existence",
+      "DetectionMethod": "VersionComparison",
       "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{6ba9fb5e-8366-4cc4-bf65-25fe9819b2fc}",
       "ValueName": "DisplayVersion",
       "Operator": "greaterThanOrEqual",
