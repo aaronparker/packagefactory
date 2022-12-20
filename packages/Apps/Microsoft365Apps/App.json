@@ -2,7 +2,7 @@
   "Application": {
     "Name": "Microsoft365Apps",
     "Filter": "Get-EvergreenApp -Name \"Microsoft365Apps\" | Select-Object -First 1",
-    "Title": "Microsoft 365 Apps Monthly Enterprise",
+    "Title": "Microsoft 365 Apps for enterprise Monthly Enterprise",
     "Language": "en-US",
     "Architecture": "x64"
   },
@@ -38,10 +38,38 @@
   "DetectionRule": [
     {
       "Type": "Registry",
-      "DetectionMethod": "Existence",
-      "KeyPath": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\O365ProPlusRetail - en-us",
-      "ValueName": "",
-      "DetectionType": "exists",
+      "DetectionMethod": "VersionComparison",
+      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Office\\ClickToRun\\Configuration",
+      "ValueName": "VersionToReport",
+      "Operator": "greaterThanOrEqual",
+      "Value": "16.0.15726.20262",
+      "Check32BitOn64System": "false"
+    },
+    {
+      "Type": "Registry",
+      "DetectionMethod": "StringComparison",
+      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Office\\ClickToRun\\Configuration",
+      "ValueName": "ProductReleaseIds",
+      "Operator": "equal",
+      "Value": "O365ProPlusRetail,ProjectProRetail,VisioProRetail",
+      "Check32BitOn64System": "false"
+    },
+    {
+      "Type": "Registry",
+      "DetectionMethod": "StringComparison",
+      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Office\\ClickToRun\\Configuration",
+      "ValueName": "StreamingFinished",
+      "Operator": "equal",
+      "Value": "True",
+      "Check32BitOn64System": "false"
+    },
+    {
+      "Type": "Registry",
+      "DetectionMethod": "StringComparison",
+      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Office\\ClickToRun\\Configuration",
+      "ValueName": "SharedComputerLicensing",
+      "Operator": "equal",
+      "Value": "0",
       "Check32BitOn64System": "false"
     }
   ]
