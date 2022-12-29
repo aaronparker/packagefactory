@@ -1,4 +1,4 @@
-﻿#Requires -RunAsAdministrator
+#Requires -RunAsAdministrator
 <#
     .SYNOPSIS
         Create a Win32 app in Microsoft Intune based on input from app manifest file.
@@ -17,10 +17,11 @@
         Author:      Nickolaj Andersen
         Contact:     @NickolajA
         Created:     2020-09-26
-        Updated:     2020-09-26
+        Updated:     2022-12-29
 
         Version history:
         1.0.0 - (2020-09-26) Script created
+        1.0.1 - (2022-12-29) - Errorhandling if Install.ps1 or Uninstall.ps1 is missing source folder
 
         Updated for Evergreen integration to create a package factory
         Aaron Parker, @stealthpuppy
@@ -83,6 +84,24 @@ process {
         if (Test-Path -Path $(Join-Path -Path $SourceFolder -ChildPath $AppData.PackageInformation.SetupFile)) {}
         else {
             throw "Cannot find $(Join-Path -Path $SourceFolder -ChildPath $AppData.PackageInformation.SetupFile)"
+        }
+
+        # Check for the install.ps1 if specified in app.json
+        # if it does not exist in source folder, we copy it from base dir .\
+        if ($AppData.Program.InstallTemplate.Contains("Install.ps1") -or $AppData.Program.InstallCommand.Contains("Install.ps1")) {
+            if (Test-Path -Path $(Join-Path -Path $SourceFolder -ChildPath "Install.ps1")) {} else {
+                Write-Verbose "Install.ps1 used in app.json but not found in sourcefolder. Copy it from Template .\ to $sourceFolder"
+                Copy-Item -Path "Install.ps1" -Destination $SourceFolder 
+            }
+        }
+
+        # Check for the Uninstall.ps1 if specified in app.json
+        # if it does not exist in source folder, we copy it from base dir .\
+        if ($AppData.Program.InstallTemplate.Contains("Install.ps1") -or $AppData.Program.InstallCommand.Contains("Uninstall.ps1")) {
+            if (Test-Path -Path $(Join-Path -Path $SourceFolder -ChildPath "Uninstall.ps1")) {} else {
+                Write-Verbose "Uninstall.ps1 used in app.json but not found in sourcefolder. Copy it from Template .\ to $sourceFolder"
+                Copy-Item -Path "Uninstall.ps1" -Destination $SourceFolder 
+            }
         }
 
         # Remove existing intunewin files
