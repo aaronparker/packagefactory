@@ -170,7 +170,7 @@ process {
             # Find GUID in UninstallCommand:
             if ($msiGUIDjson.Equals($msiID)) {
                 # All Good Uninstall String matches the UID of the .msi file
-                Write-Verbose"Uninstall String matches GUID from MSI packet. Your Uninstall String: $($msiGUIDjson.GUID). The MSI ID: $($msiID.GUID)"
+                Write-Verbose "Uninstall String matches GUID from MSI packet. Your Uninstall String: $($msiGUIDjson.GUID). The MSI ID: $($msiID.GUID)"
             } else {
                 # We have a problem:
                 Write-Host "Warning you've a Uninstall String specified which does not matches the UID of the .msi File. Maybe this change come by an Update."
