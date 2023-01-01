@@ -22,6 +22,7 @@
         Version history:
         1.0.0 - (2020-09-26) Script created
         1.0.1 - (2022-12-29) - Errorhandling if Install.ps1 or Uninstall.ps1 is missing source folder
+        1.0.2 - (2023-01-01) - Errorhandling check the real msi GUID if it matches the uninstall string of app.json
 
         Updated for Evergreen integration to create a package factory
         Aaron Parker, @stealthpuppy
@@ -50,7 +51,59 @@ param(
     [ValidateNotNullOrEmpty()]
     [System.Management.Automation.SwitchParameter] $Validate
 )
+
 process {
+
+    function Get-MsiProductCode {
+        # Modified Version of https://www.powershellgallery.com/packages/Get-MsiProductCode/1.0/Content/Get-MsiProductCode.ps1
+        # from Thomas J. Malkewitz @dotsp1
+        # mod. by @constey
+        Param (
+            [Parameter(
+                Mandatory = $true,
+                ValueFromPipeLine = $true
+            )]
+            [ValidateScript({
+                if ($_.EndsWith('.msi')) {
+                    $true
+                } else {
+                    throw "$_ must be an '*.msi' file."
+                }
+                if (Test-Path $_) {
+                    $true
+                } else {
+                    throw "$_ does not exist."
+                }
+            })]
+            [String[]]
+            $Path
+        )
+        
+        Process {
+            foreach ($item in $Path) {
+                try {
+                    $windowsInstaller = New-Object -com WindowsInstaller.Installer
+        
+                    $database = $windowsInstaller.GetType().InvokeMember('OpenDatabase', 'InvokeMethod', $null, $windowsInstaller, @((Get-Item -Path $item).FullName, 0))
+        
+                    $view = $database.GetType().InvokeMember('OpenView', 'InvokeMethod', $null, $database, ("SELECT Value FROM Property WHERE Property = 'ProductCode'"))
+                    $view.GetType().InvokeMember('Execute', 'InvokeMethod', $null, $view, $null)
+        
+                    $record = $view.GetType().InvokeMember('Fetch', 'InvokeMethod', $null, $view, $null)
+        
+                    Write-Output -InputObject $($record.GetType().InvokeMember('StringData', 'GetProperty', $null, $record, 1))
+        
+                    $view.GetType().InvokeMember('Close', 'InvokeMethod', $null, $view, $null)
+                    [Void][System.Runtime.InteropServices.Marshal]::ReleaseComObject($windowsInstaller)
+                } catch {
+                    Write-Error -Message $_.ToString()
+                    
+                    break
+                }
+            }
+        }
+    }
+
     foreach ($AppName in $Application) {
 
         # Read app data from JSON manifest
@@ -103,6 +156,29 @@ process {
                 Copy-Item -Path "Uninstall.ps1" -Destination $SourceFolder 
             }
         }
+
+        # Check for the valid MSI - if changed uninstallation process would fail
+        #if ($($appdata.Program.UninstallCommand).Contains("msiexec")) {
+        if ($($appdata.Program.UninstallCommand) -match '{\w{8}-\w{4}-\w{4}-\w{4}-\w{12}}') {
+            $msiGUIDjson = $matches[0]
+            $msiGUIDjson = [System.guid]::New($msiGUIDjson)
+            # Get Real GUID from .msi File
+            $msiID = Get-MsiProductCode(Join-Path -Path $SourceFolder -ChildPath $($appdata.PackageInformation.SetupFile))
+            $msiID = [System.guid]::New($msiID)
+            # Get-AppLockerFileInformation would be easier but seems to be not working correctly in PS 7.2/7.3
+            # $msiID = Get-AppLockerFileInformation -Path (Join-Path -Path $SourceFolder -ChildPath $($appdata.PackageInformation.SetupFile)) | Select-Object -ExpandProperty Publisher | Select-Object BinaryName
+            # Find GUID in UninstallCommand:
+            if ($msiGUIDjson.Equals($msiID)) {
+                # All Good Uninstall String matches the UID of the .msi file
+                Write-Verbose"Uninstall String matches GUID from MSI packet. Your Uninstall String: $($msiGUIDjson.GUID). The MSI ID: $($msiID.GUID)"
+            } else {
+                # We have a problem:
+                Write-Host "Warning you've a Uninstall String specified which does not matches the UID of the .msi File. Maybe this change come by an Update."
+                throw "Your Uninstall String: $($msiGUIDjson.GUID). The MSI ID: $($msiID.GUID)"
+            }
+        }
+        
+   
 
         # Remove existing intunewin files
         if (Test-Path -Path "$OutputFolder\*.intunewin") { Remove-Item -Path "$OutputFolder\*.intunewin" }
