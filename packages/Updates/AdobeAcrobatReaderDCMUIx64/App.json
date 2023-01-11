@@ -8,14 +8,14 @@
   },
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "AcroRdrDCx64Upd2200320281_MUI.msp",
-    "Version": "22.003.20281",
+    "SetupFile": "AcroRdrDCx64Upd2200320310_MUI.msp",
+    "Version": "22.003.20310",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Adobe-AcrobatUpdate.png"
   },
   "Information": {
-    "DisplayName": "Update for Adobe Acrobat Reader DC MUI 22.003.20281 x64",
+    "DisplayName": "Update for Adobe Acrobat Reader DC MUI 22.003.20310 x64",
     "Description": "Update for Adobe Acrobat Reader DC.",
     "Publisher": "Adobe",
     "InformationURL": "https://www.adobe.com/devnet-docs/acrobatetk/tools/ReleaseNotesDC/index.html",
@@ -41,7 +41,7 @@
       "Path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat",
       "FileOrFolder": "Acrobat.exe",
       "Operator": "lessThan",
-      "VersionValue": "22.003.20281",
+      "VersionValue": "22.003.20310",
       "Check32BitOn64System": "false"
     }
   ],
@@ -52,7 +52,7 @@
       "Path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat",
       "FileOrFolder": "Acrobat.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "22.003.20281",
+      "VersionValue": "22.003.20310",
       "Check32BitOn64System": "false"
     }
   ],
