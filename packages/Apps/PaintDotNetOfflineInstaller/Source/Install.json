@@ -1,16 +1,16 @@
 {
-    "PackageInformation": {
-        "SetupType": "MSI",
-        "SetupFile": "paint.net.4.3.12.winmsi.x64.msi",
-        "Version": "4.3.12"
-    },
-    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
-    "InstallTasks": {
-        "StopProcess": [],
-        "ArgumentList": "/package \"#SetupFile\" DESKTOPSHORTCUT=0 /quiet /log \"#LogPath\\#LogName.log\""
-    },
-    "PostInstall": {
-        "Remove": [],
-        "Copy": []
-    }
+  "PackageInformation": {
+    "SetupType": "MSI",
+    "SetupFile": "paint.net.5.0.winmsi.x64.msi",
+    "Version": "5.0"
+  },
+  "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
+  "InstallTasks": {
+    "StopProcess": [],
+    "ArgumentList": "/package \"#SetupFile\" DESKTOPSHORTCUT=0 /quiet /log \"#LogPath\\#LogName.log\""
+  },
+  "PostInstall": {
+    "Remove": [],
+    "Copy": []
+  }
 }
