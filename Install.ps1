@@ -1,26 +1,11 @@
 <#
- # File: c:\dev\intunepacketfactory\packages\Apps\Filezilla\Source\Install.ps1
- # Project: c:\dev\intunepacketfactory\packages\Apps\Filezilla\Source
- # Created Date: Thursday, December 29th 2022, 8:59:14 am
- # Author: Aaron Parker
- # -----
- # Description: Installs an application based on logic defined in Install.json
- # -----
- # Last Modified: Thu Dec 29 2022
- # Modified By: Constantin Lotz
- # -----
- # 
- #  
- # -----
- # HISTORY:
- # Date      	By	Comments
- # ----------	---	----------------------------------------------------------
- # 2022-12-29	CL	added more logging capabilitys for the script itself 
- # 2022-12-29	AP  initial	
- #>
+    .SYNOPSIS
+    Installs an application based on logic defined in Install.json
 
-
-
+    .NOTES
+    Version: 1.0
+    Date: 13th September 2022
+#>
 [CmdletBinding(SupportsShouldProcess = $True)]
 param ()
 
@@ -40,52 +25,6 @@ if (!([System.Environment]::Is64BitProcess)) {
     }
 }
 #endregion
-
-$logging = $true;
-$global:logfile = "C:\ProgramData\Microsoft\IntuneManagementExtension\Logs\Installps1.log";
-
-# Logging Function 
-function Write-Feedback()
-{
-    param
-    (
-        [Parameter(Position=0,ValueFromPipeline=$true,Mandatory=$true)]
-        [string]$msg,
-        [Parameter(Position=1,ValueFromPipeline=$true,Mandatory=$false)]
-        [switch]$logOnly,
-        [Parameter(Position=2,ValueFromPipeline=$true,Mandatory=$false)]
-        [string]$severity
-    )
-
-	# Call Example:
-	# $logtime = get-date -format 'dd.MM.yyyy;HH:mm:ss'
-	# Write-Feedback "$logtime - Info:Frage TFK Settings ab. User: $($phoneExtension) - AutoLogoffEnabled: $($userSettings.serviceAutoLogoffEnabled)"
-	
-    # Datei leeren wenn größer 50MB
-    if ((Test-Path -Path $logfile) -eq $true) {
-        If ((Get-Item $logfile).length -gt 50mb) {
-            Clear-Content $global:logfile
-            $logtime = get-date -format 'dd.MM.yyyy;HH:mm:ss'
-            $msg = "$logtime - " + "Info" + ":" + "Logfile geleert, da größer als 50MB."
-        }
-    }
-    
-    # Wenn Schweregrad angegeben dann baue String korrekt
-    if (![string]::IsNullOrEmpty($severity)) {
-        $logtime = get-date -format 'dd.MM.yyyy;HH:mm:ss'
-        $msg = "$logtime - " + $severity + ":" + $msg
-    }
-
-    # Nur In Datei loggen, aber nicht in Konsole
-    if($logOnly.IsPresent)  {
-        $msg | Out-File $global:logfile -Append
-    } else {
-        Write-Host $msg;
-        $msg | Out-File $global:logfile -Append
-    }
-	
-}
-
 
 #region Functions
 function Get-InstallConfig {
@@ -131,8 +70,6 @@ function Copy-File {
                     $FilePath = Get-ChildItem -Path $Path -Filter $Item.Source -Recurse -ErrorAction "SilentlyContinue"
                     Write-Verbose -Message "Source: $($FilePath.FullName)"
                     Write-Verbose -Message "Destination: $($Item.Destination)"
-                    if ($logging) { Write-Feedback "Copy-File: Source: $($FilePath.FullName)" -severity "Info" -logOnly }
-                    if ($logging) { Write-Feedback "Copy-File: Destination: $($Item.Destination)" -severity "Info" -logOnly }
                     $params = @{
                         Path        = $FilePath.FullName
                         Destination = $Item.Destination
@@ -142,12 +79,10 @@ function Copy-File {
                     Copy-Item @params
                 }
                 catch {
-                    if ($logging) { Write-Feedback "Copy-File: $($_)" -severity "Error" -logOnly }
                     throw $_
                 }
             }
             else {
-                if ($logging) { Write-Feedback "Copy-File: Cannot find destination: $($Item.Destination)" -severity "Error" -logOnly }
                 throw "Cannot find destination: $($Item.Destination)"
             }
         }
@@ -197,18 +132,15 @@ function Stop-PathProcess {
         foreach ($Item in $Path) {
             try {
                 if ($PSBoundParameters.ContainsKey("Force")) {
-                    if ($logging) { Write-Feedback "Stop-PathProcess Stop-Process where Path like: $($Item)" -severity "Info" -logOnly }
                     Get-Process | Where-Object { $_.Path -like $Item } | `
                         Stop-Process -Force -ErrorAction "SilentlyContinue"
                 }
                 else {
-                    if ($logging) { Write-Feedback "Stop-PathProcess Stop-Process where Path like: $($Item)" -severity "Info" -logOnly }
                     Get-Process | Where-Object { $_.Path -like $Item } | `
                         Stop-Process -ErrorAction "SilentlyContinue"
                 }
             }
             catch {
-                if ($logging) { Write-Feedback "Stop-PathProcess Error: $($_.Exception.Message)" -severity "Warning" -logOnly }
                 Write-Warning -Message $_.Exception.Message
             }
         }
@@ -249,19 +181,7 @@ function Uninstall-Msi {
 # Get the install details for this application
 $Install = Get-InstallConfig
 $Installer = Get-Installer -File $Install.PackageInformation.SetupFile
-
-# Define Logging for this PS
-if ([System.String]::IsNullOrEmpty($Install.LogPath) -eq $false) {
-	if ([System.String]::IsNullOrEmpty($Install.PackageInformation.SetupFile)) { 
-		$global:logfile = "$($Install.LogPath)" + "\" + "Installps1.log"
-	} else {
-        $global:logfile = "$($Install.LogPath)" + "\" + $($Install.PackageInformation.SetupFile) + "_Installps1.log"
-    }
-}
-
-
 if ([System.String]::IsNullOrEmpty($Installer)) {
-	if ($logging) { Write-Feedback "File not found: $($Install.PackageInformation.SetupFile)" -severity "Error" -logOnly }
     throw "File not found: $($Install.PackageInformation.SetupFile)"
     exit 1
 }
@@ -269,11 +189,9 @@ else {
     # Create the log folder
     if (Test-Path -Path $Install.LogPath -PathType "Container") {
         Write-Verbose -Message "Directory exists: $($Install.LogPath)"
-        if ($logging) { Write-Feedback "Directory exists: $($Install.LogPath)" -severity "Info" -logOnly }
     }
     else {
         Write-Verbose -Message "Create directory: $($Install.LogPath)"
-        if ($logging) { Write-Feedback "Create directory: $($Install.LogPath)" -severity "Info" -logOnly }
         New-Item -Path $Install.LogPath -ItemType "Directory" -ErrorAction "SilentlyContinue" | Out-Null
     }
 
@@ -296,8 +214,6 @@ else {
             "EXE" {
                 Write-Verbose -Message "Installer: $Installer"
                 Write-Verbose -Message "ArgumentList: $ArgumentList"
-                if ($logging) { Write-Feedback "Installer: $Installer" -severity "Info" -logOnly }
-                if ($logging) { Write-Feedback "ArgumentList: $ArgumentList" -severity "Info" -logOnly }
                 $params = @{
                     FilePath     = $Installer
                     ArgumentList = $ArgumentList
@@ -312,8 +228,6 @@ else {
             "MSI" {
                 Write-Verbose -Message "Installer: $Env:SystemRoot\System32\msiexec.exe"
                 Write-Verbose -Message "ArgumentList: $ArgumentList"
-                if ($logging) { Write-Feedback "Installer: $Env:SystemRoot\System32\msiexec.exe" -severity "Info" -logOnly }
-                if ($logging) { Write-Feedback "ArgumentList: $ArgumentList" -severity "Info" -logOnly }
                 $params = @{
                     FilePath     = "$Env:SystemRoot\System32\msiexec.exe"
                     ArgumentList = $ArgumentList
@@ -326,7 +240,6 @@ else {
                 }
             }
             default {
-                if ($logging) { Write-Feedback "$($Install.PackageInformation.SetupType) not found in the supported setup types - EXE, MSI." -severity "Error" -logOnly }
                 throw "$($Install.PackageInformation.SetupType) not found in the supported setup types - EXE, MSI."
                 exit 1
             }
@@ -351,7 +264,6 @@ else {
     }
     finally {
         if ($Install.PostInstall.Remove.Count -gt 0) { Remove-Path -Path $Install.PostInstall.Remove }
-        if ($logging) { Write-Feedback "Exit Code: $($result.ExitCode)" -severity "Info" -logOnly }
         exit $result.ExitCode
     }
 }
