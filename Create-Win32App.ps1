@@ -529,7 +529,52 @@ process {
         }
         else {
             # Create Win32 app
-            Add-IntuneWin32App @Win32AppArgs
+            $Win32App = Add-IntuneWin32App @Win32AppArgs
         }
+
+        #Check if assingnments exists and process information
+        if($AppData.Assignments.Count -ge 1)
+        {
+            Write-Output "Creating package assigments"
+            #$AssignmentData = $AppData.PackageInformation
+            foreach ($Assignment in $AppData.Assignments) {
+                if($Assignment.Type -eq "AllDevices")
+                {
+                    $AssignmentArgs = @{
+                        "ID"                  = $Win32App.id
+                        "Intent"              = $Assignment.Intent
+                        "Notification"        = $Assignment.Notification
+                        "Verbose"             = $Assignment.Verbose
+                    }
+                    write-output "Assign All Devices to App"
+                    Add-IntuneWin32AppAssignmentAllDevices @AssignmentArgs
+                }
+                elseif($Assignment.Type -eq "AllUsers")
+                {
+                    $AssignmentArgs = @{
+                        "ID"                  = $Win32App.id
+                        "Intent"              = $Assignment.Intent
+                        "Notification"        = $Assignment.Notification
+                        "Verbose"             = $Assignment.Verbose
+                    }
+                    write-output "Assign All Users to App"
+                    Add-IntuneWin32AppAssignmentAllUsers @AssignmentArgs
+                }
+                elseif($Assignment.Type -eq "Group")
+                {
+                    $AssignmentArgs = @{
+                        "ID"                  = $Win32App.id
+                        "GroupID"             = $Assignment.GroupID
+                        "Intent"              = $Assignment.Intent
+                        "Notification"        = $Assignment.Notification
+                        "Verbose"             = $Assignment.Verbose
+                    }
+                    write-output "Assign Group to App"
+                    Add-IntuneWin32AppAssignmentGroup @AssignmentArgs -Include
+                }               
+            }
+        }else {
+            Write-Verbose "No user assignments"
+    }
     }
 }
