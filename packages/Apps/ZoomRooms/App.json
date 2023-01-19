@@ -8,14 +8,14 @@
   },
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "zoomrooms-5.13.5.2391-x64.msi",
-    "Version": "5.13.5.2391",
+    "SetupFile": "zoomrooms-5.13.6.2407-x64.msi",
+    "Version": "5.13.6.2407",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/ZoomRooms.png"
   },
   "Information": {
-    "DisplayName": "Zoom Meetings Client 5.13.5.2391 x64",
+    "DisplayName": "Zoom Meetings Client 5.13.6.2407 x64",
     "Description": "Conference rooms that make it easy to run or join video meetings with a tap of a button.",
     "Publisher": "Zoom",
     "InformationURL": "https://explore.zoom.us/en/products/zoom-rooms/",
@@ -42,7 +42,7 @@
       "Path": "C:\\Program Files\\ZoomRooms\\bin",
       "FileOrFolder": "ZoomRooms.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "5.13.5.2391",
+      "VersionValue": "5.13.6.2407",
       "Check32BitOn64System": "false"
     }
   ],
