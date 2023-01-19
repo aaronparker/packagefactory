@@ -65,10 +65,23 @@ foreach ($App in $Applications) {
         throw $_
     }
 
+    try {
+        # Get existing Win32 app if present
+        $DetectCurrentWin32App = $null
+        $DetectCurrentWin32App = Get-IntuneWin32App -DisplayName $($Manifest.Application.Title) |  Select -First 1
+        #Retrieve App metadata from Evergreen
+        $AppData = Invoke-Expression -Command $Manifest.Application.Filter
+        #Exit if Win32 app version already exists
+        $NewVersion = ($DetectCurrentWin32App.displayVersion -ne $AppData.Version)
+    }
+    catch {
+        throw $_
+    }
+
     if ($null -eq $Manifest.Application.Filter) {
         Write-Information -MessageData "Application not supported by this workflow: $ApplicationName"
     }
-    else {
+    elseif($NewVersion) {
         if ($Manifest.Application.Filter -match "Get-VcList") {
 
             # Handle the Visual C++ Redistributables via VcRedist

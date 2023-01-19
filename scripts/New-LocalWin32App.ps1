@@ -47,12 +47,25 @@ foreach ($ApplicationName in $Applications) {
         throw $_
     }
 
+    try {
+        # Get existing Win32 app if present
+        $DetectCurrentWin32App = $null
+        $DetectCurrentWin32App = Get-IntuneWin32App -DisplayName $($Manifest.Application.Title) |  Select -First 1
+        #Retrieve App metadata from Evergreen
+        $AppData = Invoke-Expression -Command $Manifest.Application.Filter
+        #Exit if Win32 app version already exists
+        $NewVersion = ($DetectCurrentWin32App.displayVersion -ne $AppData.Version)
+    }
+    catch {
+        throw $_
+    }
+
     # Download the application installer
     if ($Null -eq $Manifest.Application.Filter) {
         Write-Warning -Message "$ApplicationName not supported for automatic download"
         Write-Information -MessageData "Please ensure application binaries are saved to: $([System.IO.Path]::Combine($AppPath, $Manifest.PackageInformation.SourceFolder))"
     }
-    else {
+    elseif($NewVersion) {
         if ($Manifest.Application.Filter -match "Get-VcList") {
 
             Write-Information -MessageData "Invoke filter: $($Manifest.Application.Filter)"
