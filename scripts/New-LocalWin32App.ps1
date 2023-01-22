@@ -50,11 +50,15 @@ foreach ($ApplicationName in $Applications) {
     try {
         # Get existing Win32 app if present
         $DetectCurrentWin32App = $null
-        $DetectCurrentWin32App = Get-IntuneWin32App -DisplayName $($Manifest.Application.Title) |  Select -First 1
-        #Retrieve App metadata from Evergreen
+        $DetectCurrentWin32App = $allWin32Apps | 
+                                 # The line below - is a hack to ensure that the script will continue if Notes field doesn't contain json as expected
+                                 Where-Object{$_.notes -like '{"*' } |
+                                 Where-Object{($_.notes | ConvertFrom-Json).Guid -eq $Manifest.Information.PSPackageFactoryGuid}
+
+        # Retrieve App metadata from Evergreen
         $AppData = Invoke-Expression -Command $Manifest.Application.Filter
-        #Exit if Win32 app version already exists
-        $NewVersion = ($DetectCurrentWin32App.displayVersion -ne $AppData.Version)
+        # NewVersion identified (true/false)
+        $NewVersion = ($($DetectCurrentWin32App.displayVersion | Sort-Object -Descending |  Select-Object -First 1) -ne $AppData.Version)
     }
     catch {
         throw $_
@@ -145,7 +149,7 @@ foreach ($ApplicationName in $Applications) {
         Write-Information -MessageData "Invoke: $Path\Create-Win32App.ps1"
         & "$Path\Create-Win32App.ps1" @params
     }
-    else {
-        Write-Error -Message "Cannot find path $([System.IO.Path]::Combine($AppPath, $Manifest.PackageInformation.SourceFolder))"
+    else{
+        Write-Output "Software package is already updated in Intune"
     }
 }

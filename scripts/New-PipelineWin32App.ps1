@@ -52,6 +52,9 @@ Write-Information -MessageData "Path: $Path"
 Write-Information -MessageData "Applications: $Application"
 [System.Array] $Applications = $Application.ToString() -split ","
 
+# Retrieve intune metadata for all current uploaded packages - eg to ensure that a package with same guid and version number is not upoaded twice
+$global:allWin32Apps = Get-IntuneWin32App 
+
 foreach ($App in $Applications) {
     $ApplicationName = $App.Trim()
     Write-Information -MessageData "Application: $ApplicationName"
@@ -68,11 +71,15 @@ foreach ($App in $Applications) {
     try {
         # Get existing Win32 app if present
         $DetectCurrentWin32App = $null
-        $DetectCurrentWin32App = Get-IntuneWin32App -DisplayName $($Manifest.Application.Title) |  Select -First 1
-        #Retrieve App metadata from Evergreen
+        $DetectCurrentWin32App = $allWin32Apps | 
+                                    # The line below - is a hack to ensure that the script will continue if Notes field doesn't contain json as expected
+                                    Where-Object{$_.notes -like '{"*' } |
+                                    Where-Object{($_.notes | ConvertFrom-Json).Guid -eq $Manifest.Information.PSPackageFactoryGuid}
+
+        # Retrieve App metadata from Evergreen
         $AppData = Invoke-Expression -Command $Manifest.Application.Filter
-        #Exit if Win32 app version already exists
-        $NewVersion = ($DetectCurrentWin32App.displayVersion -ne $AppData.Version)
+        # NewVersion identified (true/false)
+        $NewVersion = ($($DetectCurrentWin32App.displayVersion | Sort-Object -Descending |  Select-Object -First 1) -ne $AppData.Version)
     }
     catch {
         throw $_
@@ -157,5 +164,8 @@ foreach ($App in $Applications) {
         $params
         Write-Information -MessageData "Run: Create-Win32App.ps1"
         & $([System.IO.Path]::Combine($Path, "Create-Win32App.ps1")) @params
+    }
+    else{
+        Write-Output "Software package is already updated in Intune"
     }
 }
