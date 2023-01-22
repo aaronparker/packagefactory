@@ -1,8 +1,8 @@
 {
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "paint.net.5.0.winmsi.x64.msi",
-    "Version": "5.0"
+    "SetupFile": "paint.net.5.0.1.winmsi.x64.msi",
+    "Version": "5.0.1"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
