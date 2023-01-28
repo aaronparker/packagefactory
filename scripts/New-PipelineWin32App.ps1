@@ -76,10 +76,14 @@ foreach ($App in $Applications) {
                                     Where-Object{$_.notes -like '{"*' } |
                                     Where-Object{($_.notes | ConvertFrom-Json).Guid -eq $Manifest.Information.PSPackageFactoryGuid}
 
-        # Retrieve App metadata from Evergreen
-        $AppData = Invoke-Expression -Command $Manifest.Application.Filter
-        # NewVersion identified (true/false)
-        $NewVersion = ($($DetectCurrentWin32App.displayVersion | Sort-Object -Descending |  Select-Object -First 1) -ne $AppData.Version)
+        if(![string]::IsNullOrEmpty($DetectCurrentWin32App))
+        {
+            # Retrieve App metadata from Evergreen
+            $AppData = Invoke-Expression -Command $Manifest.Application.Filter
+            # NewVersion identified (true/false)
+            $NewVersion = ($($DetectCurrentWin32App.displayVersion | Sort-Object -Descending |  Select-Object -First 1) -ne $AppData.Version)
+        }
+        else{ $NewVersion = $true }
     }
     catch {
         throw $_
