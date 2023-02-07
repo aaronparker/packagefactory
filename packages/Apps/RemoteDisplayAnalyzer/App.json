@@ -1,8 +1,8 @@
 {
   "Application": {
-    "Name": "RemoteDesktopAnalyzer",
+    "Name": "RemoteDisplayAnalyzer",
     "Filter": "Get-EvergreenApp -Name \"RDAnalyzer\" | Select-Object -First 1",
-    "Title": "Remote Desktop Analyzer",
+    "Title": "Remote Display Analyzer",
     "Language": "en-US",
     "Architecture": "x64"
   },
