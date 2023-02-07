@@ -26,7 +26,7 @@
   "Program": {
     "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
     "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
-    "UninstallCommand": "MsiExec.exe /X \"{E56D2CED-CCAE-4902-A559-17B452752DA5}\" /quiet",
+    "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Uninstall.ps1",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress"
   },
