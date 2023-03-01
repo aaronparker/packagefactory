@@ -1,8 +1,8 @@
 {
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "zoomrooms-5.13.6.2407-x64.msi",
-    "Version": "5.13.6.2407"
+    "SetupFile": "zoomrooms-5.13.10.2558-x64.msi",
+    "Version": "5.13.10.2558"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
