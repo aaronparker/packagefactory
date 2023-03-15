@@ -8,14 +8,14 @@
   },
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "windowsdesktop-runtime-7.0.3-win-x64.exe",
-    "Version": "7.0.3",
+    "SetupFile": "windowsdesktop-runtime-7.0.4-win-x64.exe",
+    "Version": "7.0.4",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-NET.png"
   },
   "Information": {
-    "DisplayName": "Microsoft .NET Desktop Runtime Current 7.0.3 x64",
+    "DisplayName": "Microsoft .NET Desktop Runtime Current 7.0.4 x64",
     "Description": "The .NET Desktop Runtime Current enables you to run existing Windows desktop applications. This release includes the .NET Runtime; you don't need to install it separately.",
     "Publisher": "Microsoft",
     "InformationURL": "https://dotnet.microsoft.com/en-us/",
@@ -47,7 +47,7 @@
     {
       "Type": "File",
       "DetectionMethod": "Existence",
-      "Path": "C:\\Program Files\\dotnet\\host\\fxr\\7.0.3",
+      "Path": "C:\\Program Files\\dotnet\\host\\fxr\\7.0.4",
       "FileOrFolder": "hostfxr.dll",
       "DetectionType": "exists",
       "Check32BitOn64System": "false"
