@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "Microsoft365Apps",
-    "Filter": "Get-EvergreenApp -Name \"Microsoft365Apps\" | Select-Object -First 1",
+    "Filter": "Invoke-EvergreenApp -Name \"Microsoft365Apps\" | Select-Object -First 1",
     "Title": "Microsoft 365 Apps for enterprise Monthly Enterprise",
     "Language": "en-US",
     "Architecture": "x64"

@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "MicrosoftTeams",
-    "Filter": "Get-EvergreenApp -Name \"MicrosoftTeams\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Ring -eq \"General\" -and $_.Type -eq \"msi\" } | Select-Object -First 1",
+    "Filter": "Invoke-EvergreenApp -Name \"MicrosoftTeams\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Ring -eq \"General\" -and $_.Type -eq \"msi\" } | Select-Object -First 1",
     "Title": "Microsoft Teams",
     "Language": "en-US",
     "Architecture": "x64"

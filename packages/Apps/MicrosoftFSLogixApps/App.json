@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "MicrosoftFSLogixApps",
-    "Filter": "Get-EvergreenApp -Name \"MicrosoftFSLogixApps\" | Where-Object { $_.Channel -eq \"Production\" } | Select-Object -First 1",
+    "Filter": "Invoke-EvergreenApp -Name \"MicrosoftFSLogixApps\" | Where-Object { $_.Channel -eq \"Production\" } | Select-Object -First 1",
     "Title": "Microsoft FSLogix Apps",
     "Language": "en-US",
     "Architecture": "x64"

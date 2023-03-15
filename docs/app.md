@@ -18,7 +18,7 @@ Here's an example `App.json` for Adobe Acrobat Reader DC:
 {
   "Application": {
     "Name": "AdobeAcrobatReaderDC",
-    "Filter": "Get-EvergreenApp -Name \"AdobeAcrobatReaderDC\" | Where-Object { $_.Language -eq \"MUI\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+    "Filter": "Invoke-EvergreenApp -Name \"AdobeAcrobatReaderDC\" | Where-Object { $_.Language -eq \"MUI\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
     "Title": "Adobe Acrobat Reader DC",
     "Language": "English",
     "Architecture": "x64"

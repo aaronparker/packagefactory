@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "AdobeAcrobatReaderDCMUIUpdates",
-    "Filter": "Get-EvergreenApp -Name \"AdobeAcrobat\" | Where-Object { $_.Track -eq \"DC\" -and $_.Product -eq \"Reader\" -and $_.Language -eq \"Multi\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+    "Filter": "Invoke-EvergreenApp -Name \"AdobeAcrobat\" | Where-Object { $_.Track -eq \"DC\" -and $_.Product -eq \"Reader\" -and $_.Language -eq \"Multi\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
     "Title": "Update for Adobe Acrobat Reader DC MUI",
     "Language": "en-US",
     "Architecture": "x64"
