@@ -69,55 +69,32 @@ foreach ($App in $Applications) {
         Write-Information -MessageData "Application not supported by this workflow: $ApplicationName"
     }
     else {
-        if ($Manifest.Application.Filter -match "Get-VcList") {
+        # Get the application installer via Evergreen and download
+        $result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -CustomPath $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder))
 
-            # Handle the Visual C++ Redistributables via VcRedist
-            $result = Invoke-Expression -Command $Manifest.Application.Filter
-            $Filename = $(Split-Path -Path $result.Download -Leaf)
-            Write-Information -MessageData "Package: $($result.Name); $Filename."
+        # Unpack the installer file if its a zip file
+        Write-Information -MessageData "Downloaded: $($result.FullName)"
+        if ($result.FullName -match "\.zip$") {
             $params = @{
-                Path     = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder))
-                ItemType = "Directory"
-                Force    = $true
+                Path            = $result.FullName
+                DestinationPath = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder))
             }
-            New-Item @params | Out-Null
-
-            $params = @{
-                Uri             = $result.Download
-                OutFile         = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder, $Filename))
-                UseBasicParsing = $true
-            }
-            Invoke-WebRequest @params
+            Write-Information -MessageData "Expand: $($result.FullName)"
+            Expand-Archive @params
+            Remove-Item -Path $result.FullName -Force
         }
-        else {
 
-            # Get the application installer via Evergreen and download
-            $result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -CustomPath $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder))
-
-            # Unpack the installer file if its a zip file
-            Write-Information -MessageData "Downloaded: $($result.FullName)"
-            if ($result.FullName -match "\.zip$") {
-                $params = @{
-                    Path            = $result.FullName
-                    DestinationPath = $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder))
-                }
-                Write-Information -MessageData "Expand: $($result.FullName)"
-                Expand-Archive @params
-                Remove-Item -Path $result.FullName -Force
+        # Run the command defined in PrePackageCmd
+        if ($Manifest.Application.PrePackageCmd.Length -gt 0) {
+            $params = @{
+                FilePath     = $result.FullName
+                ArgumentList = $($Manifest.Application.PrePackageCmd -replace "#Path", $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder)))
+                NoNewWindow  = $true
+                Wait         = $true
             }
-
-            # Run the command defined in PrePackageCmd
-            if ($Manifest.Application.PrePackageCmd.Length -gt 0) {
-                $params = @{
-                    FilePath     = $result.FullName
-                    ArgumentList = $($Manifest.Application.PrePackageCmd -replace "#Path", $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder)))
-                    NoNewWindow  = $true
-                    Wait         = $true
-                }
-                Write-Information -MessageData "Start: $($result.FullName) $($Manifest.Application.PrePackageCmd -replace "#Path", $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder)))"
-                Start-Process @params
-                Remove-Item -Path $result.FullName -Force
-            }
+            Write-Information -MessageData "Start: $($result.FullName) $($Manifest.Application.PrePackageCmd -replace "#Path", $([System.IO.Path]::Combine($Path, $PackageFolder, $Type, $ApplicationName, $Manifest.PackageInformation.SourceFolder)))"
+            Start-Process @params
+            Remove-Item -Path $result.FullName -Force
         }
 
         # Copy Install.ps1 into the source folder

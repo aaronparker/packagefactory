@@ -32,17 +32,8 @@ foreach ($Application in $ApplicationList) {
     #$Properties = $ApplicationList.Applications.($Application.Name)
     Write-Host -ForegroundColor "Cyan" "Application: $($Application.Title)"
     Write-Host -ForegroundColor "Cyan" "Running: $($Application.Filter)."
-    if ($Application.Filter -match "Get-VcList") {
-        $App = Invoke-Expression -Command $Filter
-        $Filename = $(Split-Path -Path $App.Download -Leaf)
-        Write-Host "Package: $($App.Name); $Filename."
-        New-Item -Path $([System.IO.Path]::Combine($Path, $Application.Name, "Source")) -ItemType "Directory" -Force | Out-Null
-        Invoke-WebRequest -Uri $App.Download -OutFile $([System.IO.Path]::Combine($Path, $Application.Name, "Source", $Filename)) -UseBasicParsing
-    }
-    else {
-        $AppUpdate = Invoke-Expression -Command $Application.Filter
-        $AppUpdate | Save-EvergreenApp -CustomPath $([System.IO.Path]::Combine($Path, $Application.Name, "Source"))
-    }
+    $AppUpdate = Invoke-Expression -Command $Application.Filter
+    $AppUpdate | Save-EvergreenApp -CustomPath $([System.IO.Path]::Combine($Path, $Application.Name, "Source"))
 
     # Get the application package manifest and update it
     $AppConfiguration = $([System.IO.Path]::Combine($Path, $Application.Name, $AppManifest))
