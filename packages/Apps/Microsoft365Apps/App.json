@@ -9,13 +9,13 @@
   "PackageInformation": {
     "SetupType": "EXE",
     "SetupFile": "setup.exe",
-    "Version": "16.0.16310.20000",
+    "Version": "16.0.16316.20000",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft365.png"
   },
   "Information": {
-    "DisplayName": "Microsoft 365 Apps for enterprise Monthly Enterprise 16.0.16310.20000",
+    "DisplayName": "Microsoft 365 Apps for enterprise Monthly Enterprise 16.0.16316.20000",
     "Description": "Microsoft 365 Apps, Monthly Enterprise channel, for the Windows desktop including Microsoft Word, Excel, PowerPoint, Outlook, OneNote, OneDrive and Teams.",
     "Publisher": "Microsoft",
     "InformationURL": "https://www.office.com",
@@ -42,7 +42,7 @@
       "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Office\\ClickToRun\\Configuration",
       "ValueName": "VersionToReport",
       "Operator": "greaterThanOrEqual",
-      "Value": "16.0.16310.20000",
+      "Value": "16.0.16316.20000",
       "Check32BitOn64System": "false"
     },
     {
@@ -51,7 +51,7 @@
       "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Office\\ClickToRun\\Configuration",
       "ValueName": "ProductReleaseIds",
       "Operator": "equal",
-      "Value": "16.0.16310.20000",
+      "Value": "16.0.16316.20000",
       "Check32BitOn64System": "false"
     },
     {
@@ -60,7 +60,7 @@
       "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Office\\ClickToRun\\Configuration",
       "ValueName": "StreamingFinished",
       "Operator": "equal",
-      "Value": "16.0.16310.20000",
+      "Value": "16.0.16316.20000",
       "Check32BitOn64System": "false"
     },
     {
@@ -69,7 +69,7 @@
       "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Office\\ClickToRun\\Configuration",
       "ValueName": "SharedComputerLicensing",
       "Operator": "equal",
-      "Value": "16.0.16310.20000",
+      "Value": "16.0.16316.20000",
       "Check32BitOn64System": "false"
     }
   ]
