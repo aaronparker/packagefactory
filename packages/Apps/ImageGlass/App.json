@@ -1,4 +1,4 @@
-﻿{
+{
   "Application": {
     "Name": "ImageGlass",
     "Filter": "Invoke-EvergreenApp -Name \"ImageGlass\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Uri -match \"x64.msi$\" } | Select-Object -First 1",
@@ -8,14 +8,14 @@
   },
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "ImageGlass_Kobe_8.7.11.6_x64.msi",
-    "Version": "8.7.11.6",
+    "SetupFile": "ImageGlass_Kobe_8.8.3.28_x64.msi",
+    "Version": "8.8.3.28",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/ImageGlass.png"
   },
   "Information": {
-    "DisplayName": "ImageGlass 8.7.11.6 x64",
+    "DisplayName": "ImageGlass 8.8.3.28 x64",
     "Description": "Free - Open Source Image Viewer. A simple-to-use program that comes packed with basic functions and a nice minimal modern user interface.",
     "Publisher": "Dương Diệu Pháp",
     "InformationURL": "https://imageglass.org/",
@@ -42,7 +42,7 @@
       "Path": "C:\\Program Files\\ImageGlass",
       "FileOrFolder": "ImageGlass.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "8.7.11.6",
+      "VersionValue": "8.8.3.28",
       "Check32BitOn64System": "false"
     }
   ],
