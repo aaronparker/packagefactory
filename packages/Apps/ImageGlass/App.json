@@ -8,14 +8,14 @@
   },
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "ImageGlass_Kobe_8.8.3.28_x64.msi",
-    "Version": "8.8.3.28",
+    "SetupFile": "ImageGlass_Kobe_8.8.4.4_x64.msi",
+    "Version": "8.8.4.4",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/ImageGlass.png"
   },
   "Information": {
-    "DisplayName": "ImageGlass 8.8.3.28 x64",
+    "DisplayName": "ImageGlass 8.8.4.4 x64",
     "Description": "Free - Open Source Image Viewer. A simple-to-use program that comes packed with basic functions and a nice minimal modern user interface.",
     "Publisher": "Dương Diệu Pháp",
     "InformationURL": "https://imageglass.org/",
@@ -42,7 +42,7 @@
       "Path": "C:\\Program Files\\ImageGlass",
       "FileOrFolder": "ImageGlass.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "8.8.3.28",
+      "VersionValue": "8.8.4.4",
       "Check32BitOn64System": "false"
     }
   ],
