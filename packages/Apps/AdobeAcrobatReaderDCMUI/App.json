@@ -8,14 +8,14 @@
   },
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "AcroRdrDCx642300120064_MUI.exe",
-    "Version": "23.001.20064",
+    "SetupFile": "AcroRdrDCx642300120143_MUI.exe",
+    "Version": "23.001.20143",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Adobe-AcrobatReader.png"
   },
   "Information": {
-    "DisplayName": "Adobe Acrobat Reader DC 23.001.20064 x64",
+    "DisplayName": "Adobe Acrobat Reader DC 23.001.20143 x64",
     "Description": "The leading PDF viewer to print, sign, and annotate PDFs.",
     "Publisher": "Adobe",
     "InformationURL": "https://www.adobe.com/acrobat/pdf-reader.html",
@@ -43,7 +43,7 @@
       "Path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat",
       "FileOrFolder": "Acrobat.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "23.001.20064",
+      "VersionValue": "23.001.20143",
       "Check32BitOn64System": "false"
     }
   ],
