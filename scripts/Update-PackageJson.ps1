@@ -82,7 +82,7 @@ foreach ($ManifestJson in $ManifestList) {
                             $Manifest.PackageInformation.SetupFile = $AppUpdate.Filename -replace "%20", " "
                             $Manifest.Program.InstallCommand = $Manifest.Program.InstallTemplate -replace "#SetupFile", $AppUpdate.Filename -replace "%20", " "
                         }
-                        else {    
+                        else {
                             $Manifest.PackageInformation.SetupFile = $(Split-Path -Path $AppUpdate.URI -Leaf) -replace "%20", " "
                             $Manifest.Program.InstallCommand = $Manifest.Program.InstallTemplate -replace "#SetupFile", $(Split-Path -Path $AppUpdate.URI -Leaf) -replace "%20", " "
                         }
@@ -190,7 +190,7 @@ foreach ($ManifestJson in $ManifestList) {
                             if ([System.Boolean]($AppUpdate.PSobject.Properties.name -match "Filename")) {
                                 $InstallData.PackageInformation.SetupFile = $AppUpdate.Filename -replace "%20", " "
                             }
-                            else {    
+                            else {
                                 $InstallData.PackageInformation.SetupFile = $(Split-Path -Path $AppUpdate.URI -Leaf) -replace "%20", " "
                             }
                         }

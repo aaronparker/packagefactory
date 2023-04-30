@@ -7,6 +7,7 @@
     Date: 13th September 2022
 #>
 [CmdletBinding(SupportsShouldProcess = $True)]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingInvokeExpression", "", Justification = "Needed to execute Evergreen or VcRedist commands.")]
 param ()
 
 #region Restart if running in a 32-bit session

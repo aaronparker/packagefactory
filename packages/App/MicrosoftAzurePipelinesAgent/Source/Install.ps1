@@ -4,6 +4,7 @@
     Uses Evergreen to download and install Azure Devops Pipeline agent
 #>
 [CmdletBinding()]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText", "", Justification = "Needed when creating the local user account.")]
 param (
     [System.String] $Path = "$Env:SystemDrive\agents",
     [System.String] $KeyFile = "$Env:SystemRoot\System32\config\systemprofile\AppData\Local\DevOpsKey.xml"
