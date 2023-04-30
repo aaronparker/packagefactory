@@ -61,9 +61,23 @@ jobs:
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
         run: |
           Import-Module -Name "MSAL.PS", "IntuneWin32App", "Evergreen", "VcRedist" -Force
+
+          # Authenticate to the Graph API; expects secrets to be passed into environment variables
+          Write-Information -MessageData "Authenticate to the Graph API" -InformationAction "Continue"
           $params = @{
-              Application  = "${{ github.event.inputs.package }}"
-              Path         = "${{ github.workspace }}"
-              Type         = "Apps"
+              TenantId     = "$env:TENANT_ID"
+              ClientId     = "$env:CLIENT_ID"
+              ClientSecret = "$env:CLIENT_SECRET"
           }
-          .\scripts\New-PipelineWin32App.ps1 @params
+          Connect-MSIntuneGraph @params
+
+          # Convert $Application into an array because we can't pass an array via inputs into the workflow
+          [System.Array] $Applications = ("${{ github.event.inputs.package }}").ToString() -split ","
+          $params = @{
+              Path        = "${{ github.workspace }}\packages"
+              Application = $Applications
+              Type        = "App"
+              WorkingPath = "${{ github.workspace }}\output"
+              Import      = $true
+          }
+          & "${{ github.workspace }}\New-Win32Package.ps1" @params
