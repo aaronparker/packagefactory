@@ -114,9 +114,10 @@ nav:
   - Home: index.md
   - Using PSPackageFactory:
     - Set Up the Packaging Factory: setup.md
-    - Run Locally: use.md
+    - Importing Packages: use.md
     - About App.json: app.md
     - About Install.json: install.md
+    - Use in a Pipeline: pipeline.md
   - About IntuneWin32AppPackager: intunewin32.md
   - Evergreen: https://stealthpuppy.com/evergreen/
   - VcRedist: https://vcredist.com/
