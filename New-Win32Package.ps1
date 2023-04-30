@@ -58,10 +58,9 @@ param (
         "ImageCustomise",
         "Microsoft.NETCurrent",
         "MicrosoftEdgeWebView2",
-        "MicrosoftSupportCenter",
         "MicrosoftVcRedist2022x86",
         "MicrosoftVcRedist2022x64",
-        "PaintDotNetOfflineInstaller".
+        "PaintDotNetOfflineInstaller",
         "VideoLanVlcPlayer",
         "ZoomMeetings"),
 
