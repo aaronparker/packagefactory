@@ -19,7 +19,7 @@ on:
           type: choice
           options:
             - App
-            - Type
+            - Update
 
 jobs:
   create-package:
