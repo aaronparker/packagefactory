@@ -440,7 +440,6 @@ process {
         "Developer"                = $AppData.Information.Publisher
         "InformationURL"           = $AppData.Information.InformationURL
         "PrivacyURL"               = $AppData.Information.PrivacyURL
-        "CategoryName"             = "Productivity"
         "CompanyPortalFeaturedApp" = $false
         "InstallExperience"        = $AppData.Program.InstallExperience
         "RestartBehavior"          = $AppData.Program.DeviceRestartBehavior
@@ -450,7 +449,7 @@ process {
     }
 
     # Dynamically add additional parameters for Win32 app
-    if ($Null -ne $RequirementRules) {
+    if ($null -ne $RequirementRules) {
         $Win32AppArgs.Add("AdditionalRequirementRule", $RequirementRules)
     }
     if (Test-Path -Path $AppIconFile) {
@@ -458,6 +457,9 @@ process {
     }
     if (-not([System.String]::IsNullOrEmpty($AppData.Information.Notes))) {
         $Win32AppArgs.Add("Notes", $AppData.Information.Notes)
+    }
+    if (-not([System.String]::IsNullOrEmpty($AppData.Information.Categories))) {
+        $Win32AppArgs.Add("CategoryName", $AppData.Information.Categories)
     }
     if (-not([System.String]::IsNullOrEmpty($AppData.Program.InstallCommand))) {
         $Win32AppArgs.Add("InstallCommandLine", $AppData.Program.InstallCommand)
