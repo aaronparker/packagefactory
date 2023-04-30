@@ -18,9 +18,9 @@
 # Package folders
 packages/**/Package
 packages/**/*.png
-#packages/**/Source
 auth.ps1
 auth.json
+output/**
 
 # OS generated files
 .DS_Store
