@@ -430,12 +430,20 @@ process {
         $Icon = New-IntuneWin32AppIcon -FilePath $AppIconFile
     }
 
+    # Create a Notes property with identifying information
+    $Notes = [PSCustomObject] @{
+        "CreatedBy" = "PSPackageFactory"
+        "Guid"      = $AppData.Information.PSPackageFactoryGuid
+        "Date"      = $(Get-Date -Format "yyyy-MM-dd")
+    } | ConvertTo-Json -Compress
+
     # Construct a table of default parameters for Win32 app
     $Win32AppArgs = @{
         "FilePath"                 = $PackageFile
         "DisplayName"              = $AppData.Information.DisplayName
         "Description"              = $AppData.Information.Description
         "AppVersion"               = $AppData.PackageInformation.Version
+        "Notes"                    = $Notes
         "Publisher"                = $AppData.Information.Publisher
         "Developer"                = $AppData.Information.Publisher
         "InformationURL"           = $AppData.Information.InformationURL
