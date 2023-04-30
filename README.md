@@ -6,13 +6,13 @@
 
 **Documentation**: [https://stealthpuppy.com/packagefactory](https://stealthpuppy.com/packagefactory)
 
-----
+## Automated Packaging Framework
 
 This package factory provides a library of applications for automatic update, packaging and import into Microsoft Intune. `New-Win32Package.ps1` uses Evergreen and VcRedist to download the latest version of a target application before packaging and importing into Intune.
 
-## Packaging Framework
+## Manual Packaging Framework
 
-For applications that can't be automatically updated (e.g., installers are locked behind a login, or an installer that is custom to the target environment), this packaging framework can be used as a repeatable process to package and import those applications into Intune.
+Even if you're using a solution such as [Patch My PC](https://patchmypc.com/), there are applications that can't be automatically updated (e.g., installers are locked behind a login, or an installer that is custom to the target environment), this packaging framework can be used as a repeatable process to package and import those applications into Intune.
 
 ## Updates
 
