@@ -203,7 +203,7 @@ A File detection rule type can be of different detection methods, such as:
         "DeviceRestartBehavior": "suppress"
     },
     "RequirementRule": {
-        "MinimumRequiredOperatingSystem": "1809",
+        "MinimumRequiredOperatingSystem": "W10_1809",
         "Architecture": "x64"
     },
     "CustomRequirementRule": [

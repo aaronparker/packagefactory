@@ -49,7 +49,7 @@ Here's an example `App.json` for Adobe Acrobat Reader DC:
     "DeviceRestartBehavior": "suppress"
   },
   "RequirementRule": {
-    "MinimumRequiredOperatingSystem": "1809",
+    "MinimumRequiredOperatingSystem": "W10_1809",
     "Architecture": "x64"
   },
   "CustomRequirementRule": [],

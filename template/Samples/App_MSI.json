@@ -17,7 +17,7 @@
         "DeviceRestartBehavior": "suppress \\ force \\ basedOnReturnCode \\ allow"
     },
     "RequirementRule": {
-        "MinimumRequiredOperatingSystem": "1809",
+        "MinimumRequiredOperatingSystem": "W10_1809",
         "Architecture": "All \\ x64 \\ x86"
     },
     "CustomRequirementRule": [
