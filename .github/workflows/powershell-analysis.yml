@@ -1,8 +1,10 @@
 name: PSScriptAnalyzer
 
 on:
-  schedule:
-      - cron: '15 3 * * *'
+  push:
+    branches: [ main ]
+    paths:
+      - '**.ps1'
   pull_request:
     branches: [ main ]
     paths:
