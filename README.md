@@ -2,15 +2,13 @@
 
 ## A Package Factory for Microsoft Intune
 
-Combining [Evergreen](https://stealthpuppy.com/evergreen), [VcRedist](https://vcredist.com/), [IntuneWin32App](https://github.com/MSEndpointMgr/IntuneWin32App) and [IntuneWin32AppPackager](https://github.com/MSEndpointMgr/IntuneWin32AppPackager) to create a packaging factory for Microsoft Intune.
+**PSPackageFactory** is a fork of [IntuneWin32AppPackager](https://github.com/MSEndpointMgr/IntuneWin32AppPackager) combined with [Evergreen](https://stealthpuppy.com/evergreen) and [VcRedist](https://vcredist.com/) to create an automated packaging factory for Microsoft Intune.
 
 **Documentation**: [https://stealthpuppy.com/packagefactory](https://stealthpuppy.com/packagefactory)
 
 ----
 
-**PSPackageFactory** is a fork of [IntuneWin32AppPackager](https://github.com/MSEndpointMgr/IntuneWin32AppPackager) combined with [Evergreen](https://stealthpuppy.com/evergreen) and [VcRedist](https://vcredist.com/) to create an automated packaging factory for Microsoft Intune.
-
-This package factory enables maintaining a library of applications for automatic update, packaging and import into Microsoft Intune. `New-Win32Package.ps1` uses Evergreen and VcRedist to download the latest version of a target application before packaging and importing into Intune.
+This package factory provides a library of applications for automatic update, packaging and import into Microsoft Intune. `New-Win32Package.ps1` uses Evergreen and VcRedist to download the latest version of a target application before packaging and importing into Intune.
 
 ## Packaging Framework
 
