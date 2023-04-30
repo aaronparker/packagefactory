@@ -446,6 +446,7 @@ process {
         "RestartBehavior"          = $AppData.Program.DeviceRestartBehavior
         "DetectionRule"            = $DetectionRules
         "RequirementRule"          = $RequirementRule
+        #"UseAzCopy"                = $true
     }
 
     # Dynamically add additional parameters for Win32 app
