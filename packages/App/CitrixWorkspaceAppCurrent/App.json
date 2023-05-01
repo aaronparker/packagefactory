@@ -44,6 +44,15 @@
       "Operator": "greaterThanOrEqual",
       "Value": "23.3.0.55",
       "Check32BitOn64System": "false"
+    },
+    {
+      "Type": "Registry",
+      "DetectionMethod": "StringComparison",
+      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\Citrix\\ICA Client\\AutoUpdate\\Commandline Policy",
+      "ValueName": "LTSROnly",
+      "Operator": "equal",
+      "Value": "true",
+      "Check32BitOn64System": "false"
     }
   ],
   "Dependencies": [],

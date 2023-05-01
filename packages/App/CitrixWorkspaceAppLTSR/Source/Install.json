@@ -1,0 +1,15 @@
+{
+  "PackageInformation": {
+    "SetupType": "EXE",
+    "SetupFile": "CitrixWorkspaceApp23.3.0.55.exe",
+    "Version": "23.3.0.55"
+  },
+  "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
+  "InstallTasks": {
+    "ArgumentList": "/silent /noreboot /includeSSON /AutoUpdateCheck=auto /AutoUpdateStream=LTSR /DeferUpdateCount=3 /AURolloutPriority=Auto EnableCEIP=False"
+  },
+  "PostInstall": {
+    "Remove": [],
+    "Copy": []
+  }
+}
