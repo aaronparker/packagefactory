@@ -53,6 +53,15 @@
       "Operator": "equal",
       "Value": "true",
       "Check32BitOn64System": "false"
+    },
+    {
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "C:\\Program Files (x86)\\Citrix\\ICA Client",
+      "FileOrFolder": "wfica32.exe",
+      "Operator": "greaterThanOrEqual",
+      "VersionValue": "22.3.3000.3116",
+      "Check32BitOn64System": "false"
     }
   ],
   "Dependencies": [],
