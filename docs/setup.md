@@ -1,6 +1,6 @@
 # Set Up the Packaging Factory
 
-Running the packaging factory locally requires Windows because the [Microsoft Win32 Content Prep Tool](https://learn.microsoft.com/en-us/mem/intune/apps/apps-win32-prepare) runs on Windows only.
+Running the packaging factory locally requires a support version of Windows because the [Microsoft Win32 Content Prep Tool](https://learn.microsoft.com/en-us/mem/intune/apps/apps-win32-prepare) runs on Windows only. Additionally, the packaging factory has only been tested on Windows PowerShell. It may run on PowerShell 7; however, it is not actively tested on that version of PowerShell.
 
 ## Install the required PowerShell modules
 

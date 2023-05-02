@@ -11,7 +11,7 @@
     The package manifest file name stored in each package directory.
 
     .PARAMETER InstallScript
-    The install script file name stored in each package directory.
+    The template install script file name that will be copied into the package.
 
     .PARAMETER Application
     An array of application names to import into the target Intune tenant. The application names must match those applications stored in the project.
