@@ -1,5 +1,6 @@
 #Requires -PSEdition Desktop
 #Requires -Modules Evergreen, VcRedist
+using namespace System.Management.Automation
 <#
     .SYNOPSIS
     Convert an application into an Intunewin package and imported into an Intune tenant.
@@ -78,10 +79,22 @@ param (
 
 begin {
     function Write-Msg ($Msg) {
+        $Message = [HostInformationMessage]@{
+            Message         = "[$(Get-Date -Format 'dd.MM.yyyy HH:mm:ss')]"
+            ForegroundColor = "Black"
+            BackgroundColor = "DarkCyan"
+            NoNewline       = $true
+        }
         $params = @{
-            MessageData       = "[$(Get-Date -Format 'dd.MM.yyyy HH:mm:ss')] $Msg"
+            MessageData       = $Message
             InformationAction = "Continue"
-            Tags              = "Intune"
+            Tags              = "Microsoft365"
+        }
+        Write-Information @params
+        $params = @{
+            MessageData       = " $Msg"
+            InformationAction = "Continue"
+            Tags              = "Microsoft365"
         }
         Write-Information @params
     }
