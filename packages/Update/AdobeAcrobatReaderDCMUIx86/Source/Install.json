@@ -1,8 +1,8 @@
 {
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "AcroRdrDCUpd2300120143_MUI.msp",
-    "Version": "23.001.20143"
+    "SetupFile": "AcroRdrDCUpd2300120177_MUI.msp",
+    "Version": "23.001.20177"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
