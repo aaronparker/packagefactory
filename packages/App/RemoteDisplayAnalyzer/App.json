@@ -9,13 +9,13 @@
   "PackageInformation": {
     "SetupType": "EXE",
     "SetupFile": "RemoteDisplayAnalyzer.exe",
-    "Version": "2211.313.3",
+    "Version": "2305.136.2",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Display.png"
   },
   "Information": {
-    "DisplayName": "Remote Display Analyzer 2211.313.3",
+    "DisplayName": "Remote Display Analyzer 2305.136.2 x86",
     "Description": "The easiest tool to analyze and change display protocol settings on the fly.",
     "Publisher": "Bram Wolfs",
     "InformationURL": "https://rdanalyzer.com/",
@@ -42,7 +42,7 @@
       "Path": "C:\\Program Files\\RemoteDisplayAnalyzer",
       "FileOrFolder": "RemoteDisplayAnalyzer.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "2211.313.3.0",
+      "VersionValue": "2305.136.2",
       "Check32BitOn64System": "false"
     }
   ],
