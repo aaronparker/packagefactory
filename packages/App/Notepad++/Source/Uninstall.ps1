@@ -5,6 +5,23 @@
 [CmdletBinding()]
 param ()
 
+#region Restart if running in a 32-bit session
+if (!([System.Environment]::Is64BitProcess)) {
+    if ([System.Environment]::Is64BitOperatingSystem) {
+        $Arguments = "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$($MyInvocation.MyCommand.Definition)`""
+        $ProcessPath = $(Join-Path -Path $Env:SystemRoot -ChildPath "\Sysnative\WindowsPowerShell\v1.0\powershell.exe")
+        $params = @{
+            FilePath     = $ProcessPath
+            ArgumentList = $Arguments
+            Wait         = $True
+            WindowStyle  = "Hidden"
+        }
+        Start-Process @params
+        exit 0
+    }
+}
+#endregion
+
 #region Functions
 function Get-InstalledSoftware {
     [OutputType([System.Object[]])]
@@ -33,10 +50,9 @@ function Get-InstalledSoftware {
 #endregion
 
 #region Script logic
-$Apps = Get-InstalledSoftware | Where-Object { $_.Name -match "Notepad\+\+*" }
-foreach ($App in $Apps) {
+Get-InstalledSoftware | Where-Object { $_.Name -match "Notepad\+\+*" } | ForEach-Object {
     $params = @{
-        FilePath     = [Regex]::Match($App.UninstallString, '\"(.*)\"').Captures.Groups[1].Value
+        FilePath     = [Regex]::Match($_.UninstallString, '\"(.*)\"').Captures.Groups[1].Value
         ArgumentList = "/S"
         NoNewWindow  = $True
         PassThru     = $True
