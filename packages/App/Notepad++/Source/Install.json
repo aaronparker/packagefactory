@@ -1,13 +1,13 @@
 {
   "PackageInformation": {
-    "SetupType": "MSI",
-    "SetupFile": "Firefox Setup 114.0.1.msi",
-    "Version": "114.0.1"
+    "SetupType": "EXE",
+    "SetupFile": "npp.8.5.3.Installer.x64.exe",
+    "Version": "8.5.3"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
     "StopProcess": [],
-    "ArgumentList": "/package \"#SetupFile\" DESKTOP_SHORTCUT=false TASKBAR_SHORTCUT=false /quiet /log \"#LogPath\\#LogName.log\""
+    "ArgumentList": "/S"
   },
   "PostInstall": {
     "Remove": [],
