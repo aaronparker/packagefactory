@@ -1,0 +1,52 @@
+{
+  "Application": {
+    "Name": "NotepadPlusPlus",
+    "Filter": "Invoke-EvergreenApp -Name \"NotepadPlusPlus\" -ErrorAction \"SilentlyContinue\" -WarningAction \"SilentlyContinue\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Type -eq \"exe\" }",
+    "Title": "Notepad++",
+    "Language": "en-US",
+    "Architecture": "x64"
+  },
+  "PackageInformation": {
+    "SetupType": "EXE",
+    "SetupFile": "npp.8.5.3.Installer.x64.exe",
+    "Version": "8.5.3",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/NotepadPP.png"
+  },
+  "Information": {
+    "DisplayName": "Notepad++ 8.5.3 x64",
+    "Description": "Notepad++ is a free source code editor and Notepad replacement that supports several languages. By optimizing as many routines as possible without losing user friendliness, Notepad++ is trying to reduce the world carbon dioxide emissions. When using less CPU power, the PC can throttle down and reduce power consumption, resulting in a greener environment.",
+    "Publisher": "Don Ho",
+    "InformationURL": "https://notepad-plus-plus.org/",
+    "PrivacyURL": "https://www.mozilla.org/en-US/privacy/",
+    "Categories": [],
+    "PSPackageFactoryGuid": "5ba4f47a-db61-4646-879c-88ee8fdb2c74"
+  },
+  "Program": {
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Uninstall.ps1",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "suppress"
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "W10_1809",
+    "Architecture": "x64"
+  },
+  "CustomRequirementRule": [],
+  "DetectionRule": [
+    {
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "C:\\Program Files\\Notepad++",
+      "FileOrFolder": "Notepad++.exe",
+      "Operator": "greaterThanOrEqual",
+      "VersionValue": "8.5.3",
+      "Check32BitOn64System": "false"
+    }
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
+}
