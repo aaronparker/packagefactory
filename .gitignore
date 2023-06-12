@@ -21,6 +21,9 @@ auth.ps1
 auth.json
 output/**
 
+# PSAppDeployToolkit
+!PSAppDeployToolkit/Toolkit/Deploy-Application.exe
+
 # OS generated files
 .DS_Store
 .DS_Store?
