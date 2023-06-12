@@ -189,9 +189,8 @@ Try {
 
         ## <Perform Pre-Installation tasks here>
         # Read JSON file for the installer file name
-        $InstallFile = Join-Path -Path $PWD -ChildPath "Install.json"
-        $Install = Get-Content -Path $InstallFile | ConvertFrom-Json
-        $Installer = Get-ChildItem -Path $Path -Filter $Install.PackageInformation.SetupFile -Recurse
+        $Install = Get-ChildItem -Path $PWD -Filter "Install.json" -Recurse | Get-Content | ConvertFrom-Json
+        $Installer = Get-ChildItem -Path $PWD -Filter $Install.PackageInformation.SetupFile -Recurse
 
         ##*===============================================
         ##* INSTALLATION
