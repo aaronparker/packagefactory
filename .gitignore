@@ -13,7 +13,6 @@
 *.msp
 *.msu
 *.intunewin
-*.ico
 
 # Package folders
 packages/**/Package
