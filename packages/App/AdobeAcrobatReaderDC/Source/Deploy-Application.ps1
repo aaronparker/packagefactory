@@ -208,7 +208,12 @@ Try {
         # Read JSON file for the installer file name
         $Install = Get-Content -Path "$scriptDirectory\Files\Install.json" | ConvertFrom-Json
         $ArgumentList = "-sfx_nu /sALL /rps /l /msi EULA_ACCEPT=YES ENABLE_CHROMEEXT=0 DISABLE_BROWSER_INTEGRATION=1 ENABLE_OPTIMIZATION=YES ADD_THUMBNAILPREVIEW=1 DISABLEDESKTOPSHORTCUT=1"
-        Execute-Process -Path "$($Install.PackageInformation.SetupFile)" -Parameters $ArgumentList
+        $params = @{
+            Path             = "$scriptDirectory\Files\$($Install.PackageInformation.SetupFile)"
+            Parameters       = $ArgumentList
+            WorkingDirectory = "$scriptDirectory\Files"
+        }
+        Execute-Process @params
 
         ##*===============================================
         ##* POST-INSTALLATION
