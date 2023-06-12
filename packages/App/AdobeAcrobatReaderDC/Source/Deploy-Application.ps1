@@ -188,9 +188,6 @@ Try {
         Show-InstallationProgress
 
         ## <Perform Pre-Installation tasks here>
-        # Read JSON file for the installer file name
-        $Install = Get-ChildItem -Path $PWD -Filter "Install.json" -Recurse | Get-Content | ConvertFrom-Json
-        $Installer = Get-ChildItem -Path $PWD -Filter $Install.PackageInformation.SetupFile -Recurse
 
         ##*===============================================
         ##* INSTALLATION
@@ -208,8 +205,10 @@ Try {
         }
 
         ## <Perform Installation tasks here>
+        # Read JSON file for the installer file name
+        $Install = Get-Content -Path "$scriptDirectory\Files\Install.json" | ConvertFrom-Json
         $ArgumentList = "-sfx_nu /sALL /rps /l /msi EULA_ACCEPT=YES ENABLE_CHROMEEXT=0 DISABLE_BROWSER_INTEGRATION=1 ENABLE_OPTIMIZATION=YES ADD_THUMBNAILPREVIEW=1 DISABLEDESKTOPSHORTCUT=1"
-        Execute-Process -Path $Installer.FullName -Parameters $ArgumentList
+        Execute-Process -Path "$($Install.PackageInformation.SetupFile)" -Parameters $ArgumentList
 
         ##*===============================================
         ##* POST-INSTALLATION
@@ -259,7 +258,7 @@ Try {
         }
 
         ## <Perform Uninstallation tasks here>
-        Execute-Process -Path "$Env:SystemRoot\System32\msiexec.exe" -Parameters "/X `"{AC76BA86-1033-FF00-7760-BC15014EA700}`" /quiet"
+        Execute-MSI -Action "Uninstall" -Path '{AC76BA86-1033-FF00-7760-BC15014EA700}'
 
         ##*===============================================
         ##* POST-UNINSTALLATION
