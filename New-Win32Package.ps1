@@ -73,7 +73,7 @@ param (
     [System.String] $InstallScript = $([System.IO.Path]::Combine($PSScriptRoot, "Install.ps1")),
 
     [Parameter(Mandatory = $false)]
-    [System.String] $PSAppDeployToolkit = $([System.IO.Path]::Combine($PSScriptRoot, "PSAppDeployToolkit")),
+    [System.String] $PSAppDeployToolkit = $([System.IO.Path]::Combine($PSScriptRoot, "PSAppDeployToolkit", "Toolkit")),
 
     [Parameter(Mandatory = $false)]
     [System.String] $WorkingPath = $([System.IO.Path]::Combine($PSScriptRoot, "output")),
@@ -153,17 +153,23 @@ process {
                 if (Test-Path -Path $([System.IO.Path]::Combine($AppPath, "Source", "Deploy-Application.ps1"))) {
                     # Copy the PSAppDeployToolkit into the target path
                     # Update SourcePath to point to the PSAppDeployToolkit\Files directory
+                    Write-Msg -Msg "Copy PSAppDeployToolkit to '$SourcePath'."
                     $params = @{
-                        Path        = "$([System.IO.Path]::Combine($PSAppDeployToolkit, "Toolkit"))\*"
+                        Path        = "$PSAppDeployToolkit\*"
                         Destination = $SourcePath
                         Recurse     = $true
                         Exclude     = "Deploy-Application.ps1"
                         ErrorAction = "Stop"
                     }
-                    Write-Msg -Msg "Copy PSAppDeployToolkit to '$SourcePath'."
                     Copy-Item @params
-                    New-Item -Path $([System.IO.Path]::Combine($PSAppDeployToolkit, "Toolkit", "Files"))
-                    New-Item -Path $([System.IO.Path]::Combine($PSAppDeployToolkit, "Toolkit", "SupportFiles"))
+                    $params = @{
+                        Path        = $([System.IO.Path]::Combine($AppPath, "Source", "Deploy-Application.ps1"))
+                        Destination = $([System.IO.Path]::Combine($SourcePath, "Deploy-Application.ps1"))
+                        ErrorAction = "Stop"
+                    }
+                    Copy-Item @params
+                    New-Item -Path $([System.IO.Path]::Combine($SourcePath, "Files")) -ItemType "Directory" -ErrorAction "SilentlyContinue" | Out-Null
+                    New-Item -Path $([System.IO.Path]::Combine($SourcePath, "SupportFiles")) -ItemType "Directory" -ErrorAction "SilentlyContinue" | Out-Null
                     $SourcePath = [System.IO.Path]::Combine($SourcePath, "Files")
                 }
                 elseif (Test-Path -Path $([System.IO.Path]::Combine($AppPath, "Source", "Install.json"))) {
