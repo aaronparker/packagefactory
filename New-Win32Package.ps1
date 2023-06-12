@@ -150,18 +150,7 @@ process {
                 }
 
                 # Configure the installer script logic using Install.ps1 or PSAppDeployToolkit
-                if (Test-Path -Path $([System.IO.Path]::Combine($AppPath, "Source", "Install.json"))) {
-                    # Copy the custom Install.ps1 into the target path
-                    $Destination = $([System.IO.Path]::Combine($SourcePath, "Install.ps1"))
-                    $params = @{
-                        Path        = $InstallScript
-                        Destination = $Destination
-                        ErrorAction = "Stop"
-                    }
-                    Write-Msg -Msg "Copy install script: '$InstallScript' to '$Destination'."
-                    Copy-Item @params
-                }
-                elseif (Test-Path -Path $([System.IO.Path]::Combine($AppPath, "Source", "Deploy-Application.ps1"))) {
+                if (Test-Path -Path $([System.IO.Path]::Combine($AppPath, "Source", "Deploy-Application.ps1"))) {
                     # Copy the PSAppDeployToolkit into the target path
                     # Update SourcePath to point to the PSAppDeployToolkit\Files directory
                     $params = @{
@@ -176,6 +165,17 @@ process {
                     New-Item -Path $([System.IO.Path]::Combine($PSAppDeployToolkit, "Toolkit", "Files"))
                     New-Item -Path $([System.IO.Path]::Combine($PSAppDeployToolkit, "Toolkit", "SupportFiles"))
                     $SourcePath = [System.IO.Path]::Combine($SourcePath, "Files")
+                }
+                elseif (Test-Path -Path $([System.IO.Path]::Combine($AppPath, "Source", "Install.json"))) {
+                    # Copy the custom Install.ps1 into the target path
+                    $Destination = $([System.IO.Path]::Combine($SourcePath, "Install.ps1"))
+                    $params = @{
+                        Path        = $InstallScript
+                        Destination = $Destination
+                        ErrorAction = "Stop"
+                    }
+                    Write-Msg -Msg "Copy install script: '$InstallScript' to '$Destination'."
+                    Copy-Item @params
                 }
                 else {
                     Write-Msg -Msg "Install.json does not exist or PSAppDeployToolkit not used."

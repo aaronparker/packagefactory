@@ -107,10 +107,10 @@ Try {
     ##* VARIABLE DECLARATION
     ##*===============================================
     ## Variables: Application
-    [String]$appVendor = ''
-    [String]$appName = ''
+    [String]$appVendor = 'Adobe'
+    [String]$appName = 'Acrobat Reader DC'
     [String]$appVersion = ''
-    [String]$appArch = ''
+    [String]$appArch = 'x64'
     [String]$appLang = 'EN'
     [String]$appRevision = '01'
     [String]$appScriptVersion = '1.0.0'
@@ -182,13 +182,16 @@ Try {
         [String]$installPhase = 'Pre-Installation'
 
         ## Show Welcome Message, close Internet Explorer if required, allow up to 3 deferrals, verify there is enough disk space to complete the install, and persist the prompt
-        Show-InstallationWelcome -CloseApps 'iexplore' -AllowDefer -DeferTimes 3 -CheckDiskSpace -PersistPrompt
+        Show-InstallationWelcome -CloseApps 'iexplore,AcroRd32,Acrobat' -AllowDefer -DeferTimes 3 -CheckDiskSpace -PersistPrompt
 
         ## Show Progress Message (with the default message)
         Show-InstallationProgress
 
         ## <Perform Pre-Installation tasks here>
-
+        # Read JSON file for the installer file name
+        $InstallFile = Join-Path -Path $PWD -ChildPath "Install.json"
+        $Install = Get-Content -Path $InstallFile | ConvertFrom-Json
+        $Installer = Get-ChildItem -Path $Path -Filter $Install.PackageInformation.SetupFile -Recurse
 
         ##*===============================================
         ##* INSTALLATION
@@ -206,7 +209,8 @@ Try {
         }
 
         ## <Perform Installation tasks here>
-
+        $ArgumentList = "-sfx_nu /sALL /rps /l /msi EULA_ACCEPT=YES ENABLE_CHROMEEXT=0 DISABLE_BROWSER_INTEGRATION=1 ENABLE_OPTIMIZATION=YES ADD_THUMBNAILPREVIEW=1 DISABLEDESKTOPSHORTCUT=1"
+        Execute-Process -Path $Installer.FullName -Parameters $ArgumentList
 
         ##*===============================================
         ##* POST-INSTALLATION
@@ -214,6 +218,14 @@ Try {
         [String]$installPhase = 'Post-Installation'
 
         ## <Perform Post-Installation tasks here>
+        # Remove desktop shortcut, configure force in Reader mode, disable updates (make sure you are updating via Intune)
+        Remove-Item -Path "$Env:Public\Desktop\Adobe Acrobat.lnk" -ErrorAction "SilentlyContinue"
+        reg add "HKLM\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown" /v "bIsSCReducedModeEnforcedEx" /d 1 /t "REG_DWORD" /f | Out-Null
+        reg add "HKLM\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown\cIPM" /v "bDontShowMsgWhenViewingDoc" /d 0 /t "REG_DWORD" /f | Out-Null
+        reg add "HKLM\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown" /v "bAcroSuppressUpsell" /d 1 /t "REG_DWORD" /f | Out-Null
+        reg add "HKLM\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown" /v "bUpdater" /d 0 /t "REG_DWORD" /f | Out-Null
+        reg add "HKLM\SOFTWARE\WOW6432Node\Adobe\Adobe ARM\Legacy\Reader\{AC76BA86-7AD7-1033-7B44-AC0F074E4100}" /v "Mode" /d 0 /t "REG_DWORD" /f | Out-Null
+        reg add "HKLM\SOFTWARE\Adobe\Adobe Acrobat\DC\Installer" /v "DisableMaintenance" /d 1 /t "REG_DWORD" /f | Out-Null
 
         ## Display a message at the end of the install
         If (-not $useDefaultMsi) {
@@ -227,13 +239,12 @@ Try {
         [String]$installPhase = 'Pre-Uninstallation'
 
         ## Show Welcome Message, close Internet Explorer with a 60 second countdown before automatically closing
-        Show-InstallationWelcome -CloseApps 'iexplore' -CloseAppsCountdown 60
+        Show-InstallationWelcome -CloseApps 'iexplore,AcroRd32,Acrobat' -CloseAppsCountdown 60
 
         ## Show Progress Message (with the default message)
         Show-InstallationProgress
 
         ## <Perform Pre-Uninstallation tasks here>
-
 
         ##*===============================================
         ##* UNINSTALLATION
@@ -249,7 +260,7 @@ Try {
         }
 
         ## <Perform Uninstallation tasks here>
-
+        Execute-Process -Path "$Env:SystemRoot\System32\msiexec.exe" -Parameters "/X `"{AC76BA86-1033-FF00-7760-BC15014EA700}`" /quiet"
 
         ##*===============================================
         ##* POST-UNINSTALLATION
@@ -257,7 +268,6 @@ Try {
         [String]$installPhase = 'Post-Uninstallation'
 
         ## <Perform Post-Uninstallation tasks here>
-
 
     }
     ElseIf ($deploymentType -ieq 'Repair') {
