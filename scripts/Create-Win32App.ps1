@@ -492,36 +492,50 @@ process {
         # Add assignments
         if ($AppData.Assignments.Count -ge 1) {
             foreach ($Assignment in $AppData.Assignments) {
+
+                # Construct the assignment arguments
+                $AssignmentArgs = @{
+                    "ID"           = $Win32App.id
+                    "Intent"       = $Assignment.Intent
+                    "Notification"  = $Assignment.Notification
+                }
+                if (-not([System.String]::IsNullOrEmpty($Assignment.DeliveryOptimizationPriority))) {
+                    $AssignmentArgs.Add("DeliveryOptimizationPriority", $Assignment.DeliveryOptimizationPriority)
+                }
+                if (-not([System.String]::IsNullOrEmpty($Assignment.EnableRestartGracePeriod))) {
+                    $AssignmentArgs.Add("EnableRestartGracePeriod", $Assignment.EnableRestartGracePeriod)
+                }
+                if (-not([System.String]::IsNullOrEmpty($Assignment.RestartGracePeriod))) {
+                    $AssignmentArgs.Add("RestartGracePeriod", $Assignment.RestartGracePeriod)
+                }
+                if (-not([System.String]::IsNullOrEmpty($Assignment.RestartCountDownDisplay))) {
+                    $AssignmentArgs.Add("RestartCountDownDisplay", $Assignment.RestartCountDownDisplay)
+                }
+                if (-not([System.String]::IsNullOrEmpty($Assignment.RestartNotificationSnooze))) {
+                    $AssignmentArgs.Add("RestartNotificationSnooze", $Assignment.RestartNotificationSnooze)
+                }
+                if (-not([System.String]::IsNullOrEmpty($Assignment.AvailableTime))) {
+                    $AssignmentArgs.Add("AvailableTime", $Assignment.AvailableTime)
+                }
+                if (-not([System.String]::IsNullOrEmpty($Assignment.DeadlineTime))) {
+                    $AssignmentArgs.Add("DeadlineTime", $Assignment.DeadlineTime)
+                }
+                if (-not([System.String]::IsNullOrEmpty($Assignment.UseLocalTime))) {
+                    $AssignmentArgs.Add("UseLocalTime", $Assignment.UseLocalTime)
+                }
+
                 switch ($Assignment.Type) {
                     "AllDevices" {
-                        $AssignmentArgs = @{
-                            "ID"           = $Win32App.id
-                            "Intent"       = $Assignment.Intent
-                            "Notification" = $Assignment.Notification
-                            "Verbose"      = $Assignment.Verbose
-                        }
                         Add-IntuneWin32AppAssignmentAllDevices @AssignmentArgs
                     }
                     "AllUsers" {
-                        $AssignmentArgs = @{
-                            "ID"           = $Win32App.id
-                            "Intent"       = $Assignment.Intent
-                            "Notification" = $Assignment.Notification
-                            "Verbose"      = $Assignment.Verbose
-                        }
                         Add-IntuneWin32AppAssignmentAllUsers @AssignmentArgs
                     }
                     "Group" {
-                        $AssignmentArgs = @{
-                            "ID"           = $Win32App.id
-                            "GroupID"      = $Assignment.GroupID
-                            "Intent"       = $Assignment.Intent
-                            "Notification" = $Assignment.Notification
-                            "Verbose"      = $Assignment.Verbose
-                        }
+                        $AssignmentArgs.Add("GroupID", $Assignment.GroupID)
                         Add-IntuneWin32AppAssignmentGroup @AssignmentArgs -Include
                     } 
-                }             
+                }
             }
         }
 
