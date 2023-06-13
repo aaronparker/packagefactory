@@ -3,7 +3,8 @@
 using namespace System.Management.Automation
 <#
     .SYNOPSIS
-    Convert an application into an Intunewin package and imported into an Intune tenant.
+    Convert an application into an Intunewin package and import into an Intune tenant.
+    Calls scripts/Create-Win32App.ps1 to perform the import based on App.json
 
     .PARAMETER Path
     Literal path to the packages directory within the downloaded project.
@@ -149,8 +150,9 @@ process {
                     Write-Warning -Message "'$SourcePath' is not empty. Package may included extra files."
                 }
 
-                # Configure the installer script logic using Install.ps1 or PSAppDeployToolkit
+                #region Configure the installer script logic using Install.ps1 or PSAppDeployToolkit
                 if (Test-Path -Path $([System.IO.Path]::Combine($AppPath, "Source", "Deploy-Application.ps1"))) {
+
                     # Copy the PSAppDeployToolkit into the target path
                     # Update SourcePath to point to the PSAppDeployToolkit\Files directory
                     Write-Msg -Msg "Copy PSAppDeployToolkit to '$SourcePath'."
@@ -173,6 +175,7 @@ process {
                     $SourcePath = [System.IO.Path]::Combine($SourcePath, "Files")
                 }
                 elseif (Test-Path -Path $([System.IO.Path]::Combine($AppPath, "Source", "Install.json"))) {
+
                     # Copy the custom Install.ps1 into the target path
                     $Destination = $([System.IO.Path]::Combine($SourcePath, "Install.ps1"))
                     $params = @{
@@ -186,6 +189,7 @@ process {
                 else {
                     Write-Msg -Msg "Install.json does not exist or PSAppDeployToolkit not used."
                 }
+                #endregion
 
                 # Copy the contents of the source directory from the package definition to the working directory
                 Write-Msg -Msg "Copy: '$([System.IO.Path]::Combine($AppPath, "Source"))' to '$SourcePath'."
@@ -198,12 +202,12 @@ process {
                 }
                 Copy-Item @params
 
-                # Get the application installer via Evergreen and download
+                # Download the application installer via Evergreen and download
                 Write-Msg -Msg "Invoke filter: '$($Manifest.Application.Filter)'"
                 Write-Msg -Msg "Downloading to: '$SourcePath'."
                 $Result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -CustomPath $SourcePath
 
-                # Unpack the installer file if its a zip file
+                #region Unpack the installer file if its a zip file
                 foreach ($File in $Result) { Write-Msg -Msg "Downloaded: '$($File.FullName)'." }
                 if ($Result.FullName -match "\.zip$") {
                     $params = @{
@@ -216,8 +220,9 @@ process {
                     Write-Msg -Msg "Delete: '$($Result.FullName)'."
                     Remove-Item -Path $Result.FullName -Force
                 }
+                #endregion
 
-                # Run the command defined in PrePackageCmd
+                #region Run the command defined in PrePackageCmd
                 if ($Manifest.Application.PrePackageCmd.Length -gt 0) {
                     $TempPath = $([System.IO.Path]::Combine($Env:Temp, $Result.BaseName))
                     $params = @{
@@ -241,6 +246,7 @@ process {
                     Copy-Item @params
                     Remove-Item -Path $Result.FullName -Force
                 }
+                #endregion
             }
 
             #region Create the intunewin package
