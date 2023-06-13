@@ -487,6 +487,45 @@ process {
     }
     else {
         # Create Win32 app
-        Add-IntuneWin32App @Win32AppArgs
+        $Win32App = Add-IntuneWin32App @Win32AppArgs
+
+        # Add assignments
+        if ($AppData.Assignments.Count -ge 1) {
+            foreach ($Assignment in $AppData.Assignments) {
+                switch ($Assignment.Type) {
+                    "AllDevices" {
+                        $AssignmentArgs = @{
+                            "ID"           = $Win32App.id
+                            "Intent"       = $Assignment.Intent
+                            "Notification" = $Assignment.Notification
+                            "Verbose"      = $Assignment.Verbose
+                        }
+                        Add-IntuneWin32AppAssignmentAllDevices @AssignmentArgs
+                    }
+                    "AllUsers" {
+                        $AssignmentArgs = @{
+                            "ID"           = $Win32App.id
+                            "Intent"       = $Assignment.Intent
+                            "Notification" = $Assignment.Notification
+                            "Verbose"      = $Assignment.Verbose
+                        }
+                        Add-IntuneWin32AppAssignmentAllUsers @AssignmentArgs
+                    }
+                    "Group" {
+                        $AssignmentArgs = @{
+                            "ID"           = $Win32App.id
+                            "GroupID"      = $Assignment.GroupID
+                            "Intent"       = $Assignment.Intent
+                            "Notification" = $Assignment.Notification
+                            "Verbose"      = $Assignment.Verbose
+                        }
+                        Add-IntuneWin32AppAssignmentGroup @AssignmentArgs -Include
+                    } 
+                }             
+            }
+        }
+
+        # Output application package details
+        Get-IntuneWin32App -ID $Win32App.id
     }
 }
