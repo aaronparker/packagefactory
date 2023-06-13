@@ -1,52 +1,62 @@
 {
-  "Application": {
-    "Name": "MicrosoftVcRedist2013x86",
-    "Filter": "Get-VcList -Release \"2013\" -Architecture \"x86\"",
-    "Title": "Microsoft Visual C++ 2013 Update 5 Redistributable Package",
-    "Language": "en-US",
-    "Architecture": "x86"
-  },
-  "PackageInformation": {
-    "SetupType": "EXE",
-    "SetupFile": "vcredist_x86.exe",
-    "Version": "12.0.40664.0",
-    "SourceFolder": "Source",
-    "OutputFolder": "Package",
-    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-VisualStudioCode2022.png"
-  },
-  "Information": {
-    "DisplayName": "Microsoft Visual C++ 2013 Update 5 Redistributable Package 12.0.40664.0 x86",
-    "Description": "This package installs run-time components of Visual C++ libraries and can be used to run such applications on a computer even if it does not have Visual Studio 2022 installed.",
-    "Publisher": "Microsoft",
-    "InformationURL": "https://visualstudio.microsoft.com/downloads/",
-    "PrivacyURL": "https://privacy.microsoft.com/privacystatement",
-    "Categories": [],
-    "PSPackageFactoryGuid": "2eb60935-1515-44cb-8e5f-8c7f324fa1bf"
-  },
-  "Program": {
-    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
-    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
-    "UninstallCommand": "\"C:\\ProgramData\\Package Cache\\{9dff3540-fc85-4ed5-ac84-9e3c7fd8bece}\\vcredist_x86.exe\" /uninstall /quiet /noreboot",
-    "InstallExperience": "system",
-    "DeviceRestartBehavior": "suppress"
-  },
-  "RequirementRule": {
-    "MinimumRequiredOperatingSystem": "W10_1809",
-    "Architecture": "All"
-  },
-  "CustomRequirementRule": [],
-  "DetectionRule": [
-    {
-      "Type": "Registry",
-      "DetectionMethod": "VersionComparison",
-      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{9dff3540-fc85-4ed5-ac84-9e3c7fd8bece}",
-      "ValueName": "DisplayVersion",
-      "Operator": "greaterThanOrEqual",
-      "Value": "12.0.40664.0",
-      "Check32BitOn64System": "true"
-    }
-  ],
-  "Dependencies": [],
-  "Supersedence": [],
-  "Assignments": []
+    "Application": {
+        "Name": "MicrosoftVcRedist2013x86",
+        "Filter": "Get-VcList -Release \"2013\" -Architecture \"x86\"",
+        "Title": "Microsoft Visual C++ 2013 Update 5 Redistributable Package",
+        "Language": "en-US",
+        "Architecture": "x86"
+    },
+    "PackageInformation": {
+        "SetupType": "EXE",
+        "SetupFile": "vcredist_x86.exe",
+        "Version": "12.0.40664.0",
+        "SourceFolder": "Source",
+        "OutputFolder": "Package",
+        "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-VisualStudioCode2022.png"
+    },
+    "Information": {
+        "DisplayName": "Microsoft Visual C++ 2013 Update 5 Redistributable Package 12.0.40664.0 x86",
+        "Description": "This package installs run-time components of Visual C++ libraries and can be used to run such applications on a computer even if it does not have Visual Studio 2022 installed.",
+        "Publisher": "Microsoft",
+        "InformationURL": "https://visualstudio.microsoft.com/downloads/",
+        "PrivacyURL": "https://privacy.microsoft.com/privacystatement",
+        "Categories": [],
+        "PSPackageFactoryGuid": "2eb60935-1515-44cb-8e5f-8c7f324fa1bf"
+    },
+    "Program": {
+        "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+        "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+        "UninstallCommand": "\"C:\\ProgramData\\Package Cache\\{9dff3540-fc85-4ed5-ac84-9e3c7fd8bece}\\vcredist_x86.exe\" /uninstall /quiet /noreboot",
+        "InstallExperience": "system",
+        "DeviceRestartBehavior": "basedOnReturnCode"
+    },
+    "RequirementRule": {
+        "MinimumRequiredOperatingSystem": "W10_1809",
+        "Architecture": "All"
+    },
+    "CustomRequirementRule": [],
+    "DetectionRule": [
+        {
+            "Type": "Registry",
+            "DetectionMethod": "VersionComparison",
+            "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{9dff3540-fc85-4ed5-ac84-9e3c7fd8bece}",
+            "ValueName": "DisplayVersion",
+            "Operator": "greaterThanOrEqual",
+            "Value": "12.0.40664.0",
+            "Check32BitOn64System": "true"
+        }
+    ],
+    "Dependencies": [],
+    "Supersedence": [],
+    "Assignments": [
+        {
+            "Type": "AllDevices",
+            "Intent": "required",
+            "Notification": "showReboot",
+            "EnableRestartGracePeriod": true,
+            "RestartGracePeriod": 1440,
+            "RestartCountDownDisplay": 15,
+            "RestartNotificationSnooze": 240
+        }
+    ]
 }
