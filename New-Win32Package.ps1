@@ -12,7 +12,10 @@ using namespace System.Management.Automation
     The package manifest file name stored in each package directory.
 
     .PARAMETER InstallScript
-    The template install script file name that will be copied into the package.
+    Path to the template install script. If the package is configured to use Install.json, the script will be copied into the package.
+
+    .PARAMETER PSAppDeployToolkit
+    Path to the PSAppDeployToolkit. If a package is configured to use the PSAppDeployToolkit it will be copied into the package.
 
     .PARAMETER Application
     An array of application names to import into the target Intune tenant. The application names must match those applications stored in the project.
@@ -44,15 +47,6 @@ using namespace System.Management.Automation
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingInvokeExpression", "", Justification = "Needed to execute Evergreen or VcRedist commands.")]
 param (
     [Parameter(Mandatory = $false)]
-    [System.String] $Path = "E:\projects\packagefactory\packages",
-
-    [Parameter(Mandatory = $false)]
-    [System.String] $PackageManifest = "App.json",
-
-    [Parameter(Mandatory = $false)]
-    [System.String] $InstallScript = $([System.IO.Path]::Combine($PSScriptRoot, "Install.ps1")),
-
-    [Parameter(Mandatory = $false)]
     [System.String[]] $Application = @(
         "AdobeAcrobatReaderDCMUI",
         "CitrixWorkspaceApp",
@@ -70,7 +64,18 @@ param (
     [System.String] $Type = "App",
 
     [Parameter(Mandatory = $false)]
-    #[ValidateScript({ if (-not(Test-Path -Path $_ -PathType "Container")) { throw "Path not found: '$_'" } })]
+    [System.String] $Path = "E:\projects\packagefactory\packages",
+
+    [Parameter(Mandatory = $false)]
+    [System.String] $PackageManifest = "App.json",
+
+    [Parameter(Mandatory = $false)]
+    [System.String] $InstallScript = $([System.IO.Path]::Combine($PSScriptRoot, "Install.ps1")),
+
+    [Parameter(Mandatory = $false)]
+    [System.String] $PSAppDeployToolkit = $([System.IO.Path]::Combine($PSScriptRoot, "PSAppDeployToolkit", "Toolkit")),
+
+    [Parameter(Mandatory = $false)]
     [System.String] $WorkingPath = $([System.IO.Path]::Combine($PSScriptRoot, "output")),
 
     [Parameter(Mandatory = $false, HelpMessage = "Import the package into Microsoft Intune.")]
@@ -144,6 +149,44 @@ process {
                     Write-Warning -Message "'$SourcePath' is not empty. Package may included extra files."
                 }
 
+                # Configure the installer script logic using Install.ps1 or PSAppDeployToolkit
+                if (Test-Path -Path $([System.IO.Path]::Combine($AppPath, "Source", "Deploy-Application.ps1"))) {
+                    # Copy the PSAppDeployToolkit into the target path
+                    # Update SourcePath to point to the PSAppDeployToolkit\Files directory
+                    Write-Msg -Msg "Copy PSAppDeployToolkit to '$SourcePath'."
+                    $params = @{
+                        Path        = "$PSAppDeployToolkit\*"
+                        Destination = $SourcePath
+                        Recurse     = $true
+                        Exclude     = "Deploy-Application.ps1"
+                        ErrorAction = "Stop"
+                    }
+                    Copy-Item @params
+                    $params = @{
+                        Path        = $([System.IO.Path]::Combine($AppPath, "Source", "Deploy-Application.ps1"))
+                        Destination = $([System.IO.Path]::Combine($SourcePath, "Deploy-Application.ps1"))
+                        ErrorAction = "Stop"
+                    }
+                    Copy-Item @params
+                    New-Item -Path $([System.IO.Path]::Combine($SourcePath, "Files")) -ItemType "Directory" -ErrorAction "SilentlyContinue" | Out-Null
+                    New-Item -Path $([System.IO.Path]::Combine($SourcePath, "SupportFiles")) -ItemType "Directory" -ErrorAction "SilentlyContinue" | Out-Null
+                    $SourcePath = [System.IO.Path]::Combine($SourcePath, "Files")
+                }
+                elseif (Test-Path -Path $([System.IO.Path]::Combine($AppPath, "Source", "Install.json"))) {
+                    # Copy the custom Install.ps1 into the target path
+                    $Destination = $([System.IO.Path]::Combine($SourcePath, "Install.ps1"))
+                    $params = @{
+                        Path        = $InstallScript
+                        Destination = $Destination
+                        ErrorAction = "Stop"
+                    }
+                    Write-Msg -Msg "Copy install script: '$InstallScript' to '$Destination'."
+                    Copy-Item @params
+                }
+                else {
+                    Write-Msg -Msg "Install.json does not exist or PSAppDeployToolkit not used."
+                }
+
                 # Copy the contents of the source directory from the package definition to the working directory
                 Write-Msg -Msg "Copy: '$([System.IO.Path]::Combine($AppPath, "Source"))' to '$SourcePath'."
                 $params = @{
@@ -198,21 +241,6 @@ process {
                     Copy-Item @params
                     Remove-Item -Path $Result.FullName -Force
                 }
-
-                # Copy Install.ps1 into the source folder
-                if (Test-Path -Path $([System.IO.Path]::Combine($AppPath, "Source", "Install.json"))) {
-                    $Destination = $([System.IO.Path]::Combine($SourcePath, "Install.ps1"))
-                    $params = @{
-                        Path        = $InstallScript
-                        Destination = $Destination
-                        ErrorAction = "Stop"
-                    }
-                    Write-Msg -Msg "Copy install script: '$InstallScript' to '$Destination'."
-                    Copy-Item @params
-                }
-                else {
-                    Write-Msg -Msg "Install.json does not exist."
-                }
             }
 
             #region Create the intunewin package
@@ -224,7 +252,6 @@ process {
                 Force        = $true
             }
             $IntuneWinPackage = New-IntuneWin32AppPackage @params
-            $IntuneWinPackage
             #endregion
 
             #region Import the package

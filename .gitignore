@@ -13,7 +13,6 @@
 *.msp
 *.msu
 *.intunewin
-*.ico
 
 # Package folders
 packages/**/Package
@@ -21,6 +20,9 @@ packages/**/*.png
 auth.ps1
 auth.json
 output/**
+
+# PSAppDeployToolkit
+!PSAppDeployToolkit/Toolkit/Deploy-Application.exe
 
 # OS generated files
 .DS_Store
