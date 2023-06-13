@@ -1,78 +1,105 @@
 {
-  "Application": {
-    "Name": "Application name",
-    "Filter": "Invoke-EvergreenApp -Name \"AdobeAcrobatReaderDC\" | Where-Object { $_.Language -eq \"MUI\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
-    "Title": "Application name/title used in the Intune package",
-    "Language": "English",
-    "Architecture": "x64"
-  },
-  "PackageInformation": {
-    "SetupType": "MSI \\ EXE",
-    "SetupFile": "Setup.exe",
-    "Version": "",
-    "SourceFolder": "Source",
-    "OutputFolder": "Package",
-    "IconFile": "Icon.png"
-  },
-  "Information": {
-    "DisplayName": "AppName 1.0.0",
-    "Description": "Installs AppName 1.0.0",
-    "Publisher": "AppVendor",
-    "InformationURL": "https://www.appvendor.com/aboutapplication.html",
-    "PrivacyURL": "https://www.appvendor.com/privacy.html",
-    "Notes": "AppNote",
-    "Categories": [],
-    "PSPackageFactoryGuid": "<unique GUID>"
-  },
-  "Program": {
-    "InstallCommand": "<-- Only required when SetupType is set as EXE -->",
-    "UninstallCommand": "<-- Only required when SetupType is set as EXE -->",
-    "InstallExperience": "system \\ user",
-    "DeviceRestartBehavior": "suppress \\ force \\ basedOnReturnCode \\ allow"
-  },
-  "RequirementRule": {
-    "MinimumRequiredOperatingSystem": "W10_1809",
-    "Architecture": "All \\ x64 \\ x86"
-  },
-  "CustomRequirementRule": [],
-  "DetectionRule": [
-    {
-      "Type": "Registry",
-      "DetectionMethod": "VersionComparison",
-      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\123",
-      "ValueName": "DisplayVersion",
-      "Operator": "greaterThanOrEqual",
-      "Value": "1.0.0",
-      "Check32BitOn64System": "false"
+    "Application": {
+        "Name": "Application name",
+        "Filter": "Invoke-EvergreenApp -Name \"AdobeAcrobatReaderDC\" | Where-Object { $_.Language -eq \"MUI\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+        "Title": "Application name/title used in the Intune package",
+        "Language": "English",
+        "Architecture": "x64"
     },
-    {
-      "Type": "Registry",
-      "DetectionMethod": "Existence",
-      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\123",
-      "ValueName": "<reg_value_name>",
-      "DetectionType": "exists \\ notExists",
-      "Check32BitOn64System": "false \\ true"
+    "PackageInformation": {
+        "SetupType": "MSI \\ EXE",
+        "SetupFile": "Setup.exe",
+        "Version": "",
+        "SourceFolder": "Source",
+        "OutputFolder": "Package",
+        "IconFile": "Icon.png"
     },
-    {
-      "Type": "MSI",
-      "ProductCode": "<guid>",
-      "ProductVersionOperator": "notConfigured \\ equal \\ notEqual \\ greaterThanOrEqual \\ greaterThan \\ lessThanOrEqual \\ lessThan",
-      "ProductVersion": "1.0.0"
+    "Information": {
+        "DisplayName": "AppName 1.0.0",
+        "Description": "Installs AppName 1.0.0",
+        "Publisher": "AppVendor",
+        "InformationURL": "https://www.appvendor.com/aboutapplication.html",
+        "PrivacyURL": "https://www.appvendor.com/privacy.html",
+        "Notes": "AppNote",
+        "Categories": [],
+        "PSPackageFactoryGuid": "<unique GUID>"
     },
-    {
-      "Type": "MSI",
-      "ProductCode": "<guid>",
-      "ProductVersionOperator": "notConfigured",
-      "ProductVersion": ""
+    "Program": {
+        "InstallCommand": "<-- Only required when SetupType is set as EXE -->",
+        "UninstallCommand": "<-- Only required when SetupType is set as EXE -->",
+        "InstallExperience": "system \\ user",
+        "DeviceRestartBehavior": "suppress \\ force \\ basedOnReturnCode \\ allow"
     },
-    {
-      "Type": "Script",
-      "ScriptFile": "detection.ps1",
-      "EnforceSignatureCheck": "true \\ false",
-      "RunAs32Bit": "true \\ false"
-    }
-  ],
-  "Dependencies": [],
-  "Supersedence": [],
-  "Assignments": []
+    "RequirementRule": {
+        "MinimumRequiredOperatingSystem": "W10_1809",
+        "Architecture": "All \\ x64 \\ x86"
+    },
+    "CustomRequirementRule": [],
+    "DetectionRule": [
+        {
+            "Type": "Registry",
+            "DetectionMethod": "VersionComparison",
+            "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\123",
+            "ValueName": "DisplayVersion",
+            "Operator": "greaterThanOrEqual",
+            "Value": "1.0.0",
+            "Check32BitOn64System": "false"
+        },
+        {
+            "Type": "Registry",
+            "DetectionMethod": "Existence",
+            "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\123",
+            "ValueName": "<reg_value_name>",
+            "DetectionType": "exists \\ notExists",
+            "Check32BitOn64System": "false \\ true"
+        },
+        {
+            "Type": "MSI",
+            "ProductCode": "<guid>",
+            "ProductVersionOperator": "notConfigured \\ equal \\ notEqual \\ greaterThanOrEqual \\ greaterThan \\ lessThanOrEqual \\ lessThan",
+            "ProductVersion": "1.0.0"
+        },
+        {
+            "Type": "MSI",
+            "ProductCode": "<guid>",
+            "ProductVersionOperator": "notConfigured",
+            "ProductVersion": ""
+        },
+        {
+            "Type": "Script",
+            "ScriptFile": "detection.ps1",
+            "EnforceSignatureCheck": "true \\ false",
+            "RunAs32Bit": "true \\ false"
+        }
+    ],
+    "Dependencies": [],
+    "Supersedence": [],
+    "Assignments": [
+        {
+            "Type": "AllDevices",
+            "Intent": "required",
+            "Notification": "showReboot",
+            "EnableRestartGracePeriod": true,
+            "RestartGracePeriod": 1440,
+            "RestartCountDownDisplay": 15,
+            "RestartNotificationSnooze": 240,
+            "DeliveryOptimizationPriority": "foreground",
+            "AvailableTime": "2023-06-21T18:00:00Z",
+            "DeadlineTime": "",
+            "UseLocalTime": true
+        },
+        {
+            "Type": "AllUsers",
+            "Intent": "available",
+            "Notification": "showAll",
+            "EnableRestartGracePeriod": true,
+            "RestartGracePeriod": 1440,
+            "RestartCountDownDisplay": 15,
+            "RestartNotificationSnooze": 240,
+            "DeliveryOptimizationPriority": "foreground",
+            "AvailableTime": "",
+            "DeadlineTime": "",
+            "UseLocalTime": true
+        }
+    ]
 }
