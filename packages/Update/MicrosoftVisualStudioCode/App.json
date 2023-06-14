@@ -1,81 +1,81 @@
 {
-    "Application": {
-        "Name": "MicrosoftVisualStudioCode",
-        "Filter": "Invoke-EvergreenApp -Name \"MicrosoftVisualStudioCode\" | Where-Object { $_.Channel -eq \"Stable\" -and $_.Architecture -eq \"x64\" -and $_.Platform -eq \"win32-x64\" } | Select-Object -First 1",
-        "Title": "Update for Microsoft Visual Studio Code",
-        "Language": "en-US",
-        "Architecture": "x64"
+  "Application": {
+    "Name": "MicrosoftVisualStudioCode",
+    "Filter": "Invoke-EvergreenApp -Name \"MicrosoftVisualStudioCode\" | Where-Object { $_.Channel -eq \"Stable\" -and $_.Architecture -eq \"x64\" -and $_.Platform -eq \"win32-x64\" } | Select-Object -First 1",
+    "Title": "Update for Microsoft Visual Studio Code",
+    "Language": "en-US",
+    "Architecture": "x64"
+  },
+  "PackageInformation": {
+    "SetupType": "EXE",
+    "SetupFile": "VSCodeSetup-x64-1.79.1.exe",
+    "Version": "1.79.1",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-VisualStudioCode.png"
+  },
+  "Information": {
+    "DisplayName": "Update for Microsoft Visual Studio Code 1.79.1 x64",
+    "Description": "Visual Studio Code is a lightweight but powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux. It comes with built-in support for JavaScript, TypeScript and Node.js and has a rich ecosystem of extensions for other languages (such as C++, C#, Java, Python, PHP, Go) and runtimes (such as .NET and Unity).",
+    "Publisher": "Microsoft",
+    "InformationURL": "https://code.visualstudio.com/",
+    "PrivacyURL": "https://privacy.microsoft.com/privacystatement",
+    "Categories": [],
+    "PSPackageFactoryGuid": "64ef5498-37c8-45d8-a2e8-9955af79b928"
+  },
+  "Program": {
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "UninstallCommand": "msiexec.exe /X \"{AC76BA86-1033-1033-7760-BC15014EA700}\" /quiet",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "basedOnReturnCode"
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "W10_1809",
+    "Architecture": "x64"
+  },
+  "CustomRequirementRule": [
+    {
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "C:\\Program Files\\Microsoft VS Code",
+      "FileOrFolder": "Code.exe",
+      "Operator": "lessThan",
+      "VersionValue": "1.79.1",
+      "Check32BitOn64System": "false"
+    }
+  ],
+  "DetectionRule": [
+    {
+      "Type": "Registry",
+      "DetectionMethod": "VersionComparison",
+      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{EA457B21-F73E-494C-ACAB-524FDE069978}_is1",
+      "ValueName": "DisplayVersion",
+      "Operator": "greaterThanOrEqual",
+      "Value": "1.79.1",
+      "Check32BitOn64System": "false"
     },
-    "PackageInformation": {
-        "SetupType": "EXE",
-        "SetupFile": "VSCodeSetup-x64-1.79.0.exe",
-        "Version": "1.79.0",
-        "SourceFolder": "Source",
-        "OutputFolder": "Package",
-        "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-VisualStudioCode.png"
-    },
-    "Information": {
-        "DisplayName": "Update for Microsoft Visual Studio Code 1.79.0 x64",
-        "Description": "Visual Studio Code is a lightweight but powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux. It comes with built-in support for JavaScript, TypeScript and Node.js and has a rich ecosystem of extensions for other languages (such as C++, C#, Java, Python, PHP, Go) and runtimes (such as .NET and Unity).",
-        "Publisher": "Microsoft",
-        "InformationURL": "https://code.visualstudio.com/",
-        "PrivacyURL": "https://privacy.microsoft.com/privacystatement",
-        "Categories": [],
-        "PSPackageFactoryGuid": "64ef5498-37c8-45d8-a2e8-9955af79b928"
-    },
-    "Program": {
-        "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
-        "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
-        "UninstallCommand": "msiexec.exe /X \"{AC76BA86-1033-1033-7760-BC15014EA700}\" /quiet",
-        "InstallExperience": "system",
-        "DeviceRestartBehavior": "basedOnReturnCode"
-    },
-    "RequirementRule": {
-        "MinimumRequiredOperatingSystem": "W10_1809",
-        "Architecture": "x64"
-    },
-    "CustomRequirementRule": [
-        {
-            "Type": "File",
-            "DetectionMethod": "Version",
-            "Path": "C:\\Program Files\\Microsoft VS Code",
-            "FileOrFolder": "Code.exe",
-            "Operator": "lessThan",
-            "VersionValue": "1.79.0",
-            "Check32BitOn64System": "false"
-        }
-    ],
-    "DetectionRule": [
-        {
-            "Type": "Registry",
-            "DetectionMethod": "VersionComparison",
-            "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{EA457B21-F73E-494C-ACAB-524FDE069978}_is1",
-            "ValueName": "DisplayVersion",
-            "Operator": "greaterThanOrEqual",
-            "Value": "1.79.0",
-            "Check32BitOn64System": "false"
-        },
-        {
-            "Type": "File",
-            "DetectionMethod": "Version",
-            "Path": "C:\\Program Files\\Microsoft VS Code",
-            "FileOrFolder": "Code.exe",
-            "Operator": "greaterThanOrEqual",
-            "VersionValue": "1.79.0",
-            "Check32BitOn64System": "false"
-        }
-    ],
-    "Dependencies": [],
-    "Supersedence": [],
-    "Assignments": [
-        {
-            "Type": "AllDevices",
-            "Intent": "required",
-            "Notification": "showReboot",
-            "EnableRestartGracePeriod": true,
-            "RestartGracePeriod": 1440,
-            "RestartCountDownDisplay": 15,
-            "RestartNotificationSnooze": 240
-        }
-    ]
+    {
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "C:\\Program Files\\Microsoft VS Code",
+      "FileOrFolder": "Code.exe",
+      "Operator": "greaterThanOrEqual",
+      "VersionValue": "1.79.1",
+      "Check32BitOn64System": "false"
+    }
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": [
+    {
+      "Type": "AllDevices",
+      "Intent": "required",
+      "Notification": "showReboot",
+      "EnableRestartGracePeriod": true,
+      "RestartGracePeriod": 1440,
+      "RestartCountDownDisplay": 15,
+      "RestartNotificationSnooze": 240
+    }
+  ]
 }
