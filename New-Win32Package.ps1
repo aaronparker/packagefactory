@@ -128,157 +128,186 @@ process {
             $Manifest = $ManifestPath | ConvertFrom-Json -ErrorAction "Stop"
             Write-Msg -Msg "Manifest OK"
 
-            # Create the target directories
-            Write-Msg -Msg "Create path: '$SourcePath'."
-            New-Item -Path $SourcePath -ItemType "Directory" -Force -ErrorAction "SilentlyContinue" | Out-Null
-            Write-Msg -Msg "Create path: '$OutputPath'."
-            New-Item -Path $OutputPath -ItemType "Directory" -Force -ErrorAction "SilentlyContinue" | Out-Null
-
-            # Remove any existing intunewin packages
-            Write-Msg -Msg "Removing intunewin packages from '$OutputPath'."
-            Get-ChildItem -Path $OutputPath -Recurse -Include "*.intunewin" -ErrorAction "SilentlyContinue" | ForEach-Object { Remove-Item -Path $_.FullName -Force }
-
-            # Download the application installer
-            if ($null -eq $Manifest.Application.Filter) {
-                Write-Warning -Message "$ApplicationName not supported for automatic download"
-                Write-Msg -Msg "Please ensure application binaries are saved to: '$SourcePath'."
+            # Lets see if this application is already in Intune and needs to be updated
+            Remove-Variable -Name "ExistingApp" -ErrorAction "SilentlyContinue"
+            $ExistingApp = Get-IntuneWin32App | `
+                Select-Object -Property * -ExcludeProperty "largeIcon" | `
+                Where-Object { $_.notes -match "PSPackageFactory" } | `
+                Where-Object { ($_.notes | ConvertFrom-Json).Guid -eq $Manifest.Information.PSPackageFactoryGuid } | `
+                Sort-Object -Property @{ Expression = { [System.Version]$_.displayVersion }; Descending = $true } | `
+                Select-Object -First 1
+            if ($null -eq $ExistingApp) {
+                Write-Msg -Msg "Import new application: '$($Manifest.Information.DisplayName)'"
+                $UpdateApp = $true
             }
-            else {
+            elseif ([System.String]::IsNullOrEmpty($ExistingApp.displayVersion)) {
+                Write-Msg -Msg "Found matching app but `displayVersion` is null: '$($ExistingApp.displayName)'"
+                $UpdateApp = $false
+            }
+            elseif ($Manifest.PackageInformation.Version -le $ExistingApp.displayVersion) {
+                Write-Msg -Msg "Existing Intune app version is current: '$($ExistingApp.displayName)'"
+                $UpdateApp = $false
+            }
+            elseif ($Manifest.PackageInformation.Version -gt $ExistingApp.displayVersion) {
+                Write-Msg -Msg "Import application version: '$($Manifest.Information.DisplayName)'"
+                $UpdateApp = $true
+            }
 
-                # Check if there are files in the source folder
-                if ((Get-ChildItem -Path $SourcePath -Recurse -File).Count -gt 0) {
-                    Write-Warning -Message "'$SourcePath' is not empty. Package may included extra files."
-                }
+            # Import the application
+            if ($UpdateApp -eq $true) {
 
-                #region Configure the installer script logic using Install.ps1 or PSAppDeployToolkit
-                if (Test-Path -Path $([System.IO.Path]::Combine($AppPath, "Source", "Deploy-Application.ps1"))) {
+                # Create the target directories
+                Write-Msg -Msg "Create path: '$SourcePath'."
+                New-Item -Path $SourcePath -ItemType "Directory" -Force -ErrorAction "SilentlyContinue" | Out-Null
+                Write-Msg -Msg "Create path: '$OutputPath'."
+                New-Item -Path $OutputPath -ItemType "Directory" -Force -ErrorAction "SilentlyContinue" | Out-Null
 
-                    # Copy the PSAppDeployToolkit into the target path
-                    # Update SourcePath to point to the PSAppDeployToolkit\Files directory
-                    Write-Msg -Msg "Copy PSAppDeployToolkit to '$SourcePath'."
-                    $params = @{
-                        Path        = "$PSAppDeployToolkit\*"
-                        Destination = $SourcePath
-                        Recurse     = $true
-                        Exclude     = "Deploy-Application.ps1"
-                        ErrorAction = "Stop"
-                    }
-                    Copy-Item @params
-                    $params = @{
-                        Path        = $([System.IO.Path]::Combine($AppPath, "Source", "Deploy-Application.ps1"))
-                        Destination = $([System.IO.Path]::Combine($SourcePath, "Deploy-Application.ps1"))
-                        ErrorAction = "Stop"
-                    }
-                    Copy-Item @params
-                    New-Item -Path $([System.IO.Path]::Combine($SourcePath, "Files")) -ItemType "Directory" -ErrorAction "SilentlyContinue" | Out-Null
-                    New-Item -Path $([System.IO.Path]::Combine($SourcePath, "SupportFiles")) -ItemType "Directory" -ErrorAction "SilentlyContinue" | Out-Null
-                    $SourcePath = [System.IO.Path]::Combine($SourcePath, "Files")
-                }
-                elseif (Test-Path -Path $([System.IO.Path]::Combine($AppPath, "Source", "Install.json"))) {
+                # Remove any existing intunewin packages
+                Write-Msg -Msg "Removing intunewin packages from '$OutputPath'."
+                Get-ChildItem -Path $OutputPath -Recurse -Include "*.intunewin" -ErrorAction "SilentlyContinue" | ForEach-Object { Remove-Item -Path $_.FullName -Force }
 
-                    # Copy the custom Install.ps1 into the target path
-                    $Destination = $([System.IO.Path]::Combine($SourcePath, "Install.ps1"))
-                    $params = @{
-                        Path        = $InstallScript
-                        Destination = $Destination
-                        ErrorAction = "Stop"
-                    }
-                    Write-Msg -Msg "Copy install script: '$InstallScript' to '$Destination'."
-                    Copy-Item @params
+                # Download the application installer
+                if ($null -eq $Manifest.Application.Filter) {
+                    Write-Warning -Message "$ApplicationName not supported for automatic download"
+                    Write-Msg -Msg "Please ensure application binaries are saved to: '$SourcePath'."
                 }
                 else {
-                    Write-Msg -Msg "Install.json does not exist or PSAppDeployToolkit not used."
-                }
-                #endregion
 
-                # Copy the contents of the source directory from the package definition to the working directory
-                Write-Msg -Msg "Copy: '$([System.IO.Path]::Combine($AppPath, "Source"))' to '$SourcePath'."
-                $params = @{
-                    Path        = "$([System.IO.Path]::Combine($AppPath, "Source"))\*"
-                    Destination = $SourcePath
-                    Recurse     = $true
-                    Force       = $true
-                    ErrorAction = "Stop"
-                }
-                Copy-Item @params
-
-                # Download the application installer via Evergreen and download
-                Write-Msg -Msg "Invoke filter: '$($Manifest.Application.Filter)'"
-                Write-Msg -Msg "Downloading to: '$SourcePath'."
-                $Result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -CustomPath $SourcePath
-
-                #region Unpack the installer file if its a zip file
-                foreach ($File in $Result) { Write-Msg -Msg "Downloaded: '$($File.FullName)'." }
-                if ($Result.FullName -match "\.zip$") {
-                    $params = @{
-                        Path            = $Result.FullName
-                        DestinationPath = $SourcePath
-                        ErrorAction     = "Stop"
+                    # Check if there are files in the source folder
+                    if ((Get-ChildItem -Path $SourcePath -Recurse -File).Count -gt 0) {
+                        Write-Warning -Message "'$SourcePath' is not empty. Package may included extra files."
                     }
-                    Write-Msg -Msg "Expand: '$($Result.FullName)'."
-                    Expand-Archive @params
-                    Write-Msg -Msg "Delete: '$($Result.FullName)'."
-                    Remove-Item -Path $Result.FullName -Force
-                }
-                #endregion
 
-                #region Run the command defined in PrePackageCmd
-                if ($Manifest.Application.PrePackageCmd.Length -gt 0) {
-                    $TempPath = $([System.IO.Path]::Combine($Env:Temp, $Result.BaseName))
-                    $params = @{
-                        FilePath     = $Result.FullName
-                        ArgumentList = $($Manifest.Application.PrePackageCmd -replace "#Path", $TempPath)
-                        NoNewWindow  = $true
-                        Wait         = $true
-                        ErrorAction  = "Stop"
+                    #region Configure the installer script logic using Install.ps1 or PSAppDeployToolkit
+                    if (Test-Path -Path $([System.IO.Path]::Combine($AppPath, "Source", "Deploy-Application.ps1"))) {
+
+                        # Copy the PSAppDeployToolkit into the target path
+                        # Update SourcePath to point to the PSAppDeployToolkit\Files directory
+                        Write-Msg -Msg "Copy PSAppDeployToolkit to '$SourcePath'."
+                        $params = @{
+                            Path        = "$PSAppDeployToolkit\*"
+                            Destination = $SourcePath
+                            Recurse     = $true
+                            Exclude     = "Deploy-Application.ps1"
+                            ErrorAction = "Stop"
+                        }
+                        Copy-Item @params
+                        $params = @{
+                            Path        = $([System.IO.Path]::Combine($AppPath, "Source", "Deploy-Application.ps1"))
+                            Destination = $([System.IO.Path]::Combine($SourcePath, "Deploy-Application.ps1"))
+                            ErrorAction = "Stop"
+                        }
+                        Copy-Item @params
+                        New-Item -Path $([System.IO.Path]::Combine($SourcePath, "Files")) -ItemType "Directory" -ErrorAction "SilentlyContinue" | Out-Null
+                        New-Item -Path $([System.IO.Path]::Combine($SourcePath, "SupportFiles")) -ItemType "Directory" -ErrorAction "SilentlyContinue" | Out-Null
+                        $SourcePath = [System.IO.Path]::Combine($SourcePath, "Files")
                     }
-                    Write-Msg -Msg "Start: '$($Result.FullName) $($Manifest.Application.PrePackageCmd -replace "#Path", $TempPath)'."
-                    Start-Process @params
+                    elseif (Test-Path -Path $([System.IO.Path]::Combine($AppPath, "Source", "Install.json"))) {
 
+                        # Copy the custom Install.ps1 into the target path
+                        $Destination = $([System.IO.Path]::Combine($SourcePath, "Install.ps1"))
+                        $params = @{
+                            Path        = $InstallScript
+                            Destination = $Destination
+                            ErrorAction = "Stop"
+                        }
+                        Write-Msg -Msg "Copy install script: '$InstallScript' to '$Destination'."
+                        Copy-Item @params
+                    }
+                    else {
+                        Write-Msg -Msg "Install.json does not exist or PSAppDeployToolkit not used."
+                    }
+                    #endregion
+
+                    # Copy the contents of the source directory from the package definition to the working directory
+                    Write-Msg -Msg "Copy: '$([System.IO.Path]::Combine($AppPath, "Source"))' to '$SourcePath'."
                     $params = @{
-                        Path        = "$TempPath\*"
+                        Path        = "$([System.IO.Path]::Combine($AppPath, "Source"))\*"
                         Destination = $SourcePath
                         Recurse     = $true
                         Force       = $true
                         ErrorAction = "Stop"
                     }
-                    Write-Msg -Msg "Copy from: '$TempPath', to: '$SourcePath'."
                     Copy-Item @params
-                    Remove-Item -Path $Result.FullName -Force
+
+                    # Download the application installer via Evergreen and download
+                    Write-Msg -Msg "Invoke filter: '$($Manifest.Application.Filter)'"
+                    Write-Msg -Msg "Downloading to: '$SourcePath'."
+                    $Result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -CustomPath $SourcePath
+
+                    #region Unpack the installer file if its a zip file
+                    foreach ($File in $Result) { Write-Msg -Msg "Downloaded: '$($File.FullName)'." }
+                    if ($Result.FullName -match "\.zip$") {
+                        $params = @{
+                            Path            = $Result.FullName
+                            DestinationPath = $SourcePath
+                            ErrorAction     = "Stop"
+                        }
+                        Write-Msg -Msg "Expand: '$($Result.FullName)'."
+                        Expand-Archive @params
+                        Write-Msg -Msg "Delete: '$($Result.FullName)'."
+                        Remove-Item -Path $Result.FullName -Force
+                    }
+                    #endregion
+
+                    #region Run the command defined in PrePackageCmd
+                    if ($Manifest.Application.PrePackageCmd.Length -gt 0) {
+                        $TempPath = $([System.IO.Path]::Combine($Env:Temp, $Result.BaseName))
+                        $params = @{
+                            FilePath     = $Result.FullName
+                            ArgumentList = $($Manifest.Application.PrePackageCmd -replace "#Path", $TempPath)
+                            NoNewWindow  = $true
+                            Wait         = $true
+                            ErrorAction  = "Stop"
+                        }
+                        Write-Msg -Msg "Start: '$($Result.FullName) $($Manifest.Application.PrePackageCmd -replace "#Path", $TempPath)'."
+                        Start-Process @params
+
+                        $params = @{
+                            Path        = "$TempPath\*"
+                            Destination = $SourcePath
+                            Recurse     = $true
+                            Force       = $true
+                            ErrorAction = "Stop"
+                        }
+                        Write-Msg -Msg "Copy from: '$TempPath', to: '$SourcePath'."
+                        Copy-Item @params
+                        Remove-Item -Path $Result.FullName -Force
+                    }
+                    #endregion
+                }
+
+                #region Create the intunewin package
+                Write-Msg -Msg "Create intunewin package in: $Path\output."
+                $params = @{
+                    SourceFolder = $SourcePath
+                    SetupFile    = $Manifest.PackageInformation.SetupFile
+                    OutputFolder = $OutputPath
+                    Force        = $true
+                }
+                $IntuneWinPackage = New-IntuneWin32AppPackage @params
+                #endregion
+
+                #region Import the package
+                if ($Import -eq $true) {
+                    Write-Msg -Msg "-Import specified. Importing package into tenant."
+
+                    # Get the package file
+                    $PackageFile = Get-ChildItem -Path $OutputPath -Recurse -Include "*.intunewin" -ErrorAction "SilentlyContinue"
+                    if ($null -eq $PackageFile) { throw [System.IO.FileNotFoundException]::New("Intunewin package file not found.") }
+                    if ($PackageFile.Count -gt 1) { throw [System.IO.InvalidDataException]::New("Found more than 1 intunewin file.") }
+                    Write-Msg -Msg "Found package file: '$($PackageFile.FullName)'."
+
+                    # Launch script to import the package
+                    Write-Msg -Msg "Create package with: '$PSScriptRoot\scripts\Create-Win32App.ps1'."
+                    $params = @{
+                        Json        = $([System.IO.Path]::Combine($AppPath, $PackageManifest))
+                        PackageFile = $IntuneWinPackage.Path
+                    }
+                    & "$PSScriptRoot\scripts\Create-Win32App.ps1" @params | Select-Object -Property * -ExcludeProperty "largeIcon"
                 }
                 #endregion
             }
-
-            #region Create the intunewin package
-            Write-Msg -Msg "Create intunewin package in: $Path\output."
-            $params = @{
-                SourceFolder = $SourcePath
-                SetupFile    = $Manifest.PackageInformation.SetupFile
-                OutputFolder = $OutputPath
-                Force        = $true
-            }
-            $IntuneWinPackage = New-IntuneWin32AppPackage @params
-            #endregion
-
-            #region Import the package
-            if ($Import -eq $true) {
-                Write-Msg -Msg "-Import specified. Importing package into tenant."
-
-                # Get the package file
-                $PackageFile = Get-ChildItem -Path $OutputPath -Recurse -Include "*.intunewin" -ErrorAction "SilentlyContinue"
-                if ($null -eq $PackageFile) { throw [System.IO.FileNotFoundException]::New("Intunewin package file not found.") }
-                if ($PackageFile.Count -gt 1) { throw [System.IO.InvalidDataException]::New("Found more than 1 intunewin file.") }
-                Write-Msg -Msg "Found package file: '$($PackageFile.FullName)'."
-
-                # Launch script to import the package
-                Write-Msg -Msg "Create package with: '$PSScriptRoot\scripts\Create-Win32App.ps1'."
-                $params = @{
-                    Json        = $([System.IO.Path]::Combine($AppPath, $PackageManifest))
-                    PackageFile = $IntuneWinPackage.Path
-                }
-                & "$PSScriptRoot\scripts\Create-Win32App.ps1" @params | Select-Object -Property * -ExcludeProperty "largeIcon"
-            }
-            #endregion
         }
         else {
             Write-Warning -Message "Cannot find package definition for '$ApplicationName' in '$AppPath'."
