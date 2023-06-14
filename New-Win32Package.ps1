@@ -30,6 +30,9 @@ using namespace System.Management.Automation
     .PARAMETER Import
     Switch parameter to specify that the the package should be imported into the Microsoft Intune tenant.
 
+    .PARAMETER Force
+    Create the package, even if a matching version already exists.
+
     .EXAMPLE
     $params = @{
         Path        = "E:\projects\packagefactory\packages"
@@ -80,7 +83,10 @@ param (
     [System.String] $WorkingPath = $([System.IO.Path]::Combine($PSScriptRoot, "output")),
 
     [Parameter(Mandatory = $false, HelpMessage = "Import the package into Microsoft Intune.")]
-    [System.Management.Automation.SwitchParameter] $Import
+    [System.Management.Automation.SwitchParameter] $Import,
+
+    [Parameter(Mandatory = $false, HelpMessage = "Create the package, even if a matching version already exists.")]
+    [System.Management.Automation.SwitchParameter] $Force
 )
 
 begin {
@@ -133,9 +139,11 @@ process {
             $ExistingApp = Get-IntuneWin32App | `
                 Select-Object -Property * -ExcludeProperty "largeIcon" | `
                 Where-Object { $_.notes -match "PSPackageFactory" } | `
-                Where-Object { ($_.notes | ConvertFrom-Json).Guid -eq $Manifest.Information.PSPackageFactoryGuid } | `
-                Sort-Object -Property @{ Expression = { [System.Version]$_.displayVersion }; Descending = $true } | `
+                Where-Object { ($_.notes | ConvertFrom-Json -ErrorAction "SilentlyContinue").Guid -eq $Manifest.Information.PSPackageFactoryGuid } | `
+                Sort-Object -Property @{ Expression = { [System.Version]$_.displayVersion }; Descending = $true } -ErrorAction "SilentlyContinue" | `
                 Select-Object -First 1
+
+            # Determine whether the new package should be imported
             if ($null -eq $ExistingApp) {
                 Write-Msg -Msg "Import new application: '$($Manifest.Information.DisplayName)'"
                 $UpdateApp = $true
@@ -153,8 +161,8 @@ process {
                 $UpdateApp = $true
             }
 
-            # Import the application
-            if ($UpdateApp -eq $true) {
+            # Create the package and import the application
+            if ($UpdateApp -eq $true -or $Force -eq $true) {
 
                 # Create the target directories
                 Write-Msg -Msg "Create path: '$SourcePath'."
