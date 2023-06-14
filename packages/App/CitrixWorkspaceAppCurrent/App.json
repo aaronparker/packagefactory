@@ -1,70 +1,80 @@
 {
-  "Application": {
-    "Name": "CitrixWorkspaceApp",
-    "Filter": "Invoke-EvergreenApp -Name \"CitrixWorkspaceApp\" | Where-Object { $_.Stream -eq \"Current\" -and $_.Title -match \"Citrix Workspace\" } | Select-Object -First 1",
-    "Title": "Citrix Workspace app Current Release",
-    "Language": "en-US",
-    "Architecture": "x86"
-  },
-  "PackageInformation": {
-    "SetupType": "EXE",
-    "SetupFile": "CitrixWorkspaceApp23.5.0.78.exe",
-    "Version": "23.5.0.78",
-    "SourceFolder": "Source",
-    "OutputFolder": "Package",
-    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Citrix-WorkspaceApp.png"
-  },
-  "Information": {
-    "DisplayName": "Citrix Workspace app Current Release 23.5.0.78",
-    "Description": "When powered by Citrix Workspace services, the new Citrix Workspace app gives users instant access to all their SaaS and web apps, their files and mobile apps, and their virtual apps and desktops from an easy-to-use, all-in-one interface. Citrix Workspace app is a single point of entry to all workspace services for users. Users get seamless and secure access to all the apps that they need to stay productive, including features such as embedded browsing and single sign-on.",
-    "Publisher": "Citrix",
-    "InformationURL": "https://docs.citrix.com/en-us/citrix-workspace-app-for-windows.html",
-    "PrivacyURL": "https://www.citrix.com/about/legal/",
-    "Categories": [],
-    "PSPackageFactoryGuid": "973ab12e-8862-46c2-b807-63da783e68b0"
-  },
-  "Program": {
-    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
-    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
-    "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Uninstall.ps1",
-    "InstallExperience": "system",
-    "DeviceRestartBehavior": "suppress"
-  },
-  "RequirementRule": {
-    "MinimumRequiredOperatingSystem": "W10_1809",
-    "Architecture": "x64"
-  },
-  "CustomRequirementRule": [],
-  "DetectionRule": [
-    {
-      "Type": "Registry",
-      "DetectionMethod": "VersionComparison",
-      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\CitrixOnlinePluginPackWeb",
-      "ValueName": "DisplayVersion",
-      "Operator": "greaterThanOrEqual",
-      "Value": "23.5.0.78",
-      "Check32BitOn64System": "false"
+    "Application": {
+        "Name": "CitrixWorkspaceApp",
+        "Filter": "Invoke-EvergreenApp -Name \"CitrixWorkspaceApp\" | Where-Object { $_.Stream -eq \"Current\" -and $_.Title -match \"Citrix Workspace\" } | Select-Object -First 1",
+        "Title": "Citrix Workspace app Current Release",
+        "Language": "en-US",
+        "Architecture": "x86"
     },
-    {
-      "Type": "Registry",
-      "DetectionMethod": "StringComparison",
-      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\Citrix\\ICA Client\\AutoUpdate\\Commandline Policy",
-      "ValueName": "LTSROnly",
-      "Operator": "equal",
-      "Value": "23.5.0.78",
-      "Check32BitOn64System": "false"
+    "PackageInformation": {
+        "SetupType": "EXE",
+        "SetupFile": "CitrixWorkspaceApp23.5.0.78.exe",
+        "Version": "23.5.0.78",
+        "SourceFolder": "Source",
+        "OutputFolder": "Package",
+        "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Citrix-WorkspaceApp.png"
     },
-    {
-      "Type": "File",
-      "DetectionMethod": "Version",
-      "Path": "C:\\Program Files (x86)\\Citrix\\ICA Client",
-      "FileOrFolder": "wfica32.exe",
-      "Operator": "greaterThanOrEqual",
-      "VersionValue": "23.5.0.78",
-      "Check32BitOn64System": "false"
-    }
-  ],
-  "Dependencies": [],
-  "Supersedence": [],
-  "Assignments": []
+    "Information": {
+        "DisplayName": "Citrix Workspace app Current Release 23.5.0.78",
+        "Description": "When powered by Citrix Workspace services, the new Citrix Workspace app gives users instant access to all their SaaS and web apps, their files and mobile apps, and their virtual apps and desktops from an easy-to-use, all-in-one interface. Citrix Workspace app is a single point of entry to all workspace services for users. Users get seamless and secure access to all the apps that they need to stay productive, including features such as embedded browsing and single sign-on.",
+        "Publisher": "Citrix",
+        "InformationURL": "https://docs.citrix.com/en-us/citrix-workspace-app-for-windows.html",
+        "PrivacyURL": "https://www.citrix.com/about/legal/",
+        "Categories": [],
+        "PSPackageFactoryGuid": "973ab12e-8862-46c2-b807-63da783e68b0"
+    },
+    "Program": {
+        "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+        "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+        "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Uninstall.ps1",
+        "InstallExperience": "system",
+        "DeviceRestartBehavior": "basedOnReturnCode"
+    },
+    "RequirementRule": {
+        "MinimumRequiredOperatingSystem": "W10_1809",
+        "Architecture": "x64"
+    },
+    "CustomRequirementRule": [],
+    "DetectionRule": [
+        {
+            "Type": "Registry",
+            "DetectionMethod": "VersionComparison",
+            "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\CitrixOnlinePluginPackWeb",
+            "ValueName": "DisplayVersion",
+            "Operator": "greaterThanOrEqual",
+            "Value": "23.5.0.78",
+            "Check32BitOn64System": "false"
+        },
+        {
+            "Type": "Registry",
+            "DetectionMethod": "StringComparison",
+            "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\Citrix\\ICA Client\\AutoUpdate\\Commandline Policy",
+            "ValueName": "LTSROnly",
+            "Operator": "equal",
+            "Value": "23.5.0.78",
+            "Check32BitOn64System": "false"
+        },
+        {
+            "Type": "File",
+            "DetectionMethod": "Version",
+            "Path": "C:\\Program Files (x86)\\Citrix\\ICA Client",
+            "FileOrFolder": "wfica32.exe",
+            "Operator": "greaterThanOrEqual",
+            "VersionValue": "23.5.0.78",
+            "Check32BitOn64System": "false"
+        }
+    ],
+    "Dependencies": [],
+    "Supersedence": [],
+    "Assignments": [
+        {
+            "Type": "AllUsers",
+            "Intent": "available",
+            "Notification": "showAll",
+            "EnableRestartGracePeriod": true,
+            "RestartGracePeriod": 1440,
+            "RestartCountDownDisplay": 15,
+            "RestartNotificationSnooze": 240
+        }
+    ]
 }

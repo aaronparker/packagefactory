@@ -21,7 +21,7 @@
     "InformationURL": "https://dotnet.microsoft.com/en-us/",
     "PrivacyURL": "https://privacy.microsoft.com/privacystatement",
     "Categories": [],
-    "PSPackageFactoryGuid": "a91c2def-1212-44c6-8b10-91a0aefac41c"
+    "PSPackageFactoryGuid": "c4b654e8-799b-407b-bd5d-9ac1be1464b8"
   },
   "Program": {
     "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
