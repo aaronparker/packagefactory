@@ -20,6 +20,7 @@ packages/**/*.png
 auth.ps1
 auth.json
 output/**
+scripts/**.png
 
 # PSAppDeployToolkit
 !PSAppDeployToolkit/Toolkit/Deploy-Application.exe
