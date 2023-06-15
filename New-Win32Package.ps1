@@ -324,31 +324,6 @@ process {
                     #endregion
                 }
 
-                # Check for the valid MSI - if changed uninstallation process would fail
-                #if ($($appdata.Program.UninstallCommand).Contains("msiexec")) {
-                #if ($Manifest.PackageInformation.SetupType -match '{\w{8}-\w{4}-\w{4}-\w{4}-\w{12}}') {
-                if ($Manifest.PackageInformation.SetupType -eq "MSI") {
-                    $MsiGuidJson = $matches[0]
-                    $MsiGuidJson = [System.guid]::New($MsiGuidJson)
-    
-                    # Get Real GUID from .msi File
-                    $MsiID = Get-MsiProductCode -Path $(Join-Path -Path $SourceFolder -ChildPath $($AppData.PackageInformation.SetupFile))
-                    $MsiID = [System.Guid]::New($MsiID)
-    
-                    # Get-AppLockerFileInformation would be easier but seems to be not working correctly in PS 7.2/7.3
-                    # $MsiID = Get-AppLockerFileInformation -Path (Join-Path -Path $SourceFolder -ChildPath $($appdata.PackageInformation.SetupFile)) | Select-Object -ExpandProperty Publisher | Select-Object BinaryName
-                    # Find GUID in UninstallCommand:
-                    if ($MsiGuidJson.Equals($MsiID)) {
-                        # All Good Uninstall String matches the UID of the .msi file
-                        Write-Verbose -Message "Uninstall string: '$($MsiGuidJson.GUID)', matches MSI package ID: '$($MsiID.GUID)'"
-                    }
-                    else {
-                        # We have a problem:
-                        Write-Warning -Message "Uninstall string: '$($MsiGuidJson.GUID)', does not match MSI package ID: '$($MsiID.GUID)'"
-                        throw "Uninstall string: '$($MsiGuidJson.GUID)', does not match MSI package ID: '$($MsiID.GUID)'"
-                    }
-                }
-
                 #region Create the intunewin package
                 Write-Msg -Msg "Create intunewin package in: $Path\output."
                 $params = @{
