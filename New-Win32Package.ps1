@@ -90,6 +90,7 @@ param (
 )
 
 begin {
+    #region Functions
     function Write-Msg ($Msg) {
         $Message = [HostInformationMessage]@{
             Message         = "[$(Get-Date -Format 'dd.MM.yyyy HH:mm:ss')]"
@@ -110,6 +111,44 @@ begin {
         }
         Write-Information @params
     }
+
+    function Get-MsiProductCode {
+        <#
+            Modified Version of https://www.powershellgallery.com/packages/Get-MsiProductCode/1.0/Content/Get-MsiProductCode.ps1
+            from Thomas J. Malkewitz @dotsp1
+            mod. by @constey
+        #>
+        param (
+            [Parameter(Mandatory = $true, ValueFromPipeLine = $true)]
+            [ValidateScript({
+                    if ($_.EndsWith('.msi')) { $true } else { throw "$_ must be an '*.msi' file." }
+                    if (Test-Path $_) { $true } else { throw "$_ does not exist." }
+                })]
+            [System.String[]] $Path
+        )
+    
+        process {
+            foreach ($Item in $Path) {
+                try {
+                    $WindowsInstaller = New-Object -ComObject "WindowsInstaller.Installer"
+                    $Database = $WindowsInstaller.GetType0().InvokeMember('OpenDatabase', 'InvokeMethod', $null, $WindowsInstaller, @((Get-Item -Path $Item).FullName, 0))
+                    $View = $Database.GetType().InvokeMember('OpenView', 'InvokeMethod', $null, $Database, ("SELECT Value FROM Property WHERE Property = 'ProductCode'"))
+                    $View.GetType().InvokeMember('Execute', 'InvokeMethod', $null, $View, $null)
+                    $Record = $View.GetType().InvokeMember('Fetch', 'InvokeMethod', $null, $View, $null)
+                    Write-Output -InputObject $($record.GetType().InvokeMember('StringData', 'GetProperty', $null, $Record, 1))
+                }
+                catch {
+                    Write-Error -Message $_.Exception.Message
+                    break
+                }
+                finally {
+                    $view.GetType().InvokeMember('Close', 'InvokeMethod', $null, $view, $null)
+                    [Void][System.Runtime.InteropServices.Marshal]::ReleaseComObject($WindowsInstaller)
+                }
+            }
+        }
+    }
+    #endregion
 
     # Set information output
     $InformationPreference = "Continue"
@@ -283,6 +322,31 @@ process {
                         Remove-Item -Path $Result.FullName -Force
                     }
                     #endregion
+                }
+
+                # Check for the valid MSI - if changed uninstallation process would fail
+                #if ($($appdata.Program.UninstallCommand).Contains("msiexec")) {
+                #if ($Manifest.PackageInformation.SetupType -match '{\w{8}-\w{4}-\w{4}-\w{4}-\w{12}}') {
+                if ($Manifest.PackageInformation.SetupType -eq "MSI") {
+                    $MsiGuidJson = $matches[0]
+                    $MsiGuidJson = [System.guid]::New($MsiGuidJson)
+    
+                    # Get Real GUID from .msi File
+                    $MsiID = Get-MsiProductCode -Path $(Join-Path -Path $SourceFolder -ChildPath $($AppData.PackageInformation.SetupFile))
+                    $MsiID = [System.Guid]::New($MsiID)
+    
+                    # Get-AppLockerFileInformation would be easier but seems to be not working correctly in PS 7.2/7.3
+                    # $MsiID = Get-AppLockerFileInformation -Path (Join-Path -Path $SourceFolder -ChildPath $($appdata.PackageInformation.SetupFile)) | Select-Object -ExpandProperty Publisher | Select-Object BinaryName
+                    # Find GUID in UninstallCommand:
+                    if ($MsiGuidJson.Equals($MsiID)) {
+                        # All Good Uninstall String matches the UID of the .msi file
+                        Write-Verbose -Message "Uninstall string: '$($MsiGuidJson.GUID)', matches MSI package ID: '$($MsiID.GUID)'"
+                    }
+                    else {
+                        # We have a problem:
+                        Write-Warning -Message "Uninstall string: '$($MsiGuidJson.GUID)', does not match MSI package ID: '$($MsiID.GUID)'"
+                        throw "Uninstall string: '$($MsiGuidJson.GUID)', does not match MSI package ID: '$($MsiID.GUID)'"
+                    }
                 }
 
                 #region Create the intunewin package

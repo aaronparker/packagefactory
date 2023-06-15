@@ -39,6 +39,9 @@ param(
     [Parameter(Mandatory = $false, HelpMessage = "Specify to validate manifest file configuration.")]
     [System.Management.Automation.SwitchParameter] $Validate
 )
+
+begin {}
+
 process {
     # Read app data from JSON manifest
     $AppData = Get-Content -Path $Json | ConvertFrom-Json
@@ -497,7 +500,7 @@ process {
                 $AssignmentArgs = @{
                     "ID"           = $Win32App.id
                     "Intent"       = $Assignment.Intent
-                    "Notification"  = $Assignment.Notification
+                    "Notification" = $Assignment.Notification
                 }
                 if (-not([System.String]::IsNullOrEmpty($Assignment.DeliveryOptimizationPriority))) {
                     $AssignmentArgs.Add("DeliveryOptimizationPriority", $Assignment.DeliveryOptimizationPriority)
@@ -543,3 +546,5 @@ process {
         Get-IntuneWin32App -ID $Win32App.id
     }
 }
+
+end {}
