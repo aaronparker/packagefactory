@@ -281,7 +281,7 @@ process {
                 if ($Manifest.PackageInformation.SetupType -eq "MSI") {
 
                     # Get Real GUID from .msi File
-                    $MsiID = Get-MsiProductCode -Path $(Join-Path -Path $SourceFolder -ChildPath $($Manifest.PackageInformation.SetupFile))
+                    $MsiID = Get-MsiProductCode -Path $(Join-Path -Path $SourcePath -ChildPath $($Manifest.PackageInformation.SetupFile))
                     $MsiGuid = [System.Guid]::New($MsiID)
 
                     # Check the GUID in the uninstall string
