@@ -537,7 +537,7 @@ process {
                     "Group" {
                         $AssignmentArgs.Add("GroupID", $Assignment.GroupID)
                         [void](Add-IntuneWin32AppAssignmentGroup @AssignmentArgs -Include)
-                    } 
+                    }
                 }
             }
         }
