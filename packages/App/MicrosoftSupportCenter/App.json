@@ -3,13 +3,13 @@
     "PackageInformation": {
         "SetupType": "MSI",
         "SetupFile": "SupportCenterInstaller.msi",
-        "Version": "5.2111.1071.1000",
+        "Version": "5.2203.1086.1000",
         "SourceFolder": "Source",
         "OutputFolder": "Package",
         "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-SupportCenterViewer.png"
     },
     "Information": {
-        "DisplayName": "Microsoft Configuration Manager Support Center 5.2111.1071.1000",
+        "DisplayName": "Microsoft Configuration Manager Support Center 5.2203.1086.1000",
         "Description": "Use Support Center for client troubleshooting, real-time log viewing, or capturing the state of a Configuration Manager client computer for later analysis. Support Center is a single tool to combine many administrator troubleshooting tools.",
         "Publisher": "Microsoft",
         "InformationURL": "https://docs.microsoft.com/en-us/mem/configmgr/core/support/support-center",
@@ -20,7 +20,7 @@
     "Program": {
         "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
         "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
-        "UninstallCommand": "msiexec.exe /X \"{1BA063EF-A952-47D3-B795-00FF25E39DB6}\" /quiet",
+        "UninstallCommand": "msiexec.exe /X \"{C8466986-8B41-46C3-9DEE-853951EEE23E}\" /quiet",
         "InstallExperience": "system",
         "DeviceRestartBehavior": "suppress"
     },
@@ -33,9 +33,27 @@
         {
             "Type": "Registry",
             "DetectionMethod": "Existence",
-            "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{1BA063EF-A952-47D3-B795-00FF25E39DB6}",
+            "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{C8466986-8B41-46C3-9DEE-853951EEE23E}",
             "ValueName": "",
             "DetectionType": "exists",
+            "Check32BitOn64System": "true"
+        },
+        {
+            "Type": "File",
+            "DetectionMethod": "Version",
+            "Path": "C:\\Program Files\\Configuration Manager Support Center",
+            "FileOrFolder": "ConfigMgrSupportCenterViewer.exe",
+            "Operator": "greaterThanOrEqual",
+            "VersionValue": "5.2203.1086.1000",
+            "Check32BitOn64System": "true"
+        },
+        {
+            "Type": "File",
+            "DetectionMethod": "Version",
+            "Path": "C:\\Program Files\\Configuration Manager Support Center",
+            "FileOrFolder": "ConfigMgrSupportCenter.exe",
+            "Operator": "greaterThanOrEqual",
+            "VersionValue": "5.2203.1086.1000",
             "Check32BitOn64System": "true"
         }
     ],
