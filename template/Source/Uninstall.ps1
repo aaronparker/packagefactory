@@ -1,17 +1,17 @@
 <#
     .SYNOPSIS
-    Uninstalls an application
+        Template script to uninstall an application
 
     .NOTES
-	Author: Aaron Parker
-
-	Date      	Author          Comments
-	----------	---             ----------------------------------------------------------
-	2022-12-29	Constantin Lotz	Added more logging capabilities for the script itself 
-	2022-12-29	Aaron Parker    Initial version
+        Author: Aaron Parker
+        Update: Constantin Lotz
 #>
 [CmdletBinding(SupportsShouldProcess = $false)]
 param ()
+
+# Pass WhatIf and Verbose preferences to functions and cmdlets below
+if ($WhatIfPreference -eq $true) { $Script:WhatIfPref = $true } else { $WhatIfPref = $false }
+if ($VerbosePreference -eq $true) { $Script:VerbosePref = $true } else { $VerbosePref = $false }
 
 #region Restart if running in a 32-bit session
 if (!([System.Environment]::Is64BitProcess)) {
@@ -100,14 +100,19 @@ $Arguments = "/S"
 $SetupPath = "$env:ProgramFiles\FileZilla FTP Client" # No Ending Trail
 
 try {
-    Write-Log -Message"Stop processes"
+    Get-Process | Where-Object { $_.Path -like "$SetupPath\*" } | ForEach-Object { Write-Log -Message "Stop-PathProcess: $($_.ProcessName)" }
+    $params = {
+        ErrorAction = "Continue"
+        WhatIf      = $Script:WhatIfPref
+        Verbose     = $Script:VerbosePref
+    }
     Get-Process -ErrorAction "SilentlyContinue" | `
         Where-Object { $_.Path -like "$SetupPath\*" } | `
-        Stop-Process -Force -ErrorAction "SilentlyContinue"
+        Stop-Process -Force @params
 }
 catch {
     Write-Warning -Message "Failed to stop processes."
-    Write-Log -Message"Failed to stop processes." -Severity "Error" -LogOnly
+    Write-Log -Message "Failed to stop processes." -Severity "Error" -LogOnly
 }
 
 try {
@@ -117,14 +122,16 @@ try {
         NoNewWindow  = $true
         PassThru     = $true
         Wait         = $true
+        WhatIf      = $Script:WhatIfPref
+        Verbose     = $Script:VerbosePref
     }
-    Write-Log -Message"Removing program: '$Uninstaller'"
-    Write-Log -Message"With parameters: '$Arguments'"
+    Write-Log -Message "Removing program: '$Uninstaller'"
+    Write-Log -Message "With parameters: '$Arguments'"
     $result = Start-Process @params
-    Write-Log -Message"Exit code: $($result.ExitCode)"
+    Write-Log -Message "Exit code: $($result.ExitCode)"
     if ($result.ExitCode -eq 0) {
-        Remove-Item -Path $SetupPath -Recurse -ErrorAction SilentlyContinue
-        Write-Log -Message"Removed program: $SetupPath"
+        Remove-Item -Path $SetupPath -Recurse -ErrorAction "SilentlyContinue"
+        Write-Log -Message "Removed program: $SetupPath"
     }
 }
 catch {

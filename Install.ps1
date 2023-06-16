@@ -1,17 +1,18 @@
 <#
     .SYNOPSIS
-    Installs an application based on logic defined in Install.json
+        Installs an application based on logic defined in Install.json. Simple alternative to PSAppDeployToolkit
+        Script is copied into Source folder if Install.json exists.
 
     .NOTES
-	Author: Aaron Parker
-
-	Date      	Author          Comments
-	----------	---             ----------------------------------------------------------
-	2022-12-29	Constantin Lotz	Added more logging capabilities for the script itself
-	2022-12-29	Aaron Parker    Initial version
+        Author: Aaron Parker
+        Update: Constantin Lotz
 #>
-[CmdletBinding(SupportsShouldProcess = $false)]
+[CmdletBinding(SupportsShouldProcess = $true)]
 param ()
+
+# Pass WhatIf and Verbose preferences to functions and cmdlets below
+if ($WhatIfPreference -eq $true) { $Script:WhatIfPref = $true } else { $WhatIfPref = $false }
+if ($VerbosePreference -eq $true) { $Script:VerbosePref = $true } else { $VerbosePref = $false }
 
 #region Restart if running in a 32-bit session
 if (!([System.Environment]::Is64BitProcess)) {
@@ -69,6 +70,7 @@ function Write-Log {
             Constantin Lotz; 
             Adam Bertram, https://github.com/adbertram/PowerShellTipsToWriteBy/blob/f865c4212284dc25fe613ca70d9a4bafb6c7e0fe/chapter_7.ps1#L5
     #>
+    [CmdletBinding(SupportsShouldProcess = $false)]
     param (
         [Parameter(Position = 0, ValueFromPipeline = $true, Mandatory = $true)]
         [System.String[]] $Message,
@@ -141,6 +143,8 @@ function Copy-File {
                         Destination = $Item.Destination
                         Force       = $true
                         ErrorAction = "Continue"
+                        WhatIf      = $Script:WhatIfPref
+                        Verbose     = $Script:VerbosePref
                     }
                     Copy-Item @params
                 }
@@ -171,6 +175,8 @@ function Remove-Path {
                         Recurse     = $true
                         Force       = $true
                         ErrorAction = "Continue"
+                        WhatIf      = $Script:WhatIfPref
+                        Verbose     = $Script:VerbosePref
                     }
                     Remove-Item @params
                     Write-Log -Message "Remove-Item: $Item"
@@ -180,6 +186,8 @@ function Remove-Path {
                         Path        = $Item
                         Force       = $true
                         ErrorAction = "Continue"
+                        WhatIf      = $Script:WhatIfPref
+                        Verbose     = $Script:VerbosePref
                     }
                     Remove-Item @params
                     Write-Log -Message "Remove-Item: $Item"
@@ -202,15 +210,19 @@ function Stop-PathProcess {
     process {
         foreach ($Item in $Path) {
             try {
+                Get-Process | Where-Object { $_.Path -like $Item } | ForEach-Object { Write-Log -Message "Stop-PathProcess: $($_.ProcessName)" }
+                $params = {
+                    ErrorAction = "Continue"
+                    WhatIf      = $Script:WhatIfPref
+                    Verbose     = $Script:VerbosePref
+                }
                 if ($PSBoundParameters.ContainsKey("Force")) {
-                    Get-Process | Where-Object { $_.Path -like $Item } | ForEach-Object { Write-Log -Message "Stop-PathProcess: $($_.ProcessName)" }
                     Get-Process | Where-Object { $_.Path -like $Item } | `
-                        Stop-Process -Force -ErrorAction "Continue"
+                        Stop-Process -Force @params
                 }
                 else {
-                    Get-Process | Where-Object { $_.Path -like $Item } | ForEach-Object { Write-Log -Message "Stop-PathProcess: $($_.ProcessName)" }
                     Get-Process | Where-Object { $_.Path -like $Item } | `
-                        Stop-Process -ErrorAction "Continue"
+                        Stop-Process @params
                 }
             }
             catch {
@@ -238,10 +250,10 @@ function Uninstall-Msi {
                     PassThru     = $true
                     Wait         = $true
                     ErrorAction  = "Continue"
+                    WhatIf       = $Script:WhatIfPref
+                    Verbose      = $Script:VerbosePref
                 }
-                if ($PSCmdlet.ShouldProcess("$Env:SystemRoot\System32\msiexec.exe", $ArgumentList)) {
-                    $result = Start-Process @params
-                }
+                $result = Start-Process @params
                 Write-Log -Message "$Env:SystemRoot\System32\msiexec.exe /uninstall `"$($Product.IdentifyingNumber)`" /quiet /log `"$LogPath\Uninstall-$($Item -replace " ").log`""
                 Write-Log -Message "Msiexec result: $($result.ExitCode)"
                 return $result.ExitCode
@@ -256,6 +268,7 @@ function Uninstall-Msi {
 #endregion
 
 #region Install logic
+
 # Log file path. Parent directory should exist if device is enrolled in Intune
 $Script:LogFile = "$Env:ProgramData\Microsoft\IntuneManagementExtension\Logs\PSPackageFactoryInstall.log"
 
@@ -277,6 +290,13 @@ if ([System.String]::IsNullOrEmpty($Installer)) {
 }
 else {
 
+    # Stop processes before installing the application
+    if ($Install.InstallTasks.Path.Count -gt 0) { Stop-PathProcess -Path $Install.InstallTasks.Path }
+
+    # Uninstall the application
+    if ($Install.InstallTasks.UninstallMsi.Count -gt 0) { Uninstall-Msi -Caption $Install.InstallTasks.UninstallMsi -LogPath $Install.LogPath }
+    if ($Install.InstallTasks.Remove.Count -gt 0) { Remove-Path -Path $Install.InstallTasks.Remove }
+
     # Create the log folder
     if (Test-Path -Path $Install.LogPath -PathType "Container") {
         Write-Log -Message "Directory exists: $($Install.LogPath)"
@@ -285,13 +305,6 @@ else {
         Write-Log -Message "Create directory: $($Install.LogPath)"
         New-Item -Path $Install.LogPath -ItemType "Directory" -ErrorAction "Continue" | Out-Null
     }
-
-    # Stop processes before installing the application
-    if ($Install.InstallTasks.Path.Count -gt 0) { Stop-PathProcess -Path $Install.InstallTasks.Path }
-
-    # Uninstall the application
-    if ($Install.InstallTasks.UninstallMsi.Count -gt 0) { Uninstall-Msi -Caption $Install.InstallTasks.UninstallMsi -LogPath $Install.LogPath }
-    if ($Install.InstallTasks.Remove.Count -gt 0) { Remove-Path -Path $Install.InstallTasks.Remove }
 
     # Build the argument list
     $ArgumentList = $Install.InstallTasks.ArgumentList -replace "#SetupFile", $Installer
@@ -312,10 +325,10 @@ else {
                     NoNewWindow  = $true
                     PassThru     = $true
                     Wait         = $true
+                    WhatIf       = $Script:WhatIfPref
+                    Verbose      = $Script:VerbosePref
                 }
-                if ($PSCmdlet.ShouldProcess($Installer, $ArgumentList)) {
-                    $result = Start-Process @params
-                }
+                $result = Start-Process @params
             }
             "MSI" {
                 Write-Log -Message "Installer: $Env:SystemRoot\System32\msiexec.exe"
@@ -326,10 +339,10 @@ else {
                     NoNewWindow  = $true
                     PassThru     = $true
                     Wait         = $true
+                    WhatIf       = $Script:WhatIfPref
+                    Verbose      = $Script:VerbosePref
                 }
-                if ($PSCmdlet.ShouldProcess("$Env:SystemRoot\System32\msiexec.exe", $ArgumentList)) {
-                    $result = Start-Process @params
-                }
+                $result = Start-Process @params
             }
             default {
                 Write-Log -Message "$($Install.PackageInformation.SetupType) not found in the supported setup types - EXE, MSI." -LogLevel 3
