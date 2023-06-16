@@ -32,29 +32,30 @@
     "DetectionRule": [
         {
             "Type": "Registry",
-            "DetectionMethod": "Existence",
+            "DetectionMethod": "VersionComparison",
             "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{C8466986-8B41-46C3-9DEE-853951EEE23E}",
-            "ValueName": "",
-            "DetectionType": "exists",
-            "Check32BitOn64System": "true"
+            "ValueName": "DisplayVersion",
+            "Operator": "greaterThanOrEqual",
+            "Value": "5.2203.1086.1000",
+            "Check32BitOn64System": "false"
         },
         {
             "Type": "File",
             "DetectionMethod": "Version",
-            "Path": "C:\\Program Files\\Configuration Manager Support Center",
+            "Path": "C:\\Program Files (x86)\\Configuration Manager Support Center",
             "FileOrFolder": "ConfigMgrSupportCenterViewer.exe",
             "Operator": "greaterThanOrEqual",
             "VersionValue": "5.2203.1086.1000",
-            "Check32BitOn64System": "true"
+            "Check32BitOn64System": "false"
         },
         {
             "Type": "File",
             "DetectionMethod": "Version",
-            "Path": "C:\\Program Files\\Configuration Manager Support Center",
+            "Path": "C:\\Program Files (x86)\\Configuration Manager Support Center",
             "FileOrFolder": "ConfigMgrSupportCenter.exe",
             "Operator": "greaterThanOrEqual",
             "VersionValue": "5.2203.1086.1000",
-            "Check32BitOn64System": "true"
+            "Check32BitOn64System": "false"
         }
     ],
     "Dependencies": [],
