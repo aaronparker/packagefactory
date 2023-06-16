@@ -16,8 +16,19 @@ param ()
 #region Restart if running in a 32-bit session
 if (!([System.Environment]::Is64BitProcess)) {
     if ([System.Environment]::Is64BitOperatingSystem) {
-        $Arguments = "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$($MyInvocation.MyCommand.Definition)`""
+
+        # Create a string from the passed parameters
+        [System.String]$ParameterString = ""
+        foreach ($Parameter in $PSBoundParameters.GetEnumerator()) {
+            $ParameterString += " -$($Parameter.Key) $($Parameter.Value)"
+        }
+
+        # Execute the script in a 64-bit process with the passed parameters
+        $Arguments = "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$($MyInvocation.MyCommand.Definition)`"$ParameterString"
         $ProcessPath = $(Join-Path -Path $Env:SystemRoot -ChildPath "\Sysnative\WindowsPowerShell\v1.0\powershell.exe")
+        Write-Log -Message "Restarting in 64-bit PowerShell."
+        Write-Log -Message "File path: $ProcessPath."
+        Write-Log -Message "Arguments: $Arguments."
         $params = @{
             FilePath     = $ProcessPath
             ArgumentList = $Arguments
@@ -30,66 +41,73 @@ if (!([System.Environment]::Is64BitProcess)) {
 }
 #endregion
 
+#region Logging Function
+function Write-Log {
+    <#
+        .SYNOPSIS
+            This function creates or appends a line to a log file
+
+        .DESCRIPTION
+            This function writes a log line to a log file in the form synonymous with 
+            ConfigMgr logs so that tools such as CMtrace and SMStrace can easily parse 
+            the log file.  It uses the ConfigMgr client log format's file section
+            to add the line of the script in which it was called.
+
+        .PARAMETER  Message
+            The message parameter is the log message you'd like to record to the log file
+
+        .PARAMETER  LogLevel
+            The logging level is the severity rating for the message you're recording. Like ConfigMgr
+            clients, you have 3 severity levels available; 1, 2 and 3 from informational messages
+            for FYI to critical messages that stop the install. This defaults to 1.
+
+        .EXAMPLE
+            PS C:\> Write-Log -Message 'Value1' -LogLevel 'Value2'
+            This example shows how to call the Write-Log function with named parameters.
+
+        .NOTES
+            Constantin Lotz; 
+            Adam Bertram, https://github.com/adbertram/PowerShellTipsToWriteBy/blob/f865c4212284dc25fe613ca70d9a4bafb6c7e0fe/chapter_7.ps1#L5
+    #>
+    param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, Mandatory = $true)]
+        [System.String[]] $Message,
+
+        [Parameter(Position = 1, Mandatory = $false)]
+        [ValidateSet(1, 2, 3)]
+        [System.Int16] $LogLevel = 1
+    )
+
+    process {
+        ## Build the line which will be recorded to the log file
+        $TimeGenerated = "$(Get-Date -Format HH:mm:ss).$((Get-Date).Millisecond)+000"
+        $LineFormat = $Message, $TimeGenerated, (Get-Date -Format "yyyy-MM-dd"), "$($MyInvocation.ScriptName | Split-Path -Leaf):$($MyInvocation.ScriptLineNumber)", $LogLevel
+        $Line = '<![LOG[{0}]LOG]!><time="{1}" date="{2}" component="{3}" context="" type="{4}" thread="" file="">' -f $LineFormat
+
+        Write-Information -MessageData $Message -InformationAction "Continue"
+        Add-Content -Value $Line -Path $Script:LogFile
+    }
+}
+#endregion
+
+#region Uninstall logic
+# Log file path. Parent directory should exist if device is enrolled in Intune
+$Script:LogFile = "$Env:ProgramData\Microsoft\IntuneManagementExtension\Logs\PSPackageFactoryUninstall.log"
+
 # Define Params here
 $Uninstaller = "$env:ProgramFiles\FileZilla FTP Client\uninstall.exe"
 $Arguments = "/S"
 $SetupPath = "$env:ProgramFiles\FileZilla FTP Client" # No Ending Trail
 
-$Logging = $true
-$Script:LogFile = "$Env:ProgramData\Microsoft\IntuneManagementExtension\Logs\PackageFactoryInstall.log"
-
-#region Logging Function 
-function Write-Feedback {
-    param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, Mandatory = $true)]
-        [System.String] $Msg,
-        [Parameter(Position = 1, ValueFromPipeline = $true, Mandatory = $false)]
-        [System.String] $LogOnly,
-        [Parameter(Position = 2, ValueFromPipeline = $true, Mandatory = $false)]
-        [System.String] $Severity
-    )
-
-    # Call Example:
-    # $logtime = get-date -format 'dd.MM.yyyy;HH:mm:ss'
-    # Write-Feedback -Msg "$logtime - Info:Frage TFK Settings ab. User: $($phoneExtension) - AutoLogoffEnabled: $($userSettings.serviceAutoLogoffEnabled)"
-	
-    # Datei leeren wenn größer 50MB
-    if ((Test-Path -Path $LogFile) -eq $true) {
-        If ((Get-Item $LogFile).length -gt 50mb) {
-            Clear-Content $Script:LogFile
-            $LogTime = Get-Date -Format 'dd.MM.yyyy;HH:mm:ss'
-            $Msg = "$LogTime - " + "Info" + ":" + "LogFile geleert, da größer als 50MB."
-        }
-    }
-    
-    # Wenn Schweregrad angegeben dann baue String korrekt
-    if (![System.String]::IsNullOrEmpty($severity)) {
-        $LogTime = Get-Date -Format 'dd.MM.yyyy;HH:mm:ss'
-        $Msg = "$LogTime - " + $Severity + ":" + $Msg
-    }
-
-    # Nur In Datei loggen, aber nicht in Konsole
-    if ($LogOnly.IsPresent) {
-        $Msg | Out-File $Script:LogFile -Append
-    }
-    else {
-        Write-Information -MessageData $Msg -InformationAction "Continue"
-        $Msg | Out-File $Script:LogFile -Append
-    }
-}
-#endregion
-
-
-
 try {
-    if ($Logging) { Write-Feedback -Msg "Stop processes" -Severity "Info" -LogOnly }
+    Write-Log -Message"Stop processes"
     Get-Process -ErrorAction "SilentlyContinue" | `
         Where-Object { $_.Path -like "$SetupPath\*" } | `
         Stop-Process -Force -ErrorAction "SilentlyContinue"
 }
 catch {
     Write-Warning -Message "Failed to stop processes."
-    if ($Logging) { Write-Feedback -Msg "Failed to stop processes." -Severity "Error" -LogOnly }
+    Write-Log -Message"Failed to stop processes." -Severity "Error" -LogOnly
 }
 
 try {
@@ -100,21 +118,21 @@ try {
         PassThru     = $true
         Wait         = $true
     }
-
-    if ($Logging) {
-        Write-Feedback -Msg "Removing program: '$Uninstaller'" -Severity "Info" -LogOnly
-        Write-Feedback -Msg "With parameters: '$Arguments'" -Severity "Info" -LogOnly
-    }
+    Write-Log -Message"Removing program: '$Uninstaller'"
+    Write-Log -Message"With parameters: '$Arguments'"
     $result = Start-Process @params
-    if ($Logging) { Write-Feedback -Msg "Exit code: $($result.ExitCode)" -Severity "Info" -logOnly }
+    Write-Log -Message"Exit code: $($result.ExitCode)"
     if ($result.ExitCode -eq 0) {
-        Remove-Item -Path $SetupPath -Recurse  -ErrorAction SilentlyContinue
-        if ($Logging) { Write-Feedback -Msg "Removed program: $SetupPath" -Severity "Info" -LogOnly }
+        Remove-Item -Path $SetupPath -Recurse -ErrorAction SilentlyContinue
+        Write-Log -Message"Removed program: $SetupPath"
     }
 }
 catch {
+    Write-Log -Message $_.Exception.Message -LogLevel 3
     throw $_
 }
 finally {
+    Write-Log -Message "Uninstall.ps1 complete. Exit Code: $($result.ExitCode)"
     exit $result.ExitCode
 }
+#endregion
