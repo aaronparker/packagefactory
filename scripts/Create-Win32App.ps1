@@ -529,14 +529,14 @@ process {
 
                 switch ($Assignment.Type) {
                     "AllDevices" {
-                        Add-IntuneWin32AppAssignmentAllDevices @AssignmentArgs
+                        [void](Add-IntuneWin32AppAssignmentAllDevices @AssignmentArgs)
                     }
                     "AllUsers" {
-                        Add-IntuneWin32AppAssignmentAllUsers @AssignmentArgs
+                        [void](Add-IntuneWin32AppAssignmentAllUsers @AssignmentArgs)
                     }
                     "Group" {
                         $AssignmentArgs.Add("GroupID", $Assignment.GroupID)
-                        Add-IntuneWin32AppAssignmentGroup @AssignmentArgs -Include
+                        [void](Add-IntuneWin32AppAssignmentGroup @AssignmentArgs -Include)
                     } 
                 }
             }

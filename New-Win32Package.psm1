@@ -1,3 +1,4 @@
+using namespace System.Management.Automation
 <#
     Functions for use in New-Win32Package.ps1
 #>
