@@ -86,7 +86,7 @@ Param (
     [String]$DeploymentType = 'Install',
     [Parameter(Mandatory = $false)]
     [ValidateSet('Interactive', 'Silent', 'NonInteractive')]
-    [String]$DeployMode = 'Interactive',
+    [String]$DeployMode = 'Silent',
     [Parameter(Mandatory = $false)]
     [switch]$AllowRebootPassThru = $false,
     [Parameter(Mandatory = $false)]
@@ -114,8 +114,8 @@ Try {
     [String]$appLang = 'EN'
     [String]$appRevision = '01'
     [String]$appScriptVersion = '1.0.0'
-    [String]$appScriptDate = 'XX/XX/20XX'
-    [String]$appScriptAuthor = '<author name>'
+    [String]$appScriptDate = '16/06/2023'
+    [String]$appScriptAuthor = 'aaron'
     ##*===============================================
     ## Variables: Install Titles (Only set here to override defaults set by the toolkit)
     [String]$installName = ''
@@ -182,7 +182,7 @@ Try {
         [String]$installPhase = 'Pre-Installation'
 
         ## Show Welcome Message, close Internet Explorer if required, allow up to 3 deferrals, verify there is enough disk space to complete the install, and persist the prompt
-        Show-InstallationWelcome -CloseApps 'iexplore,AcroRd32,Acrobat' -AllowDefer -DeferTimes 3 -CheckDiskSpace -PersistPrompt
+        Show-InstallationWelcome -CloseApps 'iexplore,AcroRd32,Acrobat' -AllowDefer -DeferTimes 3 -CheckDiskSpace -PersistPrompt -CloseAppsCountdown 0 -MinimizeWindows $true
 
         ## Show Progress Message (with the default message)
         Show-InstallationProgress
@@ -232,7 +232,7 @@ Try {
 
         ## Display a message at the end of the install
         If (-not $useDefaultMsi) {
-            Show-InstallationPrompt -Message 'You can customize text to appear at the end of an install or remove it completely for unattended installations.' -ButtonRightText 'OK' -Icon Information -NoWait
+            Show-InstallationPrompt -Message '' -ButtonRightText 'OK' -Icon Information -NoWait
         }
     }
     ElseIf ($deploymentType -ieq 'Uninstall') {
@@ -242,7 +242,7 @@ Try {
         [String]$installPhase = 'Pre-Uninstallation'
 
         ## Show Welcome Message, close Internet Explorer with a 60 second countdown before automatically closing
-        Show-InstallationWelcome -CloseApps 'iexplore,AcroRd32,Acrobat' -CloseAppsCountdown 60
+        Show-InstallationWelcome -CloseApps 'iexplore,AcroRd32,Acrobat' -CloseAppsCountdown 60 -DeferTimes 0 -MinimizeWindows $true
 
         ## Show Progress Message (with the default message)
         Show-InstallationProgress
@@ -280,7 +280,7 @@ Try {
         [String]$installPhase = 'Pre-Repair'
 
         ## Show Welcome Message, close Internet Explorer with a 60 second countdown before automatically closing
-        Show-InstallationWelcome -CloseApps 'iexplore' -CloseAppsCountdown 60
+        Show-InstallationWelcome -CloseApps 'iexplore' -CloseAppsCountdown 60 -DeferTimes 0 -MinimizeWindows $true
 
         ## Show Progress Message (with the default message)
         Show-InstallationProgress
