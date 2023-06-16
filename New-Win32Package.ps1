@@ -90,67 +90,19 @@ param (
 )
 
 begin {
-    #region Functions
-    function Write-Msg ($Msg) {
-        $Message = [HostInformationMessage]@{
-            Message         = "[$(Get-Date -Format 'dd.MM.yyyy HH:mm:ss')]"
-            ForegroundColor = "Black"
-            BackgroundColor = "DarkCyan"
-            NoNewline       = $true
-        }
-        $params = @{
-            MessageData       = $Message
-            InformationAction = "Continue"
-            Tags              = "Microsoft365"
-        }
-        Write-Information @params
-        $params = @{
-            MessageData       = " $Msg"
-            InformationAction = "Continue"
-            Tags              = "Microsoft365"
-        }
-        Write-Information @params
+    #region Call functions
+    try {
+        $ModuleFile = $(Join-Path -Path $PSScriptRoot -ChildPath "New-Win32Package.psm1")
+        Test-Path -Path $ModuleFile -PathType "Leaf" -ErrorAction "Stop" | Out-Null
+        Import-Module -Name $ModuleFile -Force -ErrorAction "Stop"
     }
-
-    function Get-MsiProductCode {
-        <#
-            Modified Version of https://www.powershellgallery.com/packages/Get-MsiProductCode/1.0/Content/Get-MsiProductCode.ps1
-            from Thomas J. Malkewitz @dotsp1
-            mod. by @constey
-        #>
-        param (
-            [Parameter(Mandatory = $true, ValueFromPipeLine = $true)]
-            [ValidateScript({
-                    if ($_.EndsWith('.msi')) { $true } else { throw "$_ must be an '*.msi' file." }
-                    if (Test-Path $_) { $true } else { throw "$_ does not exist." }
-                })]
-            [System.String[]] $Path
-        )
-    
-        process {
-            foreach ($Item in $Path) {
-                try {
-                    $WindowsInstaller = New-Object -ComObject "WindowsInstaller.Installer"
-                    $Database = $WindowsInstaller.GetType0().InvokeMember('OpenDatabase', 'InvokeMethod', $null, $WindowsInstaller, @((Get-Item -Path $Item).FullName, 0))
-                    $View = $Database.GetType().InvokeMember('OpenView', 'InvokeMethod', $null, $Database, ("SELECT Value FROM Property WHERE Property = 'ProductCode'"))
-                    $View.GetType().InvokeMember('Execute', 'InvokeMethod', $null, $View, $null)
-                    $Record = $View.GetType().InvokeMember('Fetch', 'InvokeMethod', $null, $View, $null)
-                    Write-Output -InputObject $($record.GetType().InvokeMember('StringData', 'GetProperty', $null, $Record, 1))
-                }
-                catch {
-                    Write-Error -Message $_.Exception.Message
-                    break
-                }
-                finally {
-                    $view.GetType().InvokeMember('Close', 'InvokeMethod', $null, $view, $null)
-                    [Void][System.Runtime.InteropServices.Marshal]::ReleaseComObject($WindowsInstaller)
-                }
-            }
-        }
+    catch {
+        throw $_
     }
     #endregion
 
     # Set information output
+    $ProgressPreference = "SilentlyContinue"
     $InformationPreference = "Continue"
     $VerbosePreference = "Continue"
 }
@@ -174,6 +126,7 @@ process {
             Write-Msg -Msg "Manifest OK"
 
             # Lets see if this application is already in Intune and needs to be updated
+            Write-Msg -Msg "Retrieve existing Win32 applications in Intune"
             Remove-Variable -Name "ExistingApp" -ErrorAction "SilentlyContinue"
             $ExistingApp = Get-IntuneWin32App | `
                 Select-Object -Property * -ExcludeProperty "largeIcon" | `
@@ -322,6 +275,32 @@ process {
                         Remove-Item -Path $Result.FullName -Force
                     }
                     #endregion
+                }
+
+                # Check for the valid MSI - if changed uninstallation and detection will fail
+                if ($Manifest.PackageInformation.SetupType -eq "MSI") {
+
+                    # Get Real GUID from .msi File
+                    $MsiID = Get-MsiProductCode -Path $(Join-Path -Path $SourceFolder -ChildPath $($Manifest.PackageInformation.SetupFile))
+                    $MsiGuid = [System.Guid]::New($MsiID)
+
+                    # Check the GUID in the uninstall string
+                    if ($Manifest.Program.UninstallCommand -match "{\w{8}-\w{4}-\w{4}-\w{4}-\w{12}}") {
+                        $UninstallGuid = [System.Guid]::New($Matches[0])
+                        if (-not($UninstallGuid.Equals($MsiGuid))) {
+                            Write-Warning -Message "Uninstall string '$($UninstallGuid.GUID)' does not match MSI package ID: '$($MsiID.GUID)'"
+                        }
+                    }
+
+                    # Check the GUID in the detection rules
+                    foreach ($Rule in ($Manifest.DetectionRule | Where-Object { $_.Type -eq "Registry" })) {
+                        if ($Rule.KeyPath -match "{\w{8}-\w{4}-\w{4}-\w{4}-\w{12}}") {
+                            $DetectionGuid = [System.Guid]::New($Matches[0])
+                            if (-not($DetectionGuid.Equals($MsiGuid))) {
+                                Write-Warning -Message "Detection rule registry path '$($Rule.KeyPath)' does not match MSI package ID: '$($MsiID.GUID)'"
+                            }
+                        }
+                    }
                 }
 
                 #region Create the intunewin package
