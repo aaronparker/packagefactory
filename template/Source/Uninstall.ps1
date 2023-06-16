@@ -71,7 +71,7 @@ function Write-Log {
     #>
     param (
         [Parameter(Position = 0, ValueFromPipeline = $true, Mandatory = $true)]
-        [System.String[]] $Message,
+        [System.String] $Message,
 
         [Parameter(Position = 1, Mandatory = $false)]
         [ValidateSet(1, 2, 3)]

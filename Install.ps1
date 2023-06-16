@@ -73,7 +73,7 @@ function Write-Log {
     [CmdletBinding(SupportsShouldProcess = $false)]
     param (
         [Parameter(Position = 0, ValueFromPipeline = $true, Mandatory = $true)]
-        [System.String[]] $Message,
+        [System.String] $Message,
 
         [Parameter(Position = 1, Mandatory = $false)]
         [ValidateSet(1, 2, 3)]
@@ -325,10 +325,11 @@ else {
                     NoNewWindow  = $true
                     PassThru     = $true
                     Wait         = $true
-                    WhatIf       = $Script:WhatIfPref
                     Verbose      = $Script:VerbosePref
                 }
-                $result = Start-Process @params
+                if ($PSCmdlet.ShouldProcess($Installer, $ArgumentList)) {
+                    $result = Start-Process @params
+                }
             }
             "MSI" {
                 Write-Log -Message "Installer: $Env:SystemRoot\System32\msiexec.exe"
@@ -339,10 +340,11 @@ else {
                     NoNewWindow  = $true
                     PassThru     = $true
                     Wait         = $true
-                    WhatIf       = $Script:WhatIfPref
                     Verbose      = $Script:VerbosePref
                 }
-                $result = Start-Process @params
+                if ($PSCmdlet.ShouldProcess("$Env:SystemRoot\System32\msiexec.exe", $ArgumentList)) {
+                    $result = Start-Process @params
+                }
             }
             default {
                 Write-Log -Message "$($Install.PackageInformation.SetupType) not found in the supported setup types - EXE, MSI." -LogLevel 3
