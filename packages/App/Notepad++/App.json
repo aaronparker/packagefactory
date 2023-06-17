@@ -12,7 +12,7 @@
     "Version": "8.5.3",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
-    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/NotepadPP.png"
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/NotepadPP.png"
   },
   "Information": {
     "DisplayName": "Notepad++ 8.5.3 x64",

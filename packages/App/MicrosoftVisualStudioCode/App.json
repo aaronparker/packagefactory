@@ -12,7 +12,7 @@
     "Version": "1.79.2",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
-    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-VisualStudioCode.png"
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-VisualStudioCode.png"
   },
   "Information": {
     "DisplayName": "Microsoft Visual Studio Code 1.79.2 x64",

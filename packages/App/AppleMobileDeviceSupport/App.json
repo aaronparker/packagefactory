@@ -8,7 +8,7 @@
     "Version": "15.6.0.32",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
-    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Apple-MobileDeviceSupport.png"
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Apple-MobileDeviceSupport.png"
   },
   "Information": {
     "DisplayName": "Apple Mobile Device Support 15.6.0.32 x64",

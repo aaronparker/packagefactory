@@ -12,7 +12,7 @@
     "Version": "1.2.10.6",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
-    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Greenshot.png"
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Greenshot.png"
   },
   "Information": {
     "DisplayName": "Greenshot 1.2.10.6 x86",

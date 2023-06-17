@@ -14,7 +14,7 @@
         "Version": "3.220.5",
         "SourceFolder": "Source",
         "OutputFolder": "Package",
-        "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-AzurePipelines.png"
+        "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-AzurePipelines.png"
     },
     "Information": {
         "DisplayName": "Microsoft Azure Pipelines Agent 3.220.5 x64",

@@ -8,7 +8,7 @@
     "Version": "7.10.1.133",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
-    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Mimecast.png"
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Mimecast.png"
   },
   "Information": {
     "DisplayName": "Mimecast for Outlook 7.10.1.133 x86",

@@ -12,7 +12,7 @@
     "Version": "1.2.4337.0",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
-    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-RemoteDesktop2.png"
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-RemoteDesktop2.png"
   },
   "Information": {
     "DisplayName": "Update for Microsoft Remote Desktop 1.2.4337.0 x64",

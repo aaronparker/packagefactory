@@ -12,7 +12,7 @@
     "Version": "5.0.6",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
-    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Paint.Net.png"
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Paint.Net.png"
   },
   "Information": {
     "DisplayName": "Paint.NET 5.0.6 x64",

@@ -12,7 +12,7 @@
     "Version": "2305.136.2",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
-    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Display.png"
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Display.png"
   },
   "Information": {
     "DisplayName": "Remote Display Analyzer 2305.136.2 x86",

@@ -12,7 +12,7 @@
     "Version": "7.0.7",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
-    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-NET.png"
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-NET.png"
   },
   "Information": {
     "DisplayName": "Microsoft .NET Desktop Runtime Current 7.0.7 x64",

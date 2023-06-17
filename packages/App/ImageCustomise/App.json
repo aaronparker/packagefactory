@@ -14,7 +14,7 @@
         "Version": "2304.25.160",
         "SourceFolder": "Source",
         "OutputFolder": "Package",
-        "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Package.png"
+        "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Package.png"
     },
     "Information": {
         "DisplayName": "Windows Customised Defaults 2304.25.160 x86",

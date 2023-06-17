@@ -6,7 +6,7 @@
         "Version": "5.2203.1086.1000",
         "SourceFolder": "Source",
         "OutputFolder": "Package",
-        "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-SupportCenterViewer.png"
+        "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-SupportCenterViewer.png"
     },
     "Information": {
         "DisplayName": "Microsoft Configuration Manager Support Center 5.2203.1086.1000",

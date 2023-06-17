@@ -12,7 +12,7 @@
     "Version": "22.3.3000.3116",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
-    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Citrix-WorkspaceApp.png"
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Citrix-WorkspaceApp.png"
   },
   "Information": {
     "DisplayName": "Citrix Workspace app LTSR 22.3.3000.3116",

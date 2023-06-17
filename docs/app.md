@@ -29,7 +29,7 @@ Here's an example `App.json` for Adobe Acrobat Reader DC:
     "Version": "22.002.20191",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
-    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Adobe-AcrobatReader.png"
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Adobe-AcrobatReader.png"
   },
   "Information": {
     "DisplayName": "Adobe Acrobat Reader DC 22.002.20191 x64",

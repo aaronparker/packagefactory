@@ -12,7 +12,7 @@
         "Version": "23.003.20201",
         "SourceFolder": "Source",
         "OutputFolder": "Package",
-        "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Adobe-AcrobatUpdate.png"
+        "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Adobe-AcrobatUpdate.png"
     },
     "Information": {
         "DisplayName": "Update for Adobe Acrobat Reader DC MUI 23.003.20201 x86",

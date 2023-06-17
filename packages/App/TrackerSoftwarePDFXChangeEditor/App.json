@@ -12,7 +12,7 @@
     "Version": "10.0.0.370",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
-    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/PDFXChangeEditor.png"
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/PDFXChangeEditor.png"
   },
   "Information": {
     "DisplayName": "Tracker Software PDF-XChange Editor 10.0.0.370 x64",

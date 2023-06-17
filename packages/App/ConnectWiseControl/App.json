@@ -8,7 +8,7 @@
     "Version": "22.5.7881.8171",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
-    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/ConnectWiseControl.png"
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/ConnectWiseControl.png"
   },
   "Information": {
     "DisplayName": "ConnectWise Control agent 22.5.7881.8171 x86",

@@ -6,7 +6,7 @@
         "Version": "3.13.25.0",
         "SourceFolder": "Source",
         "OutputFolder": "Package",
-        "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Lenovo-Vantage.png"
+        "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Lenovo-Vantage.png"
     },
     "Information": {
         "DisplayName": "Lenovo.Vantage.ServiceSetup 3.13.25.0",

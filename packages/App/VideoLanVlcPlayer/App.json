@@ -12,7 +12,7 @@
     "Version": "3.0.18",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
-    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/VLC.png"
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/VLC.png"
   },
   "Information": {
     "DisplayName": "VideoLAN VLC media player 3.0.18 x64",

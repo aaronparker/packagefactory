@@ -8,7 +8,7 @@
     "Version": "1.2.0.7873",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
-    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Reincubate-Camo.png"
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Reincubate-Camo.png"
   },
   "Information": {
     "DisplayName": "Reincubate Camo 1.2.0.7873 x64",

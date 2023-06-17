@@ -12,7 +12,7 @@
     "Version": "1.6.00.12455",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
-    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-Teams.png"
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-Teams.png"
   },
   "Information": {
     "DisplayName": "Microsoft Teams (VDI install) 1.6.00.12455 x64",

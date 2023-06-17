@@ -12,7 +12,7 @@
     "Version": "15.0.18410.0",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
-    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Microsoft-SSMS.png"
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-SSMS.png"
   },
   "Information": {
     "DisplayName": "Microsoft SQL Server Management Studio 15.0.18410.0",

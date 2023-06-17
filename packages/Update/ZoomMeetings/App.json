@@ -12,7 +12,7 @@
         "Version": "5.14.11.17466",
         "SourceFolder": "Source",
         "OutputFolder": "Package",
-        "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Zoom.png"
+        "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Zoom.png"
     },
     "Information": {
         "DisplayName": "Zoom Meetings Client 5.14.11.17466 x64",

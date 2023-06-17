@@ -12,7 +12,7 @@
         "Version": "114.0.5735.134",
         "SourceFolder": "Source",
         "OutputFolder": "Package",
-        "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Google-Chrome.png"
+        "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Google-Chrome.png"
     },
     "Information": {
         "DisplayName": "Google Chrome 114.0.5735.134 x64",

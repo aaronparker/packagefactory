@@ -13,7 +13,7 @@
     "Version": "23.003.20201",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
-    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Adobe-AcrobatReader.png"
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Adobe-AcrobatReader.png"
   },
   "Information": {
     "DisplayName": "Adobe Acrobat Reader DC (VDI install) 23.003.20201 x64",

@@ -26,7 +26,7 @@
     "Version": "2.9.8440.42104",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
-    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/MicrosoftFSLogixApps.png"
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/MicrosoftFSLogixApps.png"
   },
   "Information": {
     "DisplayName": "Microsoft FSLogix Apps 2.9.8440.42104",
