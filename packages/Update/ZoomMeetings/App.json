@@ -1,72 +1,72 @@
 {
-    "Application": {
-        "Name": "Zoom Meetings",
-        "Filter": "Invoke-EvergreenApp -Name \"Zoom\" | Where-Object { $_.Platform -eq \"Meetings\" -and $_.Type -eq \"msi\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
-        "Title": "Zoom Meetings Client",
-        "Language": "en-US",
-        "Architecture": "x64"
-    },
-    "PackageInformation": {
-        "SetupType": "MSI",
-        "SetupFile": "ZoomInstallerFull.msi",
-        "Version": "5.14.11.17466",
-        "SourceFolder": "Source",
-        "OutputFolder": "Package",
-        "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Zoom.png"
-    },
-    "Information": {
-        "DisplayName": "Zoom Meetings Client 5.14.11.17466 x64",
-        "Description": "Simplified video conferencing and messaging across any device. Phone, Meetings, Chat, Whiteboard and more for your desktop.",
-        "Publisher": "Zoom",
-        "InformationURL": "https://explore.zoom.us/en/products/meetings/",
-        "PrivacyURL": "https://explore.zoom.us/privacy",
-        "Categories": [],
-        "PSPackageFactoryGuid": "b964ee87-b4dd-40f1-845b-3776a5ea79de"
-    },
-    "Program": {
-        "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
-        "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
-        "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Uninstall.ps1",
-        "InstallExperience": "system",
-        "DeviceRestartBehavior": "basedOnReturnCode"
-    },
-    "RequirementRule": {
-        "MinimumRequiredOperatingSystem": "W10_1809",
-        "Architecture": "x64"
-    },
-    "CustomRequirementRule": [
-        {
-            "Type": "File",
-            "DetectionMethod": "Version",
-            "Path": "C:\\Program Files\\Zoom\\bin",
-            "FileOrFolder": "Zoom.exe",
-            "Operator": "lessThan",
-            "VersionValue": "5.14.11.17466",
-            "Check32BitOn64System": "false"
-        }
-    ],
-    "DetectionRule": [
-        {
-            "Type": "File",
-            "DetectionMethod": "Version",
-            "Path": "C:\\Program Files\\Zoom\\bin",
-            "FileOrFolder": "Zoom.exe",
-            "Operator": "greaterThanOrEqual",
-            "VersionValue": "5.14.11.17466",
-            "Check32BitOn64System": "false"
-        }
-    ],
-    "Dependencies": [],
-    "Supersedence": [],
-    "Assignments": [
-        {
-            "Type": "AllDevices",
-            "Intent": "required",
-            "Notification": "showReboot",
-            "EnableRestartGracePeriod": true,
-            "RestartGracePeriod": 1440,
-            "RestartCountDownDisplay": 15,
-            "RestartNotificationSnooze": 240
-        }
-    ]
+  "Application": {
+    "Name": "Zoom Meetings",
+    "Filter": "Invoke-EvergreenApp -Name \"Zoom\" | Where-Object { $_.Platform -eq \"Meetings\" -and $_.Type -eq \"msi\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+    "Title": "Zoom Meetings Client",
+    "Language": "en-US",
+    "Architecture": "x64"
+  },
+  "PackageInformation": {
+    "SetupType": "MSI",
+    "SetupFile": "ZoomInstallerFull.msi",
+    "Version": "5.15.0.17890",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Zoom.png"
+  },
+  "Information": {
+    "DisplayName": "Zoom Meetings Client 5.15.0.17890 x64",
+    "Description": "Simplified video conferencing and messaging across any device. Phone, Meetings, Chat, Whiteboard and more for your desktop.",
+    "Publisher": "Zoom",
+    "InformationURL": "https://explore.zoom.us/en/products/meetings/",
+    "PrivacyURL": "https://explore.zoom.us/privacy",
+    "Categories": [],
+    "PSPackageFactoryGuid": "b964ee87-b4dd-40f1-845b-3776a5ea79de"
+  },
+  "Program": {
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Uninstall.ps1",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "basedOnReturnCode"
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "W10_1809",
+    "Architecture": "x64"
+  },
+  "CustomRequirementRule": [
+    {
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "C:\\Program Files\\Zoom\\bin",
+      "FileOrFolder": "Zoom.exe",
+      "Operator": "lessThan",
+      "VersionValue": "5.15.0.17890",
+      "Check32BitOn64System": "false"
+    }
+  ],
+  "DetectionRule": [
+    {
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "C:\\Program Files\\Zoom\\bin",
+      "FileOrFolder": "Zoom.exe",
+      "Operator": "greaterThanOrEqual",
+      "VersionValue": "5.15.0.17890",
+      "Check32BitOn64System": "false"
+    }
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": [
+    {
+      "Type": "AllDevices",
+      "Intent": "required",
+      "Notification": "showReboot",
+      "EnableRestartGracePeriod": true,
+      "RestartGracePeriod": 1440,
+      "RestartCountDownDisplay": 15,
+      "RestartNotificationSnooze": 240
+    }
+  ]
 }
