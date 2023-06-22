@@ -1,72 +1,72 @@
 {
-    "Application": {
-        "Name": "AdobeAcrobatReaderDCMUIUpdates",
-        "Filter": "Invoke-EvergreenApp -Name \"AdobeAcrobat\" | Where-Object { $_.Track -eq \"DC\" -and $_.Product -eq \"Reader\" -and $_.Language -eq \"Multi\" -and $_.Architecture -eq \"x86\" } | Select-Object -First 1",
-        "Title": "Update for Adobe Acrobat Reader DC MUI",
-        "Language": "en-US",
-        "Architecture": "x86"
-    },
-    "PackageInformation": {
-        "SetupType": "MSI",
-        "SetupFile": "AcroRdrDCUpd2300320201_MUI.msp",
-        "Version": "23.003.20201",
-        "SourceFolder": "Source",
-        "OutputFolder": "Package",
-        "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Adobe-AcrobatUpdate.png"
-    },
-    "Information": {
-        "DisplayName": "Update for Adobe Acrobat Reader DC MUI 23.003.20201 x86",
-        "Description": "Update for Adobe Acrobat Reader DC.",
-        "Publisher": "Adobe",
-        "InformationURL": "https://www.adobe.com/devnet-docs/acrobatetk/tools/ReleaseNotesDC/index.html",
-        "PrivacyURL": "https://www.adobe.com/au/privacy.html",
-        "Categories": [],
-        "PSPackageFactoryGuid": "79df6213-29bb-43e7-9f77-b19974dd18c6"
-    },
-    "Program": {
-        "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
-        "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
-        "UninstallCommand": "msiexec.exe /X \"AdobeAcrobatReaderDCMUIUpdates\" /quiet",
-        "InstallExperience": "system",
-        "DeviceRestartBehavior": "basedOnReturnCode"
-    },
-    "RequirementRule": {
-        "MinimumRequiredOperatingSystem": "W10_1809",
-        "Architecture": "x64"
-    },
-    "CustomRequirementRule": [
-        {
-            "Type": "File",
-            "DetectionMethod": "Version",
-            "Path": "C:\\Program Files (x86)\\Adobe\\Acrobat Reader DC\\Reader",
-            "FileOrFolder": "AcroRd32.exe",
-            "Operator": "lessThan",
-            "VersionValue": "23.003.20201",
-            "Check32BitOn64System": "false"
-        }
-    ],
-    "DetectionRule": [
-        {
-            "Type": "File",
-            "DetectionMethod": "Version",
-            "Path": "C:\\Program Files (x86)\\Adobe\\Acrobat Reader DC\\Reader",
-            "FileOrFolder": "AcroRd32.exe",
-            "Operator": "greaterThanOrEqual",
-            "VersionValue": "23.003.20201",
-            "Check32BitOn64System": "false"
-        }
-    ],
-    "Dependencies": [],
-    "Supersedence": [],
-    "Assignments": [
-        {
-            "Type": "AllDevices",
-            "Intent": "required",
-            "Notification": "showReboot",
-            "EnableRestartGracePeriod": true,
-            "RestartGracePeriod": 1440,
-            "RestartCountDownDisplay": 15,
-            "RestartNotificationSnooze": 240
-        }
-    ]
+  "Application": {
+    "Name": "AdobeAcrobatReaderDCMUIUpdates",
+    "Filter": "Invoke-EvergreenApp -Name \"AdobeAcrobat\" | Where-Object { $_.Track -eq \"DC\" -and $_.Product -eq \"Reader\" -and $_.Language -eq \"Multi\" -and $_.Architecture -eq \"x86\" } | Select-Object -First 1",
+    "Title": "Update for Adobe Acrobat Reader DC MUI",
+    "Language": "en-US",
+    "Architecture": "x86"
+  },
+  "PackageInformation": {
+    "SetupType": "MSI",
+    "SetupFile": "AcroRdrDCUpd2300320215_MUI.msp",
+    "Version": "23.003.20215",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Adobe-AcrobatUpdate.png"
+  },
+  "Information": {
+    "DisplayName": "Update for Adobe Acrobat Reader DC MUI 23.003.20215 x86",
+    "Description": "Update for Adobe Acrobat Reader DC.",
+    "Publisher": "Adobe",
+    "InformationURL": "https://www.adobe.com/devnet-docs/acrobatetk/tools/ReleaseNotesDC/index.html",
+    "PrivacyURL": "https://www.adobe.com/au/privacy.html",
+    "Categories": [],
+    "PSPackageFactoryGuid": "79df6213-29bb-43e7-9f77-b19974dd18c6"
+  },
+  "Program": {
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "UninstallCommand": "msiexec.exe /X \"AdobeAcrobatReaderDCMUIUpdates\" /quiet",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "basedOnReturnCode"
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "W10_1809",
+    "Architecture": "x64"
+  },
+  "CustomRequirementRule": [
+    {
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "C:\\Program Files (x86)\\Adobe\\Acrobat Reader DC\\Reader",
+      "FileOrFolder": "AcroRd32.exe",
+      "Operator": "lessThan",
+      "VersionValue": "23.003.20215",
+      "Check32BitOn64System": "false"
+    }
+  ],
+  "DetectionRule": [
+    {
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "C:\\Program Files (x86)\\Adobe\\Acrobat Reader DC\\Reader",
+      "FileOrFolder": "AcroRd32.exe",
+      "Operator": "greaterThanOrEqual",
+      "VersionValue": "23.003.20215",
+      "Check32BitOn64System": "false"
+    }
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": [
+    {
+      "Type": "AllDevices",
+      "Intent": "required",
+      "Notification": "showReboot",
+      "EnableRestartGracePeriod": true,
+      "RestartGracePeriod": 1440,
+      "RestartCountDownDisplay": 15,
+      "RestartNotificationSnooze": 240
+    }
+  ]
 }
