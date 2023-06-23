@@ -112,16 +112,18 @@ process {
         # Build variables
         Write-Msg -Msg "Application: '$ApplicationName'"
         $AppPath = [System.IO.Path]::Combine($Path, $Type, $ApplicationName)
-        $ManifestPath = Get-Content -Path $([System.IO.Path]::Combine($AppPath, $PackageManifest))
+        $ManifestFile = $([System.IO.Path]::Combine($AppPath, $PackageManifest))
+        $ManifestContent = Get-Content -Path $([System.IO.Path]::Combine($AppPath, $PackageManifest))
         $SourcePath = [System.IO.Path]::Combine($WorkingPath, $ApplicationName, "Source")
         $OutputPath = [System.IO.Path]::Combine($WorkingPath, $ApplicationName, "Output")
 
         # Check that the application package definition exists
-        if (Test-Path -Path $ManifestPath -PathType "Leaf") {
+        Write-Msg -Msg "Check for path '$ManifestFile'"
+        if (Test-Path -Path $ManifestFile -PathType "Leaf") {
 
             # Get the application details
             Write-Msg -Msg "Read manifest: '$([System.IO.Path]::Combine($Path, $Type, $ApplicationName, $PackageManifest))'"
-            $Manifest = $ManifestPath | ConvertFrom-Json -ErrorAction "Stop"
+            $Manifest = $ManifestContent | ConvertFrom-Json -ErrorAction "Stop"
             Write-Msg -Msg "Manifest OK"
 
             # Lets see if this application is already in Intune and needs to be updated

@@ -8,9 +8,7 @@
     },
     "PackageInformation": {
         "SetupType": "EXE",
-        "SetupFile": [
-            "Install-Defaults.ps1"
-        ],
+        "SetupFile": "Install-Defaults.ps1",
         "Version": "2304.25.160",
         "SourceFolder": "Source",
         "OutputFolder": "Package",
