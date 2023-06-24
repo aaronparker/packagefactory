@@ -316,7 +316,7 @@ process {
                         }
                     }
                     Write-Msg -Msg "Signing scripts in '$SourcePath'"
-                    Set-ScriptSignature @params | ForEach-Object { Write-Msg -Msg "Signed script: $($_.FullName)" }
+                    Set-ScriptSignature @params | ForEach-Object { Write-Msg -Msg "Signed script: $($_.Path)" }
                 }
 
                 #region Create the intunewin package
