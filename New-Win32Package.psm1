@@ -24,6 +24,45 @@ function Write-Msg ($Msg) {
     Write-Information @params
 }
 
+function Test-IntuneWin32App {
+    <#
+        Return true of false if there's a matching Win32 package in the Intune tenant
+    #>
+    param (
+        [Parameter(Mandatory = $true, ValueFromPipeLine = $true)]
+        [System.Object] $Manifest
+    )
+
+    Write-Msg -Msg "Retrieve existing Win32 applications in Intune"
+    $ExistingApp = Get-IntuneWin32App | `
+        Select-Object -Property * -ExcludeProperty "largeIcon" | `
+        Where-Object { $_.notes -match "PSPackageFactory" } | `
+        Where-Object { ($_.notes | ConvertFrom-Json -ErrorAction "SilentlyContinue").Guid -eq $Manifest.Information.PSPackageFactoryGuid } | `
+        Sort-Object -Property @{ Expression = { [System.Version]$_.displayVersion }; Descending = $true } -ErrorAction "SilentlyContinue" | `
+        Select-Object -First 1
+
+    # Determine whether the new package should be imported
+    if ($null -eq $ExistingApp) {
+        Write-Msg -Msg "Import new application: '$($Manifest.Information.DisplayName)'"
+        Write-Output -InputObject $true
+    }
+    elseif ([System.String]::IsNullOrEmpty($ExistingApp.displayVersion)) {
+        Write-Msg -Msg "Found matching app but 'displayVersion' is null: '$($ExistingApp.displayName)'"
+        Write-Output -InputObject $false
+    }
+    elseif ($Manifest.PackageInformation.Version -le $ExistingApp.displayVersion) {
+        Write-Msg -Msg "Existing Intune app version is current: '$($ExistingApp.displayName)'"
+        Write-Output -InputObject $false
+    }
+    elseif ($Manifest.PackageInformation.Version -gt $ExistingApp.displayVersion) {
+        Write-Msg -Msg "Import application version: '$($Manifest.Information.DisplayName)'"
+        Write-Output -InputObject $true
+    }
+    else {
+        Write-Output -InputObject $false
+    }
+}
+
 function Get-MsiProductCode {
     <#
         Modified Version of https://www.powershellgallery.com/packages/Get-MsiProductCode/1.0/Content/Get-MsiProductCode.ps1
@@ -56,6 +95,75 @@ function Get-MsiProductCode {
             finally {
                 $view.GetType().InvokeMember('Close', 'InvokeMethod', $null, $view, $null)
                 [Void][System.Runtime.InteropServices.Marshal]::ReleaseComObject($WindowsInstaller)
+            }
+        }
+    }
+}
+
+function Set-ScriptSignature {
+    <#
+        Use Set-AuthenticodeSignature to sign all scripts in a defined path
+    #>
+    param (
+        [Parameter(Mandatory = $true, ParameterSetName = "Certificate")]
+        [Parameter(Mandatory = $true, ParameterSetName = "Subject")]
+        [Parameter(Mandatory = $true, ParameterSetName = "Thumbprint")]
+        [ValidateScript({ if (Test-Path -Path $_) { $true } else { throw [System.IO.DirectoryNotFoundException]::New("Directory not found: $_") } })]
+        [System.String[]] $Path,
+
+        [Parameter(Mandatory = $true, ParameterSetName = "Certificate")]
+        [System.Security.Cryptography.X509Certificates.X509Certificate2] $Certificate,
+
+        [Parameter(Mandatory = $true, ParameterSetName = "Subject")]
+        [System.String] $CertificateSubject,
+
+        [Parameter(Mandatory = $true, ParameterSetName = "Thumbprint")]
+        [System.String] $CertificateThumbprint,
+
+        [Parameter(Mandatory = $false, ParameterSetName = "Certificate")]
+        [Parameter(Mandatory = $false, ParameterSetName = "Subject")]
+        [Parameter(Mandatory = $false, ParameterSetName = "Thumbprint")]
+        [System.String] $TimestampServer,
+
+        [Parameter(Mandatory = $false, ParameterSetName = "Certificate")]
+        [Parameter(Mandatory = $false, ParameterSetName = "Subject")]
+        [Parameter(Mandatory = $false, ParameterSetName = "Thumbprint")]
+        [System.String] $IncludeChain = "NotRoot"
+    )
+
+    begin {
+        $CertPaths = @("Cert:\CurrentUser\My", "Cert:\CurrentUser\Root", "Cert:\CurrentUser\TrustedPublisher",
+            "Cert:\LocalMachine\My", "Cert:\LocalMachine\Root", "Cert:\LocalMachine\TrustedPublisher")
+
+        if ($PSBoundParameters.ContainsKey("CertificateSubject")) {
+            $Certificate = Get-ChildItem -Path $CertPaths | Where-Object { $_.Subject -eq $CertificateSubject }
+            if ($null -eq $Certificate) { throw [Microsoft.PowerShell.Commands.CertificateNotFoundException]::New("Certificate matching subject name '$CertificateSubject' not found.") }
+        }
+        elseif ($PSBoundParameters.ContainsKey("Thumbprint")) {
+            $Certificate = Get-ChildItem -Path $CertPaths | Where-Object { $_.Subject -eq $CertificateThumbprint }
+            if ($null -eq $Certificate) { throw [Microsoft.PowerShell.Commands.CertificateNotFoundException]::New("Certificate matching thumbprint '$CertificateThumbprint' not found.") }
+        }
+    }
+
+    process {
+        foreach ($Directory in $Path) {
+            Get-ChildItem -Path $Directory -Recurse -Include "*.ps1", "*.psm1" | ForEach-Object {
+                try {
+                    $params = @{
+                        FilePath      = $_.FullName
+                        Certificate    = $Certificate
+                        HashAlgorithm = "SHA256"
+                        IncludeChain  = $IncludeChain
+                        ErrorAction   = "Stop"
+                    }
+                    if ($PSBoundParameters.ContainsKey("TimestampServer")) {
+                        $params.TimestampServer = $TimestampServer
+                    }
+                    Set-AuthenticodeSignature @params
+                }
+                catch {
+                    Write-Error -Message "Failed to sign script '$($_.FullName)', with '$($_.Exception.Message)'"
+                }
             }
         }
     }

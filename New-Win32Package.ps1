@@ -52,7 +52,6 @@ param (
     [Parameter(Mandatory = $false)]
     [System.String[]] $Application = @(
         "AdobeAcrobatReaderDCMUI",
-        "CitrixWorkspaceApp",
         "ImageCustomise",
         "Microsoft.NETCurrent",
         "MicrosoftEdgeWebView2",
@@ -125,32 +124,7 @@ process {
             Write-Msg -Msg "Manifest OK"
 
             # Lets see if this application is already in Intune and needs to be updated
-            Write-Msg -Msg "Retrieve existing Win32 applications in Intune"
-            Remove-Variable -Name "ExistingApp" -ErrorAction "SilentlyContinue"
-            $ExistingApp = Get-IntuneWin32App | `
-                Select-Object -Property * -ExcludeProperty "largeIcon" | `
-                Where-Object { $_.notes -match "PSPackageFactory" } | `
-                Where-Object { ($_.notes | ConvertFrom-Json -ErrorAction "SilentlyContinue").Guid -eq $Manifest.Information.PSPackageFactoryGuid } | `
-                Sort-Object -Property @{ Expression = { [System.Version]$_.displayVersion }; Descending = $true } -ErrorAction "SilentlyContinue" | `
-                Select-Object -First 1
-
-            # Determine whether the new package should be imported
-            if ($null -eq $ExistingApp) {
-                Write-Msg -Msg "Import new application: '$($Manifest.Information.DisplayName)'"
-                $UpdateApp = $true
-            }
-            elseif ([System.String]::IsNullOrEmpty($ExistingApp.displayVersion)) {
-                Write-Msg -Msg "Found matching app but `displayVersion` is null: '$($ExistingApp.displayName)'"
-                $UpdateApp = $false
-            }
-            elseif ($Manifest.PackageInformation.Version -le $ExistingApp.displayVersion) {
-                Write-Msg -Msg "Existing Intune app version is current: '$($ExistingApp.displayName)'"
-                $UpdateApp = $false
-            }
-            elseif ($Manifest.PackageInformation.Version -gt $ExistingApp.displayVersion) {
-                Write-Msg -Msg "Import application version: '$($Manifest.Information.DisplayName)'"
-                $UpdateApp = $true
-            }
+            $UpdateApp = Test-IntuneWin32App -Manifest $Manifest
 
             # Create the package and import the application
             if ($UpdateApp -eq $true -or $Force -eq $true) {
