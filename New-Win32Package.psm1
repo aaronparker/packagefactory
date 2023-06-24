@@ -139,7 +139,7 @@ function Set-ScriptSignature {
             $Certificate = Get-ChildItem -Path $CertPaths | Where-Object { $_.Subject -eq $CertificateSubject }
             if ($null -eq $Certificate) { throw [Microsoft.PowerShell.Commands.CertificateNotFoundException]::New("Certificate matching subject name '$CertificateSubject' not found.") }
         }
-        elseif ($PSBoundParameters.ContainsKey("Thumbprint")) {
+        elseif ($PSBoundParameters.ContainsKey("CertificateThumbprint")) {
             $Certificate = Get-ChildItem -Path $CertPaths | Where-Object { $_.Subject -eq $CertificateThumbprint }
             if ($null -eq $Certificate) { throw [Microsoft.PowerShell.Commands.CertificateNotFoundException]::New("Certificate matching thumbprint '$CertificateThumbprint' not found.") }
         }

@@ -49,7 +49,7 @@
 [CmdletBinding()]
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingInvokeExpression", "", Justification = "Needed to execute Evergreen or VcRedist commands")]
 param (
-    [Parameter(Mandatory = $false)]
+    [Parameter(Mandatory = $false, HelpMessage = "The package name to create and import into Intune.")]
     [System.String[]] $Application = @(
         "AdobeAcrobatReaderDCMUI",
         "ImageCustomise",
@@ -61,30 +61,49 @@ param (
         "VideoLanVlcPlayer",
         "ZoomMeetings"),
 
-    [Parameter(Mandatory = $false)]
+    [Parameter(Mandatory = $false, HelpMessage = "The type of package to create.")]
     [ValidateSet("App", "Update")]
     [System.String] $Type = "App",
 
-    [Parameter(Mandatory = $false)]
+    [Parameter(Mandatory = $false, HelpMessage = "The path to the packages in the package factory.")]
     [System.String] $Path = "E:\projects\packagefactory\packages",
 
-    [Parameter(Mandatory = $false)]
+    [Parameter(Mandatory = $false, HelpMessage = "The manifest file that defines each package properties. Defaults to 'App.json'.")]
     [System.String] $PackageManifest = "App.json",
 
-    [Parameter(Mandatory = $false)]
+    [Parameter(Mandatory = $false, HelpMessage = "The path to the project's Install.ps1 file. This file reads 'Install.json' in the package source to perform an application install.")]
     [System.String] $InstallScript = $([System.IO.Path]::Combine($PSScriptRoot, "Install.ps1")),
 
-    [Parameter(Mandatory = $false)]
+    [Parameter(Mandatory = $false, HelpMessage = "The path to the PSAppDeployToolkit. Used if the package supports the PSAppDeployToolkit for install.")]
     [System.String] $PSAppDeployToolkit = $([System.IO.Path]::Combine($PSScriptRoot, "PSAppDeployToolkit", "Toolkit")),
 
-    [Parameter(Mandatory = $false)]
+    [Parameter(Mandatory = $false, HelpMessage = "The path to the working directory to be used when creating packages.")]
     [System.String] $WorkingPath = $([System.IO.Path]::Combine($PSScriptRoot, "output")),
 
     [Parameter(Mandatory = $false, HelpMessage = "Import the package into Microsoft Intune")]
     [System.Management.Automation.SwitchParameter] $Import,
 
-    [Parameter(Mandatory = $false, HelpMessage = "Create the package, even if a matching version already exists")]
-    [System.Management.Automation.SwitchParameter] $Force
+    [Parameter(Mandatory = $false, HelpMessage = "Create the package, even if a matching version already exists.")]
+    [System.Management.Automation.SwitchParameter] $Force,
+
+    [Parameter(Mandatory = $false, HelpMessage = "Sign PowerShell scripts included in the Win32 package using a certificate in the local system certificate store.")]
+    [System.Management.Automation.SwitchParameter] $Sign,
+
+    [Parameter(Mandatory = $false, HelpMessage = "Specifies the certificate that will be used to sign the script or file. Enter a variable that stores an object representing the certificate or an expression that gets the certificate.")]
+    [System.Security.Cryptography.X509Certificates.X509Certificate2] $Certificate,
+
+    [Parameter(Mandatory = $false, HelpMessage = "Specifies the certificate subject name that will be used to sign scripts.")]
+    [System.String] $CertificateSubject,
+
+    [Parameter(Mandatory = $false, HelpMessage = "Specifies the certificate thumbprint that will be used to sign scripts.")]
+    [System.String] $CertificateThumbprint,
+
+    [Parameter(Mandatory = $false, HelpMessage = "Uses the specified time stamp server to add a time stamp to the signature. Type the URL of the time stamp server as a string. The URL must start with https:// or http://.")]
+    [System.String] $TimestampServer,
+
+    [Parameter(Mandatory = $false, HelpMessage = "Determines which certificates in the certificate trust chain are included in the digital signature. NotRoot is the default.")]
+    [ValidateSet("All", "Signer", "NotRoot")]
+    [System.String] $IncludeChain = "NotRoot"
 )
 
 begin {
@@ -274,6 +293,30 @@ process {
                             }
                         }
                     }
+                }
+
+                # Sign the scripts in the package
+                if ($Sign -eq $true) {
+                    if ($PSBoundParameters.ContainsKey("Certificate")) {
+                        $params = @{
+                            Path       = $SourcePath
+                            Certificate = $Certificate
+                        }
+                    }
+                    elseif ($PSBoundParameters.ContainsKey("CertificateSubject")) {
+                        $params = @{
+                            Path              = $SourcePath
+                            CertificateSubject = $CertificateSubject
+                        }
+                    }
+                    elseif ($PSBoundParameters.ContainsKey("CertificateThumbprint")) {
+                        $params = @{
+                            Path                 = $SourcePath
+                            CertificateThumbprint = $CertificateThumbprint
+                        }
+                    }
+                    Write-Msg -Msg "Signing scripts in '$SourcePath'"
+                    Set-ScriptSignature @params | ForEach-Object { Write-Msg -Msg "Signed script: $($_.FullName)" }
                 }
 
                 #region Create the intunewin package
