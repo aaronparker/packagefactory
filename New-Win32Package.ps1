@@ -32,6 +32,21 @@
     .PARAMETER Force
     Create the package, even if a matching version already exists.
 
+    .PARAMETER Certificate
+    Specifies the certificate that will be used to sign the script or file. Enter a variable that stores an object representing the certificate. Used by Set-AuthenticodeSignature.
+
+    .PARAMETER CertificateSubject
+    Specifies the certificate subject name that will be used to sign scripts. Used by Set-AuthenticodeSignature.
+
+    .PARAMETER CertificateThumbprint
+    Specifies the certificate thumbprint that will be used to sign scripts. Used by Set-AuthenticodeSignature.
+
+    .PARAMETER TimestampServer
+    Uses the specified time stamp server to add a time stamp to the signature. Type the URL of the time stamp server as a string. The URL must start with https:// or http://. Used by Set-AuthenticodeSignature.
+
+    .PARAMETER IncludeChain
+    Determines which certificates in the certificate trust chain are included in the digital signature. NotRoot is the default. Used by Set-AuthenticodeSignature.
+
     .EXAMPLE
     $params = @{
         Path        = "E:\projects\packagefactory\packages"
@@ -86,10 +101,7 @@ param (
     [Parameter(Mandatory = $false, HelpMessage = "Create the package, even if a matching version already exists.")]
     [System.Management.Automation.SwitchParameter] $Force,
 
-    [Parameter(Mandatory = $false, HelpMessage = "Sign PowerShell scripts included in the Win32 package using a certificate in the local system certificate store.")]
-    [System.Management.Automation.SwitchParameter] $Sign,
-
-    [Parameter(Mandatory = $false, HelpMessage = "Specifies the certificate that will be used to sign the script or file. Enter a variable that stores an object representing the certificate or an expression that gets the certificate.")]
+    [Parameter(Mandatory = $false, HelpMessage = "Specifies the certificate that will be used to sign the script or file. Enter a variable that stores an object representing the certificate.")]
     [System.Security.Cryptography.X509Certificates.X509Certificate2] $Certificate,
 
     [Parameter(Mandatory = $false, HelpMessage = "Specifies the certificate subject name that will be used to sign scripts.")]
@@ -296,7 +308,7 @@ process {
                 }
 
                 # Sign the scripts in the package
-                if ($Sign -eq $true) {
+                if ($PSBoundParameters.ContainsKey("Certificate") -or $PSBoundParameters.ContainsKey("CertificateSubject") -or $PSBoundParameters.ContainsKey("CertificateThumbprint")) {
                     if ($PSBoundParameters.ContainsKey("Certificate")) {
                         $params = @{
                             Path       = $SourcePath

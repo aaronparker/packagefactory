@@ -136,18 +136,18 @@ function Set-ScriptSignature {
             "Cert:\LocalMachine\My", "Cert:\LocalMachine\Root", "Cert:\LocalMachine\TrustedPublisher")
 
         if ($PSBoundParameters.ContainsKey("CertificateSubject")) {
-            $Certificate = Get-ChildItem -Path $CertPaths | Where-Object { $_.Subject -eq $CertificateSubject }
+            $Certificate = Get-ChildItem -Path $CertPaths -CodeSigningCert | Where-Object { $_.Subject -eq $CertificateSubject }
             if ($null -eq $Certificate) { throw [Microsoft.PowerShell.Commands.CertificateNotFoundException]::New("Certificate matching subject name '$CertificateSubject' not found.") }
         }
         elseif ($PSBoundParameters.ContainsKey("CertificateThumbprint")) {
-            $Certificate = Get-ChildItem -Path $CertPaths | Where-Object { $_.Subject -eq $CertificateThumbprint }
+            $Certificate = Get-ChildItem -Path $CertPaths -CodeSigningCert | Where-Object { $_.Subject -eq $CertificateThumbprint }
             if ($null -eq $Certificate) { throw [Microsoft.PowerShell.Commands.CertificateNotFoundException]::New("Certificate matching thumbprint '$CertificateThumbprint' not found.") }
         }
     }
 
     process {
         foreach ($Directory in $Path) {
-            Get-ChildItem -Path $Directory -Recurse -Include "*.ps1", "*.psm1" | ForEach-Object {
+            Get-ChildItem -Path $Directory -Recurse -Include "*.ps1", "*.psm1", "*.psd1" | ForEach-Object {
                 try {
                     $params = @{
                         FilePath      = $_.FullName
