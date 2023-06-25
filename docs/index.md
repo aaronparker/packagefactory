@@ -12,7 +12,7 @@ Evergreen and VcRedist are used to keep the library up to date by updating `App.
 
 For applications that can't be automatically updated (e.g., installers are locked behind a login, or an installer that is custom to the target environment), this packaging framework can be used as a repeatable process to package and import those applications into Intune.
 
-This is important when an application package needs to be updated for a new version of the application. Ensuring that the new package is consistent with previous versions provides consistent deployments
+This is important when an application package needs to be updated for a new version of the application. Ensuring that the new package is consistent with previous versions provides consistent deployments.
 
 ## Features
 

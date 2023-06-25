@@ -32,6 +32,21 @@
     .PARAMETER Force
     Create the package, even if a matching version already exists.
 
+    .PARAMETER Certificate
+    Specifies the certificate that will be used to sign the script or file. Enter a variable that stores an object representing the certificate. Used by Set-AuthenticodeSignature.
+
+    .PARAMETER CertificateSubject
+    Specifies the certificate subject name that will be used to sign scripts. Used by Set-AuthenticodeSignature.
+
+    .PARAMETER CertificateThumbprint
+    Specifies the certificate thumbprint that will be used to sign scripts. Used by Set-AuthenticodeSignature.
+
+    .PARAMETER TimestampServer
+    Uses the specified time stamp server to add a time stamp to the signature. Type the URL of the time stamp server as a string. The URL must start with https:// or http://. Used by Set-AuthenticodeSignature.
+
+    .PARAMETER IncludeChain
+    Determines which certificates in the certificate trust chain are included in the digital signature. NotRoot is the default. Used by Set-AuthenticodeSignature.
+
     .EXAMPLE
     $params = @{
         Path        = "E:\projects\packagefactory\packages"
@@ -49,10 +64,9 @@
 [CmdletBinding()]
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingInvokeExpression", "", Justification = "Needed to execute Evergreen or VcRedist commands")]
 param (
-    [Parameter(Mandatory = $false)]
+    [Parameter(Mandatory = $false, HelpMessage = "The package name to create and import into Intune.")]
     [System.String[]] $Application = @(
         "AdobeAcrobatReaderDCMUI",
-        "CitrixWorkspaceApp",
         "ImageCustomise",
         "Microsoft.NETCurrent",
         "MicrosoftEdgeWebView2",
@@ -62,30 +76,46 @@ param (
         "VideoLanVlcPlayer",
         "ZoomMeetings"),
 
-    [Parameter(Mandatory = $false)]
+    [Parameter(Mandatory = $false, HelpMessage = "The type of package to create.")]
     [ValidateSet("App", "Update")]
     [System.String] $Type = "App",
 
-    [Parameter(Mandatory = $false)]
+    [Parameter(Mandatory = $false, HelpMessage = "The path to the packages in the package factory.")]
     [System.String] $Path = "E:\projects\packagefactory\packages",
 
-    [Parameter(Mandatory = $false)]
+    [Parameter(Mandatory = $false, HelpMessage = "The manifest file that defines each package properties. Defaults to 'App.json'.")]
     [System.String] $PackageManifest = "App.json",
 
-    [Parameter(Mandatory = $false)]
+    [Parameter(Mandatory = $false, HelpMessage = "The path to the project's Install.ps1 file. This file reads 'Install.json' in the package source to perform an application install.")]
     [System.String] $InstallScript = $([System.IO.Path]::Combine($PSScriptRoot, "Install.ps1")),
 
-    [Parameter(Mandatory = $false)]
+    [Parameter(Mandatory = $false, HelpMessage = "The path to the PSAppDeployToolkit. Used if the package supports the PSAppDeployToolkit for install.")]
     [System.String] $PSAppDeployToolkit = $([System.IO.Path]::Combine($PSScriptRoot, "PSAppDeployToolkit", "Toolkit")),
 
-    [Parameter(Mandatory = $false)]
+    [Parameter(Mandatory = $false, HelpMessage = "The path to the working directory to be used when creating packages.")]
     [System.String] $WorkingPath = $([System.IO.Path]::Combine($PSScriptRoot, "output")),
 
     [Parameter(Mandatory = $false, HelpMessage = "Import the package into Microsoft Intune")]
     [System.Management.Automation.SwitchParameter] $Import,
 
-    [Parameter(Mandatory = $false, HelpMessage = "Create the package, even if a matching version already exists")]
-    [System.Management.Automation.SwitchParameter] $Force
+    [Parameter(Mandatory = $false, HelpMessage = "Create the package, even if a matching version already exists.")]
+    [System.Management.Automation.SwitchParameter] $Force,
+
+    [Parameter(Mandatory = $false, HelpMessage = "Specifies the certificate that will be used to sign the script or file. Enter a variable that stores an object representing the certificate.")]
+    [System.Security.Cryptography.X509Certificates.X509Certificate2] $Certificate,
+
+    [Parameter(Mandatory = $false, HelpMessage = "Specifies the certificate subject name that will be used to sign scripts.")]
+    [System.String] $CertificateSubject,
+
+    [Parameter(Mandatory = $false, HelpMessage = "Specifies the certificate thumbprint that will be used to sign scripts.")]
+    [System.String] $CertificateThumbprint,
+
+    [Parameter(Mandatory = $false, HelpMessage = "Uses the specified time stamp server to add a time stamp to the signature. Type the URL of the time stamp server as a string. The URL must start with https:// or http://.")]
+    [System.String] $TimestampServer,
+
+    [Parameter(Mandatory = $false, HelpMessage = "Determines which certificates in the certificate trust chain are included in the digital signature. NotRoot is the default.")]
+    [ValidateSet("All", "Signer", "NotRoot")]
+    [System.String] $IncludeChain = "NotRoot"
 )
 
 begin {
@@ -127,32 +157,7 @@ process {
             Write-Msg -Msg "Manifest OK"
 
             # Lets see if this application is already in Intune and needs to be updated
-            Write-Msg -Msg "Retrieve existing Win32 applications in Intune"
-            Remove-Variable -Name "ExistingApp" -ErrorAction "SilentlyContinue"
-            $ExistingApp = Get-IntuneWin32App | `
-                Select-Object -Property * -ExcludeProperty "largeIcon" | `
-                Where-Object { $_.notes -match "PSPackageFactory" } | `
-                Where-Object { ($_.notes | ConvertFrom-Json -ErrorAction "SilentlyContinue").Guid -eq $Manifest.Information.PSPackageFactoryGuid } | `
-                Sort-Object -Property @{ Expression = { [System.Version]$_.displayVersion }; Descending = $true } -ErrorAction "SilentlyContinue" | `
-                Select-Object -First 1
-
-            # Determine whether the new package should be imported
-            if ($null -eq $ExistingApp) {
-                Write-Msg -Msg "Import new application: '$($Manifest.Information.DisplayName)'"
-                $UpdateApp = $true
-            }
-            elseif ([System.String]::IsNullOrEmpty($ExistingApp.displayVersion)) {
-                Write-Msg -Msg "Found matching app but `displayVersion` is null: '$($ExistingApp.displayName)'"
-                $UpdateApp = $false
-            }
-            elseif ($Manifest.PackageInformation.Version -le $ExistingApp.displayVersion) {
-                Write-Msg -Msg "Existing Intune app version is current: '$($ExistingApp.displayName)'"
-                $UpdateApp = $false
-            }
-            elseif ($Manifest.PackageInformation.Version -gt $ExistingApp.displayVersion) {
-                Write-Msg -Msg "Import application version: '$($Manifest.Information.DisplayName)'"
-                $UpdateApp = $true
-            }
+            $UpdateApp = Test-IntuneWin32App -Manifest $Manifest
 
             # Create the package and import the application
             if ($UpdateApp -eq $true -or $Force -eq $true) {
@@ -302,6 +307,30 @@ process {
                             }
                         }
                     }
+                }
+
+                # Sign the scripts in the package
+                if ($PSBoundParameters.ContainsKey("Certificate") -or $PSBoundParameters.ContainsKey("CertificateSubject") -or $PSBoundParameters.ContainsKey("CertificateThumbprint")) {
+                    if ($PSBoundParameters.ContainsKey("Certificate")) {
+                        $params = @{
+                            Path       = $SourcePath
+                            Certificate = $Certificate
+                        }
+                    }
+                    elseif ($PSBoundParameters.ContainsKey("CertificateSubject")) {
+                        $params = @{
+                            Path              = $SourcePath
+                            CertificateSubject = $CertificateSubject
+                        }
+                    }
+                    elseif ($PSBoundParameters.ContainsKey("CertificateThumbprint")) {
+                        $params = @{
+                            Path                 = $SourcePath
+                            CertificateThumbprint = $CertificateThumbprint
+                        }
+                    }
+                    Write-Msg -Msg "Signing scripts in '$SourcePath'"
+                    Set-ScriptSignature @params | ForEach-Object { Write-Msg -Msg "Signed script: $($_.Path)" }
                 }
 
                 #region Create the intunewin package

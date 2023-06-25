@@ -14,7 +14,7 @@ The use of `Install.ps1` is defined in `Program.InstallCommand` section in the `
   },
 ```
 
-You could instead replace the installation command with the [PowerShell App Deployment Toolkit](https://psappdeploytoolkit.com/) or directly referencing the application installer; however, `Install.ps1` provides a simple approach to installing an application while providing some additional features.
+You can replace the installation command with the [PowerShell App Deployment Toolkit](https://psappdeploytoolkit.com/) or directly referencing the application installer; however, `Install.ps1` provides a simple approach to installing an application while providing some additional features.
 
 `Install.json` defines details for the application installer and important install tasks including the application installer silent install arguments:
 
@@ -39,3 +39,7 @@ You could instead replace the installation command with the [PowerShell App Depl
 ```
 
 Like `App.json`, `Install.json` is also automatically updated with application information returned from Evergreen, including the installer file name and the application version number. By updating the `PackageInformation.SetupFile` information in `Install.json`, we ensure that `Install.ps1` will look for that specific installer file and not attempt to execute any other file.
+
+## PSAppDeployToolkit
+
+If you prefer to use the PSAppDeployToolkit, replace `Install.json` with `Deploy-Application.ps1`. When `New-Win32Package.ps1` is run, it will detect the presence of `Deploy-Application.ps1` and copy the PSAppDeployToolkit into the package before preparing the .intunewin file.
