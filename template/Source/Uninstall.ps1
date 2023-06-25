@@ -26,9 +26,9 @@ if (!([System.Environment]::Is64BitProcess)) {
         # Execute the script in a 64-bit process with the passed parameters
         $Arguments = "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$($MyInvocation.MyCommand.Definition)`"$ParameterString"
         $ProcessPath = $(Join-Path -Path $Env:SystemRoot -ChildPath "\Sysnative\WindowsPowerShell\v1.0\powershell.exe")
-        Write-Log -Message "Restarting in 64-bit PowerShell."
-        Write-Log -Message "File path: $ProcessPath."
-        Write-Log -Message "Arguments: $Arguments."
+        Write-LogFile -Message "Restarting in 64-bit PowerShell."
+        Write-LogFile -Message "File path: $ProcessPath."
+        Write-LogFile -Message "Arguments: $Arguments."
         $params = @{
             FilePath     = $ProcessPath
             ArgumentList = $Arguments
@@ -42,14 +42,14 @@ if (!([System.Environment]::Is64BitProcess)) {
 #endregion
 
 #region Logging Function
-function Write-Log {
+function Write-LogFile {
     <#
         .SYNOPSIS
             This function creates or appends a line to a log file
 
         .DESCRIPTION
-            This function writes a log line to a log file in the form synonymous with 
-            ConfigMgr logs so that tools such as CMtrace and SMStrace can easily parse 
+            This function writes a log line to a log file in the form synonymous with
+            ConfigMgr logs so that tools such as CMtrace and SMStrace can easily parse
             the log file.  It uses the ConfigMgr client log format's file section
             to add the line of the script in which it was called.
 
@@ -62,11 +62,11 @@ function Write-Log {
             for FYI to critical messages that stop the install. This defaults to 1.
 
         .EXAMPLE
-            PS C:\> Write-Log -Message 'Value1' -LogLevel 'Value2'
-            This example shows how to call the Write-Log function with named parameters.
+            PS C:\> Write-LogFile -Message 'Value1' -LogLevel 'Value2'
+            This example shows how to call the Write-LogFile function with named parameters.
 
         .NOTES
-            Constantin Lotz; 
+            Constantin Lotz;
             Adam Bertram, https://github.com/adbertram/PowerShellTipsToWriteBy/blob/f865c4212284dc25fe613ca70d9a4bafb6c7e0fe/chapter_7.ps1#L5
     #>
     param (
@@ -100,7 +100,7 @@ $Arguments = "/S"
 $SetupPath = "$env:ProgramFiles\FileZilla FTP Client" # No Ending Trail
 
 try {
-    Get-Process | Where-Object { $_.Path -like "$SetupPath\*" } | ForEach-Object { Write-Log -Message "Stop-PathProcess: $($_.ProcessName)" }
+    Get-Process | Where-Object { $_.Path -like "$SetupPath\*" } | ForEach-Object { Write-LogFile -Message "Stop-PathProcess: $($_.ProcessName)" }
     $params = {
         ErrorAction = "Continue"
         WhatIf      = $Script:WhatIfPref
@@ -112,7 +112,7 @@ try {
 }
 catch {
     Write-Warning -Message "Failed to stop processes."
-    Write-Log -Message "Failed to stop processes." -Severity "Error" -LogOnly
+    Write-LogFile -Message "Failed to stop processes." -Severity "Error" -LogOnly
 }
 
 try {
@@ -125,21 +125,21 @@ try {
         WhatIf      = $Script:WhatIfPref
         Verbose     = $Script:VerbosePref
     }
-    Write-Log -Message "Removing program: '$Uninstaller'"
-    Write-Log -Message "With parameters: '$Arguments'"
+    Write-LogFile -Message "Removing program: '$Uninstaller'"
+    Write-LogFile -Message "With parameters: '$Arguments'"
     $result = Start-Process @params
-    Write-Log -Message "Exit code: $($result.ExitCode)"
+    Write-LogFile -Message "Exit code: $($result.ExitCode)"
     if ($result.ExitCode -eq 0) {
         Remove-Item -Path $SetupPath -Recurse -ErrorAction "SilentlyContinue"
-        Write-Log -Message "Removed program: $SetupPath"
+        Write-LogFile -Message "Removed program: $SetupPath"
     }
 }
 catch {
-    Write-Log -Message $_.Exception.Message -LogLevel 3
+    Write-LogFile -Message $_.Exception.Message -LogLevel 3
     throw $_
 }
 finally {
-    Write-Log -Message "Uninstall.ps1 complete. Exit Code: $($result.ExitCode)"
+    Write-LogFile -Message "Uninstall.ps1 complete. Exit Code: $($result.ExitCode)"
     exit $result.ExitCode
 }
 #endregion

@@ -29,7 +29,7 @@ function Test-IntuneWin32App {
         Return true of false if there's a matching Win32 package in the Intune tenant
     #>
     param (
-        [Parameter(Mandatory = $true, ValueFromPipeLine = $true)]
+        [Parameter(Mandatory = $true)]
         [System.Object] $Manifest
     )
 
@@ -104,6 +104,7 @@ function Set-ScriptSignature {
     <#
         Use Set-AuthenticodeSignature to sign all scripts in a defined path
     #>
+    [CmdletBinding(SupportsShouldProcess = $true)]
     param (
         [Parameter(Mandatory = $true, ParameterSetName = "Certificate")]
         [Parameter(Mandatory = $true, ParameterSetName = "Subject")]
@@ -151,7 +152,7 @@ function Set-ScriptSignature {
                 try {
                     $params = @{
                         FilePath      = $_.FullName
-                        Certificate    = $Certificate
+                        Certificate   = $Certificate
                         HashAlgorithm = "SHA256"
                         IncludeChain  = $IncludeChain
                         ErrorAction   = "Stop"
@@ -159,7 +160,9 @@ function Set-ScriptSignature {
                     if ($PSBoundParameters.ContainsKey("TimestampServer")) {
                         $params.TimestampServer = $TimestampServer
                     }
-                    Set-AuthenticodeSignature @params
+                    if ($PSCmdlet.ShouldProcess("Set-AuthenticodeSignature", $_.FullName)) {
+                        Set-AuthenticodeSignature @params
+                    }
                 }
                 catch {
                     Write-Error -Message "Failed to sign script '$($_.FullName)', with '$($_.Exception.Message)'"

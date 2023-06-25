@@ -27,9 +27,9 @@ if (!([System.Environment]::Is64BitProcess)) {
         # Execute the script in a 64-bit process with the passed parameters
         $Arguments = "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$($MyInvocation.MyCommand.Definition)`"$ParameterString"
         $ProcessPath = $(Join-Path -Path $Env:SystemRoot -ChildPath "\Sysnative\WindowsPowerShell\v1.0\powershell.exe")
-        Write-Log -Message "Restarting in 64-bit PowerShell."
-        Write-Log -Message "File path: $ProcessPath."
-        Write-Log -Message "Arguments: $Arguments."
+        Write-LogFile -Message "Restarting in 64-bit PowerShell."
+        Write-LogFile -Message "File path: $ProcessPath."
+        Write-LogFile -Message "Arguments: $Arguments."
         $params = @{
             FilePath     = $ProcessPath
             ArgumentList = $Arguments
@@ -43,14 +43,14 @@ if (!([System.Environment]::Is64BitProcess)) {
 #endregion
 
 #region Logging Function
-function Write-Log {
+function Write-LogFile {
     <#
         .SYNOPSIS
             This function creates or appends a line to a log file
 
         .DESCRIPTION
-            This function writes a log line to a log file in the form synonymous with 
-            ConfigMgr logs so that tools such as CMtrace and SMStrace can easily parse 
+            This function writes a log line to a log file in the form synonymous with
+            ConfigMgr logs so that tools such as CMtrace and SMStrace can easily parse
             the log file.  It uses the ConfigMgr client log format's file section
             to add the line of the script in which it was called.
 
@@ -63,11 +63,11 @@ function Write-Log {
             for FYI to critical messages that stop the install. This defaults to 1.
 
         .EXAMPLE
-            PS C:\> Write-Log -Message 'Value1' -LogLevel 'Value2'
-            This example shows how to call the Write-Log function with named parameters.
+            PS C:\> Write-LogFile -Message 'Value1' -LogLevel 'Value2'
+            This example shows how to call the Write-LogFile function with named parameters.
 
         .NOTES
-            Constantin Lotz; 
+            Constantin Lotz;
             Adam Bertram, https://github.com/adbertram/PowerShellTipsToWriteBy/blob/f865c4212284dc25fe613ca70d9a4bafb6c7e0fe/chapter_7.ps1#L5
     #>
     [CmdletBinding(SupportsShouldProcess = $false)]
@@ -100,11 +100,11 @@ function Get-InstallConfig {
     )
     try {
         $InstallFile = Join-Path -Path $Path -ChildPath $File
-        Write-Log -Message "Read package install config: $InstallFile"
+        Write-LogFile -Message "Read package install config: $InstallFile"
         Get-Content -Path $InstallFile -ErrorAction "Stop" | ConvertFrom-Json -ErrorAction "Continue"
     }
     catch {
-        Write-Log -Message "Get-InstallConfig: $($_.Exception.Message)" -LogLevel 3
+        Write-LogFile -Message "Get-InstallConfig: $($_.Exception.Message)" -LogLevel 3
         throw $_
     }
 }
@@ -116,11 +116,11 @@ function Get-Installer {
     )
     $Installer = Get-ChildItem -Path $Path -Filter $File -Recurse -ErrorAction "Continue" | Select-Object -First 1
     if ([System.String]::IsNullOrEmpty($Installer.FullName)) {
-        Write-Log -Message "File not found: $File" -LogLevel 3
+        Write-LogFile -Message "File not found: $File" -LogLevel 3
         throw [System.IO.FileNotFoundException]::New("File not found: $File")
     }
     else {
-        Write-Log -Message "Found installer: $($Installer.FullName)"
+        Write-LogFile -Message "Found installer: $($Installer.FullName)"
         return $Installer.FullName
     }
 }
@@ -136,8 +136,8 @@ function Copy-File {
             if (Test-Path -Path $Item.Destination -PathType "Container") {
                 try {
                     $FilePath = Get-ChildItem -Path $Path -Filter $Item.Source -Recurse -ErrorAction "Continue"
-                    Write-Log -Message "Copy-File: Source: $($FilePath.FullName)"
-                    Write-Log -Message "Copy-File: Destination: $($Item.Destination)"
+                    Write-LogFile -Message "Copy-File: Source: $($FilePath.FullName)"
+                    Write-LogFile -Message "Copy-File: Destination: $($Item.Destination)"
                     $params = @{
                         Path        = $FilePath.FullName
                         Destination = $Item.Destination
@@ -149,12 +149,12 @@ function Copy-File {
                     Copy-Item @params
                 }
                 catch {
-                    Write-Log -Message "Copy-File: $($_.Exception.Message)" -LogLevel 3
+                    Write-LogFile -Message "Copy-File: $($_.Exception.Message)" -LogLevel 3
                     Write-Warning -Message $_.Exception.Message
                 }
             }
             else {
-                Write-Log -Message "Copy-File: Cannot find destination: $($Item.Destination)" -LogLevel 3
+                Write-LogFile -Message "Copy-File: Cannot find destination: $($Item.Destination)" -LogLevel 3
                 Write-Warning -Message "Cannot find destination: $($Item.Destination)"
             }
         }
@@ -179,7 +179,7 @@ function Remove-Path {
                         Verbose     = $Script:VerbosePref
                     }
                     Remove-Item @params
-                    Write-Log -Message "Remove-Item: $Item"
+                    Write-LogFile -Message "Remove-Item: $Item"
                 }
                 else {
                     $params = @{
@@ -190,11 +190,11 @@ function Remove-Path {
                         Verbose     = $Script:VerbosePref
                     }
                     Remove-Item @params
-                    Write-Log -Message "Remove-Item: $Item"
+                    Write-LogFile -Message "Remove-Item: $Item"
                 }
             }
             catch {
-                Write-Log -Message "Remove-Path error: $($_.Exception.Message)" -Severity 3
+                Write-LogFile -Message "Remove-Path error: $($_.Exception.Message)" -Severity 3
                 Write-Warning -Message $_.Exception.Message
             }
         }
@@ -210,7 +210,7 @@ function Stop-PathProcess {
     process {
         foreach ($Item in $Path) {
             try {
-                Get-Process | Where-Object { $_.Path -like $Item } | ForEach-Object { Write-Log -Message "Stop-PathProcess: $($_.ProcessName)" }
+                Get-Process | Where-Object { $_.Path -like $Item } | ForEach-Object { Write-LogFile -Message "Stop-PathProcess: $($_.ProcessName)" }
                 $params = {
                     ErrorAction = "Continue"
                     WhatIf      = $Script:WhatIfPref
@@ -226,7 +226,7 @@ function Stop-PathProcess {
                 }
             }
             catch {
-                Write-Log -Message "Stop-PathProcess error: $($_.Exception.Message)" -Severity 2
+                Write-LogFile -Message "Stop-PathProcess error: $($_.Exception.Message)" -Severity 2
                 Write-Warning -Message $_.Exception.Message
             }
         }
@@ -254,12 +254,12 @@ function Uninstall-Msi {
                     Verbose      = $Script:VerbosePref
                 }
                 $result = Start-Process @params
-                Write-Log -Message "$Env:SystemRoot\System32\msiexec.exe /uninstall `"$($Product.IdentifyingNumber)`" /quiet /log `"$LogPath\Uninstall-$($Item -replace " ").log`""
-                Write-Log -Message "Msiexec result: $($result.ExitCode)"
+                Write-LogFile -Message "$Env:SystemRoot\System32\msiexec.exe /uninstall `"$($Product.IdentifyingNumber)`" /quiet /log `"$LogPath\Uninstall-$($Item -replace " ").log`""
+                Write-LogFile -Message "Msiexec result: $($result.ExitCode)"
                 return $result.ExitCode
             }
             catch {
-                Write-Log -Message "Uninstall-Msi error: $($_.Exception.Message)" -Severity 3
+                Write-LogFile -Message "Uninstall-Msi error: $($_.Exception.Message)" -Severity 3
                 Write-Warning -Message $_.Exception.Message
             }
         }
@@ -276,7 +276,7 @@ $Script:LogFile = "$Env:ProgramData\Microsoft\IntuneManagementExtension\Logs\PSP
 if (Test-Path -Path $Script:LogFile) {
     if ((Get-Item -Path $Script:LogFile).Length -gt 50MB) {
         Clear-Content -Path $Script:LogFile
-        Write-Log -Message "Log file size greater than 50MB. Clearing log." -LogLevel 2
+        Write-LogFile -Message "Log file size greater than 50MB. Clearing log." -LogLevel 2
     }
 }
 
@@ -285,7 +285,7 @@ $Install = Get-InstallConfig
 $Installer = Get-Installer -File $Install.PackageInformation.SetupFile
 
 if ([System.String]::IsNullOrEmpty($Installer)) {
-    Write-Log -Message "File not found: $($Install.PackageInformation.SetupFile)" -LogLevel 3
+    Write-LogFile -Message "File not found: $($Install.PackageInformation.SetupFile)" -LogLevel 3
     throw [System.IO.FileNotFoundException]::New("File not found: $($Install.PackageInformation.SetupFile)")
 }
 else {
@@ -299,10 +299,10 @@ else {
 
     # Create the log folder
     if (Test-Path -Path $Install.LogPath -PathType "Container") {
-        Write-Log -Message "Directory exists: $($Install.LogPath)"
+        Write-LogFile -Message "Directory exists: $($Install.LogPath)"
     }
     else {
-        Write-Log -Message "Create directory: $($Install.LogPath)"
+        Write-LogFile -Message "Create directory: $($Install.LogPath)"
         New-Item -Path $Install.LogPath -ItemType "Directory" -ErrorAction "Continue" | Out-Null
     }
 
@@ -317,8 +317,8 @@ else {
         # Perform the application install
         switch ($Install.PackageInformation.SetupType) {
             "EXE" {
-                Write-Log -Message "Installer: $Installer"
-                Write-Log -Message "ArgumentList: $ArgumentList"
+                Write-LogFile -Message "Installer: $Installer"
+                Write-LogFile -Message "ArgumentList: $ArgumentList"
                 $params = @{
                     FilePath     = $Installer
                     ArgumentList = $ArgumentList
@@ -332,8 +332,8 @@ else {
                 }
             }
             "MSI" {
-                Write-Log -Message "Installer: $Env:SystemRoot\System32\msiexec.exe"
-                Write-Log -Message "ArgumentList: $ArgumentList"
+                Write-LogFile -Message "Installer: $Env:SystemRoot\System32\msiexec.exe"
+                Write-LogFile -Message "ArgumentList: $ArgumentList"
                 $params = @{
                     FilePath     = "$Env:SystemRoot\System32\msiexec.exe"
                     ArgumentList = $ArgumentList
@@ -347,7 +347,7 @@ else {
                 }
             }
             default {
-                Write-Log -Message "$($Install.PackageInformation.SetupType) not found in the supported setup types - EXE, MSI." -LogLevel 3
+                Write-LogFile -Message "$($Install.PackageInformation.SetupType) not found in the supported setup types - EXE, MSI." -LogLevel 3
                 throw "$($Install.PackageInformation.SetupType) not found in the supported setup types - EXE, MSI."
             }
         }
@@ -367,12 +367,12 @@ else {
         }
     }
     catch {
-        Write-Log -Message $_.Exception.Message -LogLevel 3
+        Write-LogFile -Message $_.Exception.Message -LogLevel 3
         throw $_
     }
     finally {
         if ($Install.PostInstall.Remove.Count -gt 0) { Remove-Path -Path $Install.PostInstall.Remove }
-        Write-Log -Message "Install.ps1 complete. Exit Code: $($result.ExitCode)"
+        Write-LogFile -Message "Install.ps1 complete. Exit Code: $($result.ExitCode)"
         exit $result.ExitCode
     }
 }
