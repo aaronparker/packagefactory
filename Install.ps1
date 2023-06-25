@@ -291,7 +291,7 @@ if ([System.String]::IsNullOrEmpty($Installer)) {
 else {
 
     # Stop processes before installing the application
-    if ($Install.InstallTasks.Path.Count -gt 0) { Stop-PathProcess -Path $Install.InstallTasks.Path }
+    if ($Install.InstallTasks.StopPath.Count -gt 0) { Stop-PathProcess -Path $Install.InstallTasks.StopPath }
 
     # Uninstall the application
     if ($Install.InstallTasks.UninstallMsi.Count -gt 0) { Uninstall-Msi -Caption $Install.InstallTasks.UninstallMsi -LogPath $Install.LogPath }
