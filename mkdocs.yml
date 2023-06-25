@@ -118,6 +118,7 @@ nav:
     - About App.json: app.md
     - About Install.json: install.md
     - Use in a Pipeline: pipeline.md
+    - Application Install Logging: logging.md
   - About IntuneWin32AppPackager: intunewin32.md
   - Evergreen: https://stealthpuppy.com/evergreen/
   - VcRedist: https://vcredist.com/
