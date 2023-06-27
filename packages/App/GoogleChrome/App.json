@@ -1,62 +1,62 @@
 {
-    "Application": {
-        "Name": "GoogleChrome",
-        "Filter": "Invoke-EvergreenApp -Name \"GoogleChrome\" | Where-Object { $_.Channel -eq \"stable\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
-        "Title": "Google Chrome",
-        "Language": "en-US",
-        "Architecture": "x64"
-    },
-    "PackageInformation": {
-        "SetupType": "MSI",
-        "SetupFile": "googlechromestandaloneenterprise64.msi",
-        "Version": "114.0.5735.134",
-        "SourceFolder": "Source",
-        "OutputFolder": "Package",
-        "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Google-Chrome.png"
-    },
-    "Information": {
-        "DisplayName": "Google Chrome 114.0.5735.134 x64",
-        "Description": "The browser built by Google. Browse with the power of Google. With Google apps like Gmail, Google Pay, and Google Assistant, Chrome can help you stay productive and get more out of your browser.",
-        "Publisher": "Google",
-        "InformationURL": "https://www.google.com/chrome/",
-        "PrivacyURL": "https://www.google.com.au/intl/en_au/chrome/privacy/",
-        "Categories": [],
-        "PSPackageFactoryGuid": "8c8cc1f6-398c-4c0c-b285-b9141dc60a75"
-    },
-    "Program": {
-        "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
-        "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
-        "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Uninstall.ps1",
-        "InstallExperience": "system",
-        "DeviceRestartBehavior": "basedOnReturnCode"
-    },
-    "RequirementRule": {
-        "MinimumRequiredOperatingSystem": "W10_1809",
-        "Architecture": "x64"
-    },
-    "CustomRequirementRule": [],
-    "DetectionRule": [
-        {
-            "Type": "File",
-            "DetectionMethod": "Version",
-            "Path": "C:\\Program Files\\Google\\Chrome\\Application",
-            "FileOrFolder": "Chrome.exe",
-            "Operator": "greaterThanOrEqual",
-            "VersionValue": "114.0.5735.134",
-            "Check32BitOn64System": "false"
-        }
-    ],
-    "Dependencies": [],
-    "Supersedence": [],
-    "Assignments": [
-        {
-            "Type": "AllUsers",
-            "Intent": "available",
-            "Notification": "showAll",
-            "EnableRestartGracePeriod": true,
-            "RestartGracePeriod": 1440,
-            "RestartCountDownDisplay": 15,
-            "RestartNotificationSnooze": 240
-        }
-    ]
+  "Application": {
+    "Name": "GoogleChrome",
+    "Filter": "Invoke-EvergreenApp -Name \"GoogleChrome\" | Where-Object { $_.Channel -eq \"stable\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+    "Title": "Google Chrome",
+    "Language": "en-US",
+    "Architecture": "x64"
+  },
+  "PackageInformation": {
+    "SetupType": "MSI",
+    "SetupFile": "googlechromestandaloneenterprise64.msi",
+    "Version": "114.0.5735.199",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Google-Chrome.png"
+  },
+  "Information": {
+    "DisplayName": "Google Chrome 114.0.5735.199 x64",
+    "Description": "The browser built by Google. Browse with the power of Google. With Google apps like Gmail, Google Pay, and Google Assistant, Chrome can help you stay productive and get more out of your browser.",
+    "Publisher": "Google",
+    "InformationURL": "https://www.google.com/chrome/",
+    "PrivacyURL": "https://www.google.com.au/intl/en_au/chrome/privacy/",
+    "Categories": [],
+    "PSPackageFactoryGuid": "8c8cc1f6-398c-4c0c-b285-b9141dc60a75"
+  },
+  "Program": {
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Uninstall.ps1",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "basedOnReturnCode"
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "W10_1809",
+    "Architecture": "x64"
+  },
+  "CustomRequirementRule": [],
+  "DetectionRule": [
+    {
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "C:\\Program Files\\Google\\Chrome\\Application",
+      "FileOrFolder": "Chrome.exe",
+      "Operator": "greaterThanOrEqual",
+      "VersionValue": "114.0.5735.199",
+      "Check32BitOn64System": "false"
+    }
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": [
+    {
+      "Type": "AllUsers",
+      "Intent": "available",
+      "Notification": "showAll",
+      "EnableRestartGracePeriod": true,
+      "RestartGracePeriod": 1440,
+      "RestartCountDownDisplay": 15,
+      "RestartNotificationSnooze": 240
+    }
+  ]
 }
