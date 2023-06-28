@@ -1,25 +1,25 @@
 {
-    "PackageInformation": {
-        "SetupType": "EXE",
-        "SetupFile": "AcroRdrDCx642300320201_MUI.exe",
-        "Version": "23.003.20201"
-    },
-    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
-    "InstallTasks": {
-        "ArgumentList": "-sfx_nu /sALL /rps /l /msi EULA_ACCEPT=YES ENABLE_CHROMEEXT=0 DISABLE_BROWSER_INTEGRATION=1 ENABLE_OPTIMIZATION=YES ADD_THUMBNAILPREVIEW=1 DISABLEDESKTOPSHORTCUT=1 /log \"#LogPath\\#LogName.log\""
-    },
-    "PostInstall": {
-        "Remove": [
-            "C:\\Users\\Public\\Desktop\\Adobe Acrobat.lnk"
-        ],
-        "Copy": [],
-        "Run": [
-            "reg add \"HKLM\\SOFTWARE\\Policies\\Adobe\\Adobe Acrobat\\DC\\FeatureLockDown\" /v \"bIsSCReducedModeEnforcedEx\" /d 1 /t \"REG_DWORD\" /f | Out-Null",
-            "reg add \"HKLM\\SOFTWARE\\Policies\\Adobe\\Adobe Acrobat\\DC\\FeatureLockDown\\cIPM\" /v \"bDontShowMsgWhenViewingDoc\" /d 0 /t \"REG_DWORD\" /f | Out-Null",
-            "reg add \"HKLM\\SOFTWARE\\Policies\\Adobe\\Adobe Acrobat\\DC\\FeatureLockDown\" /v \"bAcroSuppressUpsell\" /d 1 /t \"REG_DWORD\" /f | Out-Null",
-            "reg add \"HKLM\\SOFTWARE\\Policies\\Adobe\\Adobe Acrobat\\DC\\FeatureLockDown\" /v \"bUpdater\" /d 0 /t \"REG_DWORD\" /f | Out-Null",
-            "reg add \"HKLM\\SOFTWARE\\WOW6432Node\\Adobe\\Adobe ARM\\Legacy\\Reader\\{AC76BA86-7AD7-1033-7B44-AC0F074E4100}\" /v \"Mode\" /d 0 /t \"REG_DWORD\" /f | Out-Null",
-            "reg add \"HKLM\\SOFTWARE\\Adobe\\Adobe Acrobat\\DC\\Installer\" /v \"DisableMaintenance\" /d 1 /t \"REG_DWORD\" /f | Out-Null"
-        ]
-    }
+  "PackageInformation": {
+    "SetupType": "EXE",
+    "SetupFile": "AcroRdrDCx642300320215_MUI.exe",
+    "Version": "23.003.20215"
+  },
+  "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
+  "InstallTasks": {
+    "ArgumentList": "-sfx_nu /sALL /rps /l /msi EULA_ACCEPT=YES ENABLE_CHROMEEXT=0 DISABLE_BROWSER_INTEGRATION=1 ENABLE_OPTIMIZATION=YES ADD_THUMBNAILPREVIEW=1 DISABLEDESKTOPSHORTCUT=1 /log \"#LogPath\\#LogName.log\""
+  },
+  "PostInstall": {
+    "Remove": [
+      "C:\\Users\\Public\\Desktop\\Adobe Acrobat.lnk"
+    ],
+    "Copy": [],
+    "Run": [
+      "reg add \"HKLM\\SOFTWARE\\Policies\\Adobe\\Adobe Acrobat\\DC\\FeatureLockDown\" /v \"bIsSCReducedModeEnforcedEx\" /d 1 /t \"REG_DWORD\" /f | Out-Null",
+      "reg add \"HKLM\\SOFTWARE\\Policies\\Adobe\\Adobe Acrobat\\DC\\FeatureLockDown\\cIPM\" /v \"bDontShowMsgWhenViewingDoc\" /d 0 /t \"REG_DWORD\" /f | Out-Null",
+      "reg add \"HKLM\\SOFTWARE\\Policies\\Adobe\\Adobe Acrobat\\DC\\FeatureLockDown\" /v \"bAcroSuppressUpsell\" /d 1 /t \"REG_DWORD\" /f | Out-Null",
+      "reg add \"HKLM\\SOFTWARE\\Policies\\Adobe\\Adobe Acrobat\\DC\\FeatureLockDown\" /v \"bUpdater\" /d 0 /t \"REG_DWORD\" /f | Out-Null",
+      "reg add \"HKLM\\SOFTWARE\\WOW6432Node\\Adobe\\Adobe ARM\\Legacy\\Reader\\{AC76BA86-7AD7-1033-7B44-AC0F074E4100}\" /v \"Mode\" /d 0 /t \"REG_DWORD\" /f | Out-Null",
+      "reg add \"HKLM\\SOFTWARE\\Adobe\\Adobe Acrobat\\DC\\Installer\" /v \"DisableMaintenance\" /d 1 /t \"REG_DWORD\" /f | Out-Null"
+    ]
+  }
 }
