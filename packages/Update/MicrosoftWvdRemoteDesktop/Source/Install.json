@@ -1,8 +1,8 @@
 {
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "RemoteDesktop_1.2.4337.0_x64.msi",
-    "Version": "1.2.4337.0"
+    "SetupFile": "RemoteDesktop_1.2.4419.0_x64.msi",
+    "Version": "1.2.4419.0"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
