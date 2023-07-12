@@ -1,8 +1,8 @@
 {
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "AcroRdrDCx642300320215_MUI.exe",
-    "Version": "23.003.20215"
+    "SetupFile": "AcroRdrDCx642300320244_MUI.exe",
+    "Version": "23.003.20244"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
