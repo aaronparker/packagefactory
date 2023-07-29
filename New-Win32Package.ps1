@@ -238,8 +238,13 @@ process {
 
                     # Download the application installer via Evergreen and download
                     Write-Msg -Msg "Invoke filter: '$($Manifest.Application.Filter)'"
-                    Write-Msg -Msg "Downloading to: '$SourcePath'"
-                    $Result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -CustomPath $SourcePath
+                    if ($($Manifest.Application.Filter) -match "Evergreen") {
+                        Write-Msg -Msg "Downloading with Evergreen to: '$SourcePath'"
+                        $Result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -CustomPath $SourcePath
+                    } else {
+                        Write-Msg -Msg "Executing Legacy Command: '$($Manifest.Application.Filter)'"
+                        Invoke-Expression -Command $Manifest.Application.Filter
+                    }
 
                     #region Unpack the installer file if its a zip file
                     foreach ($File in $Result) { Write-Msg -Msg "Downloaded: '$($File.FullName)'" }
