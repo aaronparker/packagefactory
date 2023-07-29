@@ -236,13 +236,14 @@ process {
                     }
                     Copy-Item @params
 
-                    # Download the application installer via Evergreen and download
+                    # Download the application installer via Evergreen or via command in .Filter
                     Write-Msg -Msg "Invoke filter: '$($Manifest.Application.Filter)'"
-                    if ($($Manifest.Application.Filter) -match "Evergreen") {
+                    if ($Manifest.Application.Filter -match "Invoke-EvergreenApp|Get-EvergreenApp") {
                         Write-Msg -Msg "Downloading with Evergreen to: '$SourcePath'"
                         $Result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -CustomPath $SourcePath
-                    } else {
-                        Write-Msg -Msg "Executing Legacy Command: '$($Manifest.Application.Filter)'"
+                    }
+                    else {
+                        Write-Msg -Msg "Executing command: '$($Manifest.Application.Filter)'"
                         Invoke-Expression -Command $Manifest.Application.Filter
                     }
 
@@ -318,19 +319,19 @@ process {
                 if ($PSBoundParameters.ContainsKey("Certificate") -or $PSBoundParameters.ContainsKey("CertificateSubject") -or $PSBoundParameters.ContainsKey("CertificateThumbprint")) {
                     if ($PSBoundParameters.ContainsKey("Certificate")) {
                         $params = @{
-                            Path       = $SourcePath
+                            Path        = $SourcePath
                             Certificate = $Certificate
                         }
                     }
                     elseif ($PSBoundParameters.ContainsKey("CertificateSubject")) {
                         $params = @{
-                            Path              = $SourcePath
+                            Path               = $SourcePath
                             CertificateSubject = $CertificateSubject
                         }
                     }
                     elseif ($PSBoundParameters.ContainsKey("CertificateThumbprint")) {
                         $params = @{
-                            Path                 = $SourcePath
+                            Path                  = $SourcePath
                             CertificateThumbprint = $CertificateThumbprint
                         }
                     }
