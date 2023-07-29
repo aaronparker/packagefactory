@@ -1,4 +1,6 @@
 #Requires -Modules Evergreen, VcRedist
+#Requires -Version 6.0
+# Notice: Requires Powershell 6+ (due to ConvertFrom-JSON -DEPTH Parameter Usage)
 <#
     Update the App.json for packages
 #>
@@ -41,7 +43,7 @@ foreach ($ManifestJson in $ManifestList) {
         Write-Warning -Message "Error reading $($ManifestJson.FullName) with: $($_.Exception.Message)"
     }
 
-    if ($null -eq $Manifest.Application.Filter) {
+    if ([System.String]::IsNullOrEmpty($Manifest.Application.Filter)) {
         Write-Host -ForegroundColor "Cyan" "Not supported for automatic update: $($ManifestJson.FullName)."
     }
     else {
