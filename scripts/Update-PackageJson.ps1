@@ -1,8 +1,8 @@
 #Requires -Modules Evergreen, VcRedist
 #Requires -Version 6.0
-# Notice: Requires Powershell 6+ (due to ConvertFrom-JSON -DEPTH Parameter Usage)
 <#
     Update the App.json for packages
+    Notice: Requires Powershell 6+ (due to ConvertFrom-Json -Depth parameter)
 #>
 [CmdletBinding()]
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingWriteHost", "")]
