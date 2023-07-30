@@ -141,6 +141,7 @@ function Copy-File {
                     $params = @{
                         Path        = $FilePath.FullName
                         Destination = $Item.Destination
+                        Container   = $false
                         Force       = $true
                         ErrorAction = "Continue"
                         WhatIf      = $Script:WhatIfPref
@@ -359,7 +360,8 @@ else {
         if ($Install.PostInstall.StopPath.Count -gt 0) { Stop-PathProcess -Path $Install.PostInstall.StopPath }
 
         # Perform post install actions
-        if ($Install.PostInstall.Copy.Count -gt 0) { Copy-File -File $Install.PostInstall.Copy }
+        if ($Install.PostInstall.Remove.Count -gt 0) { Remove-Path -Path $Install.PostInstall.Remove }
+        if ($Install.PostInstall.CopyFile.Count -gt 0) { Copy-File -File $Install.PostInstall.CopyFile }
 
         # Execute run tasks
         if ($Install.PostInstall.Run.Count -gt 0) {
@@ -371,7 +373,6 @@ else {
         throw $_
     }
     finally {
-        if ($Install.PostInstall.Remove.Count -gt 0) { Remove-Path -Path $Install.PostInstall.Remove }
         Write-LogFile -Message "Install.ps1 complete. Exit Code: $($result.ExitCode)"
         exit $result.ExitCode
     }
