@@ -1,6 +1,8 @@
 #Requires -Modules Evergreen, VcRedist
+#Requires -Version 6.0
 <#
     Update the App.json for packages
+    Notice: Requires Powershell 6+ (due to ConvertFrom-Json -Depth parameter)
 #>
 [CmdletBinding()]
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingWriteHost", "")]
@@ -41,7 +43,7 @@ foreach ($ManifestJson in $ManifestList) {
         Write-Warning -Message "Error reading $($ManifestJson.FullName) with: $($_.Exception.Message)"
     }
 
-    if ($null -eq $Manifest.Application.Filter) {
+    if ([System.String]::IsNullOrEmpty($Manifest.Application.Filter)) {
         Write-Host -ForegroundColor "Cyan" "Not supported for automatic update: $($ManifestJson.FullName)."
     }
     else {
