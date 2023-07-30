@@ -32,7 +32,7 @@ You can replace the installation command with the [PowerShell App Deployment Too
     "PostInstall": {
         "Remove": [
         ],
-        "Copy": [
+        "CopyFile": [
         ]
     }
 }

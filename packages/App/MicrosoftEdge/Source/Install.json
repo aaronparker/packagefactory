@@ -13,7 +13,7 @@
       "C:\\Users\\Public\\Desktop\\Microsoft Edge.lnk",
       "C:\\Users\\Public\\Desktop\\Edge.lnk"
     ],
-    "Copy": [
+    "CopyFile": [
       {
         "Source": "initial_preferences.txt",
         "Destination": "C:\\Program Files\\Microsoft\\Edge\\Application\\initial_preferences"
