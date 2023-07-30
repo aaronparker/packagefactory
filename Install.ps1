@@ -237,16 +237,16 @@ function Stop-PathProcess {
 function Uninstall-Msi {
     [CmdletBinding(SupportsShouldProcess = $true)]
     param (
-        [System.String[]] $Caption,
+        [System.String[]] $ProductName,
         [System.String] $LogPath
     )
     process {
-        foreach ($Item in $Caption) {
+        foreach ($Item in $ProductName) {
             try {
-                $Product = Get-CimInstance -Class "Win32_Product" | Where-Object { $_.Caption -like $Item }
+                $Product = Get-CimInstance -Class "Win32_InstalledWin32Program" | Where-Object { $_.Name -like $Item }
                 $params = @{
                     FilePath     = "$Env:SystemRoot\System32\msiexec.exe"
-                    ArgumentList = "/uninstall `"$($Product.IdentifyingNumber)`" /quiet /log `"$LogPath\Uninstall-$($Item -replace " ").log`""
+                    ArgumentList = "/uninstall `"$($Product.MsiProductCode)`" /quiet /log `"$LogPath\Uninstall-$($Item -replace " ").log`""
                     NoNewWindow  = $true
                     PassThru     = $true
                     Wait         = $true
@@ -255,7 +255,7 @@ function Uninstall-Msi {
                     Verbose      = $Script:VerbosePref
                 }
                 $result = Start-Process @params
-                Write-LogFile -Message "$Env:SystemRoot\System32\msiexec.exe /uninstall `"$($Product.IdentifyingNumber)`" /quiet /log `"$LogPath\Uninstall-$($Item -replace " ").log`""
+                Write-LogFile -Message "$Env:SystemRoot\System32\msiexec.exe /uninstall `"$($Product.MsiProductCode)`" /quiet /log `"$LogPath\Uninstall-$($Item -replace " ").log`""
                 Write-LogFile -Message "Msiexec result: $($result.ExitCode)"
                 return $result.ExitCode
             }
@@ -295,7 +295,7 @@ else {
     if ($Install.InstallTasks.StopPath.Count -gt 0) { Stop-PathProcess -Path $Install.InstallTasks.StopPath }
 
     # Uninstall the application
-    if ($Install.InstallTasks.UninstallMsi.Count -gt 0) { Uninstall-Msi -Caption $Install.InstallTasks.UninstallMsi -LogPath $Install.LogPath }
+    if ($Install.InstallTasks.UninstallMsi.Count -gt 0) { Uninstall-Msi -ProductName $Install.InstallTasks.UninstallMsi -LogPath $Install.LogPath }
     if ($Install.InstallTasks.Remove.Count -gt 0) { Remove-Path -Path $Install.InstallTasks.Remove }
 
     # Create the log folder
