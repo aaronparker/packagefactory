@@ -46,6 +46,10 @@ process {
     # Read app data from JSON manifest
     $AppData = Get-Content -Path $Json | ConvertFrom-Json
 
+    # Get the Source Folder of the Application
+    $AppSourceFolder = ([IO.FileInfo] $Json).Directory.Fullname
+    $AppSourceFolder = [System.IO.Path]::Combine($AppSourceFolder, "Source")
+
     # Required packaging variables
     $ScriptsFolder = [System.IO.Path]::Combine($PSScriptRoot, "Scripts")
 
@@ -301,7 +305,7 @@ process {
             "Script" {
                 # Create a PowerShell script based detection rule
                 $DetectionRuleArgs = @{
-                    "ScriptFile"            = (Join-Path -Path $ScriptsFolder -ChildPath $DetectionRuleItem.ScriptFile)
+                    "ScriptFile"            = (Join-Path -Path $AppSourceFolder -ChildPath $DetectionRuleItem.ScriptFile)
                     "EnforceSignatureCheck" = [System.Convert]::ToBoolean($DetectionRuleItem.EnforceSignatureCheck)
                     "RunAs32Bit"            = [System.Convert]::ToBoolean($DetectionRuleItem.RunAs32Bit)
                 }
