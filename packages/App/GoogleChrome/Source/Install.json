@@ -11,9 +11,10 @@
   },
   "PostInstall": {
     "Remove": [
-      "C:\\Users\\Public\\Desktop\\Google Chrome.lnk"
+      "C:\\Users\\Public\\Desktop\\Google Chrome.lnk",
+      "C:\\Program Files\\Google\\Chrome\\Application\\initial_preferences"
     ],
-    "Copy": [
+    "CopyFile": [
       {
         "Source": "initial_preferences.txt",
         "Destination": "C:\\Program Files\\Google\\Chrome\\Application\\initial_preferences"

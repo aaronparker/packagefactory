@@ -11,6 +11,6 @@
     },
     "PostInstall": {
         "Remove": [],
-        "Copy": []
+        "CopyFile": []
     }
 }

@@ -18,10 +18,10 @@
             "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Greenshot\\Readme.txt.lnk",
             "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Greenshot\\Uninstall Greenshot.lnk"
         ],
-        "Copy": [
+        "CopyFile": [
             {
                 "Source": "greenshot-defaults.ini",
-                "Destination": "C:\\Program Files\\Greenshot"
+                "Destination": "C:\\Program Files\\Greenshot\\greenshot-defaults.ini"
             }
         ]
     }
