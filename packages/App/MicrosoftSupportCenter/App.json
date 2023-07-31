@@ -33,7 +33,7 @@
         {
             "Type": "Registry",
             "DetectionMethod": "VersionComparison",
-            "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{C8466986-8B41-46C3-9DEE-853951EEE23E}",
+            "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{C8466986-8B41-46C3-9DEE-853951EEE23E}",
             "ValueName": "DisplayVersion",
             "Operator": "greaterThanOrEqual",
             "Value": "5.2203.1086.1000",
