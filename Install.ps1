@@ -133,30 +133,24 @@ function Copy-File {
     )
     process {
         foreach ($Item in $File) {
-            if (Test-Path -Path $Item.Destination -PathType "Container") {
-                try {
-                    $FilePath = Get-ChildItem -Path $Path -Filter $Item.Source -Recurse -ErrorAction "Continue"
-                    Write-LogFile -Message "Copy-File: Source: $($FilePath.FullName)"
-                    Write-LogFile -Message "Copy-File: Destination: $($Item.Destination)"
-                    $params = @{
-                        Path        = $FilePath.FullName
-                        Destination = $Item.Destination
-                        Container   = $false
-                        Force       = $true
-                        ErrorAction = "Continue"
-                        WhatIf      = $Script:WhatIfPref
-                        Verbose     = $Script:VerbosePref
-                    }
-                    Copy-Item @params
+            try {
+                $FilePath = Get-ChildItem -Path $Path -Filter $Item.Source -Recurse -ErrorAction "Continue"
+                Write-LogFile -Message "Copy-File: Source: $($FilePath.FullName)"
+                Write-LogFile -Message "Copy-File: Destination: $($Item.Destination)"
+                $params = @{
+                    Path        = $FilePath.FullName
+                    Destination = $Item.Destination
+                    Container   = $false
+                    Force       = $true
+                    ErrorAction = "Continue"
+                    WhatIf      = $Script:WhatIfPref
+                    Verbose     = $Script:VerbosePref
                 }
-                catch {
-                    Write-LogFile -Message "Copy-File: $($_.Exception.Message)" -LogLevel 3
-                    Write-Warning -Message $_.Exception.Message
-                }
+                Copy-Item @params
             }
-            else {
-                Write-LogFile -Message "Copy-File: Cannot find destination: $($Item.Destination)" -LogLevel 3
-                Write-Warning -Message "Cannot find destination: $($Item.Destination)"
+            catch {
+                Write-LogFile -Message "Copy-File: $($_.Exception.Message)" -LogLevel 3
+                Write-Warning -Message $_.Exception.Message
             }
         }
     }
