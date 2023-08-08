@@ -9,13 +9,13 @@
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "ZoomInstallerFull.msi",
-    "Version": "5.15.5.19404",
+    "Version": "5.15.6.19959",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Zoom.png"
   },
   "Information": {
-    "DisplayName": "Zoom Meetings Client 5.15.5.19404 x64",
+    "DisplayName": "Zoom Meetings Client 5.15.6.19959 x64",
     "Description": "Simplified video conferencing and messaging across any device. Phone, Meetings, Chat, Whiteboard and more for your desktop.",
     "Publisher": "Zoom",
     "InformationURL": "https://explore.zoom.us/en/products/meetings/",
@@ -42,7 +42,7 @@
       "Path": "C:\\Program Files\\Zoom\\bin",
       "FileOrFolder": "Zoom.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "5.15.5.19404",
+      "VersionValue": "5.15.6.19959",
       "Check32BitOn64System": "false"
     }
   ],
