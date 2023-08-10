@@ -236,13 +236,20 @@ process {
                     }
                     Copy-Item @params
 
-                    # Download the application installer via Evergreen or via command in .Filter
+                    # Download the application installer or run command in .Filter
                     Write-Msg -Msg "Invoke filter: '$($Manifest.Application.Filter)'"
                     if ($Manifest.Application.Filter -match "Invoke-EvergreenApp|Get-EvergreenApp") {
+                        # Evergreen
                         Write-Msg -Msg "Downloading with Evergreen to: '$SourcePath'"
-                        $Result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -CustomPath $SourcePath
+                        $Result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -LiteralPath $SourcePath
+                    }
+                    elseif ($Manifest.Application.Filter -match "Get-VcList") {
+                        # VcRedist
+                        Write-Msg -Msg "Downloading with Evergreen to: '$SourcePath'"
+                        $Result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -LiteralPath $SourcePath
                     }
                     else {
+                        # Other
                         Write-Msg -Msg "Executing command: '$($Manifest.Application.Filter)'"
                         Invoke-Expression -Command $Manifest.Application.Filter
                     }
