@@ -12,7 +12,7 @@
     "Version": "1.81.1",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
-    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-VisualStudioCode.png"
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-VSCode.png"
   },
   "Information": {
     "DisplayName": "Microsoft Visual Studio Code 1.81.1 x64",
