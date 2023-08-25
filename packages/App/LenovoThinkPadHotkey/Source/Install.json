@@ -1,12 +1,12 @@
 {
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "r18vu48w.exe",
+    "SetupFile": "setup.exe",
     "Version": "10.6.5.2"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
-    "ArgumentList": "/PARAM=\"/S /H\" /SP- /VERYSILENT /NORESTART /SUPPRESSMSGBOXES"
+    "ArgumentList": "/S"
   },
   "PostInstall": {
     "Remove": [],
