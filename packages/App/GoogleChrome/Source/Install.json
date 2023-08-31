@@ -2,7 +2,7 @@
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "googlechromestandaloneenterprise64.msi",
-    "Version": "115.0.5790.110"
+    "Version": "116.0.5845.141"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
@@ -11,9 +11,10 @@
   },
   "PostInstall": {
     "Remove": [
-      "C:\\Users\\Public\\Desktop\\Google Chrome.lnk"
+      "C:\\Users\\Public\\Desktop\\Google Chrome.lnk",
+      "C:\\Program Files\\Google\\Chrome\\Application\\initial_preferences"
     ],
-    "Copy": [
+    "CopyFile": [
       {
         "Source": "initial_preferences.txt",
         "Destination": "C:\\Program Files\\Google\\Chrome\\Application\\initial_preferences"

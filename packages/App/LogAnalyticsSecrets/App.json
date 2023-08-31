@@ -1,0 +1,47 @@
+{
+  "Application": {
+
+  },
+  "PackageInformation": {
+    "SetupType": "EXE",
+    "SetupFile": "powershell.exe",
+    "Version": "1.0.0",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Package.png"
+  },
+  "Information": {
+    "DisplayName": "Save Log Analytics Secrets",
+    "Description": "Save secrets to `C:\\Windows\\System32\\config\\systemprofile\\AppData\\Local\\key.xml` for later use in Azure Log Analytics scripts.",
+    "Publisher": "stealthpuppy",
+    "InformationURL": "",
+    "PrivacyURL": "",
+    "Categories": [],
+    "PSPackageFactoryGuid": "5feec631-688a-430c-85c0-1e9dc17995c9"
+  },
+  "Program": {
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Save-LogSecrets.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Save-LogSecrets.ps1",
+    "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Remove-LogSecrets.ps1",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "suppress"
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "W10_1809",
+    "Architecture": "All"
+  },
+  "CustomRequirementRule": [],
+  "DetectionRule": [
+    {
+      "Type": "File",
+      "DetectionMethod": "Existence",
+      "Path": "C:\\Windows\\System32\\config\\systemprofile\\AppData\\Local",
+      "FileOrFolder": "key.xml",
+      "DetectionType": "exists",
+      "Check32BitOn64System": "false"
+    }
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
+}

@@ -1,8 +1,8 @@
 {
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "AcroRdrDCx642300320244_MUI.exe",
-    "Version": "23.003.20244"
+    "SetupFile": "AcroRdrDCx642300320284_MUI.exe",
+    "Version": "23.003.20284"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
@@ -12,7 +12,7 @@
     "Remove": [
       "C:\\Users\\Public\\Desktop\\Adobe Acrobat.lnk"
     ],
-    "Copy": [],
+    "CopyFile": [],
     "Run": [
       "reg add \"HKLM\\SOFTWARE\\Policies\\Adobe\\Adobe Acrobat\\DC\\FeatureLockDown\" /v \"bIsSCReducedModeEnforcedEx\" /d 1 /t \"REG_DWORD\" /f | Out-Null",
       "reg add \"HKLM\\SOFTWARE\\Policies\\Adobe\\Adobe Acrobat\\DC\\FeatureLockDown\\cIPM\" /v \"bDontShowMsgWhenViewingDoc\" /d 0 /t \"REG_DWORD\" /f | Out-Null",

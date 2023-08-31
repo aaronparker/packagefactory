@@ -2,7 +2,7 @@
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "ZoomInstallerFull.msi",
-    "Version": "5.15.5.19404"
+    "Version": "5.15.11.21032"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
@@ -13,6 +13,6 @@
     "Remove": [
       "C:\\Users\\Public\\Desktop\\Zoom.lnk"
     ],
-    "Copy": []
+    "CopyFile": []
   }
 }

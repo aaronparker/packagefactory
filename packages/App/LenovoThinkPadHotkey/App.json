@@ -1,0 +1,46 @@
+{
+  "Application": {
+  },
+  "PackageInformation": {
+    "SetupType": "EXE",
+    "SetupFile": "r18vu48w.exe",
+    "Version": "10.6.5.2",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-Teams.png"
+  },
+  "Information": {
+    "DisplayName": "Lenovo ThinkPad Hotkey Features Integration Package",
+    "Description": "This software enables F1-F12 special keys and buttons on your computer. For example, when the microphone mute key or button is pressed, the microphone state switches between mute and unmute.",
+    "Publisher": "Lenovo",
+    "InformationURL": "https://support.lenovo.com/au/en/downloads/ds543947-hotkey-features-integration-for-windows-10-64-bit-thinkpad",
+    "PrivacyURL": "https://www.lenovo.com/us/en/privacy/",
+    "Categories": [],
+    "PSPackageFactoryGuid": "88b71b22-859d-47a8-8514-57edc2e6623d"
+  },
+  "Program": {
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Uninstall.ps1",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "suppress"
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "W10_1809",
+    "Architecture": "x64"
+  },
+  "DetectionRule": [
+    {
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "C:\\Program Files\\Lenovo\\HOTKEY",
+      "FileOrFolder": "setapps.exe",
+      "Operator": "greaterThanOrEqual",
+      "VersionValue": "1.0.5.0",
+      "Check32BitOn64System": "false"
+    }
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
+}

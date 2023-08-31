@@ -1,12 +1,12 @@
 {
   "PackageInformation": {
-    "SetupType": "MSI",
-    "SetupFile": "AcroRdrDCUpd2300320284_MUI.msp",
-    "Version": "23.003.20284"
+    "SetupType": "EXE",
+    "SetupFile": "setup.exe",
+    "Version": "10.6.5.2"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
-    "ArgumentList": "/update \"#SetupFile\" /quiet /log \"#LogPath\\#LogName.log\""
+    "ArgumentList": "/S"
   },
   "PostInstall": {
     "Remove": [],

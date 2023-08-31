@@ -11,7 +11,7 @@
     "PostInstall": {
         "Remove": [
         ],
-        "Copy": [
+        "CopyFile": [
         ]
     }
 }

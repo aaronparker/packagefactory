@@ -133,29 +133,24 @@ function Copy-File {
     )
     process {
         foreach ($Item in $File) {
-            if (Test-Path -Path $Item.Destination -PathType "Container") {
-                try {
-                    $FilePath = Get-ChildItem -Path $Path -Filter $Item.Source -Recurse -ErrorAction "Continue"
-                    Write-LogFile -Message "Copy-File: Source: $($FilePath.FullName)"
-                    Write-LogFile -Message "Copy-File: Destination: $($Item.Destination)"
-                    $params = @{
-                        Path        = $FilePath.FullName
-                        Destination = $Item.Destination
-                        Force       = $true
-                        ErrorAction = "Continue"
-                        WhatIf      = $Script:WhatIfPref
-                        Verbose     = $Script:VerbosePref
-                    }
-                    Copy-Item @params
+            try {
+                $FilePath = Get-ChildItem -Path $Path -Filter $Item.Source -Recurse -ErrorAction "Continue"
+                Write-LogFile -Message "Copy-File: Source: $($FilePath.FullName)"
+                Write-LogFile -Message "Copy-File: Destination: $($Item.Destination)"
+                $params = @{
+                    Path        = $FilePath.FullName
+                    Destination = $Item.Destination
+                    Container   = $false
+                    Force       = $true
+                    ErrorAction = "Continue"
+                    WhatIf      = $Script:WhatIfPref
+                    Verbose     = $Script:VerbosePref
                 }
-                catch {
-                    Write-LogFile -Message "Copy-File: $($_.Exception.Message)" -LogLevel 3
-                    Write-Warning -Message $_.Exception.Message
-                }
+                Copy-Item @params
             }
-            else {
-                Write-LogFile -Message "Copy-File: Cannot find destination: $($Item.Destination)" -LogLevel 3
-                Write-Warning -Message "Cannot find destination: $($Item.Destination)"
+            catch {
+                Write-LogFile -Message "Copy-File: $($_.Exception.Message)" -LogLevel 3
+                Write-Warning -Message $_.Exception.Message
             }
         }
     }
@@ -236,16 +231,16 @@ function Stop-PathProcess {
 function Uninstall-Msi {
     [CmdletBinding(SupportsShouldProcess = $true)]
     param (
-        [System.String[]] $Caption,
+        [System.String[]] $ProductName,
         [System.String] $LogPath
     )
     process {
-        foreach ($Item in $Caption) {
+        foreach ($Item in $ProductName) {
             try {
-                $Product = Get-CimInstance -Class "Win32_Product" | Where-Object { $_.Caption -like $Item }
+                $Product = Get-CimInstance -Class "Win32_InstalledWin32Program" | Where-Object { $_.Name -like $Item }
                 $params = @{
                     FilePath     = "$Env:SystemRoot\System32\msiexec.exe"
-                    ArgumentList = "/uninstall `"$($Product.IdentifyingNumber)`" /quiet /log `"$LogPath\Uninstall-$($Item -replace " ").log`""
+                    ArgumentList = "/uninstall `"$($Product.MsiProductCode)`" /quiet /log `"$LogPath\Uninstall-$($Item -replace " ").log`""
                     NoNewWindow  = $true
                     PassThru     = $true
                     Wait         = $true
@@ -254,7 +249,7 @@ function Uninstall-Msi {
                     Verbose      = $Script:VerbosePref
                 }
                 $result = Start-Process @params
-                Write-LogFile -Message "$Env:SystemRoot\System32\msiexec.exe /uninstall `"$($Product.IdentifyingNumber)`" /quiet /log `"$LogPath\Uninstall-$($Item -replace " ").log`""
+                Write-LogFile -Message "$Env:SystemRoot\System32\msiexec.exe /uninstall `"$($Product.MsiProductCode)`" /quiet /log `"$LogPath\Uninstall-$($Item -replace " ").log`""
                 Write-LogFile -Message "Msiexec result: $($result.ExitCode)"
                 return $result.ExitCode
             }
@@ -294,7 +289,7 @@ else {
     if ($Install.InstallTasks.StopPath.Count -gt 0) { Stop-PathProcess -Path $Install.InstallTasks.StopPath }
 
     # Uninstall the application
-    if ($Install.InstallTasks.UninstallMsi.Count -gt 0) { Uninstall-Msi -Caption $Install.InstallTasks.UninstallMsi -LogPath $Install.LogPath }
+    if ($Install.InstallTasks.UninstallMsi.Count -gt 0) { Uninstall-Msi -ProductName $Install.InstallTasks.UninstallMsi -LogPath $Install.LogPath }
     if ($Install.InstallTasks.Remove.Count -gt 0) { Remove-Path -Path $Install.InstallTasks.Remove }
 
     # Create the log folder
@@ -359,7 +354,8 @@ else {
         if ($Install.PostInstall.StopPath.Count -gt 0) { Stop-PathProcess -Path $Install.PostInstall.StopPath }
 
         # Perform post install actions
-        if ($Install.PostInstall.Copy.Count -gt 0) { Copy-File -File $Install.PostInstall.Copy }
+        if ($Install.PostInstall.Remove.Count -gt 0) { Remove-Path -Path $Install.PostInstall.Remove }
+        if ($Install.PostInstall.CopyFile.Count -gt 0) { Copy-File -File $Install.PostInstall.CopyFile }
 
         # Execute run tasks
         if ($Install.PostInstall.Run.Count -gt 0) {
@@ -371,7 +367,6 @@ else {
         throw $_
     }
     finally {
-        if ($Install.PostInstall.Remove.Count -gt 0) { Remove-Path -Path $Install.PostInstall.Remove }
         Write-LogFile -Message "Install.ps1 complete. Exit Code: $($result.ExitCode)"
         exit $result.ExitCode
     }

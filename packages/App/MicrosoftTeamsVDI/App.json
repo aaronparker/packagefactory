@@ -9,13 +9,13 @@
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "Teams_windows_x64.msi",
-    "Version": "1.6.00.18681",
+    "Version": "1.6.00.22378",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-Teams.png"
   },
   "Information": {
-    "DisplayName": "Microsoft Teams (VDI install) 1.6.00.18681 x64",
+    "DisplayName": "Microsoft Teams (VDI install) 1.6.00.22378 x64",
     "Description": "Per-machine install for virtual desktop infrastructure. More is possible with Microsoft Teams. Stay connected and access shared content any time to learn, plan, and innovate together.",
     "Publisher": "Microsoft",
     "InformationURL": "https://learn.microsoft.com/en-us/microsoftteams/teams-for-vdi",
@@ -51,7 +51,7 @@
       "Path": "C:\\Program Files (x86)\\Microsoft\\Teams\\current",
       "FileOrFolder": "Teams.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "1.6.00.18681",
+      "VersionValue": "1.6.00.22378",
       "Check32BitOn64System": "false"
     }
   ],

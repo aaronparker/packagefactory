@@ -1,8 +1,8 @@
 {
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "CitrixWorkspaceApp23.5.1.83.exe",
-    "Version": "23.5.1.83"
+    "SetupFile": "CitrixWorkspaceApp23.7.1.18.exe",
+    "Version": "23.7.1.18"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
@@ -10,6 +10,6 @@
   },
   "PostInstall": {
     "Remove": [],
-    "Copy": []
+    "CopyFile": []
   }
 }
