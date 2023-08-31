@@ -173,7 +173,7 @@ process {
                 Get-ChildItem -Path $OutputPath -Recurse -Include "*.intunewin" -ErrorAction "SilentlyContinue" | ForEach-Object { Remove-Item -Path $_.FullName -Force }
 
                 # Download the application installer
-                if ($null -eq $Manifest.Application.Filter) {
+                if ([string]::IsNullOrEmpty($Manifest.Application.Filter)) {
                     Write-Warning -Message "$ApplicationName not supported for automatic download"
                     Write-Msg -Msg "Please ensure application binaries are saved to: '$SourcePath'"
                 }
