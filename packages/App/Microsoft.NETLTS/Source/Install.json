@@ -1,8 +1,8 @@
 {
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "windowsdesktop-runtime-6.0.21-win-x64.exe",
-    "Version": "6.0.21"
+    "SetupFile": "windowsdesktop-runtime-6.0.22-win-x64.exe",
+    "Version": "6.0.22"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
