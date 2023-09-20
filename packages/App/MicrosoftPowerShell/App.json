@@ -8,14 +8,14 @@
   },
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "PowerShell-7.3.6-win-x64.msi",
-    "Version": "7.3.6",
+    "SetupFile": "PowerShell-7.3.7-win-x64.msi",
+    "Version": "7.3.7",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-PowerShellCore.png"
   },
   "Information": {
-    "DisplayName": "Microsoft PowerShell 7.3.6 x64",
+    "DisplayName": "Microsoft PowerShell 7.3.7 x64",
     "Description": "PowerShell is a cross-platform task automation solution made up of a command-line shell, a scripting language, and a configuration management framework. PowerShell runs on Windows, Linux, and macOS.",
     "Publisher": "Microsoft",
     "InformationURL": "https://aka.ms/PowerShell-docs",
@@ -42,7 +42,7 @@
       "Path": "C:\\Program Files\\PowerShell\\7",
       "FileOrFolder": "pwsh.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "7.3.6",
+      "VersionValue": "7.3.7",
       "Check32BitOn64System": "false"
     }
   ],
