@@ -1,4 +1,4 @@
-﻿#Requires -PSEdition Desktop
+#Requires -PSEdition Desktop
 #Requires -Modules MSAL.PS, IntuneWin32App
 <#
     .SYNOPSIS
@@ -45,8 +45,6 @@ begin {}
 process {
     # Read app data from JSON manifest
     $AppData = Get-Content -Path $Json | ConvertFrom-Json
-
-    # Get the Source Folder of the Application
     $AppSourceFolder = ([IO.FileInfo] $Json).Directory.Fullname
     $AppSourceFolder = [System.IO.Path]::Combine($AppSourceFolder, "Source")
 
@@ -65,7 +63,13 @@ process {
         $AppIconFile = $OutFile
     }
     else {
-        $AppIconFile = $AppData.PackageInformation.IconFile
+        # Only if file already exists
+        if (Test-Path -Path $AppIconFile) {
+            $AppIconFile = $AppData.PackageInformation.IconFile
+        } else {
+            $AppIconFile = $null
+        }
+        
     }
 
     # Create default requirement rule
@@ -432,8 +436,8 @@ process {
         $DetectionRules.Add($DetectionRule) | Out-Null
     }
 
-    # Add icon
-    if (Test-Path -Path $AppIconFile) {
+    # Add icon if existing
+    if (![string]::IsNullOrEmpty($AppIconFile)) {
         $Icon = New-IntuneWin32AppIcon -FilePath $AppIconFile
     }
 
@@ -467,7 +471,7 @@ process {
     if ($null -ne $RequirementRules) {
         $Win32AppArgs.Add("AdditionalRequirementRule", $RequirementRules)
     }
-    if (Test-Path -Path $AppIconFile) {
+    if (![string]::IsNullOrEmpty($Icon)) {
         $Win32AppArgs.Add("Icon", $Icon)
     }
     if (-not([System.String]::IsNullOrEmpty($AppData.Information.Notes))) {
