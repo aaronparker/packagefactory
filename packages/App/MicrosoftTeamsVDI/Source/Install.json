@@ -1,8 +1,8 @@
 {
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "Teams_windows_x64.msi",
-    "Version": "1.6.00.24078"
+    "SetupFile": "Teams_windows.msi",
+    "Version": "1.6.00.26474"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
