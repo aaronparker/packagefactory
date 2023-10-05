@@ -112,6 +112,7 @@
       "bin\\installdependencies.sh",
       "bin\\Microsoft.ApplicationInsights.dll",
       "bin\\Microsoft.Applications.Events.Server.dll",
+      "bin\\Microsoft.Azure.DevOps.Comments.WebApi.dll",
       "bin\\Microsoft.Azure.KeyVault.Core.dll",
       "bin\\Microsoft.Azure.Pipelines.Environments.WebApi.dll",
       "bin\\Microsoft.Azure.Pipelines.TestClient.PublishCodeCoverage.dll",
@@ -185,7 +186,7 @@
       "bin\\Mono.Unix.dll",
       "bin\\MS.TF.Pipelines.WebApi.NetStandard.dll",
       "bin\\mscordaccore.dll",
-      "bin\\mscordaccore_amd64_amd64_6.0.1322.58009.dll",
+      "bin\\mscordaccore_amd64_amd64_6.0.2123.36311.dll",
       "bin\\mscordbi.dll",
       "bin\\mscorlib.dll",
       "bin\\mscorrc.dll",
@@ -1645,13 +1646,13 @@
       "externals\\vstsom\\zh-Hant\\TF.resources.dll",
       "externals\\vswhere\\vswhere.exe"
     ],
-    "Version": "3.225.0",
+    "Version": "3.227.1",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-AzurePipelines.png"
   },
   "Information": {
-    "DisplayName": "Microsoft Azure Pipelines Agent 3.225.0 x64",
+    "DisplayName": "Microsoft Azure Pipelines Agent 3.227.1 x64",
     "Description": "The Microsoft Azure Pipelines Agent used to deploy to target machines and create a self hosted pipelines runner in Azure Pipelines.",
     "Publisher": "Microsoft",
     "InformationURL": "https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents",
@@ -1678,7 +1679,7 @@
       "Path": "C:\\agents\\bin",
       "FileOrFolder": "Agent.Worker.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "3.225.0",
+      "VersionValue": "3.227.1",
       "Check32BitOn64System": "false"
     }
   ],
