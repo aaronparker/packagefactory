@@ -8,14 +8,14 @@
   },
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "CitrixWorkspaceApp23.9.0.99.exe",
-    "Version": "23.9.0.99",
+    "SetupFile": "CitrixWorkspaceApp23.9.1.104.exe",
+    "Version": "23.9.1.104",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Citrix-WorkspaceApp.png"
   },
   "Information": {
-    "DisplayName": "Citrix Workspace app Current Release 23.9.0.99",
+    "DisplayName": "Citrix Workspace app Current Release 23.9.1.104",
     "Description": "When powered by Citrix Workspace services, the new Citrix Workspace app gives users instant access to all their SaaS and web apps, their files and mobile apps, and their virtual apps and desktops from an easy-to-use, all-in-one interface. Citrix Workspace app is a single point of entry to all workspace services for users. Users get seamless and secure access to all the apps that they need to stay productive, including features such as embedded browsing and single sign-on.",
     "Publisher": "Citrix",
     "InformationURL": "https://docs.citrix.com/en-us/citrix-workspace-app-for-windows.html",
@@ -42,7 +42,7 @@
       "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\CitrixOnlinePluginPackWeb",
       "ValueName": "DisplayVersion",
       "Operator": "greaterThanOrEqual",
-      "Value": "23.9.0.99",
+      "Value": "23.9.1.104",
       "Check32BitOn64System": "false"
     },
     {
@@ -51,7 +51,7 @@
       "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\Citrix\\ICA Client\\AutoUpdate\\Commandline Policy",
       "ValueName": "LTSROnly",
       "Operator": "equal",
-      "Value": "23.9.0.99",
+      "Value": "23.9.1.104",
       "Check32BitOn64System": "false"
     },
     {
@@ -60,7 +60,7 @@
       "Path": "C:\\Program Files (x86)\\Citrix\\ICA Client",
       "FileOrFolder": "wfica32.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "23.9.0.99",
+      "VersionValue": "23.9.1.104",
       "Check32BitOn64System": "false"
     }
   ],

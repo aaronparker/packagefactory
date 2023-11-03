@@ -1,8 +1,8 @@
 {
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "vlc-3.0.19-win64.msi",
-    "Version": "3.0.19"
+    "SetupFile": "vlc-3.0.20-win64.msi",
+    "Version": "3.0.20"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
