@@ -1,8 +1,8 @@
 {
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "FoxitPDFReader20232_enu_Setup.msi",
-    "Version": "2023.2"
+    "SetupFile": "FoxitPDFEditor20233_enu_Setup.msi",
+    "Version": "2023.3.0.23028"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
