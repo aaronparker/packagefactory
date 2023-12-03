@@ -9,13 +9,13 @@
   "PackageInformation": {
     "SetupType": "EXE",
     "SetupFile": "SSMS-Setup-ENU.exe",
-    "Version": "15.0.18410.0",
+    "Version": "19.2.56.2",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-SSMS.png"
   },
   "Information": {
-    "DisplayName": "Microsoft SQL Server Management Studio 15.0.18410.0",
+    "DisplayName": "Microsoft SQL Server Management Studio 19.2.56.2",
     "Description": "SQL Server Management Studio (SSMS) is an integrated environment for managing any SQL infrastructure, from SQL Server to Azure SQL Database. SSMS provides tools to configure, monitor, and administer instances of SQL Server and databases. Use SSMS to deploy, monitor, and upgrade the data-tier components used by your applications, and build queries and scripts.",
     "Publisher": "Microsoft",
     "InformationURL": "https://docs.microsoft.com/en-au/sql/ssms/download-sql-server-management-studio-ssms",
@@ -42,7 +42,7 @@
       "Path": "C:\\Program Files (x86)\\Microsoft SQL Server Management Studio 18\\Common7\\IDE",
       "FileOrFolder": "Ssms.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "15.0.18410.0",
+      "VersionValue": "19.2.56.2",
       "Check32BitOn64System": "false"
     }
   ],

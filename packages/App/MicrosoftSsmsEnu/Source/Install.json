@@ -1,16 +1,16 @@
 {
-    "PackageInformation": {
-        "SetupType": "EXE",
-        "SetupFile": "SSMS-Setup-ENU.exe",
-        "Version": "15.0.18410.0"
-    },
-    "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
-    "InstallTasks": {
-        "StopProcess": [],
-        "ArgumentList": "/install /quiet /norestart /log \"#LogPath\\#LogName.log\""
-    },
-    "PostInstall": {
-        "Remove": [],
-        "CopyFile": []
-    }
+  "PackageInformation": {
+    "SetupType": "EXE",
+    "SetupFile": "SSMS-Setup-ENU.exe",
+    "Version": "19.2.56.2"
+  },
+  "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
+  "InstallTasks": {
+    "StopProcess": [],
+    "ArgumentList": "/install /quiet /norestart /log \"#LogPath\\#LogName.log\""
+  },
+  "PostInstall": {
+    "Remove": [],
+    "CopyFile": []
+  }
 }
