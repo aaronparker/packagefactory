@@ -1141,8 +1141,8 @@
       "externals\\node10\\bin\\node.lib",
       "externals\\node16\\bin\\node.exe",
       "externals\\node16\\bin\\node.lib",
-      "externals\\node20\\bin\\node.exe",
-      "externals\\node20\\bin\\node.lib",
+      "externals\\node20_1\\bin\\node.exe",
+      "externals\\node20_1\\bin\\node.lib",
       "externals\\nuget\\nuget.exe",
       "externals\\pdbstr\\pdbstr.exe",
       "externals\\symstore\\dbghelp.dll",
@@ -2016,13 +2016,13 @@
       "externals\\vstsom\\zh-Hant\\TF.resources.dll",
       "externals\\vswhere\\vswhere.exe"
     ],
-    "Version": "3.230.0",
+    "Version": "3.230.2",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-AzurePipelines.png"
   },
   "Information": {
-    "DisplayName": "Microsoft Azure Pipelines Agent 3.230.0 x64",
+    "DisplayName": "Microsoft Azure Pipelines Agent 3.230.2 x64",
     "Description": "The Microsoft Azure Pipelines Agent used to deploy to target machines and create a self hosted pipelines runner in Azure Pipelines.",
     "Publisher": "Microsoft",
     "InformationURL": "https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents",
@@ -2049,7 +2049,7 @@
       "Path": "C:\\agents\\bin",
       "FileOrFolder": "Agent.Worker.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "3.230.0",
+      "VersionValue": "3.230.2",
       "Check32BitOn64System": "false"
     }
   ],
