@@ -2,7 +2,7 @@
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "googlechromestandaloneenterprise64.msi",
-    "Version": "120.0.6099.130"
+    "Version": "120.0.6099.199"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
