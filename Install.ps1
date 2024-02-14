@@ -102,7 +102,7 @@ function Get-InstallConfig {
         $InstallFile = Join-Path -Path $Path -ChildPath $File
         Write-LogFile -Message "Read package install config: $InstallFile"
         Get-Content -Path $InstallFile -ErrorAction "Stop" | ConvertFrom-Json -ErrorAction "Continue"
-    } 
+    }
     catch {
         Write-LogFile -Message "Get-InstallConfig: $($_.Exception.Message)" -LogLevel 3
         throw $_
@@ -118,7 +118,7 @@ function Get-Installer {
     if ([System.String]::IsNullOrEmpty($Installer.FullName)) {
         Write-LogFile -Message "File not found: $File" -LogLevel 3
         throw [System.IO.FileNotFoundException]::New("File not found: $File")
-    } 
+    }
     else {
         Write-LogFile -Message "Found installer: $($Installer.FullName)"
         return $Installer.FullName
@@ -147,7 +147,7 @@ function Copy-File {
                     Verbose     = $Script:VerbosePref
                 }
                 Copy-Item @params
-            } 
+            }
             catch {
                 Write-LogFile -Message "Copy-File: $($_.Exception.Message)" -LogLevel 3
                 Write-Warning -Message $_.Exception.Message
@@ -175,7 +175,7 @@ function Remove-Path {
                     }
                     Remove-Item @params
                     Write-LogFile -Message "Remove-Item: $Item"
-                } 
+                }
                 else {
                     $params = @{
                         Path        = $Item
@@ -187,7 +187,7 @@ function Remove-Path {
                     Remove-Item @params
                     Write-LogFile -Message "Remove-Item: $Item"
                 }
-            } 
+            }
             catch {
                 Write-LogFile -Message "Remove-Path error: $($_.Exception.Message)" -LogLevel 3
                 Write-Warning -Message $_.Exception.Message
@@ -214,12 +214,12 @@ function Stop-PathProcess {
                 if ($PSBoundParameters.ContainsKey("Force")) {
                     Get-Process | Where-Object { $_.Path -like $Item } | `
                         Stop-Process -Force @params
-                } 
+                }
                 else {
                     Get-Process | Where-Object { $_.Path -like $Item } | `
                         Stop-Process @params
                 }
-            } 
+            }
             catch {
                 Write-LogFile -Message "Stop-PathProcess error: $($_.Exception.Message)" -LogLevel 2
                 Write-Warning -Message $_.Exception.Message
@@ -253,7 +253,7 @@ function Uninstall-Msi {
                     Write-LogFile -Message "$Env:SystemRoot\System32\msiexec.exe /uninstall `"$($Product.MsiProductCode)`" /quiet /log `"$LogPath\Uninstall-$($Item -replace " ").log`""
                     Write-LogFile -Message "Msiexec result: $($result.ExitCode)"
                     return $result.ExitCode
-                } 
+                }
                 catch {
                     Write-LogFile -Message "Uninstall-Msi error: $($_.Exception.Message)" -LogLevel 3
                     Write-Warning -Message $_.Exception.Message
@@ -284,7 +284,7 @@ $Installer = Get-Installer -File $Install.PackageInformation.SetupFile
 if ([System.String]::IsNullOrEmpty($Installer)) {
     Write-LogFile -Message "File not found: $($Install.PackageInformation.SetupFile)" -LogLevel 3
     throw [System.IO.FileNotFoundException]::New("File not found: $($Install.PackageInformation.SetupFile)")
-} 
+}
 else {
 
     # Stop processes before installing the application
@@ -297,7 +297,7 @@ else {
     # Create the log folder
     if (Test-Path -Path $Install.LogPath -PathType "Container") {
         Write-LogFile -Message "Directory exists: $($Install.LogPath)"
-    } 
+    }
     else {
         Write-LogFile -Message "Create directory: $($Install.LogPath)"
         New-Item -Path $Install.LogPath -ItemType "Directory" -ErrorAction "Continue" | Out-Null
@@ -363,11 +363,11 @@ else {
         if ($Install.PostInstall.Run.Count -gt 0) {
             foreach ($Task in $Install.PostInstall.Run) { Invoke-Expression -Command $Task }
         }
-    } 
+    }
     catch {
         Write-LogFile -Message $_.Exception.Message -LogLevel 3
         throw $_
-    } 
+    }
     finally {
         Write-LogFile -Message "Install.ps1 complete. Exit Code: $($result.ExitCode)"
         exit $result.ExitCode
