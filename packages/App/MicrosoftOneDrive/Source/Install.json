@@ -2,7 +2,7 @@
   "PackageInformation": {
     "SetupType": "EXE",
     "SetupFile": "OneDriveSetup.exe",
-    "Version": "23.246.1127.0002"
+    "Version": "24.023.0131.0003"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {

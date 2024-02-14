@@ -2,7 +2,7 @@
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "MicrosoftEdgeEnterpriseX64.msi",
-    "Version": "120.0.2210.121"
+    "Version": "121.0.2277.112"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
