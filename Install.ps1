@@ -189,7 +189,7 @@ function Remove-Path {
                 }
             }
             catch {
-                Write-LogFile -Message "Remove-Path error: $($_.Exception.Message)" -Severity 3
+                Write-LogFile -Message "Remove-Path error: $($_.Exception.Message)" -LogLevel 3
                 Write-Warning -Message $_.Exception.Message
             }
         }
@@ -221,7 +221,7 @@ function Stop-PathProcess {
                 }
             }
             catch {
-                Write-LogFile -Message "Stop-PathProcess error: $($_.Exception.Message)" -Severity 2
+                Write-LogFile -Message "Stop-PathProcess error: $($_.Exception.Message)" -LogLevel 2
                 Write-Warning -Message $_.Exception.Message
             }
         }
@@ -236,27 +236,29 @@ function Uninstall-Msi {
     )
     process {
         foreach ($Item in $ProductName) {
-            try {
+            if ($PSCmdlet.ShouldProcess($Item)) {
                 $Product = Get-CimInstance -Class "Win32_InstalledWin32Program" | Where-Object { $_.Name -like $Item }
-                $params = @{
-                    FilePath     = "$Env:SystemRoot\System32\msiexec.exe"
-                    ArgumentList = "/uninstall `"$($Product.MsiProductCode)`" /quiet /log `"$LogPath\Uninstall-$($Item -replace " ").log`""
-                    NoNewWindow  = $true
-                    PassThru     = $true
-                    Wait         = $true
-                    ErrorAction  = "Continue"
-                    WhatIf       = $Script:WhatIfPref
-                    Verbose      = $Script:VerbosePref
+                try {
+                    $Product = Get-CimInstance -Class "Win32_InstalledWin32Program" | Where-Object { $_.Name -like $Item }
+                    $params = @{
+                        FilePath     = "$Env:SystemRoot\System32\msiexec.exe"
+                        ArgumentList = "/uninstall `"$($Product.MsiProductCode)`" /quiet /log `"$LogPath\Uninstall-$($Item -replace " ").log`""
+                        NoNewWindow  = $true
+                        PassThru     = $true
+                        Wait         = $true
+                        ErrorAction  = "Continue"
+                        Verbose      = $Script:VerbosePref
+                    }
+                    $result = Start-Process @params
+                    Write-LogFile -Message "$Env:SystemRoot\System32\msiexec.exe /uninstall `"$($Product.MsiProductCode)`" /quiet /log `"$LogPath\Uninstall-$($Item -replace " ").log`""
+                    Write-LogFile -Message "Msiexec result: $($result.ExitCode)"
+                    return $result.ExitCode
                 }
-                $result = Start-Process @params
-                Write-LogFile -Message "$Env:SystemRoot\System32\msiexec.exe /uninstall `"$($Product.MsiProductCode)`" /quiet /log `"$LogPath\Uninstall-$($Item -replace " ").log`""
-                Write-LogFile -Message "Msiexec result: $($result.ExitCode)"
-                return $result.ExitCode
-            }
-            catch {
-                Write-LogFile -Message "Uninstall-Msi error: $($_.Exception.Message)" -Severity 3
-                Write-Warning -Message $_.Exception.Message
-            }
+                catch {
+                    Write-LogFile -Message "Uninstall-Msi error: $($_.Exception.Message)" -LogLevel 3
+                    Write-Warning -Message $_.Exception.Message
+                }
+            } 
         }
     }
 }
