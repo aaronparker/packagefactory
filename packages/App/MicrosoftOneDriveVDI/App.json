@@ -9,13 +9,13 @@
   "PackageInformation": {
     "SetupType": "EXE",
     "SetupFile": "OneDriveSetup.exe",
-    "Version": "24.045.0303.0003",
+    "Version": "24.047.0305.0003",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-OneDrive.png"
   },
   "Information": {
-    "DisplayName": "Microsoft OneDrive (VDI install) 24.045.0303.0003 AMD64",
+    "DisplayName": "Microsoft OneDrive (VDI install) 24.047.0305.0003 AMD64",
     "Description": "Per-machine install for virtual desktop infrastructure. With Microsoft OneDrive, you can easily and securely store and access your files from all your devices. You can work with others regardless of whether they're inside or outside your organization and terminate that sharing whenever you want.",
     "Publisher": "Microsoft",
     "InformationURL": "https://learn.microsoft.com/en-us/sharepoint/per-machine-installation",
@@ -42,7 +42,7 @@
       "Path": "C:\\Program Files\\Microsoft OneDrive",
       "FileOrFolder": "OneDrive.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "24.045.0303.0003",
+      "VersionValue": "24.047.0305.0003",
       "Check32BitOn64System": "false"
     },
     {
@@ -51,7 +51,7 @@
       "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\OneDrive",
       "ValueName": "Version",
       "Operator": "greaterThanOrEqual",
-      "Value": "24.045.0303.0003",
+      "Value": "24.047.0305.0003",
       "Check32BitOn64System": "false"
     }
   ],
