@@ -8,14 +8,14 @@
   },
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "AcroRdrDCx642400120643_MUI.exe",
-    "Version": "24.001.20643",
+    "SetupFile": "AcroRdrDCx642400220687_MUI.exe",
+    "Version": "24.002.20687",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Adobe-AcrobatReader.png"
   },
   "Information": {
-    "DisplayName": "Adobe Acrobat Reader DC 24.001.20643 x64",
+    "DisplayName": "Adobe Acrobat Reader DC 24.002.20687 x64",
     "Description": "Adobe Acrobat Reader is the free, trusted global standard for viewing, printing, e-signing, sharing, and annotating PDFs. View PDFs, Leave comments or annotate PDFs, Fill, e-sign, and lock your forms, Collaborate better with PDFs.",
     "Publisher": "Adobe",
     "InformationURL": "https://www.adobe.com/acrobat/pdf-reader.html",
@@ -43,7 +43,7 @@
       "Path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat",
       "FileOrFolder": "Acrobat.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "24.001.20643",
+      "VersionValue": "24.002.20687",
       "Check32BitOn64System": "false"
     }
   ],
