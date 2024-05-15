@@ -12,7 +12,7 @@
       "x64/Release/FSLogixAppsRuleEditorSetup.exe",
       "x64/Release/FSLogixAppsSetup.exe"
     ],
-    "Version": "2.9.8784.63912"
+    "Version": "2.9.8884.27471"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {

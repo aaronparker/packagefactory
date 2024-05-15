@@ -19,13 +19,13 @@
       "x64/Release/FSLogixAppsRuleEditorSetup.exe",
       "x64/Release/FSLogixAppsSetup.exe"
     ],
-    "Version": "2.9.8784.63912",
+    "Version": "2.9.8884.27471",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/MicrosoftFSLogixApps.png"
   },
   "Information": {
-    "DisplayName": "Microsoft FSLogix Apps 2.9.8784.63912",
+    "DisplayName": "Microsoft FSLogix Apps 2.9.8884.27471",
     "Description": "FSLogix enhances and enables user profiles in Windows remote computing environments.",
     "Publisher": "Microsoft",
     "InformationURL": "https://learn.microsoft.com/en-us/fslogix/install-ht",
@@ -52,7 +52,7 @@
       "Path": "C:\\Program Files\\FSLogix\\Apps",
       "FileOrFolder": "frx.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "2.9.8784.63912",
+      "VersionValue": "2.9.8884.27471",
       "Check32BitOn64System": "false"
     },
     {
@@ -61,7 +61,7 @@
       "Path": "C:\\Program Files\\FSLogix\\Apps",
       "FileOrFolder": "frxshell.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "2.9.8784.63912",
+      "VersionValue": "2.9.8884.27471",
       "Check32BitOn64System": "false"
     },
     {
@@ -70,7 +70,7 @@
       "Path": "C:\\Program Files\\FSLogix\\Apps",
       "FileOrFolder": "frxsvc.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "2.9.8784.63912",
+      "VersionValue": "2.9.8884.27471",
       "Check32BitOn64System": "false"
     }
   ],
