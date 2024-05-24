@@ -1,8 +1,8 @@
 {
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "windowsdesktop-runtime-7.0.14-win-x64.exe",
-    "Version": "7.0.14"
+    "SetupFile": "windowsdesktop-runtime-7.0.19-win-x64.exe",
+    "Version": "7.0.19"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
