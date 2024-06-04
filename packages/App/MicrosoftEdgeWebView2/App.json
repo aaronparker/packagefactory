@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "MicrosoftEdgeWebView2Runtime",
-    "Filter": "Invoke-EvergreenApp -Name \"MicrosoftEdgeWebView2Runtime\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Channel -eq \"Stable\" } | Sort-Object -Property @{ Expression = { [System.Version]$_.Version }; Descending = $true } | Select-Object -First 1",
+    "Filter": "Get-EvergreenAppFromApi -Name \"MicrosoftEdgeWebView2Runtime\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Channel -eq \"Stable\" } | Sort-Object -Property @{ Expression = { [System.Version]$_.Version }; Descending = $true } | Select-Object -First 1",
     "Title": "Microsoft Edge WebView2 Runtime",
     "Language": "en-US",
     "Architecture": "x64"

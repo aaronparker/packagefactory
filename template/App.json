@@ -1,7 +1,7 @@
 {
     "Application": {
         "Name": "Application name",
-        "Filter": "Invoke-EvergreenApp -Name \"AdobeAcrobatReaderDC\" | Where-Object { $_.Language -eq \"MUI\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+        "Filter": "Get-EvergreenAppFromApi -Name \"AdobeAcrobatReaderDC\" | Where-Object { $_.Language -eq \"MUI\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
         "Title": "Application name/title used in the Intune package",
         "Language": "English",
         "Architecture": "x64"

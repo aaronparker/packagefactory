@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "MicrosoftTeamsVDI",
-    "Filter": "Invoke-EvergreenApp -Name \"MicrosoftTeams\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Ring -eq \"General\" -and $_.Type -eq \"msi\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenAppFromApi -Name \"MicrosoftTeams\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Ring -eq \"General\" -and $_.Type -eq \"msi\" } | Select-Object -First 1",
     "Title": "Microsoft Teams (VDI install)",
     "Language": "en-US",
     "Architecture": "x64"

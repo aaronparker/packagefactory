@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "ImageGlass",
-    "Filter": "Invoke-EvergreenApp -Name \"ImageGlass\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Uri -match \"x64.msi$\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenAppFromApi -Name \"ImageGlass\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Uri -match \"x64.msi$\" } | Select-Object -First 1",
     "Title": "ImageGlass",
     "Language": "en-US",
     "Architecture": "x64"

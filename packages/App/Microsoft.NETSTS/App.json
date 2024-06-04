@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "Microsoft.NETCurrent",
-    "Filter": "Invoke-EvergreenApp -Name \"Microsoft.NET\" | Where-Object { $_.Installer -eq \"windowsdesktop\" -and $_.Architecture -eq \"x64\" -and $_.Channel -eq \"STS\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenAppFromApi -Name \"Microsoft.NET\" | Where-Object { $_.Installer -eq \"windowsdesktop\" -and $_.Architecture -eq \"x64\" -and $_.Channel -eq \"STS\" } | Select-Object -First 1",
     "Title": "Microsoft .NET Desktop Runtime Current",
     "Language": "en-US",
     "Architecture": "x64"

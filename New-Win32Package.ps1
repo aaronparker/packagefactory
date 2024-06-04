@@ -238,7 +238,7 @@ process {
 
                     # Download the application installer or run command in .Filter
                     Write-Msg -Msg "Invoke filter: '$($Manifest.Application.Filter)'"
-                    if ($Manifest.Application.Filter -match "Invoke-EvergreenApp|Get-EvergreenApp") {
+                    if ($Manifest.Application.Filter -match "Get-EvergreenAppFromApi|Get-EvergreenApp") {
                         # Evergreen
                         Write-Msg -Msg "Downloading with Evergreen to: '$SourcePath'"
                         $Result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -LiteralPath $SourcePath

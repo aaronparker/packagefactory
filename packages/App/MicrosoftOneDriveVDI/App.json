@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "MicrosoftOneDrive",
-    "Filter": "Invoke-EvergreenApp -Name \"MicrosoftOneDrive\" | Where-Object { $_.Architecture -eq \"AMD64\" -and $_.Ring -eq \"Production\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenAppFromApi -Name \"MicrosoftOneDrive\" | Where-Object { $_.Architecture -eq \"AMD64\" -and $_.Ring -eq \"Production\" } | Select-Object -First 1",
     "Title": "Microsoft OneDrive (VDI install)",
     "Language": "en-US",
     "Architecture": "x64"

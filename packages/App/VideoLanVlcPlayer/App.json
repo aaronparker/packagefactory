@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "VideoLanVlcPlayer",
-    "Filter": "Invoke-EvergreenApp -Name \"VideoLanVlcPlayer\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Type -eq \"MSI\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenAppFromApi -Name \"VideoLanVlcPlayer\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Type -eq \"MSI\" } | Select-Object -First 1",
     "Title": "VideoLAN VLC media player",
     "Language": "en-US",
     "Architecture": "x64"
