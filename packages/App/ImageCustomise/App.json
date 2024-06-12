@@ -28,7 +28,8 @@
     "InstallCommand": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -ExecutionPolicy RemoteSigned -File .\\Install-Defaults.ps1",
     "UninstallCommand": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -ExecutionPolicy RemoteSigned -File .\\Remove-Defaults.ps1",
     "InstallExperience": "system",
-    "DeviceRestartBehavior": "suppress"
+    "DeviceRestartBehavior": "suppress",
+    "AllowAvailableUninstall": "false"
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",

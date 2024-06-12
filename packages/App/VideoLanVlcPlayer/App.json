@@ -28,7 +28,8 @@
     "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
     "UninstallCommand": "MsiExec.exe /X \"{1BB20266-7C52-4909-B075-22156F75D22C}\" /quiet",
     "InstallExperience": "system",
-    "DeviceRestartBehavior": "suppress"
+    "DeviceRestartBehavior": "suppress",
+    "AllowAvailableUninstall": "false"
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",

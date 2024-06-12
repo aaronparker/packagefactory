@@ -24,7 +24,8 @@
     "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Save-LogSecrets.ps1",
     "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Remove-LogSecrets.ps1",
     "InstallExperience": "system",
-    "DeviceRestartBehavior": "suppress"
+    "DeviceRestartBehavior": "suppress",
+    "AllowAvailableUninstall": "false"
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",

@@ -28,7 +28,8 @@
     "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
     "UninstallCommand": "C:\\Program Files\\Mozilla Firefox\\uninstall\\helper.exe /S",
     "InstallExperience": "system",
-    "DeviceRestartBehavior": "suppress"
+    "DeviceRestartBehavior": "suppress",
+    "AllowAvailableUninstall": "false"
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",

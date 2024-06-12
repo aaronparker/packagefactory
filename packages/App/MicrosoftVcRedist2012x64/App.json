@@ -28,7 +28,8 @@
         "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
         "UninstallCommand": "\"C:\\ProgramData\\Package Cache\\{ca67548a-5ebe-413a-b50c-4b9ceb6d66c6}\\vcredist_x64.exe\" /uninstall /quiet /noreboot",
         "InstallExperience": "system",
-        "DeviceRestartBehavior": "basedOnReturnCode"
+        "DeviceRestartBehavior": "basedOnReturnCode",
+        "AllowAvailableUninstall": "false"
     },
     "RequirementRule": {
         "MinimumRequiredOperatingSystem": "W10_1809",
