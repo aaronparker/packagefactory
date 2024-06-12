@@ -231,6 +231,7 @@ process {
                         Path        = "$([System.IO.Path]::Combine($AppPath, "Source"))\*"
                         Destination = $SourcePath
                         Recurse     = $true
+                        Exclude     = "Deploy-Application.ps1"
                         Force       = $true
                         ErrorAction = "Stop"
                     }
@@ -347,10 +348,18 @@ process {
                 }
 
                 #region Create the intunewin package
+                # Adjust params for New-IntuneWin32AppPackage using PSAppDeployToolkit
+                $IntuneWinSetupFile = $Manifest.PackageInformation.SetupFile
+                if (Test-Path -Path $([System.IO.Path]::Combine($AppPath, "Source", "Deploy-Application.ps1"))) {
+                    # Revert source path
+                    $SourcePath = [System.IO.Path]::Combine($WorkingPath, $ApplicationName, "Source")
+                    $IntuneWinSetupFile = "Deploy-Application.exe"
+                }
+
                 Write-Msg -Msg "Create intunewin package in: '$Path\output'"
                 $params = @{
                     SourceFolder = $SourcePath
-                    SetupFile    = $Manifest.PackageInformation.SetupFile
+                    SetupFile    = $IntuneWinSetupFile
                     OutputFolder = $OutputPath
                     Force        = $true
                 }
