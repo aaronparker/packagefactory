@@ -16,14 +16,14 @@
         "InstallCommand": "",
         "UninstallCommand": "",
         "InstallExperience": "system \\ user",
-        "DeviceRestartBehavior": "suppress \\ force \\ basedOnReturnCode \\ allow"
+        "DeviceRestartBehavior": "suppress \\ force \\ basedOnReturnCode \\ allow",
+        "AllowAvailableUninstall": "false \\ true"
     },
     "RequirementRule": {
         "MinimumRequiredOperatingSystem": "W10_1809",
         "Architecture": "All \\ x64 \\ x86"
     },
-    "CustomRequirementRule": [
-    ],
+    "CustomRequirementRule": [],
     "DetectionRule": [
         {
             "Type": "Registry",
