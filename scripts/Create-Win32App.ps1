@@ -479,7 +479,7 @@ process {
         $Win32AppArgs.Add("UninstallCommandLine", $AppData.Program.UninstallCommand)
     }
     if (-not([System.String]::IsNullOrEmpty($AppData.Program.AllowAvailableUninstall))) {
-        $Win32AppArgs.Add("AllowAvailableUninstall", [System.Convert]::ToBoolean($AppData.Program.AllowAvailableUninstall))
+        $Win32AppArgs.Add("AllowAvailableUninstall", $AppData.Program.AllowAvailableUninstall)
     }
 
     if ($PSBoundParameters["Validate"]) {

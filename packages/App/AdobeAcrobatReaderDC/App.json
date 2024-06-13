@@ -30,7 +30,7 @@
     "UninstallCommand": "Deploy-Application.exe -DeploymentType \"Uninstall\" -DeployMode \"Silent\"",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress",
-    "AllowAvailableUninstall": "false"
+    "AllowAvailableUninstall": false
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",

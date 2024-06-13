@@ -29,7 +29,7 @@
     "UninstallCommand": "msiexec.exe /X \"{435AF226-840F-49ED-8F03-4B1356F7740F}\" /quiet",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "basedOnReturnCode",
-    "AllowAvailableUninstall": "false"
+    "AllowAvailableUninstall": false
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",

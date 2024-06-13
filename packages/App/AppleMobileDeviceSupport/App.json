@@ -1,7 +1,5 @@
 {
-  "Application": {
-
-  },
+  "Application": {},
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "AppleMobileDeviceSupport64.msi",
@@ -25,7 +23,7 @@
     "UninstallCommand": "MsiExec.exe /X \"{2B3CA448-5266-480F-85FA-2FCCB3C8712C}\" /quiet",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress",
-    "AllowAvailableUninstall": "false"
+    "AllowAvailableUninstall": false
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",
