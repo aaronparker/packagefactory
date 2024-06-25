@@ -1,7 +1,5 @@
 {
-  "Application": {
-
-  },
+  "Application": {},
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "ConnectWiseControl.ClientSetup.msi",
@@ -25,7 +23,7 @@
     "UninstallCommand": "MsiExec.exe /X \"{CBF0B9B6-05FF-4D3A-B0EA-EDA3438E941F}\" /qn",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress",
-    "AllowAvailableUninstall": "false"
+    "AllowAvailableUninstall": false
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",

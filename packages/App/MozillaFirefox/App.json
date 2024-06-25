@@ -29,7 +29,7 @@
     "UninstallCommand": "C:\\Program Files\\Mozilla Firefox\\uninstall\\helper.exe /S",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress",
-    "AllowAvailableUninstall": "false"
+    "AllowAvailableUninstall": false
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",

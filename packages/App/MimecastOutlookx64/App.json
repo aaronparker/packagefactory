@@ -1,7 +1,5 @@
 {
-  "Application": {
-
-  },
+  "Application": {},
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "Mimecast for outlook 7.10.1.133 (x64).msi",
@@ -25,7 +23,7 @@
     "UninstallCommand": "MsiExec.exe /X \"{83F8DF4E-C625-4DCD-93A3-DE063BC32D49}\" /quiet /log \"C:\\ProgramData\\PackageFactory\\logs\\MimecastOutlook.log\"",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress",
-    "AllowAvailableUninstall": "false"
+    "AllowAvailableUninstall": false
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",

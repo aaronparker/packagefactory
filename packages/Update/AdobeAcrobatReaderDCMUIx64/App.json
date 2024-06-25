@@ -29,7 +29,7 @@
     "UninstallCommand": "msiexec.exe /X \"AdobeAcrobatReaderDCMUIUpdates\" /quiet",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "basedOnReturnCode",
-    "AllowAvailableUninstall": "false"
+    "AllowAvailableUninstall": false
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",
