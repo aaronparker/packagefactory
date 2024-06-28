@@ -79,6 +79,9 @@ foreach ($ManifestJson in $ManifestList) {
                         $Manifest.PackageInformation.SetupFile = $SetupFile -replace "%20", " "
                         $Manifest.Program.InstallCommand = $Manifest.Program.InstallTemplate -replace "#SetupFile", $SetupFile -replace "%20", " "
                     }
+                    elseif ($AppUpdate.URI -match "\.intunewin$") {
+                        # Do nothing because the download is already in intunewin format
+                    }
                     else {
                         if ([System.Boolean]($AppUpdate.PSobject.Properties.name -match "Filename")) {
                             $Manifest.PackageInformation.SetupFile = $AppUpdate.Filename -replace "%20", " "

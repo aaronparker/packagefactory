@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "ImageCustomise",
-    "Filter": "Get-EvergreenAppFromApi -Name \"stealthpuppyWindowsCustomisedDefaults\" | Where-Object { $_.Type -eq \"zip\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenAppFromApi -Name \"stealthpuppyWindowsCustomisedDefaults\" | Where-Object { $_.Type -eq \"intunewin\" } | Select-Object -First 1",
     "Title": "Windows Customised Defaults",
     "Language": "en-US",
     "Architecture": "x64"

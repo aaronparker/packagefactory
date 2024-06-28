@@ -347,14 +347,20 @@ process {
                 }
 
                 #region Create the intunewin package
-                Write-Msg -Msg "Create intunewin package in: '$Path\output'"
-                $params = @{
-                    SourceFolder = $SourcePath
-                    SetupFile    = $Manifest.PackageInformation.SetupFile
-                    OutputFolder = $OutputPath
-                    Force        = $true
+                if ($Result.FullName -match "\.intunewin$") {
+                    Write-Msg -Msg "Copy downloaded intunewin file to: '$Path\output'"
+                    Copy-Item -Path $Result.FullName -Destination $OutputPath -Force
                 }
-                $IntuneWinPackage = New-IntuneWin32AppPackage @params
+                else {
+                    Write-Msg -Msg "Create intunewin package in: '$Path\output'"
+                    $params = @{
+                        SourceFolder = $SourcePath
+                        SetupFile    = $Manifest.PackageInformation.SetupFile
+                        OutputFolder = $OutputPath
+                        Force        = $true
+                    }
+                    $IntuneWinPackage = New-IntuneWin32AppPackage @params
+                }
 
                 # Get the package file
                 $PackageFile = Get-ChildItem -Path $OutputPath -Recurse -Include "*.intunewin" -ErrorAction "SilentlyContinue"
