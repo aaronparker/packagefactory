@@ -1,8 +1,8 @@
 {
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "VSCodeSetup-x64-1.90.2.exe",
-    "Version": "1.90.2"
+    "SetupFile": "VSCodeSetup-x64-1.91.0.exe",
+    "Version": "1.91.0"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
