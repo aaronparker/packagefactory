@@ -1,8 +1,8 @@
 {
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "windowsdesktop-runtime-8.0.6-win-x64.exe",
-    "Version": "8.0.6"
+    "SetupFile": "windowsdesktop-runtime-8.0.7-win-x64.exe",
+    "Version": "8.0.7"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
