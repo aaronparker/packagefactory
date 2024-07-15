@@ -8,14 +8,14 @@
   },
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "npp.8.6.8.Installer.x64.exe",
-    "Version": "8.6.8",
+    "SetupFile": "npp.8.6.9.Installer.x64.exe",
+    "Version": "8.6.9",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/NotepadPP.png"
   },
   "Information": {
-    "DisplayName": "Notepad++ 8.6.8 x64",
+    "DisplayName": "Notepad++ 8.6.9 x64",
     "Description": "Notepad++ is a free source code editor and Notepad replacement that supports several languages. By optimizing as many routines as possible without losing user friendliness, Notepad++ is trying to reduce the world carbon dioxide emissions. When using less CPU power, the PC can throttle down and reduce power consumption, resulting in a greener environment.",
     "Publisher": "Don Ho",
     "InformationURL": "https://notepad-plus-plus.org/",
@@ -43,7 +43,7 @@
       "Path": "C:\\Program Files\\Notepad++",
       "FileOrFolder": "Notepad++.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "8.6.8",
+      "VersionValue": "8.6.9",
       "Check32BitOn64System": "false"
     }
   ],
