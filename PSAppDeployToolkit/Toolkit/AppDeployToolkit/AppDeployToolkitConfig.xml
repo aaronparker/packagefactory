@@ -19,8 +19,8 @@
     <!--Configuration
     File Details-->
     <Config_File>
-        <Config_Version>3.10.1</Config_Version>
-        <Config_Date>05/03/2024</Config_Date>
+        <Config_Version>3.10.2</Config_Version>
+        <Config_Date>08/13/2024</Config_Date>
     </Config_File>
 
     <!--Toolkit
@@ -318,7 +318,7 @@
         <DeferPrompt_WarningMessage>Quand le temps aura expiré, vous n'aurez plus la possibilité de reporter.</DeferPrompt_WarningMessage>
         <DeferPrompt_RemainingDeferrals>Nombre(s) de report restant(s):</DeferPrompt_RemainingDeferrals>
         <DeferPrompt_Deadline>Temps limite:</DeferPrompt_Deadline>
-        <WelcomePrompt_CountdownMessage>Le {0} va continuer automatiquement:</WelcomePrompt_CountdownMessage>
+        <WelcomePrompt_CountdownMessage>L'{0} va continuer automatiquement:</WelcomePrompt_CountdownMessage>
         <WelcomePrompt_CustomMessage></WelcomePrompt_CustomMessage>
 
 
