@@ -168,13 +168,13 @@
       "bin\\MonoPosixHelper.dll",
       "bin\\MS.TF.Pipelines.WebApi.NetStandard.dll",
       "bin\\mscordaccore.dll",
-      "bin\\mscordaccore_amd64_amd64_6.0.2924.17105.dll",
+      "bin\\mscordaccore_amd64_amd64_6.0.3224.31407.dll",
       "bin\\mscordbi.dll",
       "bin\\mscorlib.dll",
       "bin\\mscorrc.dll",
       "bin\\msquic.dll",
       "bin\\NCrontab.Signed.dll",
-      "bin\\net6.json",
+      "bin\\net8.json",
       "bin\\netstandard.dll",
       "bin\\Newtonsoft.Json.Bson.dll",
       "bin\\Newtonsoft.Json.dll",
@@ -1660,13 +1660,13 @@
       "externals\\vstsom\\zh-Hant\\TF.resources.dll",
       "externals\\vswhere\\vswhere.exe"
     ],
-    "Version": "3.242.1",
+    "Version": "3.243.0",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-AzurePipelines.png"
   },
   "Information": {
-    "DisplayName": "Microsoft Azure Pipelines Agent 3.242.1 x64",
+    "DisplayName": "Microsoft Azure Pipelines Agent 3.243.0 x64",
     "Description": "The Microsoft Azure Pipelines Agent used to deploy to target machines and create a self hosted pipelines runner in Azure Pipelines.",
     "Publisher": "Microsoft",
     "InformationURL": "https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents",
@@ -1694,7 +1694,7 @@
       "Path": "C:\\agents\\bin",
       "FileOrFolder": "Agent.Worker.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "3.242.1",
+      "VersionValue": "3.243.0",
       "Check32BitOn64System": "false"
     }
   ],
