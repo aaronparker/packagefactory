@@ -413,6 +413,7 @@
       "bin\\powershell\\Add-WindowsSdkCapabilities.ps1",
       "bin\\powershell\\Add-XamarinAndroidCapabilities.ps1",
       "bin\\powershell\\Get-LocalGroupMembership.ps1",
+      "bin\\powershell\\Start-AzpTask.ps1",
       "bin\\powershell\\CapabilityHelpers\\CapabilityFunctions.ps1",
       "bin\\powershell\\CapabilityHelpers\\CapabilityHelpers.psm1",
       "bin\\powershell\\CapabilityHelpers\\PathFunctions.ps1",
@@ -1660,13 +1661,13 @@
       "externals\\vstsom\\zh-Hant\\TF.resources.dll",
       "externals\\vswhere\\vswhere.exe"
     ],
-    "Version": "3.243.0",
+    "Version": "3.243.1",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-AzurePipelines.png"
   },
   "Information": {
-    "DisplayName": "Microsoft Azure Pipelines Agent 3.243.0 x64",
+    "DisplayName": "Microsoft Azure Pipelines Agent 3.243.1 x64",
     "Description": "The Microsoft Azure Pipelines Agent used to deploy to target machines and create a self hosted pipelines runner in Azure Pipelines.",
     "Publisher": "Microsoft",
     "InformationURL": "https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents",
@@ -1694,7 +1695,7 @@
       "Path": "C:\\agents\\bin",
       "FileOrFolder": "Agent.Worker.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "3.243.0",
+      "VersionValue": "3.243.1",
       "Check32BitOn64System": "false"
     }
   ],
