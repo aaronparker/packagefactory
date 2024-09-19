@@ -61,7 +61,7 @@ process {
         $AppIconFile = $OutFile
     }
     else {
-        $AppIconFile = [System.IO.Path]::Combine($PSScriptRoot, $AppData.PackageInformation.IconFile)
+        $AppIconFile = [System.IO.Path]::Combine((Get-Item $Json).DirectoryName, $AppData.PackageInformation.IconFile)
     }
 
     # Create default requirement rule
