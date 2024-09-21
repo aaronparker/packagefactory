@@ -1,21 +1,21 @@
 {
   "Application": {
     "Name": "AdobeAcrobatReaderDCMUIUpdates",
-    "Filter": "Invoke-EvergreenApp -Name \"AdobeAcrobat\" | Where-Object { $_.Track -eq \"DC\" -and $_.Product -eq \"Reader\" -and $_.Language -eq \"Multi\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenAppFromApi -Name \"AdobeAcrobat\" | Where-Object { $_.Track -eq \"DC\" -and $_.Product -eq \"Reader\" -and $_.Language -eq \"Multi\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
     "Title": "Update for Adobe Acrobat Reader DC MUI",
     "Language": "en-US",
     "Architecture": "x64"
   },
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "AcroRdrDCx64Upd2300620320_MUI.msp",
-    "Version": "23.006.20320",
+    "SetupFile": "AcroRdrDCx64Upd2400220759_MUI.msp",
+    "Version": "24.002.20759",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Adobe-AcrobatUpdate.png"
   },
   "Information": {
-    "DisplayName": "Update for Adobe Acrobat Reader DC MUI 23.006.20320 x64",
+    "DisplayName": "Update for Adobe Acrobat Reader DC MUI 24.002.20759 x64",
     "Description": "Update for Adobe Acrobat Reader DC.",
     "Publisher": "Adobe",
     "InformationURL": "https://www.adobe.com/devnet-docs/acrobatetk/tools/ReleaseNotesDC/index.html",
@@ -28,7 +28,8 @@
     "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
     "UninstallCommand": "msiexec.exe /X \"AdobeAcrobatReaderDCMUIUpdates\" /quiet",
     "InstallExperience": "system",
-    "DeviceRestartBehavior": "basedOnReturnCode"
+    "DeviceRestartBehavior": "basedOnReturnCode",
+    "AllowAvailableUninstall": "false"
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",
@@ -41,7 +42,7 @@
       "Path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat",
       "FileOrFolder": "Acrobat.exe",
       "Operator": "lessThan",
-      "VersionValue": "23.006.20320",
+      "VersionValue": "24.002.20759",
       "Check32BitOn64System": "false"
     }
   ],
@@ -52,7 +53,7 @@
       "Path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat",
       "FileOrFolder": "Acrobat.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "23.006.20320",
+      "VersionValue": "24.002.20759",
       "Check32BitOn64System": "false"
     }
   ],

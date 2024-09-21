@@ -83,7 +83,8 @@ This block contains the desired program information of a Win32 app. InstallComma
     "InstallCommand": "<-- Only required when SetupType is set as EXE -->",
     "UninstallCommand": "<-- Only required when SetupType is set as EXE -->",
     "InstallExperience": "system \\ user",
-    "DeviceRestartBehavior": "suppress \\ force \\ basedOnReturnCode \\ allow"
+    "DeviceRestartBehavior": "suppress \\ force \\ basedOnReturnCode \\ allow",
+    "AllowAvailableUninstall": "false \\ true"
 }
 ```
 

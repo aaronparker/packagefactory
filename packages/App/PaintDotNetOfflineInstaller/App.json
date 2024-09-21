@@ -1,21 +1,21 @@
 {
   "Application": {
     "Name": "PaintDotNetOfflineInstaller",
-    "Filter": "Invoke-EvergreenApp -Name \"PaintDotNetOfflineInstaller\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.URI -match \"winmsi\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenAppFromApi -Name \"PaintDotNetOfflineInstaller\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.URI -match \"winmsi\" } | Select-Object -First 1",
     "Title": "Paint.NET",
     "Language": "en-US",
     "Architecture": "x64"
   },
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "paint.net.5.0.11.winmsi.x64.msi",
-    "Version": "5.0.11",
+    "SetupFile": "paint.net.5.0.13.winmsi.x64.msi",
+    "Version": "5.0.13",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Paint.Net.png"
   },
   "Information": {
-    "DisplayName": "Paint.NET 5.0.11 x64",
+    "DisplayName": "Paint.NET 5.0.13 x64",
     "Description": "Paint.NET is image and photo editing software for PCs that run Windows. It features an intuitive and innovative user interface with support for layers, unlimited undo, special effects, and a wide variety of useful and powerful tools.",
     "Publisher": "dotPDN LLC.",
     "InformationURL": "https://www.getpaint.net/",
@@ -28,7 +28,8 @@
     "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
     "UninstallCommand": "MsiExec.exe /X \"{E56D2CED-CCAE-4902-A559-17B452752DA5}\" /quiet",
     "InstallExperience": "system",
-    "DeviceRestartBehavior": "suppress"
+    "DeviceRestartBehavior": "suppress",
+    "AllowAvailableUninstall": "false"
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",
@@ -42,7 +43,7 @@
       "Path": "C:\\Program Files\\paint.net",
       "FileOrFolder": "paintdotnet.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "5.0.11",
+      "VersionValue": "5.0.13",
       "Check32BitOn64System": "false"
     }
   ],

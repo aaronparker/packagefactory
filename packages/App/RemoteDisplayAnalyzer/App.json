@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "RemoteDisplayAnalyzer",
-    "Filter": "Invoke-EvergreenApp -Name \"RDAnalyzer\" | Select-Object -First 1",
+    "Filter": "Get-EvergreenAppFromApi -Name \"RDAnalyzer\" | Select-Object -First 1",
     "Title": "Remote Display Analyzer",
     "Language": "en-US",
     "Architecture": "x64"
@@ -28,7 +28,8 @@
     "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
     "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Uninstall.ps1",
     "InstallExperience": "system",
-    "DeviceRestartBehavior": "suppress"
+    "DeviceRestartBehavior": "suppress",
+    "AllowAvailableUninstall": "false"
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",

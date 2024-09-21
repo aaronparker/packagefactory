@@ -486,6 +486,9 @@ process {
     if (-not([System.String]::IsNullOrEmpty($AppData.Program.UninstallCommand))) {
         $Win32AppArgs.Add("UninstallCommandLine", $AppData.Program.UninstallCommand)
     }
+    if (-not([System.String]::IsNullOrEmpty($AppData.Program.AllowAvailableUninstall))) {
+        $Win32AppArgs.Add("AllowAvailableUninstall", $AppData.Program.AllowAvailableUninstall)
+    }
 
     if ($PSBoundParameters["Validate"]) {
         if (-not([System.String]::IsNullOrEmpty($Win32AppArgs["Icon"]))) {

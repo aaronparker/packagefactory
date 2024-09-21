@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "MicrosoftFSLogixApps",
-    "Filter": "Invoke-EvergreenApp -Name \"MicrosoftFSLogixApps\" | Where-Object { $_.Channel -eq \"Production\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenAppFromApi -Name \"MicrosoftFSLogixApps\" | Where-Object { $_.Channel -eq \"Production\" } | Select-Object -First 1",
     "Title": "Microsoft FSLogix Apps",
     "Language": "en-US",
     "Architecture": "x64"
@@ -9,23 +9,23 @@
   "PackageInformation": {
     "SetupType": "EXE",
     "SetupFile": [
+      "fslogix.adml",
+      "fslogix.admx",
       "README.txt",
       "Win32/Release/FSLogixAppsJavaRuleEditorSetup.exe",
       "Win32/Release/FSLogixAppsRuleEditorSetup.exe",
       "Win32/Release/FSLogixAppsSetup.exe",
       "x64/Release/FSLogixAppsJavaRuleEditorSetup.exe",
       "x64/Release/FSLogixAppsRuleEditorSetup.exe",
-      "x64/Release/FSLogixAppsSetup.exe",
-      "fslogix.adml",
-      "fslogix.admx"
+      "x64/Release/FSLogixAppsSetup.exe"
     ],
-    "Version": "2.9.8612.60056",
+    "Version": "2.9.8884.27471",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/MicrosoftFSLogixApps.png"
   },
   "Information": {
-    "DisplayName": "Microsoft FSLogix Apps 2.9.8612.60056",
+    "DisplayName": "Microsoft FSLogix Apps 2.9.8884.27471",
     "Description": "FSLogix enhances and enables user profiles in Windows remote computing environments.",
     "Publisher": "Microsoft",
     "InformationURL": "https://learn.microsoft.com/en-us/fslogix/install-ht",
@@ -38,7 +38,8 @@
     "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
     "UninstallCommand": "MsiExec.exe /X \"{089A177D-98AE-4195-A115-D3C45613B875}\" /quiet",
     "InstallExperience": "system",
-    "DeviceRestartBehavior": "suppress"
+    "DeviceRestartBehavior": "suppress",
+    "AllowAvailableUninstall": "false"
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",
@@ -52,7 +53,7 @@
       "Path": "C:\\Program Files\\FSLogix\\Apps",
       "FileOrFolder": "frx.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "2.9.8612.60056",
+      "VersionValue": "2.9.8884.27471",
       "Check32BitOn64System": "false"
     },
     {
@@ -61,7 +62,7 @@
       "Path": "C:\\Program Files\\FSLogix\\Apps",
       "FileOrFolder": "frxshell.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "2.9.8612.60056",
+      "VersionValue": "2.9.8884.27471",
       "Check32BitOn64System": "false"
     },
     {
@@ -70,7 +71,7 @@
       "Path": "C:\\Program Files\\FSLogix\\Apps",
       "FileOrFolder": "frxsvc.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "2.9.8612.60056",
+      "VersionValue": "2.9.8884.27471",
       "Check32BitOn64System": "false"
     }
   ],

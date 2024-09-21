@@ -231,6 +231,7 @@ process {
                         Path        = "$([System.IO.Path]::Combine($AppPath, "Source"))\*"
                         Destination = $SourcePath
                         Recurse     = $true
+                        Exclude     = "Deploy-Application.ps1"
                         Force       = $true
                         ErrorAction = "Stop"
                     }
@@ -238,7 +239,7 @@ process {
 
                     # Download the application installer or run command in .Filter
                     Write-Msg -Msg "Invoke filter: '$($Manifest.Application.Filter)'"
-                    if ($Manifest.Application.Filter -match "Invoke-EvergreenApp|Get-EvergreenApp") {
+                    if ($Manifest.Application.Filter -match "Get-EvergreenAppFromApi|Get-EvergreenApp") {
                         # Evergreen
                         Write-Msg -Msg "Downloading with Evergreen to: '$SourcePath'"
                         $Result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -LiteralPath $SourcePath -Verbose
@@ -347,10 +348,18 @@ process {
                 }
 
                 #region Create the intunewin package
+                # Adjust params for New-IntuneWin32AppPackage using PSAppDeployToolkit
+                $IntuneWinSetupFile = $Manifest.PackageInformation.SetupFile
+                if (Test-Path -Path $([System.IO.Path]::Combine($AppPath, "Source", "Deploy-Application.ps1"))) {
+                    # Revert source path
+                    $SourcePath = [System.IO.Path]::Combine($WorkingPath, $ApplicationName, "Source")
+                    $IntuneWinSetupFile = "Deploy-Application.exe"
+                }
+
                 Write-Msg -Msg "Create intunewin package in: '$Path\output'"
                 $params = @{
                     SourceFolder = $SourcePath
-                    SetupFile    = $Manifest.PackageInformation.SetupFile
+                    SetupFile    = $IntuneWinSetupFile
                     OutputFolder = $OutputPath
                     Force        = $true
                 }

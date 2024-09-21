@@ -1,21 +1,21 @@
 {
   "Application": {
     "Name": "MozillaFirefox",
-    "Filter": "Invoke-EvergreenApp -Name \"MozillaFirefox\" -ErrorAction \"SilentlyContinue\" -WarningAction \"SilentlyContinue\" | Where-Object { $_.Channel -eq \"LATEST_FIREFOX_VERSION\" -and $_.Architecture -eq \"x64\" -and $_.Type -eq \"msi\" -and $_.Language -eq \"en-GB\" }",
+    "Filter": "Get-EvergreenAppFromApi -Name \"MozillaFirefox\" -ErrorAction \"SilentlyContinue\" -WarningAction \"SilentlyContinue\" | Where-Object { $_.Channel -eq \"Current\" -and $_.Architecture -eq \"x64\" -and $_.Type -eq \"msi\" -and $_.Language -eq \"en-GB\" }",
     "Title": "Mozilla Firefox",
     "Language": "en-US",
     "Architecture": "x64"
   },
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "Firefox Setup 118.0.2.msi",
-    "Version": "118.0.2",
+    "SetupFile": "Firefox Setup 126.0.1.msi",
+    "Version": "126.0.1",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Mozilla-Firefox.png"
   },
   "Information": {
-    "DisplayName": "Mozilla Firefox 118.0.2 x64",
+    "DisplayName": "Mozilla Firefox 126.0.1 x64",
     "Description": "Get the browser that protects what's important. No shady privacy policies or back doors for advertisers. Just a lightning fast browser that doesn't sell you out.",
     "Publisher": "Mozilla",
     "InformationURL": "https://www.mozilla.org/firefox/new/",
@@ -28,7 +28,8 @@
     "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
     "UninstallCommand": "C:\\Program Files\\Mozilla Firefox\\uninstall\\helper.exe /S",
     "InstallExperience": "system",
-    "DeviceRestartBehavior": "suppress"
+    "DeviceRestartBehavior": "suppress",
+    "AllowAvailableUninstall": "false"
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",
@@ -42,7 +43,7 @@
       "Path": "C:\\Program Files\\Mozilla Firefox",
       "FileOrFolder": "firefox.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "118.0.2",
+      "VersionValue": "126.0.1",
       "Check32BitOn64System": "false"
     }
   ],

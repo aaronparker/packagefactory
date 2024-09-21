@@ -1,21 +1,21 @@
 {
   "Application": {
     "Name": "MicrosoftPowerShell",
-    "Filter": "Invoke-EvergreenApp -Name \"MicrosoftPowerShell\" | Where-Object { $_.Release -eq \"Stable\" -and $_.Architecture -eq \"x64\" }",
+    "Filter": "Get-EvergreenAppFromApi -Name \"MicrosoftPowerShell\" | Where-Object { $_.Release -eq \"Stable\" -and $_.Architecture -eq \"x64\" }",
     "Title": "Microsoft PowerShell",
     "Language": "en-US",
     "Architecture": "x64"
   },
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "PowerShell-7.3.8-win-x64.msi",
-    "Version": "7.3.8",
+    "SetupFile": "PowerShell-7.4.2-win-x64.msi",
+    "Version": "7.4.2",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-PowerShellCore.png"
   },
   "Information": {
-    "DisplayName": "Microsoft PowerShell 7.3.8 x64",
+    "DisplayName": "Microsoft PowerShell 7.4.2 x64",
     "Description": "PowerShell is a cross-platform task automation solution made up of a command-line shell, a scripting language, and a configuration management framework. PowerShell runs on Windows, Linux, and macOS.",
     "Publisher": "Microsoft",
     "InformationURL": "https://aka.ms/PowerShell-docs",
@@ -28,7 +28,8 @@
     "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
     "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Uninstall.ps1",
     "InstallExperience": "system",
-    "DeviceRestartBehavior": "suppress"
+    "DeviceRestartBehavior": "suppress",
+    "AllowAvailableUninstall": "false"
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",
@@ -42,7 +43,7 @@
       "Path": "C:\\Program Files\\PowerShell\\7",
       "FileOrFolder": "pwsh.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "7.3.8",
+      "VersionValue": "7.4.2",
       "Check32BitOn64System": "false"
     }
   ],

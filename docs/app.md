@@ -18,7 +18,7 @@ Here's an example `App.json` for Adobe Acrobat Reader DC:
 {
   "Application": {
     "Name": "AdobeAcrobatReaderDC",
-    "Filter": "Invoke-EvergreenApp -Name \"AdobeAcrobatReaderDC\" | Where-Object { $_.Language -eq \"MUI\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenAppFromApi -Name \"AdobeAcrobatReaderDC\" | Where-Object { $_.Language -eq \"MUI\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
     "Title": "Adobe Acrobat Reader DC",
     "Language": "English",
     "Architecture": "x64"
@@ -46,7 +46,8 @@ Here's an example `App.json` for Adobe Acrobat Reader DC:
     "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
     "UninstallCommand": "msiexec.exe /X \"{AC76BA86-1033-1033-7760-BC15014EA700}\" /quiet",
     "InstallExperience": "system",
-    "DeviceRestartBehavior": "suppress"
+    "DeviceRestartBehavior": "suppress",
+    "AllowAvailableUninstall": "false"
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",

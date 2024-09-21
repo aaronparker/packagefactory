@@ -1,62 +1,63 @@
 {
-    "Application": {
-        "Name": "Audacity",
-        "Filter": "Invoke-EvergreenApp -Name \"Audacity\" | Where-Object { $_.Architecture -eq \"x64\" } | Select-Object -First 1",
-        "Title": "Audacity",
-        "Language": "en-US",
-        "Architecture": "x64"
-    },
-    "PackageInformation": {
-        "SetupType": "EXE",
-        "SetupFile": "audacity-win-3.3.3-x64.exe",
-        "Version": "3.3.3",
-        "SourceFolder": "Source",
-        "OutputFolder": "Package",
-        "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Audacity.png"
-    },
-    "Information": {
-        "DisplayName": "Audacity 3.3.3 x64",
-        "Description": "Audacity is an easy-to-use, multi-track audio editor and recorder for Windows, macOS, GNU/Linux and other operating systems.",
-        "Publisher": "Audacity",
-        "InformationURL": "https://www.audacityteam.org/",
-        "PrivacyURL": "https://www.audacityteam.org/",
-        "Categories": [],
-        "PSPackageFactoryGuid": "328af5bc-34e3-4a9e-93eb-398f594388d6"
-    },
-    "Program": {
-        "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
-        "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
-        "UninstallCommand": "\"C:\\Program Files\\Audacity\\unins000.exe\" /VERYSILENT",
-        "InstallExperience": "system",
-        "DeviceRestartBehavior": "basedOnReturnCode"
-    },
-    "RequirementRule": {
-        "MinimumRequiredOperatingSystem": "W10_1809",
-        "Architecture": "x64"
-    },
-    "CustomRequirementRule": [],
-    "DetectionRule": [
-        {
-            "Type": "File",
-            "DetectionMethod": "Version",
-            "Path": "C:\\Program Files\\Audacity",
-            "FileOrFolder": "Audacity.exe",
-            "Operator": "greaterThanOrEqual",
-            "VersionValue": "3.3.3",
-            "Check32BitOn64System": "false"
-        }
-    ],
-    "Dependencies": [],
-    "Supersedence": [],
-    "Assignments": [
-        {
-            "Type": "AllUsers",
-            "Intent": "available",
-            "Notification": "showAll",
-            "EnableRestartGracePeriod": true,
-            "RestartGracePeriod": 1440,
-            "RestartCountDownDisplay": 15,
-            "RestartNotificationSnooze": 240
-        }
-    ]
+  "Application": {
+    "Name": "Audacity",
+    "Filter": "Get-EvergreenAppFromApi -Name \"Audacity\" | Where-Object { $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+    "Title": "Audacity",
+    "Language": "en-US",
+    "Architecture": "x64"
+  },
+  "PackageInformation": {
+    "SetupType": "EXE",
+    "SetupFile": "audacity-win-3.5.1-64bit.exe",
+    "Version": "3.5.1",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Audacity.png"
+  },
+  "Information": {
+    "DisplayName": "Audacity 3.5.1 x64",
+    "Description": "Audacity is an easy-to-use, multi-track audio editor and recorder for Windows, macOS, GNU/Linux and other operating systems.",
+    "Publisher": "Audacity",
+    "InformationURL": "https://www.audacityteam.org/",
+    "PrivacyURL": "https://www.audacityteam.org/",
+    "Categories": [],
+    "PSPackageFactoryGuid": "328af5bc-34e3-4a9e-93eb-398f594388d6"
+  },
+  "Program": {
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "UninstallCommand": "\"C:\\Program Files\\Audacity\\unins000.exe\" /VERYSILENT",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "basedOnReturnCode",
+    "AllowAvailableUninstall": "false"
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "W10_1809",
+    "Architecture": "x64"
+  },
+  "CustomRequirementRule": [],
+  "DetectionRule": [
+    {
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "C:\\Program Files\\Audacity",
+      "FileOrFolder": "Audacity.exe",
+      "Operator": "greaterThanOrEqual",
+      "VersionValue": "3.5.1",
+      "Check32BitOn64System": "false"
+    }
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": [
+    {
+      "Type": "AllUsers",
+      "Intent": "available",
+      "Notification": "showAll",
+      "EnableRestartGracePeriod": true,
+      "RestartGracePeriod": 1440,
+      "RestartCountDownDisplay": 15,
+      "RestartNotificationSnooze": 240
+    }
+  ]
 }

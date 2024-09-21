@@ -1,21 +1,21 @@
 {
   "Application": {
     "Name": "VideoLanVlcPlayer",
-    "Filter": "Invoke-EvergreenApp -Name \"VideoLanVlcPlayer\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Type -eq \"MSI\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenAppFromApi -Name \"VideoLanVlcPlayer\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Type -eq \"MSI\" } | Select-Object -First 1",
     "Title": "VideoLAN VLC media player",
     "Language": "en-US",
     "Architecture": "x64"
   },
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "vlc-3.0.19-win64.msi",
-    "Version": "3.0.19",
+    "SetupFile": "vlc-3.0.20-win64.msi",
+    "Version": "3.0.20",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/VLC.png"
   },
   "Information": {
-    "DisplayName": "VideoLAN VLC media player 3.0.19 x64",
+    "DisplayName": "VideoLAN VLC media player 3.0.20 x64",
     "Description": "VLC is a free and open source cross-platform multimedia player and framework that plays most multimedia files as well as DVDs, Audio CDs, VCDs, and various streaming protocols.",
     "Publisher": "VideoLAN",
     "InformationURL": "https://www.videolan.org/vlc/features.html",
@@ -28,7 +28,8 @@
     "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
     "UninstallCommand": "MsiExec.exe /X \"{1BB20266-7C52-4909-B075-22156F75D22C}\" /quiet",
     "InstallExperience": "system",
-    "DeviceRestartBehavior": "suppress"
+    "DeviceRestartBehavior": "suppress",
+    "AllowAvailableUninstall": "false"
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",
@@ -42,7 +43,7 @@
       "Path": "C:\\Program Files\\VideoLAN\\VLC",
       "FileOrFolder": "vlc.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "3.0.19",
+      "VersionValue": "3.0.20",
       "Check32BitOn64System": "false"
     }
   ],

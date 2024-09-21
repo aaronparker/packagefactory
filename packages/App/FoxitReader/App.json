@@ -1,21 +1,21 @@
 {
   "Application": {
     "Name": "FoxitReader",
-    "Filter": "Invoke-EvergreenApp -Name \"FoxitReader\" | Where-Object { $_.Language -eq \"English\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenAppFromApi -Name \"FoxitReader\" | Where-Object { $_.Language -eq \"English\" } | Select-Object -First 1",
     "Title": "Foxit PDF Reader",
     "Language": "en-US",
     "Architecture": "x86"
   },
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "FoxitPDFReader20232_enu_Setup.msi",
-    "Version": "2023.2",
+    "SetupFile": "FoxitPDFReader202422_enu_Setup.msi",
+    "Version": "2024.2.2.25170",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/FoxitReader.png"
   },
   "Information": {
-    "DisplayName": "Foxit PDF Reader 2023.2",
+    "DisplayName": "Foxit PDF Reader 2024.2.2.25170",
     "Description": "View, annotate, form fill, and sign PDF across desktop, mobile, and web - no matter if you're at the office, home, or on the go.",
     "Publisher": "Foxit Software Inc.",
     "InformationURL": "https://www.foxit.com/pdf-reader/",
@@ -28,7 +28,8 @@
     "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
     "UninstallCommand": "MsiExec.exe /X \"{F398C64A-E282-11EC-8A9F-54BF64A63C26}\" /quiet",
     "InstallExperience": "system",
-    "DeviceRestartBehavior": "suppress"
+    "DeviceRestartBehavior": "suppress",
+    "AllowAvailableUninstall": "false"
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",
@@ -42,7 +43,7 @@
       "Path": "C:\\Program Files (x86)\\Foxit Software\\Foxit PDF Reader",
       "FileOrFolder": "FoxitPDFReader.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "2023.2",
+      "VersionValue": "2024.2.2.25170",
       "Check32BitOn64System": "true"
     }
   ],

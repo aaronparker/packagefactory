@@ -1,21 +1,21 @@
 {
   "Application": {
     "Name": "AdobeAcrobatReaderDC",
-    "Filter": "Invoke-EvergreenApp -Name \"AdobeAcrobatReaderDC\" | Where-Object { $_.Language -eq \"MUI\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenAppFromApi -Name \"AdobeAcrobatReaderDC\" | Where-Object { $_.Language -eq \"MUI\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
     "Title": "Adobe Acrobat Reader DC",
     "Language": "English",
     "Architecture": "x64"
   },
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "AcroRdrDCx642300620320_MUI.exe",
-    "Version": "23.006.20320",
+    "SetupFile": "AcroRdrDCx642400220759_MUI.exe",
+    "Version": "24.002.20759",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Adobe-AcrobatReader.png"
   },
   "Information": {
-    "DisplayName": "Adobe Acrobat Reader DC 23.006.20320 x64",
+    "DisplayName": "Adobe Acrobat Reader DC 24.002.20759 x64",
     "Description": "Adobe Acrobat Reader is the free, trusted global standard for viewing, printing, e-signing, sharing, and annotating PDFs. View PDFs, Leave comments or annotate PDFs, Fill, e-sign, and lock your forms, Collaborate better with PDFs.",
     "Publisher": "Adobe",
     "InformationURL": "https://www.adobe.com/acrobat/pdf-reader.html",
@@ -29,7 +29,8 @@
     "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
     "UninstallCommand": "msiexec.exe /X \"{AC76BA86-1033-FF00-7760-BC15014EA700}\" /quiet",
     "InstallExperience": "system",
-    "DeviceRestartBehavior": "basedOnReturnCode"
+    "DeviceRestartBehavior": "basedOnReturnCode",
+    "AllowAvailableUninstall": "false"
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",
@@ -43,7 +44,7 @@
       "Path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat",
       "FileOrFolder": "Acrobat.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "23.006.20320",
+      "VersionValue": "24.002.20759",
       "Check32BitOn64System": "false"
     }
   ],

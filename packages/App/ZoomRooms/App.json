@@ -1,21 +1,21 @@
 {
   "Application": {
     "Name": "Zoom Rooms",
-    "Filter": "Invoke-EvergreenApp -Name \"Zoom\" | Where-Object { $_.Platform -eq \"Rooms\" -and $_.Type -eq \"msi\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenAppFromApi -Name \"Zoom\" | Where-Object { $_.Platform -eq \"Rooms\" -and $_.Type -eq \"msi\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
     "Title": "Zoom Meetings Client",
     "Language": "en-US",
     "Architecture": "x64"
   },
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "zoomrooms-5.16.1.3257-x64.msi",
-    "Version": "5.16.1.3257",
+    "SetupFile": "zoomrooms-6.0.7.4157-x64.msi",
+    "Version": "6.0.7.4157",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/ZoomRooms.png"
   },
   "Information": {
-    "DisplayName": "Zoom Meetings Client 5.16.1.3257 x64",
+    "DisplayName": "Zoom Meetings Client 6.0.7.4157 x64",
     "Description": "Conference rooms that make it easy to run or join video meetings with a tap of a button.",
     "Publisher": "Zoom",
     "InformationURL": "https://explore.zoom.us/en/products/zoom-rooms/",
@@ -28,7 +28,8 @@
     "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
     "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Uninstall.ps1",
     "InstallExperience": "system",
-    "DeviceRestartBehavior": "suppress"
+    "DeviceRestartBehavior": "suppress",
+    "AllowAvailableUninstall": "false"
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",
@@ -42,7 +43,7 @@
       "Path": "C:\\Program Files\\ZoomRooms\\bin",
       "FileOrFolder": "ZoomRooms.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "5.16.1.3257",
+      "VersionValue": "6.0.7.4157",
       "Check32BitOn64System": "false"
     }
   ],

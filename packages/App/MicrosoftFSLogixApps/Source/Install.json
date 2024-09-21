@@ -2,17 +2,17 @@
   "PackageInformation": {
     "SetupType": "EXE",
     "SetupFile": [
+      "fslogix.adml",
+      "fslogix.admx",
       "README.txt",
       "Win32/Release/FSLogixAppsJavaRuleEditorSetup.exe",
       "Win32/Release/FSLogixAppsRuleEditorSetup.exe",
       "Win32/Release/FSLogixAppsSetup.exe",
       "x64/Release/FSLogixAppsJavaRuleEditorSetup.exe",
       "x64/Release/FSLogixAppsRuleEditorSetup.exe",
-      "x64/Release/FSLogixAppsSetup.exe",
-      "fslogix.adml",
-      "fslogix.admx"
+      "x64/Release/FSLogixAppsSetup.exe"
     ],
-    "Version": "2.9.8612.60056"
+    "Version": "2.9.8884.27471"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {

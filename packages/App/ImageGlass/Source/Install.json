@@ -1,8 +1,8 @@
 {
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "ImageGlass_Kobe_8.10.9.27_x64.msi",
-    "Version": "8.10.9.27"
+    "SetupFile": "ImageGlass_9.1.6.14_x64.msi",
+    "Version": "9.1.6.14"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {

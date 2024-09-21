@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "TrackerSoftwarePDFXChangeEditor",
-    "Filter": "Invoke-EvergreenApp -Name \"TrackerSoftwarePDFXChangeEditor\" | Where-Object { $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenAppFromApi -Name \"TrackerSoftwarePDFXChangeEditor\" | Where-Object { $_.Architecture -eq \"x64\" } | Select-Object -First 1",
     "Title": "Tracker Software PDF-XChange Editor",
     "Language": "en-US",
     "Architecture": "x64"
@@ -9,13 +9,13 @@
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "EditorV10.x64.msi",
-    "Version": "10.1.1.381",
+    "Version": "10.3.0.386",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/PDFXChangeEditor.png"
   },
   "Information": {
-    "DisplayName": "Tracker Software PDF-XChange Editor 10.1.1.381 x64",
+    "DisplayName": "Tracker Software PDF-XChange Editor 10.3.0.386 x64",
     "Description": "PDF-XChange Editor - one of the fastest and most feature-rich options available worldwide to create, view, edit and annotate PDF files. PDF-XChange Lite, our award-winning technology that installs as a virtual printer, is included with this product. It can be used to print-to-PDF from Windows applications and features an optimized hybrid engine that significantly increases the quality of conversion for images and image-based text characters.",
     "Publisher": "Tracker Software",
     "InformationURL": "https://www.tracker-software.com/product/pdf-xchange-editor",
@@ -28,7 +28,8 @@
     "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
     "UninstallCommand": "MsiExec.exe /X \"{2B1A32F0-ABD0-42C4-A123-7CC642AA3B5E}\" /quiet",
     "InstallExperience": "system",
-    "DeviceRestartBehavior": "suppress"
+    "DeviceRestartBehavior": "suppress",
+    "AllowAvailableUninstall": "false"
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",
@@ -42,7 +43,7 @@
       "Path": "C:\\Program Files\\Tracker Software\\PDF Editor",
       "FileOrFolder": "PDFXEdit.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "10.1.1.381",
+      "VersionValue": "10.3.0.386",
       "Check32BitOn64System": "false"
     }
   ],

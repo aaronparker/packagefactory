@@ -1,21 +1,21 @@
 {
   "Application": {
     "Name": "ImageGlass",
-    "Filter": "Invoke-EvergreenApp -Name \"ImageGlass\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Uri -match \"x64.msi$\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenAppFromApi -Name \"ImageGlass\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Uri -match \"x64.msi$\" } | Select-Object -First 1",
     "Title": "ImageGlass",
     "Language": "en-US",
     "Architecture": "x64"
   },
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "ImageGlass_Kobe_8.10.9.27_x64.msi",
-    "Version": "8.10.9.27",
+    "SetupFile": "ImageGlass_9.1.6.14_x64.msi",
+    "Version": "9.1.6.14",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/ImageGlass.png"
   },
   "Information": {
-    "DisplayName": "ImageGlass 8.10.9.27 x64",
+    "DisplayName": "ImageGlass 9.1.6.14 x64",
     "Description": "Free - Open Source Image Viewer. A simple-to-use program that comes packed with basic functions and a nice minimal modern user interface.",
     "Publisher": "Dương Diệu Pháp",
     "InformationURL": "https://imageglass.org/",
@@ -28,7 +28,8 @@
     "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
     "UninstallCommand": "MsiExec.exe /X \"{15872342-C9E9-4C65-9586-35B4EFDB806B}\" /quiet",
     "InstallExperience": "system",
-    "DeviceRestartBehavior": "suppress"
+    "DeviceRestartBehavior": "suppress",
+    "AllowAvailableUninstall": "false"
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",
@@ -42,7 +43,7 @@
       "Path": "C:\\Program Files\\ImageGlass",
       "FileOrFolder": "ImageGlass.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "8.10.9.27",
+      "VersionValue": "9.1.6.14",
       "Check32BitOn64System": "false"
     }
   ],

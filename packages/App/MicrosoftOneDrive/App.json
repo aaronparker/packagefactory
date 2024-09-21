@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "MicrosoftOneDrive",
-    "Filter": "Invoke-EvergreenApp -Name \"MicrosoftOneDrive\" | Where-Object { $_.Architecture -eq \"AMD64\" -and $_.Ring -eq \"Production\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenAppFromApi -Name \"MicrosoftOneDrive\" | Where-Object { $_.Architecture -eq \"AMD64\" -and $_.Ring -eq \"Production\" } | Select-Object -First 1",
     "Title": "Microsoft OneDrive",
     "Language": "en-US",
     "Architecture": "x64"
@@ -9,13 +9,13 @@
   "PackageInformation": {
     "SetupType": "EXE",
     "SetupFile": "OneDriveSetup.exe",
-    "Version": "23.204.1001.0003",
+    "Version": "24.078.0416.0003",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-OneDrive.png"
   },
   "Information": {
-    "DisplayName": "Microsoft OneDrive 23.204.1001.0003 AMD64",
+    "DisplayName": "Microsoft OneDrive 24.078.0416.0003 AMD64",
     "Description": "With Microsoft OneDrive, you can easily and securely store and access your files from all your devices. You can work with others regardless of whether they're inside or outside your organization and terminate that sharing whenever you want.",
     "Publisher": "Microsoft",
     "InformationURL": "https://support.microsoft.com/en-us/onedrive",
@@ -28,7 +28,8 @@
     "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
     "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Uninstall.ps1",
     "InstallExperience": "system",
-    "DeviceRestartBehavior": "suppress"
+    "DeviceRestartBehavior": "suppress",
+    "AllowAvailableUninstall": "false"
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",
@@ -42,7 +43,7 @@
       "Path": "C:\\Program Files\\Microsoft OneDrive",
       "FileOrFolder": "OneDrive.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "23.204.1001.0003",
+      "VersionValue": "24.078.0416.0003",
       "Check32BitOn64System": "false"
     }
   ],

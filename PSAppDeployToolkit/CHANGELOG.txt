@@ -1,4 +1,74 @@
-﻿**Version 3.9.3 [01/05/2023]**
+﻿**Version 3.10.1 [05/03/2024]**
+- Added Turkish language support. Fixes #973.
+- Added parameter sets to Configure-EdgeExtensions to ensure mandatory parameters are correctly grouped.
+- Added missing elements to XML for Finnish language. Fixes #967.
+- Added -ExcludeServiceProfiles to Get-UserProfiles, add passthru of Exclude-ServiceProfiles/ExcludeSystemProfiles/ExcludeDefaultUser/ExcludeNTAccount to Copy-FileToUserProfiles & Remove-FileFromUserProfiles.
+- Added back the folder structure, changelog, license, and examples to the release zip file.
+- Added VLC and WinSCP as new example deployment scripts.
+- Added ServiceUI launch helper script and launch testing batch files to examples.
+- Added Contributing Guide, Code of Conduct, Security Policy and Support docs.
+- Added GitHub form-based Bug Report and Feature Request templates.
+- Added RoboCopyParams to Copy-File, which allows full override of Robocopy Parameters. Added /IT /IM to default parameters.
+- Changed Welcome Prompt so that the Deferral Time Remaining is now bolded. App Title size was also slightly increased so as to remain more prominent.
+- Changed button font so that text wasn't cut off for some localized languages. Fixes #980.
+- Changed RunHidden.vbs to get rid of use of ArrayList as it caused problems on some systems.
+- Changed Robocopy folder creation code to match native PowerShell Copy-File.
+- Changed Execute-ProcessAsUser to include an example for executing the function using "LeastPrivilege".
+- Fixed an issue where Execute-ProcessAsUser was not able to execute with RunLevel = 'LeastPrivilege' in some cases.
+- Fixed an issue in Execute-ProcessAsUser where the command line for two of the examples was incorrect.
+- Fixed an issue with Configure-EdgeExtensions where a new extension would not be added if no extensions were configured previously. Fixes #931 and #984.
+- Fixed an issue where Robocopy mode of Copy-File fails to copy files or folders when path begis with ".\" or "..\". Fixes #938.
+- Fixed AppDeployToolkitExtensions.ps1 dot-sourcing to where it's always been dot-sourced from.
+- Fixed PowerShell v2 and .NET 3.5 Compatibility. Fixes #948.
+- Removed check on SecurityHealthSystray. Fixes #941.
+- Removed the PDF documentation, the website will be the primary source for this going forward.
+- Updated existing example deployment scripts.
+- Updated Pull Request template.
+- Updated Spanish translations. Fixes #805.
+
+**Version 3.10.0 [03/27/2024]**
+- Added the ability to configure Microsoft Edge Extensions using ExtensionSettings. Function: Configure-EdgeExtensions. This enables Edge Extensions to be installed and managed like applications, enabling extensions to be pushed to specific devices or users alongside existing GPO/Intune extension policies. This should not be used in conjunction with Edge Management Service which leverages the same registry key to configure Edge extensions.
+- Added the ability to copy the Toolkit folder and files to a cache folder on the local machine and execute from there.
+    Functions: Copy-ContentToCache and Remove-ContentFromCache. The cache path can be configured in the config.xml file, default is $envProgramData\SoftwareCache. When Copy-ContentToCache is used, $dirFiles is updated to point to the local cache path.
+- Added the ability to copy files to all user profiles.
+    Functions: Copy-FileToUserProfiles and Remove-FileFromUserProfiles
+- Changed Copy-File to use Robocopy by default, overcoming the 260 character limitation of native PowerShell Copy-Item and providing more comprehensive file copy functionality and logging. This can be toggled off in the config.xml file by setting Toolkit_UseRobocopy = $false
+- Added Log File Rotation
+- Added VSCode workspace with default settings for PowerShell code formatting, default version (Windows PowerShell) and PSScriptAnalyzer linting.
+- Added ability to position progress dialogs to 'TopLeft', 'Top', 'TopRight', 'TopCenter', 'BottomLeft', 'Bottom', 'BottomRight'
+- Added -Wow6432Node switches for 32-bit registry support to all registry functions.
+- Improved all user interface components to work correctly in High DPI mode.
+- Improved all images and icons for brand consistency and double the resolution for High DPI mode.
+- Improved Get-RunningProcesses function, reducing complexity and improving performance
+- Improved Russian (RU) translations PR #843
+- Improved German (DE) translations PR #854
+- Added translations for many missing strings across a number of different languages. Thanks to ChatGPT for being an XML workhorse :)
+- Added shortcut keys for UI buttons - Alt-D for Defer, Alt-P for Close Programs, Alt-C for Continue
+- Fixed issue with Execute-MSI adding "Transforms" Parameters to uninstall Command Line #828
+- Resolved an issue where ConvertTo-NTAccountOrSID would throw an error when attempting to convert orphaned accounts, a warning is now displayed rather than an error. #865
+- Resolved an issue where if WindowStyle parameter is set to 'Hidden', then the UseShellExecute parameter to should be set to '$true' #678
+- Resolved an issue with how Set-ActiveSetup comma-separated version strings were compared to determine which was greater #743
+- Resolved an issue where $IsMultiSessionOS did not return true for Windows 11 Enterprise Multi-Session #807
+- Improved detection of OOBE / ESP
+- Improved documentation of Set-ActiveSetup function.
+- Resolved an issue where Execute-ProcessAsUser ran into issue when called multiple times because it overwrote files from previous invocation #333
+- Resolved an issue where Get-LoggedOnUser choose the wrong user session on Windows multi-session workstation operating systems #863
+- Improved Execute-Process with a useful example #835
+- Improved Execute-MSI so that all repetitive references to .log or .txt file extension in $LogName variable are all removed #759
+- Improved Get-HardwarePlatform to add support for detecting Parallels virtual machines #838
+- Improved Execute-ProcessAsUser and how it parses and executes command-line arguments. #794 #894 #782 #762 #851
+- Improved setup for $ResolveParameters (uses proper filter and piping, supports arrays and dictionaries) #874
+- Improved setup for setting $ScriptSource in Write-Log.
+- Improve $envOffice variable setup by reducing the number of Get-ItemProperty calls.
+- Factor in GPO-configured UpdateChannel property vs. CDNBaseURL property for $envOfficeChannel. #837
+- Add "monthly enterprise" UUID to $envOfficeChannel setup.
+- Changed when dot-sourcing of AppDeployToolkitExtensions occurs, so that use of custom functions can make use of UI elements, e.g. displaying a progress dialog.
+- Improved overall codebase for better compliance with Strict Mode.
+- Improved use of arrays throughout in order to improve performance.
+- Improved threat safety when using thread on user interface elements should result in fewer issues with progress dialogs.
+- Fixed UI message strings being incorrectly spaced on screen.
+
+**Version 3.9.3 [01/05/2023]**
 - Improved accuracy of Intune Provisioning/ESP detection #779 #801
 - Resolved an issue where Show-InstallationRestartPrompt would not work with -NoSilentRestart $false #785
 - Resolved an issue where Execute-ProcessAsUser would not work correctly since 3.9.2 #749 #776 #784
@@ -31,7 +101,7 @@
 **Version 3.9.0 [10/01/2023]**
 - AddedRefreshed UI components with updated PSAppDeployToolkit branding
 - Added support for Windows Toast Notifications, instead of using a BalloonTip (only for Windows 10 and above)
-- Changes to dialogs so that the default system font is used for all labels and buttons, adding a more consistnent look and feel.
+- Changes to dialogs so that the default system font is used for all labels and buttons, adding a more consistent look and feel.
 - Improved documentation - new overview, features and benefits detail to enhance value proposition. Improved Function documentation and overall PDF document layout.
 - Updated text and structure for Comment-Based-Help to align with PowerShell Best Practices
 - Added detection of defaultuser0 OOBE or ESP process to enable Non-Interactive deployment mode for Intune Autopilot/ESP scenarios.
@@ -51,7 +121,7 @@
 - Fixed a bug that caused Update-Desktop/Refresh-Desktop to crash Powershell on 32bit systems
 - Improved calculation of dpi scale and pixels in the $GetDisplayScaleFactor variable.
 - Resolved an issue where New-Folder would not create the entire path name in some scenarios.
-- CHANGE: If the -ContinueOnError parameter on The Remove-Folder function now stops the script on all errors if the -ContinueOnError paramenter is set to $false. The -DisableRecursion parameter now removes everything except non-empty folders.
+- CHANGE: If the -ContinueOnError parameter on The Remove-Folder function now stops the script on all errors if the -ContinueOnError parameter is set to $false. The -DisableRecursion parameter now removes everything except non-empty folders.
 - Resolved an issue where the $LocalSystemNTAccount variable was not populated.
 - Resolved an issue where UNC paths were not handled by New-Shortcut, Set-Shortcut and Get-Shortcut. Minor improvement to $iconIndex logic in New-Shortcut.
 - Resolved an issues where the banner file object is locked and cannot be deleted in the same PowerShell session (#717)
@@ -110,7 +180,7 @@
 - Fixed an issue where $envLogonServer would start with backslashes
 - Fixed an issue where some global variable did not get cleared on exit
   - This caused an issue if you ran multiple toolkits in the same powershell session. It would use the same log file for all toolkits.
-  - This only occured if you used the .ps1 files directly. Deploy-Application.exe opens a new session each time.
+  - This only occurred if you used the .ps1 files directly. Deploy-Application.exe opens a new session each time.
 - Added function Set-Shortcut that allows you to change existing shortcuts
 - Added function Get-Shortcut to retrieve information from a shortcut
 - Changed New-Shortcut:
@@ -131,13 +201,13 @@
 
 **Version 3.8.3 [01/10/2020]**
 - Added function Set-ItemPermission that allows you to easily change permissions on files or folders.
-- Added setting READ permissions to BUITLTIN\Users for toolkit's temporary folder so they can get the popup message.
+- Added setting READ permissions to BUILTIN\Users for toolkit's temporary folder so they can get the popup message.
 - Added -AddParameters for Execute-MSP, that lets you add additional parameters.
 - Added -ExecuteForCurrentUser for Set-ActiveSetup, which allows you to disable executing the StubExePath for the current user.
 - Added -UseShellExecute for Execute-Process:
-  - WindowStyle Hidden doesnt usually work without this parameter on. CreateNoWindow will usually not work without this off.
+  - WindowStyle Hidden doesn't usually work without this parameter on. CreateNoWindow will usually not work without this off.
   - This parameter changes the way the application is started. It is similar to entering a path into the Run dialog or into the Windows Explorer. If it is a file not an application, then the Shell will open it in a program assigned for this extension. The Shell does not stand for command shell but for operating system shell. It also changes how Working Directory is used.
-  - If this parameter is set to $true there is no output/error stream. Only an exit code. Default value is $false which was also the case before, however you couldnt change it through parameters previously.
+  - If this parameter is set to $true there is no output/error stream. Only an exit code. Default value is $false which was also the case before, however you couldn't change it through parameters previously.
   - Expanded description for WindowStyle, CreateNoWindow and WorkingDirectory parameters.
 - Added return value for Execute-Process with -PassThru and -NoWait specified: Returns an object with Id, Handle and ProcessName.
 - Added config paths to the config file for installations where RequireAdmin is False.
@@ -163,7 +233,7 @@
 - Fixed issue with $envOSVersionRevision not being populated on Windows 8 because the "UBR" registry value is only being checked if "$envOSVersionMajor = 10".
 - Fixed an issue where the correct ProgramFiles and CommonProgramFiles paths were not populated if the Toolkit was launched from a 32-bit process on a 64-bit OS.
 - Fixed Powershell 2.0 issues with GetHostEntry and GetFolderPath.
-- Fixed the issue with config file being read incorrectly and showing incorrect charaters in the UI.
+- Fixed the issue with config file being read incorrectly and showing incorrect characters in the UI.
 - Fixed Get-UserProfiles so it ignores "defaultuser0" account.
 - Fixed a rare issue in Execute-ProcessAsUser causing an error, because of a negative index for SubString.
   - Improved logging in the function.
