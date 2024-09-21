@@ -50,11 +50,11 @@ function Test-IntuneWin32App {
         Write-Msg -Msg "Found matching app but 'displayVersion' is null: '$($ExistingApp.displayName)'"
         Write-Output -InputObject $false
     }
-    elseif ($Manifest.PackageInformation.Version -le $ExistingApp.displayVersion) {
+    elseif ([version]$Manifest.PackageInformation.Version -le [version]$ExistingApp.displayVersion) {
         Write-Msg -Msg "Existing Intune app version is current: '$($ExistingApp.displayName)'"
         Write-Output -InputObject $false
     }
-    elseif ($Manifest.PackageInformation.Version -gt $ExistingApp.displayVersion) {
+    elseif ([version]$Manifest.PackageInformation.Version -gt [version]$ExistingApp.displayVersion) {
         Write-Msg -Msg "Import application version: '$($Manifest.Information.DisplayName)'"
         Write-Output -InputObject $true
     }
