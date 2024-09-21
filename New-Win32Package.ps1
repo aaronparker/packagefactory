@@ -241,12 +241,12 @@ process {
                     if ($Manifest.Application.Filter -match "Invoke-EvergreenApp|Get-EvergreenApp") {
                         # Evergreen
                         Write-Msg -Msg "Downloading with Evergreen to: '$SourcePath'"
-                        $Result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -LiteralPath $SourcePath
+                        $Result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -LiteralPath $SourcePath -Verbose
                     }
                     elseif ($Manifest.Application.Filter -match "Get-VcList") {
                         # VcRedist
                         Write-Msg -Msg "Downloading with Evergreen to: '$SourcePath'"
-                        $Result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -LiteralPath $SourcePath
+                        $Result = Invoke-Expression -Command $Manifest.Application.Filter | Save-EvergreenApp -LiteralPath $SourcePath -Verbose
                     }
                     else {
                         # Other
