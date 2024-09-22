@@ -122,8 +122,8 @@ begin {
     #region Call functions
     $ModuleFile = $(Join-Path -Path $PSScriptRoot -ChildPath "New-Win32Package.psm1")
     if (Test-Path -Path $ModuleFile -PathType "Leaf" -ErrorAction "Stop") {
-        Write-Msg -Msg "Importing module: '$ModuleFile'"
         Import-Module -Name $ModuleFile -Force -ErrorAction "Stop"
+        Write-Msg -Msg "Importing module: '$ModuleFile'"
     }
     else {
         throw [System.IO.FileNotFoundException]::New("Module file not found: '$ModuleFile'")
@@ -358,19 +358,19 @@ process {
                 if ($PSBoundParameters.ContainsKey("Certificate") -or $PSBoundParameters.ContainsKey("CertificateSubject") -or $PSBoundParameters.ContainsKey("CertificateThumbprint")) {
                     if ($PSBoundParameters.ContainsKey("Certificate")) {
                         $params = @{
-                            Path       = $SourcePath
+                            Path        = $SourcePath
                             Certificate = $Certificate
                         }
                     }
                     elseif ($PSBoundParameters.ContainsKey("CertificateSubject")) {
                         $params = @{
-                            Path              = $SourcePath
+                            Path               = $SourcePath
                             CertificateSubject = $CertificateSubject
                         }
                     }
                     elseif ($PSBoundParameters.ContainsKey("CertificateThumbprint")) {
                         $params = @{
-                            Path                 = $SourcePath
+                            Path                  = $SourcePath
                             CertificateThumbprint = $CertificateThumbprint
                         }
                     }
