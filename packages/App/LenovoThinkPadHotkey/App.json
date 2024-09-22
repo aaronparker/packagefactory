@@ -1,6 +1,5 @@
 {
-  "Application": {
-  },
+  "Application": {},
   "PackageInformation": {
     "SetupType": "EXE",
     "SetupFile": "r18vu48w.exe",
@@ -24,7 +23,7 @@
     "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Uninstall.ps1",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress",
-    "AllowAvailableUninstall": "false"
+    "AllowAvailableUninstall": false
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",

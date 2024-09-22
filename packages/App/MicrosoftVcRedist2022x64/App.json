@@ -29,7 +29,7 @@
     "UninstallCommand": "\"C:\\ProgramData\\Package Cache\\{5af95fd8-a22e-458f-acee-c61bd787178e}\\VC_redist.x64.exe\" /uninstall /quiet /norestart",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "basedOnReturnCode",
-    "AllowAvailableUninstall": "false"
+    "AllowAvailableUninstall": false
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",

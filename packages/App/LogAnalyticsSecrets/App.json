@@ -1,7 +1,5 @@
 {
-  "Application": {
-
-  },
+  "Application": {},
   "PackageInformation": {
     "SetupType": "EXE",
     "SetupFile": "powershell.exe",
@@ -25,7 +23,7 @@
     "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Remove-LogSecrets.ps1",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress",
-    "AllowAvailableUninstall": "false"
+    "AllowAvailableUninstall": false
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",

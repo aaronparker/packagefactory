@@ -8,14 +8,14 @@
   },
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "zoomrooms-6.0.7.4157-x64.msi",
-    "Version": "6.0.7.4157",
+    "SetupFile": "zoomrooms-6.1.11.4556-x64.msi",
+    "Version": "6.1.11.4556",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/ZoomRooms.png"
   },
   "Information": {
-    "DisplayName": "Zoom Meetings Client 6.0.7.4157 x64",
+    "DisplayName": "Zoom Meetings Client 6.1.11.4556 x64",
     "Description": "Conference rooms that make it easy to run or join video meetings with a tap of a button.",
     "Publisher": "Zoom",
     "InformationURL": "https://explore.zoom.us/en/products/zoom-rooms/",
@@ -29,7 +29,7 @@
     "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Uninstall.ps1",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "suppress",
-    "AllowAvailableUninstall": "false"
+    "AllowAvailableUninstall": false
   },
   "RequirementRule": {
     "MinimumRequiredOperatingSystem": "W10_1809",
@@ -43,7 +43,7 @@
       "Path": "C:\\Program Files\\ZoomRooms\\bin",
       "FileOrFolder": "ZoomRooms.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "6.0.7.4157",
+      "VersionValue": "6.1.11.4556",
       "Check32BitOn64System": "false"
     }
   ],

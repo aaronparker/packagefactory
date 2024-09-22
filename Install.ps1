@@ -258,7 +258,7 @@ function Uninstall-Msi {
                     Write-LogFile -Message "Uninstall-Msi error: $($_.Exception.Message)" -LogLevel 3
                     Write-Warning -Message $_.Exception.Message
                 }
-            } 
+            }
         }
     }
 }
