@@ -388,16 +388,22 @@ process {
                 }
 
                 # Create the intunewin package
-                $params = @{
-                    SourceFolder = $SourcePath
-                    SetupFile    = $IntuneWinSetupFile
-                    OutputFolder = $OutputPath
-                    Force        = $true
+                if ($Result.FullName -match "\.intunewin$") {
+                    Write-Msg -Msg "Copy downloaded intunewin file to: '$Path\output'"
+                    Copy-Item -Path $Result.FullName -Destination $OutputPath -Force
                 }
-                Write-Msg -Msg "Create intunewin package in: '$OutputPath'"
-                Write-Msg -Msg "Source folder: '$SourcePath'"
-                Write-Msg -Msg "Setup file: '$IntuneWinSetupFile'"
-                $IntuneWinPackage = New-IntuneWin32AppPackage @params
+                else {
+                    $params = @{
+                        SourceFolder = $SourcePath
+                        SetupFile    = $IntuneWinSetupFile
+                        OutputFolder = $OutputPath
+                        Force        = $true
+                    }
+                    Write-Msg -Msg "Create intunewin package in: '$OutputPath'"
+                    Write-Msg -Msg "Source folder: '$SourcePath'"
+                    Write-Msg -Msg "Setup file: '$IntuneWinSetupFile'"
+                    $IntuneWinPackage = New-IntuneWin32AppPackage @params
+                }
 
                 # Get the package file
                 $PackageFile = Get-ChildItem -Path $OutputPath -Recurse -Include "*.intunewin" -ErrorAction "SilentlyContinue"
