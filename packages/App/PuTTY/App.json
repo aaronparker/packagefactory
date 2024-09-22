@@ -1,0 +1,53 @@
+{
+  "Application": {
+    "Name": "PuTTY",
+    "Filter": "Get-EvergreenAppFromApi -Name \"PuTTY\" -ErrorAction \"SilentlyContinue\" -WarningAction \"SilentlyContinue\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Type -eq \"msi\" }",
+    "Title": "PuTTY",
+    "Language": "en-US",
+    "Architecture": "x64"
+  },
+  "PackageInformation": {
+    "SetupType": "MSI",
+    "SetupFile": "putty-64bit-0.81-installer.msi",
+    "Version": "0.81",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/NotepadPP.png"
+  },
+  "Information": {
+    "DisplayName": "PuTTY 0.81 x64",
+    "Description": "PuTTY is an SSH and telnet client, developed originally by Simon Tatham for the Windows platform. PuTTY is open source software that is available with source code and is developed and supported by a group of volunteers.",
+    "Publisher": "Simon Tatham",
+    "InformationURL": "https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html",
+    "PrivacyURL": "",
+    "Categories": [],
+    "PSPackageFactoryGuid": "15b9121c-d5a3-4f32-b60a-4199634b5a12"
+  },
+  "Program": {
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "UninstallCommand": "MsiExec.exe /X \"{DDC95F26-92B1-4546-9678-5DC68DF76BA0}\" /quiet",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "suppress",
+    "AllowAvailableUninstall": false
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "W10_1809",
+    "Architecture": "x64"
+  },
+  "CustomRequirementRule": [],
+  "DetectionRule": [
+    {
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "C:\\Program Files\\PuTTY",
+      "FileOrFolder": "putty.exe",
+      "Operator": "greaterThanOrEqual",
+      "VersionValue": "0.81",
+      "Check32BitOn64System": "false"
+    }
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
+}

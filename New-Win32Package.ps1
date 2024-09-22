@@ -181,7 +181,7 @@ process {
                 }
 
                 # Download the application installer
-                if ([string]::IsNullOrEmpty($Manifest.Application.Filter)) {
+                if ([System.String]::IsNullOrEmpty($Manifest.Application.Filter)) {
                     Write-Warning -Message "$ApplicationName not supported for automatic download"
                     Write-Msg -Msg "Please ensure application binaries are saved to: '$SourcePath'"
                 }
