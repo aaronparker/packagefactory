@@ -1,4 +1,4 @@
-﻿#Requires -PSEdition Desktop
+#Requires -PSEdition Desktop
 #Requires -Modules MSAL.PS, IntuneWin32App
 <#
     .SYNOPSIS
@@ -45,6 +45,8 @@ begin {}
 process {
     # Read app data from JSON manifest
     $AppData = Get-Content -Path $Json | ConvertFrom-Json
+    $AppSourceFolder = ([IO.FileInfo] $Json).Directory.Fullname
+    $AppSourceFolder = [System.IO.Path]::Combine($AppSourceFolder, "Source")
 
     # Required packaging variables
     $ScriptsFolder = [System.IO.Path]::Combine($PSScriptRoot, "Scripts")
@@ -61,7 +63,13 @@ process {
         $AppIconFile = $OutFile
     }
     else {
-        $AppIconFile = $AppData.PackageInformation.IconFile
+        # Only if file already exists
+        if (Test-Path -Path $AppIconFile) {
+            $AppIconFile = $AppData.PackageInformation.IconFile
+        } else {
+            $AppIconFile = $null
+        }
+        
     }
 
     # Create default requirement rule
@@ -301,7 +309,7 @@ process {
             "Script" {
                 # Create a PowerShell script based detection rule
                 $DetectionRuleArgs = @{
-                    "ScriptFile"            = (Join-Path -Path $ScriptsFolder -ChildPath $DetectionRuleItem.ScriptFile)
+                    "ScriptFile"            = (Join-Path -Path $AppSourceFolder -ChildPath $DetectionRuleItem.ScriptFile)
                     "EnforceSignatureCheck" = [System.Convert]::ToBoolean($DetectionRuleItem.EnforceSignatureCheck)
                     "RunAs32Bit"            = [System.Convert]::ToBoolean($DetectionRuleItem.RunAs32Bit)
                 }
@@ -428,8 +436,8 @@ process {
         $DetectionRules.Add($DetectionRule) | Out-Null
     }
 
-    # Add icon
-    if (Test-Path -Path $AppIconFile) {
+    # Add icon if existing
+    if (![string]::IsNullOrEmpty($AppIconFile)) {
         $Icon = New-IntuneWin32AppIcon -FilePath $AppIconFile
     }
 
@@ -463,7 +471,7 @@ process {
     if ($null -ne $RequirementRules) {
         $Win32AppArgs.Add("AdditionalRequirementRule", $RequirementRules)
     }
-    if (Test-Path -Path $AppIconFile) {
+    if (![string]::IsNullOrEmpty($Icon)) {
         $Win32AppArgs.Add("Icon", $Icon)
     }
     if (-not([System.String]::IsNullOrEmpty($AppData.Information.Notes))) {
