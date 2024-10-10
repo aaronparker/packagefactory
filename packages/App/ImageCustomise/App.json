@@ -9,13 +9,13 @@
   "PackageInformation": {
     "SetupType": "EXE",
     "SetupFile": "Install-Defaults.ps1",
-    "Version": "2406.01.173",
+    "Version": "2409.16.188",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Package.png"
   },
   "Information": {
-    "DisplayName": "Windows Customised Defaults 2406.01.173 x86",
+    "DisplayName": "Windows Customised Defaults 2409.16.188 x86",
     "Description": "Default user and system settings (including default Start menu layout) for Windows 10/11 PCs provisioned via Windows Autopilot. Ensure this package is assigned in the Enrolment Status Page to enable install before user sign-in.",
     "Publisher": "stealthpuppy",
     "InformationURL": "https://stealthpuppy.com/image-customise/",
@@ -43,7 +43,7 @@
       "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{f38de27b-799e-4c30-8a01-bfdedc622944}",
       "ValueName": "DisplayVersion",
       "Operator": "greaterThanOrEqual",
-      "Value": "2406.01.173",
+      "Value": "2409.16.188",
       "Check32BitOn64System": "false"
     }
   ],
