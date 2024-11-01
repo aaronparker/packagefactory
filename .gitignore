@@ -16,7 +16,6 @@
 
 # Package folders
 packages/**/Package
-packages/**/*.png
 auth.ps1
 auth.json
 output/**

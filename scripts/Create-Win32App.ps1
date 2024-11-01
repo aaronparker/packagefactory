@@ -65,11 +65,10 @@ process {
     else {
         # Only if file already exists
         if (Test-Path -Path $AppIconFile) {
-            $AppIconFile = $AppData.PackageInformation.IconFile
+            $AppIconFile = [System.IO.Path]::Combine((Get-Item $Json).DirectoryName, $AppData.PackageInformation.IconFile)
         } else {
             $AppIconFile = $null
         }
-        
     }
 
     # Create default requirement rule
