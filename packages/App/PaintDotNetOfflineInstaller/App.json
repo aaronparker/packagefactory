@@ -8,14 +8,14 @@
   },
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "paint.net.5.0.13.winmsi.x64.msi",
-    "Version": "5.0.13",
+    "SetupFile": "paint.net.5.1.winmsi.x64.msi",
+    "Version": "5.1",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Paint.Net.png"
   },
   "Information": {
-    "DisplayName": "Paint.NET 5.0.13 x64",
+    "DisplayName": "Paint.NET 5.1 x64",
     "Description": "Paint.NET is image and photo editing software for PCs that run Windows. It features an intuitive and innovative user interface with support for layers, unlimited undo, special effects, and a wide variety of useful and powerful tools.",
     "Publisher": "dotPDN LLC.",
     "InformationURL": "https://www.getpaint.net/",
@@ -43,7 +43,7 @@
       "Path": "C:\\Program Files\\paint.net",
       "FileOrFolder": "paintdotnet.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "5.0.13",
+      "VersionValue": "5.1",
       "Check32BitOn64System": "false"
     }
   ],
