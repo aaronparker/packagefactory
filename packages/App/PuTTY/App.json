@@ -8,14 +8,14 @@
   },
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "putty-64bit-0.81-installer.msi",
-    "Version": "0.81",
+    "SetupFile": "putty-64bit-0.82-installer.msi",
+    "Version": "0.82",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/NotepadPP.png"
   },
   "Information": {
-    "DisplayName": "PuTTY 0.81 x64",
+    "DisplayName": "PuTTY 0.82 x64",
     "Description": "PuTTY is an SSH and telnet client, developed originally by Simon Tatham for the Windows platform. PuTTY is open source software that is available with source code and is developed and supported by a group of volunteers.",
     "Publisher": "Simon Tatham",
     "InformationURL": "https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html",
@@ -43,7 +43,7 @@
       "Path": "C:\\Program Files\\PuTTY",
       "FileOrFolder": "putty.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "0.81",
+      "VersionValue": "0.82",
       "Check32BitOn64System": "false"
     }
   ],

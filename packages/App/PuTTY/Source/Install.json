@@ -1,15 +1,15 @@
 {
   "PackageInformation": {
-      "SetupType": "MSI",
-      "SetupFile": "putty-64bit-0.81-installer.msi",
-      "Version": "0.81"
+    "SetupType": "MSI",
+    "SetupFile": "putty-64bit-0.82-installer.msi",
+    "Version": "0.82"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
-      "ArgumentList": "/package \"#SetupFile\" ALLUSERS=1 /quiet /log \"#LogPath\\#LogName.log\""
+    "ArgumentList": "/package \"#SetupFile\" ALLUSERS=1 /quiet /log \"#LogPath\\#LogName.log\""
   },
   "PostInstall": {
-      "Remove": [],
-      "CopyFile": []
+    "Remove": [],
+    "CopyFile": []
   }
 }
