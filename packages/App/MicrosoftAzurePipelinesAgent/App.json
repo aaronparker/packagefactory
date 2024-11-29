@@ -478,6 +478,7 @@
       "externals\\git\\mingw64\\bin\\Avalonia.Remote.Protocol.dll",
       "externals\\git\\mingw64\\bin\\Avalonia.Skia.dll",
       "externals\\git\\mingw64\\bin\\Avalonia.Themes.Fluent.dll",
+      "externals\\git\\mingw64\\bin\\Avalonia.Vulkan.dll",
       "externals\\git\\mingw64\\bin\\Avalonia.Win32.dll",
       "externals\\git\\mingw64\\bin\\av_libglesv2.dll",
       "externals\\git\\mingw64\\bin\\blocked-file-util.exe",
@@ -608,6 +609,7 @@
       "externals\\git\\mingw64\\libexec\\git-core\\mergetools\\tkdiff",
       "externals\\git\\mingw64\\libexec\\git-core\\mergetools\\tortoisemerge",
       "externals\\git\\mingw64\\libexec\\git-core\\mergetools\\vimdiff",
+      "externals\\git\\mingw64\\libexec\\git-core\\mergetools\\vscode",
       "externals\\git\\mingw64\\libexec\\git-core\\mergetools\\winmerge",
       "externals\\git\\mingw64\\libexec\\git-core\\mergetools\\xxdiff",
       "externals\\git\\mingw64\\share\\doc\\expat\\AUTHORS",
@@ -717,6 +719,7 @@
       "externals\\git\\usr\\bin\\msys-wind-0.dll",
       "externals\\git\\usr\\bin\\msys-z.dll",
       "externals\\git\\usr\\bin\\mv.exe",
+      "externals\\git\\usr\\bin\\newgrp.exe",
       "externals\\git\\usr\\bin\\pathchk.exe",
       "externals\\git\\usr\\bin\\printf.exe",
       "externals\\git\\usr\\bin\\profiler.exe",
@@ -1667,13 +1670,13 @@
       "externals\\vstsom\\zh-Hant\\TF.resources.dll",
       "externals\\vswhere\\vswhere.exe"
     ],
-    "Version": "3.246.0",
+    "Version": "3.248.0",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-AzurePipelines.png"
   },
   "Information": {
-    "DisplayName": "Microsoft Azure Pipelines Agent 3.246.0 x64",
+    "DisplayName": "Microsoft Azure Pipelines Agent 3.248.0 x64",
     "Description": "The Microsoft Azure Pipelines Agent used to deploy to target machines and create a self hosted pipelines runner in Azure Pipelines.",
     "Publisher": "Microsoft",
     "InformationURL": "https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents",
@@ -1701,7 +1704,7 @@
       "Path": "C:\\agents\\bin",
       "FileOrFolder": "Agent.Worker.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "3.246.0",
+      "VersionValue": "3.248.0",
       "Check32BitOn64System": "false"
     }
   ],
