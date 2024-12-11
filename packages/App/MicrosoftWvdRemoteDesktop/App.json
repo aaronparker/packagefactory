@@ -8,14 +8,14 @@
   },
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "RemoteDesktop_1.2.5713.0_x64.msi",
-    "Version": "1.2.5713.0",
+    "SetupFile": "RemoteDesktop_1.2.5716.0_x64.msi",
+    "Version": "1.2.5716.0",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-RemoteDesktop2.png"
   },
   "Information": {
-    "DisplayName": "Microsoft Remote Desktop 1.2.5713.0 x64",
+    "DisplayName": "Microsoft Remote Desktop 1.2.5716.0 x64",
     "Description": "The Microsoft Remote Desktop client is used to connect to Azure Virtual Desktop to access your desktops and applications. This article shows you how to connect to Azure Virtual Desktop with the Remote Desktop client for Windows.",
     "Publisher": "Microsoft",
     "InformationURL": "https://learn.microsoft.com/en-us/azure/virtual-desktop/users/connect-windows",
@@ -43,7 +43,7 @@
       "Path": "C:\\Program Files\\Remote Desktop",
       "FileOrFolder": "msrdc.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "1.2.5713.0",
+      "VersionValue": "1.2.5716.0",
       "Check32BitOn64System": "false"
     }
   ],
