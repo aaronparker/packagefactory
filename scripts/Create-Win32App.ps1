@@ -69,7 +69,6 @@ process {
         } else {
             $AppIconFile = $null
         }
-        
     }
 
     # Create default requirement rule
