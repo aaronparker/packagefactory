@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "MicrosoftPowerShell",
-    "Filter": "Get-EvergreenAppFromApi -Name \"MicrosoftPowerShell\" | Where-Object { $_.Release -eq \"Stable\" -and $_.Architecture -eq \"x64\" }",
+    "Filter": "Get-EvergreenAppFromApi -Name \"MicrosoftPowerShell\" | Where-Object { $_.Release -eq \"Stable\" -and $_.Architecture -eq \"x64\" -and $_.Type -eq \"exe\" }",
     "Title": "Microsoft PowerShell",
     "Language": "en-US",
     "Architecture": "x64"
