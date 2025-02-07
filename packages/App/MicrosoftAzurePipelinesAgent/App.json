@@ -1630,13 +1630,13 @@
       "externals\\vstsom\\zh-Hant\\TF.resources.dll",
       "externals\\vswhere\\vswhere.exe"
     ],
-    "Version": "4.248.1",
+    "Version": "4.251.0",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-AzurePipelines.png"
   },
   "Information": {
-    "DisplayName": "Microsoft Azure Pipelines Agent 4.248.1 x64",
+    "DisplayName": "Microsoft Azure Pipelines Agent 4.251.0 x64",
     "Description": "The Microsoft Azure Pipelines Agent used to deploy to target machines and create a self hosted pipelines runner in Azure Pipelines.",
     "Publisher": "Microsoft",
     "InformationURL": "https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents",
@@ -1664,7 +1664,7 @@
       "Path": "C:\\agents\\bin",
       "FileOrFolder": "Agent.Worker.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "4.248.1",
+      "VersionValue": "4.251.0",
       "Check32BitOn64System": "false"
     }
   ],
