@@ -9,13 +9,13 @@
   "PackageInformation": {
     "SetupType": "EXE",
     "SetupFile": "VC_redist.x86.exe",
-    "Version": "14.42.34433.0",
+    "Version": "14.42.34438.0",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-VisualStudioCode2022.png"
   },
   "Information": {
-    "DisplayName": "Microsoft Visual C++ Redistributable for Visual Studio 2022 14.42.34433.0 x86",
+    "DisplayName": "Microsoft Visual C++ Redistributable for Visual Studio 2022 14.42.34438.0 x86",
     "Description": "This package installs run-time components of Visual C++ libraries and can be used to run such applications on a computer even if it does not have Visual Studio 2022 installed.",
     "Publisher": "Microsoft",
     "InformationURL": "https://visualstudio.microsoft.com/downloads/",
@@ -26,7 +26,7 @@
   "Program": {
     "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
     "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
-    "UninstallCommand": "\"C:\\ProgramData\\Package Cache\\{e7802eac-3305-4da0-9378-e55d1ed05518}\\VC_redist.x86.exe\" /uninstall /quiet /norestart",
+    "UninstallCommand": "\"C:\\ProgramData\\Package Cache\\{ba10fda9-f731-441f-a999-000bbb7ceec2}\\VC_redist.x86.exe\" /uninstall /quiet /norestart",
     "InstallExperience": "system",
     "DeviceRestartBehavior": "basedOnReturnCode",
     "AllowAvailableUninstall": false
@@ -43,7 +43,7 @@
       "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{410c0ee1-00bb-41b6-9772-e12c2828b02f}",
       "ValueName": "DisplayVersion",
       "Operator": "greaterThanOrEqual",
-      "Value": "14.42.34433.0",
+      "Value": "14.42.34438.0",
       "Check32BitOn64System": "true"
     }
   ],
