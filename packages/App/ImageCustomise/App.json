@@ -2,7 +2,7 @@
   "Application": {
     "Name": "ImageCustomise",
     "Filter": "Get-EvergreenAppFromApi -Name \"stealthpuppyWindowsCustomisedDefaults\" | Where-Object { $_.Type -eq \"intunewin\" } | Select-Object -First 1",
-    "Title": "Windows Customised Defaults",
+    "Title": "Windows Enterprise Defaults",
     "Language": "en-US",
     "Architecture": "x64"
   },
@@ -15,8 +15,8 @@
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Package.png"
   },
   "Information": {
-    "DisplayName": "Windows Customised Defaults 2502.26.193 x86",
-    "Description": "Default user and system settings (including default Start menu layout) for Windows 10/11 PCs provisioned via Windows Autopilot. Ensure this package is assigned in the Enrolment Status Page to enable install before user sign-in.",
+    "DisplayName": "Windows Enterprise Defaults 2502.26.193 x86",
+    "Description": "Customisations to **make Windows 10 & Windows 11 enterprise-ready** by configuring a clean OS default state, uninstalling unnecessary in-box AppX apps, and improving the end-user experience by updating the default user profile and default Start menu. Includes support for localising Windows and setting a time zone.",
     "Publisher": "stealthpuppy",
     "InformationURL": "https://stealthpuppy.com/image-customise/",
     "PrivacyURL": "https://stealthpuppy.com/image-customise/",
