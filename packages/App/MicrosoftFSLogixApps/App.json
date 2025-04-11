@@ -15,13 +15,13 @@
       "x64/Release/FSLogixAppsRuleEditorSetup.exe",
       "x64/Release/FSLogixAppsSetup.exe"
     ],
-    "Version": "25.02",
+    "Version": "25.04",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/MicrosoftFSLogixApps.png"
   },
   "Information": {
-    "DisplayName": "Microsoft FSLogix Apps 25.02",
+    "DisplayName": "Microsoft FSLogix Apps 25.04",
     "Description": "FSLogix enhances and enables user profiles in Windows remote computing environments.",
     "Publisher": "Microsoft",
     "InformationURL": "https://learn.microsoft.com/en-us/fslogix/install-ht",
@@ -49,7 +49,7 @@
       "Path": "C:\\Program Files\\FSLogix\\Apps",
       "FileOrFolder": "frx.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "25.02",
+      "VersionValue": "25.04",
       "Check32BitOn64System": "false"
     },
     {
@@ -58,7 +58,7 @@
       "Path": "C:\\Program Files\\FSLogix\\Apps",
       "FileOrFolder": "frxshell.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "25.02",
+      "VersionValue": "25.04",
       "Check32BitOn64System": "false"
     },
     {
@@ -67,7 +67,7 @@
       "Path": "C:\\Program Files\\FSLogix\\Apps",
       "FileOrFolder": "frxsvc.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "25.02",
+      "VersionValue": "25.04",
       "Check32BitOn64System": "false"
     }
   ],

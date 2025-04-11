@@ -8,14 +8,14 @@
   },
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "PowerToysSetup-0.90.0-x64.exe",
-    "Version": "0.90.0",
+    "SetupFile": "PowerToysSetup-0.90.1-x64.exe",
+    "Version": "0.90.1",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/microsoft/PowerToys/raw/v0.58.0/installer/MSIX/Images/logo.png"
   },
   "Information": {
-    "DisplayName": "Microsoft PowerToys 0.90.0 x64",
+    "DisplayName": "Microsoft PowerToys 0.90.1 x64",
     "Description": "Microsoft PowerToys is a set of utilities for power users to tune and streamline their Windows experience for greater productivity.",
     "Publisher": "Microsoft",
     "InformationURL": "https://aka.ms/powertoys-docs",
@@ -43,7 +43,7 @@
       "Path": "C:\\Program Files\\PowerToys",
       "FileOrFolder": "PowerToys.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "0.90.0",
+      "VersionValue": "0.90.1",
       "Check32BitOn64System": "false"
     }
   ],

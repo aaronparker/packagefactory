@@ -8,14 +8,14 @@
   },
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "VSCodeSetup-x64-1.99.1.exe",
-    "Version": "1.99.1",
+    "SetupFile": "VSCodeSetup-x64-1.99.2.exe",
+    "Version": "1.99.2",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-VSCode.png"
   },
   "Information": {
-    "DisplayName": "Microsoft Visual Studio Code 1.99.1 x64",
+    "DisplayName": "Microsoft Visual Studio Code 1.99.2 x64",
     "Description": "Visual Studio Code is a lightweight but powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux. It comes with built-in support for JavaScript, TypeScript and Node.js and has a rich ecosystem of extensions for other languages (such as C++, C#, Java, Python, PHP, Go) and runtimes (such as .NET and Unity).",
     "Publisher": "Microsoft",
     "InformationURL": "https://code.visualstudio.com/",
@@ -43,7 +43,7 @@
       "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{EA457B21-F73E-494C-ACAB-524FDE069978}_is1",
       "ValueName": "DisplayVersion",
       "Operator": "greaterThanOrEqual",
-      "Value": "1.99.1",
+      "Value": "1.99.2",
       "Check32BitOn64System": "false"
     }
   ],
