@@ -9,13 +9,13 @@
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "MicrosoftEdgeEnterpriseX64.msi",
-    "Version": "135.0.3179.73",
+    "Version": "135.0.3179.85",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-Edge.png"
   },
   "Information": {
-    "DisplayName": "Microsoft Edge 135.0.3179.73 x64",
+    "DisplayName": "Microsoft Edge 135.0.3179.85 x64",
     "Description": "Microsoft Edge is the fast and secure browser that helps you protect your data and save time and money.",
     "Publisher": "Microsoft",
     "InformationURL": "https://www.microsoft.com/en-us/edge/features",
@@ -43,7 +43,7 @@
       "Path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application",
       "FileOrFolder": "msedge.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "135.0.3179.73",
+      "VersionValue": "135.0.3179.85",
       "Check32BitOn64System": "false"
     }
   ],
