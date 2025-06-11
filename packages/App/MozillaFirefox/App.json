@@ -8,14 +8,14 @@
   },
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "Firefox Setup 139.0.1.msi",
-    "Version": "139.0.1",
+    "SetupFile": "Firefox Setup 139.0.4.msi",
+    "Version": "139.0.4",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Mozilla-Firefox.png"
   },
   "Information": {
-    "DisplayName": "Mozilla Firefox 139.0.1 x64",
+    "DisplayName": "Mozilla Firefox 139.0.4 x64",
     "Description": "Get the browser that protects what's important. No shady privacy policies or back doors for advertisers. Just a lightning fast browser that doesn't sell you out.",
     "Publisher": "Mozilla",
     "InformationURL": "https://www.mozilla.org/firefox/new/",
@@ -43,7 +43,7 @@
       "Path": "C:\\Program Files\\Mozilla Firefox",
       "FileOrFolder": "firefox.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "139.0.1",
+      "VersionValue": "139.0.4",
       "Check32BitOn64System": "false"
     }
   ],

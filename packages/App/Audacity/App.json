@@ -8,14 +8,14 @@
   },
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "audacity-win-3.7.3-64bit.exe",
-    "Version": "3.7.3",
+    "SetupFile": "audacity-win-3.7.4-64bit.exe",
+    "Version": "3.7.4",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Audacity.png"
   },
   "Information": {
-    "DisplayName": "Audacity 3.7.3 x64",
+    "DisplayName": "Audacity 3.7.4 x64",
     "Description": "Audacity is an easy-to-use, multi-track audio editor and recorder for Windows, macOS, GNU/Linux and other operating systems.",
     "Publisher": "Audacity",
     "InformationURL": "https://www.audacityteam.org/",
@@ -43,7 +43,7 @@
       "Path": "C:\\Program Files\\Audacity",
       "FileOrFolder": "Audacity.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "3.7.3",
+      "VersionValue": "3.7.4",
       "Check32BitOn64System": "false"
     }
   ],
