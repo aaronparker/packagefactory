@@ -70,7 +70,7 @@ jobs:
 
       - name: Commit changes
         id: commit
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v6
         with:
           commit_message: "Update Win32 export ${{ steps.get-date.outputs.date }}.${{ github.run_number }} ${{ github.job }}"
           commit_user_name: ${{ secrets.COMMIT_NAME }}
