@@ -1,8 +1,8 @@
 {
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "Cyberduck-Installer-9.1.4.43177.exe",
-    "Version": "9.1.4.43177"
+    "SetupFile": "Cyberduck-Installer-9.1.6.43284.exe",
+    "Version": "9.1.6.43284"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
