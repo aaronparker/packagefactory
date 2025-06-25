@@ -8,14 +8,14 @@
   },
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "Cyberduck-Installer-9.1.6.43284.exe",
-    "Version": "9.1.6.43284",
+    "SetupFile": "Cyberduck-Installer-9.1.7.43306.exe",
+    "Version": "9.1.7.43306",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Iterate-Cyberduck1.png"
   },
   "Information": {
-    "DisplayName": "Cyberduck 9.1.6.43284",
+    "DisplayName": "Cyberduck 9.1.7.43306",
     "Description": "Cyberduck is a libre server and cloud storage browser for Mac and Windows with support for FTP, SFTP, WebDAV, Amazon S3, OpenStack Swift, Backblaze B2, Microsoft Azure & OneDrive, Google Drive and Dropbox.",
     "Publisher": "iterate",
     "InformationURL": "https://cyberduck.io/",
@@ -43,7 +43,7 @@
       "Path": "C:\\Program Files\\Cyberduck",
       "FileOrFolder": "Cyberduck.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "9.1.6.43284",
+      "VersionValue": "9.1.7.43306",
       "Check32BitOn64System": "false"
     }
   ],
