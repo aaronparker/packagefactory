@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "CitrixWorkspaceApp",
-    "Filter": "Get-EvergreenAppFromApi -Name \"CitrixWorkspaceApp\" | Where-Object { $_.Stream -eq \"LTSR\" -and $_.Title -match \"Citrix Workspace\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenApp -Name \"CitrixWorkspaceApp\" | Where-Object { $_.Stream -eq \"LTSR\" -and $_.Title -match \"Citrix Workspace\" } | Select-Object -First 1",
     "Title": "Citrix Workspace app LTSR",
     "Language": "en-US",
     "Architecture": "x86"

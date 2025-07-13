@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "AdobeAcrobatReaderDC",
-    "Filter": "Get-EvergreenAppFromApi -Name \"AdobeAcrobatReaderDC\" | Where-Object { $_.Language -eq \"MUI\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenApp -Name \"AdobeAcrobatReaderDC\" | Where-Object { $_.Language -eq \"MUI\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
     "Title": "Adobe Acrobat Reader DC (VDI install)",
     "PrePackageCmd": " -sfx_o\"#Path\" -sfx_ne",
     "Language": "English",

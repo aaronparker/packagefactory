@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "Zoom Meetings",
-    "Filter": "Get-EvergreenAppFromApi -Name \"Zoom\" | Where-Object { $_.Platform -eq \"Meetings\" -and $_.Type -eq \"msi\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenApp -Name \"Zoom\" | Where-Object { $_.Platform -eq \"Meetings\" -and $_.Type -eq \"msi\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
     "Title": "Zoom Meetings Client",
     "Language": "en-US",
     "Architecture": "x64"

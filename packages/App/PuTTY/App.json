@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "PuTTY",
-    "Filter": "Get-EvergreenAppFromApi -Name \"PuTTY\" -ErrorAction \"SilentlyContinue\" -WarningAction \"SilentlyContinue\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Type -eq \"msi\" }",
+    "Filter": "Get-EvergreenApp -Name \"PuTTY\" -ErrorAction \"SilentlyContinue\" -WarningAction \"SilentlyContinue\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Type -eq \"msi\" }",
     "Title": "PuTTY",
     "Language": "en-US",
     "Architecture": "x64"

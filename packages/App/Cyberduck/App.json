@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "Cyberduck",
-    "Filter": "Get-EvergreenAppFromApi -Name \"Cyberduck\"",
+    "Filter": "Get-EvergreenApp -Name \"Cyberduck\"",
     "Title": "Cyberduck",
     "Language": "en-US",
     "Architecture": "x64"

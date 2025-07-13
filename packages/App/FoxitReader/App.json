@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "FoxitReader",
-    "Filter": "Get-EvergreenAppFromApi -Name \"FoxitReader\" | Where-Object { $_.Language -eq \"English\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenApp -Name \"FoxitReader\" | Where-Object { $_.Language -eq \"English\" } | Select-Object -First 1",
     "Title": "Foxit PDF Reader",
     "Language": "en-US",
     "Architecture": "x86"

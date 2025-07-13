@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "GoogleChrome",
-    "Filter": "Get-EvergreenAppFromApi -Name \"GoogleChrome\" | Where-Object { $_.Channel -eq \"stable\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenApp -Name \"GoogleChrome\" | Where-Object { $_.Channel -eq \"stable\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
     "Title": "Google Chrome",
     "Language": "en-US",
     "Architecture": "x64"

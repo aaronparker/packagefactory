@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "MicrosoftVisualStudioCode",
-    "Filter": "Get-EvergreenAppFromApi -Name \"MicrosoftVisualStudioCode\" | Where-Object { $_.Channel -eq \"Stable\" -and $_.Architecture -eq \"x64\" -and $_.Platform -eq \"win32-x64\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenApp -Name \"MicrosoftVisualStudioCode\" | Where-Object { $_.Channel -eq \"Stable\" -and $_.Architecture -eq \"x64\" -and $_.Platform -eq \"win32-x64\" } | Select-Object -First 1",
     "Title": "Microsoft Visual Studio Code",
     "Language": "en-US",
     "Architecture": "x64"

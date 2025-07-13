@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "MicrosoftAzurePipelinesAgent",
-    "Filter": "Get-EvergreenAppFromApi -Name \"MicrosoftAzurePipelinesAgent\" | Select-Object -First 1",
+    "Filter": "Get-EvergreenApp -Name \"MicrosoftAzurePipelinesAgent\" | Select-Object -First 1",
     "Title": "Microsoft Azure Pipelines Agent",
     "Language": "en-US",
     "Architecture": "x64"

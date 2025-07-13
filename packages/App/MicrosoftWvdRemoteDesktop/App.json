@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "MicrosoftWvdRemoteDesktop",
-    "Filter": "Get-EvergreenAppFromApi -Name \"MicrosoftWvdRemoteDesktop\" | Where-Object { $_.Channel -eq \"Public\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenApp -Name \"MicrosoftWvdRemoteDesktop\" | Where-Object { $_.Channel -eq \"Public\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
     "Title": "Microsoft Remote Desktop",
     "Language": "en-US",
     "Architecture": "x64"

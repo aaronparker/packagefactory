@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "PaintDotNetOfflineInstaller",
-    "Filter": "Get-EvergreenAppFromApi -Name \"PaintDotNetOfflineInstaller\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.URI -match \"winmsi\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenApp -Name \"PaintDotNetOfflineInstaller\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.URI -match \"winmsi\" } | Select-Object -First 1",
     "Title": "Paint.NET",
     "Language": "en-US",
     "Architecture": "x64"

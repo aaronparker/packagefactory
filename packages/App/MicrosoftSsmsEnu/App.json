@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "MicrosoftSsmsEnu",
-    "Filter": "Get-EvergreenAppFromApi -Name \"MicrosoftSsms\" | Where-Object { $_.Language -eq \"English\" } | Select-Object -First 1",
+    "Filter": "Get-EvergreenApp -Name \"MicrosoftSsms\" | Where-Object { $_.Language -eq \"English\" } | Select-Object -First 1",
     "Title": "Microsoft SQL Server Management Studio",
     "Language": "en-US",
     "Architecture": "x64"

@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "MozillaFirefox",
-    "Filter": "Get-EvergreenAppFromApi -Name \"MozillaFirefox\" -ErrorAction \"SilentlyContinue\" -WarningAction \"SilentlyContinue\" | Where-Object { $_.Channel -eq \"Current\" -and $_.Architecture -eq \"x64\" -and $_.Type -eq \"msi\" -and $_.Language -eq \"en-GB\" }",
+    "Filter": "Get-EvergreenApp -Name \"MozillaFirefox\" -ErrorAction \"SilentlyContinue\" -WarningAction \"SilentlyContinue\" | Where-Object { $_.Channel -eq \"Current\" -and $_.Architecture -eq \"x64\" -and $_.Type -eq \"msi\" -and $_.Language -eq \"en-GB\" }",
     "Title": "Mozilla Firefox",
     "Language": "en-US",
     "Architecture": "x64"

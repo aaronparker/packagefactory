@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "NotepadPlusPlus",
-    "Filter": "Get-EvergreenAppFromApi -Name \"NotepadPlusPlus\" -ErrorAction \"SilentlyContinue\" -WarningAction \"SilentlyContinue\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Type -eq \"exe\" }",
+    "Filter": "Get-EvergreenApp -Name \"NotepadPlusPlus\" -ErrorAction \"SilentlyContinue\" -WarningAction \"SilentlyContinue\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Type -eq \"exe\" }",
     "Title": "Notepad++",
     "Language": "en-US",
     "Architecture": "x64"
