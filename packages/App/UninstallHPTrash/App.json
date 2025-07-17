@@ -1,0 +1,58 @@
+{
+    "Application": {
+        "Architecture": "x64",
+        "Filter": " ",
+        "Language": "English",
+        "Name": "UninstallHPTrash",
+        "Title": "Uninstall HP Trash"
+    },
+    "Assignments": [
+    ],
+    "CustomRequirementRule": [
+    ],
+    "Dependencies": [
+    ],
+    "DetectionRule": [
+        {
+            "Check32BitOn64System": "false",
+            "DetectionMethod": "Existence",
+            "FileOrFolder": "RemoveHPBloatware.ps1.tag",
+            "Path": "C:\\ProgramData\\HP\\RemoveHPBloatware",
+            "DetectionType": "exists",
+			"Type": "File"
+        }
+    ],
+    "Information": {
+        "Categories": [
+        ],
+        "Description": "HP Software is waste of space.",
+        "DisplayName": "Uninstall HP Trash",
+        "FeaturedApp": false,
+        "InformationURL": "https://www.hp.com/de-de/",
+        "PrivacyURL": "https://www.hp.com/de-de/",
+        "PSPackageFactoryGuid": "b76d79e1-894b-4e59-be67-4dfdc03932b2",
+        "Publisher": "Eurofit IT GmbH"
+    },
+    "PackageInformation": {
+        "IconFile": "C:\\Users\\j.gruber\\Desktop\\Intune%20Package%20Factory\\packagefactory\\scripts\\hp.png",
+        "OutputFolder": "Package",
+        "SetupFile": "Deploy-Application.exe",
+        "SetupType": "EXE",
+        "SourceFolder": "Source",
+        "Version": "1.0.1"
+    },
+    "Program": {
+        "AllowAvailableUninstall": false,
+        "DeviceRestartBehavior": "suppress",
+        "InstallCommand": "Deploy-Application.exe -DeploymentType \"Install\" -DeployMode \"Silent\"",
+        "InstallExperience": "system",
+        "InstallTemplate": "Deploy-Application.exe -DeploymentType \"Install\" -DeployMode \"Silent\"",
+        "UninstallCommand": "Deploy-Application.exe -DeploymentType \"Install\" -DeployMode \"Silent\""
+    },
+    "RequirementRule": {
+        "Architecture": "x64",
+        "MinimumRequiredOperatingSystem": "W10_1809"
+    },
+    "Supersedence": [
+    ]
+}

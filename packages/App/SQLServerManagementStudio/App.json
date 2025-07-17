@@ -1,0 +1,53 @@
+{
+    "Application": {
+        "Architecture": "x64",
+        "Filter": "https://aka.ms/ssmsfullsetup",
+        "Language": "de-DE",
+        "Manual": "True",
+        "Name": "SQL Server Management Studio 19.1",
+        "Title": "SQL Server Management Studio 19.1"
+    },
+    "Assignments": [],
+    "CustomRequirementRule": [],
+    "Dependencies": [],
+    "DetectionRule": [
+        {
+            "Check32BitOn64System": "false",
+            "DetectionMethod": "Version",
+            "FileOrFolder": "jabra-direct.exe",
+            "Operator": "greaterThanOrEqual",
+            "Path": "C:\\Program Files (x86)\\Jabra\\Direct6",
+            "Type": "File",
+            "VersionValue": "6.9.16301.0"
+        }
+    ],
+    "Information": {
+        "Categories": [],
+        "Description": "SQL Server Management Studio (SSMS) is an integrated environment for managing any SQL infrastructure, from SQL Server to Azure SQL Database. SSMS provides tools to configure, monitor, and administer instances of SQL Server and databases. Use SSMS to deploy, monitor, and upgrade the data-tier components used by your applications and build queries and scripts.",
+        "DisplayName": "SQL Server Management Studio 19.1 x64",
+        "InformationURL": "https://docs.microsoft.com/en-us/sql/ssms/sql-server-management-studio-ssms",
+        "PrivacyURL": "https://docs.microsoft.com/en-us/sql/ssms/sql-server-management-studio-license-terms",
+        "PSPackageFactoryGuid": "4a08c048-895a-4cd8-a974-22bf486f7555",
+        "Publisher": "Jabra"
+    },
+    "PackageInformation": {
+        "IconFile": "https://rawcdn.githack.com/boubou/chocolatey/bb7a59a2a73551f51314b0e94a9c97ac09bf5924/packages/icons/jabra-direct.png",
+        "OutputFolder": "Package",
+        "SetupFile": "JabraDirectSetup.exe",
+        "SetupType": "EXE",
+        "SourceFolder": "Source",
+        "Version": "6.9.16301.0"
+    },
+    "Program": {
+        "DeviceRestartBehavior": "suppress",
+        "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+        "InstallExperience": "system",
+        "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+        "UninstallCommand": "msiexec.exe /X \"{cb12f6fe-4e54-49b2-bd66-d017074a3495}\" /quiet"
+    },
+    "RequirementRule": {
+        "Architecture": "x64",
+        "MinimumRequiredOperatingSystem": "W10_1809"
+    },
+    "Supersedence": []
+}

@@ -1,0 +1,52 @@
+{
+    "Application": {
+        "Architecture": "x64",
+        "Filter": "",
+        "Language": "de-DE",
+        "Name": "Atmel Microchip Studio",
+        "Title": "Atmel Microchip Studio"
+    },
+    "Assignments": [],
+    "CustomRequirementRule": [],
+    "Dependencies": [],
+    "DetectionRule": [
+        {
+            "Check32BitOn64System": "false",
+            "DetectionMethod": "Version",
+            "FileOrFolder": "as-installer-7.0.2594-full",
+            "Operator": "greaterThanOrEqual",
+            "Path": "C:\\Program Files (x86)\\Jabra\\Direct6",
+            "Type": "File",
+            "VersionValue": "7.0.2594.0"
+        }
+    ],
+    "Information": {
+        "Categories": [],
+        "Description": "Microchip Studio is an Integrated Development Environment (IDE) for developing and debugging AVR® and SAM microcontroller applications. It merges all of the great features and functionality of Atmel Studio into Microchip’s well-supported portfolio of development tools to give you a seamless and easy-to-use environment for writing, building and debugging your applications written in C/C++ or assembly code. Microchip Studio can also import your Arduino® sketches as C++ projects to provide you with a simple transition path from makerspace to marketplace. ",
+        "DisplayName": "Atmel Microchip Studio 7.0.2594.0 x64",
+        "InformationURL": "https://www.microchip.com/mplab/avr-support/atmel-studio-7",
+        "PrivacyURL": "https://www.microchip.com/en-us/about/legal-information/privacy-notice",
+        "PSPackageFactoryGuid": "97f729f6-3255-4090-8c53-5a5dc39264a4",
+        "Publisher": "Microchip Technology Inc."
+    },
+    "PackageInformation": {
+        "IconFile": "https://cdn.jsdelivr.net/gh/chtof/chocolatey-packages/automatic/microchip-studio/microchip-studio.png",
+        "OutputFolder": "Package",
+        "SetupFile": "as-installer-7.0.2594-full.exe",
+        "SetupType": "EXE",
+        "SourceFolder": "Source",
+        "Version": "7.0.2594.0"
+    },
+    "Program": {
+        "DeviceRestartBehavior": "suppress",
+        "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+        "InstallExperience": "system",
+        "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+        "UninstallCommand": "msiexec.exe /X \"{cb12f6fe-4e54-49b2-bd66-d017074a3495}\" /quiet"
+    },
+    "RequirementRule": {
+        "Architecture": "x64",
+        "MinimumRequiredOperatingSystem": "W10_1809"
+    },
+    "Supersedence": []
+}

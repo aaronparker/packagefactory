@@ -1,0 +1,16 @@
+{
+  "PackageInformation": {
+    "SetupType": "MSI",
+    "SetupFile": "ZoomInstallerFull.msi",
+    "Version": "5.16.5.24296"
+  },
+  "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
+  "InstallTasks": {
+    "StopProcess": [],
+    "ArgumentList": "/package \"#SetupFile\" ALLUSERS=1 zSilentStart=false zNoDesktopShortCut=false /quiet /log \"#LogPath\\#LogName.log\""
+  },
+  "PostInstall": {
+    "Remove": [],
+    "Copy": []
+  }
+}

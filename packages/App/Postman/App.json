@@ -1,0 +1,53 @@
+{
+  "Application": {
+    "Name": "Postman",
+    "Filter": "Invoke-EvergreenApp -Name \"Postman\" | Where-Object { $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+    "Title": "Postman",
+    "Language": "en-US",
+    "Architecture": "x64"
+  },
+  "PackageInformation": {
+    "SetupType": "EXE",
+    "SetupFile": "Postman-win64-11.48.4-Setup.exe",
+    "Version": "11.48.4",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://raw.githubusercontent.com/kendaleiv/chocolatey-postman/main/postman-logo.png"
+  },
+  "Information": {
+    "DisplayName": "Postman 11.48.4 x64",
+    "Description": "Postman helps you be more efficient while working with APIs. Using Postman, you can construct complex HTTP requests quickly, organize them in collections and share them with your co-workers.",
+    "Publisher": "Postdot Technologies, Inc.",
+    "InformationURL": "https://www.postman.com/",
+    "PrivacyURL": "https://getgreenshot.org/privacy-policy/",
+    "FeaturedApp": false,
+    "Categories": [],
+    "PSPackageFactoryGuid": "1ff4a2f0-2c25-4af1-b019-7febddcc6fde"
+  },
+  "Program": {
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File $env:LOCALAPPDATA\\Postman\\Update.exe --uninstall -s",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "suppress"
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "W10_1809",
+    "Architecture": "x64"
+  },
+  "CustomRequirementRule": [],
+  "DetectionRule": [
+    {
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "%LOCALAPPDATA%\\Postman",
+      "FileOrFolder": "Postman.exe",
+      "Operator": "greaterThanOrEqual",
+      "VersionValue": "11.48.4",
+      "Check32BitOn64System": "false"
+    }
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
+}

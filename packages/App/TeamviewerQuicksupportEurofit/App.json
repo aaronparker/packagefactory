@@ -1,0 +1,63 @@
+{
+    "Application":  {
+                        "Architecture":  "x86",
+                        "Filter":  " ",
+                        "Language":  "German",
+                        "Name":  "Eurofit Quicksupport",
+                        "Title":  "Eurofit Quicksupport"
+                    },
+    "Assignments":  [
+
+                    ],
+    "CustomRequirementRule":  [
+
+                              ],
+    "Dependencies":  [
+
+                     ],
+    "DetectionRule":  [
+                          {
+                              "Check32BitOn64System":  "false",
+                              "DetectionMethod":  "Version",
+                              "FileOrFolder":  "Eurofit Quick Support.exe",
+                              "Operator":  "greaterThanOrEqual",
+                              "Path":  "C:\\Program Files (x86)\\Teamviewer",
+                              "Type":  "File",
+                              "VersionValue":  "15.62.4.0"
+                          }
+                      ],
+    "Information":  {
+                        "Categories":  [
+
+                                       ],
+                        "Description":  "Eurofit Quicksupport allows Eurofit Employees to easily connect to a device for remote support",
+                        "DisplayName":  "Eurofit Quicksupport 15.62.4.0 x86",
+                        "FeaturedApp":  false,
+                        "InformationURL":  "https://eurofit.at/de/artikel/support",
+                        "PrivacyURL":  "https://eurofit.at/de/datenschutz",
+                        "PSPackageFactoryGuid":  "39dcd932-ca30-47cf-8eec-b7ed6d6fc87b",
+                        "Publisher":  "Eurofit Informationstechnologie GmbH"
+                    },
+    "PackageInformation":  {
+                               "IconFile":  "Logo_Symbol_512px.png",
+                               "OutputFolder":  "Package",
+                               "SetupFile":  "QuickSupportInstall.ps1",
+                               "SetupType":  "PS",
+                               "SourceFolder":  "Source",
+                               "Version":  "15.62.4.0"
+                           },
+    "Program":  {
+                    "DeviceRestartBehavior":  "suppress",
+                    "InstallCommand":  "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\QuickSupportInstall.ps1",
+                    "InstallExperience":  "system",
+                    "InstallTemplate":  "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\QuickSupportInstall.ps1",
+                    "UninstallCommand":  "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\QuickSupportInstall.ps1 uninstall"
+                },
+    "RequirementRule":  {
+                            "Architecture":  "x64",
+                            "MinimumRequiredOperatingSystem":  "W10_1809"
+                        },
+    "Supersedence":  [
+
+                     ]
+}

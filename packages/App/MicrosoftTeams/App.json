@@ -1,0 +1,62 @@
+{
+  "Application": {
+    "Name": "MicrosoftTeams",
+    "Filter": "Get-EvergreenAppFromApi -Name \"MicrosoftTeams\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Ring -eq \"General\" -and $_.Type -eq \"msi\" } | Select-Object -First 1",
+    "Title": "Microsoft Teams",
+    "Language": "en-US",
+    "Architecture": "x64"
+  },
+  "PackageInformation": {
+    "SetupType": "MSI",
+    "SetupFile": "Teams_windows_x64.msi",
+    "Version": "1.7.00.7956",
+    "SourceFolder": "Source",
+    "OutputFolder": "Package",
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-Teams.png"
+  },
+  "Information": {
+    "DisplayName": "Microsoft Teams 1.7.00.7956 x64",
+    "Description": "More is possible with Microsoft Teams. Stay connected and access shared content any time to learn, plan, and innovate together.",
+    "Publisher": "Microsoft",
+    "InformationURL": "https://www.microsoft.com/microsoft-teams/",
+    "PrivacyURL": "https://go.microsoft.com/fwlink/?LinkId=521839",
+    "Categories": [],
+    "PSPackageFactoryGuid": "5c38e885-d241-48ef-979e-3c0f693b6692"
+  },
+  "Program": {
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "UninstallCommand": "MsiExec.exe /X \"{731F6BAA-A986-45A4-8936-7C3AAAAA760B}\" /quiet",
+    "InstallExperience": "system",
+    "DeviceRestartBehavior": "suppress",
+    "AllowAvailableUninstall": false
+  },
+  "RequirementRule": {
+    "MinimumRequiredOperatingSystem": "W10_1809",
+    "Architecture": "x64"
+  },
+  "CustomRequirementRule": [
+    {
+      "Type": "Registry",
+      "DetectionMethod": "Existence",
+      "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Teams",
+      "ValueName": "IsWVDEnvironment",
+      "DetectionType": "doesNotExist",
+      "Check32BitOn64System": "false"
+    }
+  ],
+  "DetectionRule": [
+    {
+      "Type": "File",
+      "DetectionMethod": "Version",
+      "Path": "C:\\Program Files (x86)\\Teams Installer",
+      "FileOrFolder": "Teams.exe",
+      "Operator": "greaterThanOrEqual",
+      "VersionValue": "1.7.00.7956",
+      "Check32BitOn64System": "false"
+    }
+  ],
+  "Dependencies": [],
+  "Supersedence": [],
+  "Assignments": []
+}

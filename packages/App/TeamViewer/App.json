@@ -1,0 +1,52 @@
+{
+  "Application": {
+    "Architecture": "x64",
+    "Filter": "Invoke-EvergreenApp -Name \"TeamViewer\"",
+    "Language": "de-DE",
+    "Name": "TeamViewer",
+    "Title": "TeamViewer"
+  },
+  "Assignments": [],
+  "CustomRequirementRule": [],
+  "Dependencies": [],
+  "DetectionRule": [
+    {
+      "Check32BitOn64System": "false",
+      "DetectionMethod": "Version",
+      "FileOrFolder": "TeamViewer.exe",
+      "Operator": "greaterThanOrEqual",
+      "Path": "C:\\Program Files (x86)\\TeamViewer",
+      "Type": "File",
+      "VersionValue": "15.66.5"
+    }
+  ],
+  "Information": {
+    "Categories": [],
+    "Description": "Remote control any computer or Mac over the internet within seconds or use TeamViewer for online meetings. Free for private use. Commercial users are welcome to use for trial purposes.",
+    "DisplayName": "TeamViewer 15.66.5",
+    "InformationURL": "http://www.teamviewer.com/",
+    "PrivacyURL": "https://www.teamviewer.com/en/eula/",
+    "PSPackageFactoryGuid": "12ed5efa-3fd1-4ecd-8bb4-6ffd8f6e3f92",
+    "Publisher": "TeamViewer Inc."
+  },
+  "PackageInformation": {
+    "IconFile": "https://raw.github.com/jivkok/Chocolatey-AutomaticPackages/master/teamviewer/teamviewer.png",
+    "OutputFolder": "Package",
+    "SetupFile": "TeamViewer_Setup.exe",
+    "SetupType": "EXE",
+    "SourceFolder": "Source",
+    "Version": "15.66.5"
+  },
+  "Program": {
+    "DeviceRestartBehavior": "suppress",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "InstallExperience": "system",
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "UninstallCommand": "C:\\Program Files\\TeamViewer\\uninstall.exe /quiet"
+  },
+  "RequirementRule": {
+    "Architecture": "x64",
+    "MinimumRequiredOperatingSystem": "W10_1809"
+  },
+  "Supersedence": []
+}

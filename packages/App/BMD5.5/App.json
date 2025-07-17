@@ -1,0 +1,58 @@
+{
+    "Application": {
+        "Architecture": "x86",
+        "Filter": " ",
+        "Language": "German",
+        "Name": "BMD5.5",
+        "Title": "BMD5.5"
+    },
+    "Assignments": [
+    ],
+    "CustomRequirementRule": [
+    ],
+    "Dependencies": [
+    ],
+    "DetectionRule": [
+        {
+            "Check32BitOn64System": "false",
+            "DetectionMethod": "Version",
+            "FileOrFolder": "BMD.exe",
+            "Operator": "greaterThanOrEqual",
+            "Path": "C:\\ProgramData\\BMDClients\\Netspeed",
+            "Type": "File",
+            "VersionValue": "4.0.2501.1"
+        }
+    ],
+    "Information": {
+        "Categories": [
+        ],
+        "Description": "BMD Netspeed 5.5 enhances the performance and connectivity of BMD applications in multi-user environments, ensuring efficient data transfer and reliable operation.",
+        "DisplayName": "BMD 5.5 4.0.2501.1 x86",
+        "FeaturedApp": false,
+        "InformationURL": "https://www.bmd.com/at/technische-dokumentation/bmd55-installationsanleitung-netspeed.html",
+        "PrivacyURL": "https://www.bmd.com/siteservice/bmd-datenschutz.html",
+        "PSPackageFactoryGuid": "d299dd6a-53ab-4703-a039-c2e582b7a3c6",
+        "Publisher": "BMD SYSTEMHAUS GESMBH"
+    },
+    "PackageInformation": {
+        "IconFile": "bmd.png",
+        "OutputFolder": "Package",
+        "SetupFile": "BMDInstall.ps1",
+        "SetupType": "PS",
+        "SourceFolder": "Source",
+        "Version": "4.0.2501.1"
+    },
+    "Program": {
+        "DeviceRestartBehavior": "suppress",
+        "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\BMDInstall.ps1",
+        "InstallExperience": "system",
+        "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\BMDInstall.ps1",
+        "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\BMDInstall.ps1 uninstall"
+    },
+    "RequirementRule": {
+        "Architecture": "x64",
+        "MinimumRequiredOperatingSystem": "W10_1809"
+    },
+    "Supersedence": [
+    ]
+}

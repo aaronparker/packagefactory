@@ -1,0 +1,53 @@
+{
+  "Application": {
+    "Architecture": "x86",
+    "Filter": "Invoke-EvergreenApp -Name \"AdobeAcrobatReaderDC\" | Where-Object { $_.Language -eq \"MUI\" -and $_.Architecture -eq \"x86\" } | Select-Object -First 1",
+    "Language": "German",
+    "Name": "AdobeAcrobatReaderDC",
+    "Title": "Adobe Acrobat Reader DC"
+  },
+  "Assignments": [],
+  "CustomRequirementRule": [],
+  "Dependencies": [],
+  "DetectionRule": [
+    {
+      "Check32BitOn64System": "false",
+      "DetectionMethod": "Version",
+      "FileOrFolder": "AcroRd32.exe",
+      "Operator": "greaterThanOrEqual",
+      "Path": "C:\\Program Files (x86)\\Adobe\\Acrobat Reader DC\\Reader",
+      "Type": "File",
+      "VersionValue": "25.001.20467"
+    }
+  ],
+  "Information": {
+    "Categories": [],
+    "Description": "The leading PDF viewer to print, sign, and annotate PDFs.",
+    "DisplayName": "Adobe Acrobat Reader DC 25.001.20467 x86",
+    "FeaturedApp": false,
+    "InformationURL": "https://www.adobe.com/acrobat/pdf-reader.html",
+    "PrivacyURL": "https://www.adobe.com/privacy.html",
+    "PSPackageFactoryGuid": "746462a1-f10b-4011-a5b4-626eeaf11e78",
+    "Publisher": "Adobe"
+  },
+  "PackageInformation": {
+    "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Adobe-AcrobatReader.png",
+    "OutputFolder": "Package",
+    "SetupFile": "AcroRdrDC2500120467_MUI.exe",
+    "SetupType": "EXE",
+    "SourceFolder": "Source",
+    "Version": "25.001.20467"
+  },
+  "Program": {
+    "DeviceRestartBehavior": "suppress",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "InstallExperience": "system",
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "UninstallCommand": "msiexec.exe /X \"{AC76BA86-1033-1033-7760-BC15014EA100}\" /quiet"
+  },
+  "RequirementRule": {
+    "Architecture": "x86",
+    "MinimumRequiredOperatingSystem": "W10_1809"
+  },
+  "Supersedence": []
+}

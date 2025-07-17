@@ -1,0 +1,53 @@
+{
+  "Application": {
+    "Architecture": "x64",
+    "Filter": "Invoke-EvergreenApp -Name \"GitForWindows\" | Where-Object {$_.Architecture -eq \"x64\" -and $_.InstallerType -eq \"Default\" -and $_.Type -eq \"exe\"} | Select -First 1",
+    "Language": "en-US",
+    "Name": "GitForWindows",
+    "Title": "GitForWindows"
+  },
+  "Assignments": [],
+  "CustomRequirementRule": [],
+  "Dependencies": [],
+  "DetectionRule": [
+    {
+      "Check32BitOn64System": "false",
+      "DetectionMethod": "Version",
+      "FileOrFolder": "git-cmd.exe",
+      "Operator": "greaterThanOrEqual",
+      "Path": "C:\\Program Files\\Git",
+      "Type": "File",
+      "VersionValue": "2.49.0"
+    }
+  ],
+  "Information": {
+    "Categories": [],
+    "Description": "Git for Windows focuses on offering a lightweight, native set of tools that bring the full feature set of the Git SCM to Windows while providing appropriate user interfaces for experienced Git users and novices alike.",
+    "DisplayName": "GitForWindows 2.49.0 x64",
+    "FeaturedApp": false,
+    "InformationURL": "https://git-for-windows.github.io",
+    "PrivacyURL": "https://git-for-windows.github.io",
+    "PSPackageFactoryGuid": "8961e64f-0d6d-4fbe-a251-329ba81c6b55",
+    "Publisher": "The Git Development Community"
+  },
+  "PackageInformation": {
+    "IconFile": "https://gitforwindows.org/img/git_logo.png",
+    "OutputFolder": "Package",
+    "SetupFile": "Git-2.49.0-64-bit.exe",
+    "SetupType": "EXE",
+    "SourceFolder": "Source",
+    "Version": "2.49.0"
+  },
+  "Program": {
+    "DeviceRestartBehavior": "suppress",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "InstallExperience": "system",
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "UninstallCommand": "\"C:\\Program Files\\Git\\unins001.exe\" /VERYSILENT /NORESTART"
+  },
+  "RequirementRule": {
+    "Architecture": "x64",
+    "MinimumRequiredOperatingSystem": "W10_1809"
+  },
+  "Supersedence": []
+}

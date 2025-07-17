@@ -1,0 +1,15 @@
+{
+  "InstallTasks": {
+    "ArgumentList": "/INSTALL /SILENT /SUPPRESSMSGBOXES /NORESTART /SP- /MERGETASKS=\"!desktopicon\" /log \"#LogPath\\#LogName.log\""
+  },
+  "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
+  "PackageInformation": {
+    "SetupFile": "JabraDirectSetup.exe",
+    "SetupType": "EXE",
+    "Version": "6.9.16301.0"
+  },
+  "PostInstall": {
+    "Copy": [],
+    "Remove": []
+  }
+}

@@ -1,0 +1,62 @@
+{
+    "Application":  {
+                        "Architecture":  "x64",
+                        "Filter":  "",
+                        "Language":  "de-DE",
+                        "Name":  "Pleasant KeePass Client",
+                        "Title":  "Pleasant KeePass Client"
+                    },
+    "Assignments":  [
+
+                    ],
+    "CustomRequirementRule":  [
+
+                              ],
+    "Dependencies":  [
+
+                     ],
+    "DetectionRule":  [
+                          {
+                              "Check32BitOn64System":  "false",
+                              "DetectionMethod":  "Version",
+                              "FileOrFolder":  "KeePass.exe",
+                              "Operator":  "greaterThanOrEqual",
+                              "Path":  "C:\\Program Files (x86)\\Pleasant Solutions\\KeePass for Pleasant Password Server",
+                              "Type":  "File",
+                              "VersionValue":  "7.11.43.0"
+                          }
+                      ],
+    "Information":  {
+                        "Categories":  [
+
+                                       ],
+                        "Description":  "Pleasant Password Server is an award-winning multi-user password management tool compatible with KeePass Password Safe and Bruce Schneier\u0027s Password Safe, the most popular password management systems in the world.",
+                        "DisplayName":  "Pleasant KeePass Client 7.11.43.0 x64",
+                        "InformationURL":  "https://pleasantpasswords.com/",
+                        "PrivacyURL":  "https://pleasantpasswords.com/privacy-policy",
+                        "PSPackageFactoryGuid":  "85bdd07a-2f2c-4bdb-8770-9f0b05afc613",
+                        "Publisher":  "Pleasant Solutions Inc. and PPass Software Inc."
+                    },
+    "PackageInformation":  {
+                               "IconFile":  "https://pleasantpasswords.com/media/2088/ppass_logo_small.png",
+                               "OutputFolder":  "Package",
+                               "SetupFile":  "Pleasant KeePass Client.exe",
+                               "SetupType":  "EXE",
+                               "SourceFolder":  "Source",
+                               "Version":  "7.11.43.0"
+                           },
+    "Program":  {
+                    "DeviceRestartBehavior":  "suppress",
+                    "InstallCommand":  "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+                    "InstallExperience":  "system",
+                    "InstallTemplate":  "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+                    "UninstallCommand":  "msiexec.exe /X \"{5cb4ce05-0f3a-4ab9-9bc6-e3f6ded083d1}\" /quiet"
+                },
+    "RequirementRule":  {
+                            "Architecture":  "x64",
+                            "MinimumRequiredOperatingSystem":  "W10_1809"
+                        },
+    "Supersedence":  [
+
+                     ]
+}

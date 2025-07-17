@@ -1,0 +1,20 @@
+{
+  "InstallTasks": {
+    "ArgumentList": "/QUIET /SUPPRESSMSGBOXES /NORESTART /LOG=\"#LogPath\\#LogName.log\""
+  },
+  "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
+  "PackageInformation": {
+    "SetupFile": "SoapUI-x64-5.8.0.exe",
+    "SetupType": "EXE",
+    "Version": "5.8.0"
+  },
+  "PostInstall": {
+    "Copy": [],
+    "Remove": [
+      "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\SmartBear\\SoapUI 5.7.0\\Online JavaDoc.lnk",
+      "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\SmartBear\\SoapUI 5.7.0\\SoapUI 5.7.0 Uninstaller.lnk",
+      "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\SmartBear\\SoapUI 5.7.0\\soapui.org website.lnk"
+    ],
+    "StopPath": []
+  }
+}

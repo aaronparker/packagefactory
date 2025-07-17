@@ -1,0 +1,52 @@
+{
+  "Application": {
+    "Architecture": "x64",
+    "Filter": "Invoke-EvergreenApp -Name \"GeekSoftwarePDF24Creator\" | Where-Object { $_.Type -eq \"msi\" } | Select-Object -First 1",
+    "Language": "en-US",
+    "Name": "GeekSoftwarePDF24Creator",
+    "Title": "PDF24 Creator"
+  },
+  "Assignments": [],
+  "CustomRequirementRule": [],
+  "Dependencies": [],
+  "DetectionRule": [
+    {
+      "Check32BitOn64System": "false",
+      "DetectionMethod": "Version",
+      "FileOrFolder": "pdf24.exe",
+      "Operator": "greaterThanOrEqual",
+      "Path": "C:\\Program Files\\PDF24",
+      "Type": "File",
+      "VersionValue": "11.26.1"
+    }
+  ],
+  "Information": {
+    "Categories": [],
+    "Description": "The free, PDF24 PDF Creator is a program to create PDF files from almost any application.  The PDF creator functions as a virtual PDF printer and provides some PDF editing features.",
+    "DisplayName": "PDF24 Creator 11.26.1",
+    "InformationURL": "https://tools.pdf24.org/en/creator",
+    "PrivacyURL": "https://raw.githubusercontent.com/teknowledgist/Chocolatey-packages/master/automatic/pdf24/LICENSE.txt",
+    "PSPackageFactoryGuid": "f33e088f-bf7e-4696-9ea5-ae748a696c36",
+    "Publisher": "geek Software GmbH"
+  },
+  "PackageInformation": {
+    "IconFile": "https://cdn.jsdelivr.net/gh/teknowledgist/Chocolatey-packages@cc4b1558ccc7853df6d0cb4f1f79cb63caede42b/Icons/pdf24_icon.png",
+    "OutputFolder": "Package",
+    "SetupFile": "pdf24-creator-11.26.1.msi",
+    "SetupType": "MSI",
+    "SourceFolder": "Source",
+    "Version": "11.26.1"
+  },
+  "Program": {
+    "DeviceRestartBehavior": "basedOnReturnCode",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "InstallExperience": "system",
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Uninstall.ps1"
+  },
+  "RequirementRule": {
+    "Architecture": "x64",
+    "MinimumRequiredOperatingSystem": "W10_1809"
+  },
+  "Supersedence": []
+}

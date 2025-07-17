@@ -1,0 +1,52 @@
+{
+  "Application": {
+    "Architecture": "x64",
+    "Filter": "Invoke-EvergreenApp -Name \"MicrosoftAzureDataStudio\" | Where-Object { $_.Platform -eq \"win32-x64\" -and $_.Channel -eq \"Stable\" } | Select-Object -First 1",
+    "Language": "en-US",
+    "Name": "MicrosoftAzureDataStudio",
+    "Title": "MicrosoftAzureDataStudio"
+  },
+  "Assignments": [],
+  "CustomRequirementRule": [],
+  "Dependencies": [],
+  "DetectionRule": [
+    {
+      "Check32BitOn64System": "false",
+      "DetectionMethod": "Version",
+      "FileOrFolder": "azuredatastudio.exe",
+      "Operator": "greaterThanOrEqual",
+      "Path": "C:\\Program Files\\Azure Data Studio",
+      "Type": "File",
+      "VersionValue": "1.51.1"
+    }
+  ],
+  "Information": {
+    "Categories": [],
+    "Description": "Azure Data Studio is a cross-platform database tool for data professionals using the Microsoft family of on-premises and cloud data platforms on Windows, MacOS, and Linux.",
+    "DisplayName": "MicrosoftAzureDataStudio 1.51.1",
+    "InformationURL": "https://docs.microsoft.com/en-us/sql/azure-data-studio",
+    "PrivacyURL": "https://github.com/Microsoft/azuredatastudio/blob/master/LICENSE.txt",
+    "PSPackageFactoryGuid": "9a9df49f-2639-404c-aadd-7ee7032e8f50",
+    "Publisher": "iterate"
+  },
+  "PackageInformation": {
+    "IconFile": "https://cdn.rawgit.com/kendaleiv/chocolatey-azure-data-studio/12c5988a/logo.png",
+    "OutputFolder": "Package",
+    "SetupFile": "azuredatastudio-windows-setup-1.51.1.exe",
+    "SetupType": "EXE",
+    "SourceFolder": "Source",
+    "Version": "1.51.1"
+  },
+  "Program": {
+    "DeviceRestartBehavior": "suppress",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "InstallExperience": "system",
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+    "UninstallCommand": "\"C:\\Program Files\\Azure Data Studio\\unins000.exe\" /VERYSILENT /NORESTART"
+  },
+  "RequirementRule": {
+    "Architecture": "x64",
+    "MinimumRequiredOperatingSystem": "W10_1809"
+  },
+  "Supersedence": []
+}

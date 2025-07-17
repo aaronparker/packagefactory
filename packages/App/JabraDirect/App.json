@@ -1,0 +1,53 @@
+{
+    "Application": {
+        "Architecture": "x64",
+        "Filter": "https://jabraxpressonlineprdstor.blob.core.windows.net/jdo/JabraDirectSetup.exe",
+        "Language": "de-DE",
+        "Manual": "True",
+        "Name": "Jabra Direct",
+        "Title": "Jabra Direct"
+    },
+    "Assignments": [],
+    "CustomRequirementRule": [],
+    "Dependencies": [],
+    "DetectionRule": [
+        {
+            "Check32BitOn64System": "false",
+            "DetectionMethod": "Version",
+            "FileOrFolder": "jabra-direct.exe",
+            "Operator": "greaterThanOrEqual",
+            "Path": "C:\\Program Files (x86)\\Jabra\\Direct6",
+            "Type": "File",
+            "VersionValue": "6.9.16301.0"
+        }
+    ],
+    "Information": {
+        "Categories": [],
+        "Description": "Jabra Direct is free PC software enabling Jabra USB devices to have Remote Call Control over most softphones. It also brings you features to personalize your Jabra device, to improve your device with firmware upgrades and offers a Dashboard with status to ensure everything is ready for the next call.",
+        "DisplayName": "Jabra Direct 6.9.16301.0 x64",
+        "InformationURL": "https://www.jabra.com/-/media/Files/Software-and-Services/Jabra-Direct/Jabra-Direct-Datasheet_01_2018.pdf?la=en",
+        "PrivacyURL": "https://www.jabra.ca/-/media/Files/Software-and-Services/Jabra-Direct/jabra_direct_nodemoduleslicenses.txt",
+        "PSPackageFactoryGuid": "4a08c048-895a-4cd8-a974-22bf486f7555",
+        "Publisher": "Jabra"
+    },
+    "PackageInformation": {
+        "IconFile": "https://rawcdn.githack.com/boubou/chocolatey/bb7a59a2a73551f51314b0e94a9c97ac09bf5924/packages/icons/jabra-direct.png",
+        "OutputFolder": "Package",
+        "SetupFile": "JabraDirectSetup.exe",
+        "SetupType": "EXE",
+        "SourceFolder": "Source",
+        "Version": "6.9.16301.0"
+    },
+    "Program": {
+        "DeviceRestartBehavior": "suppress",
+        "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+        "InstallExperience": "system",
+        "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Hidden -File .\\Install.ps1",
+        "UninstallCommand": "msiexec.exe /X \"{cb12f6fe-4e54-49b2-bd66-d017074a3495}\" /quiet"
+    },
+    "RequirementRule": {
+        "Architecture": "x64",
+        "MinimumRequiredOperatingSystem": "W10_1809"
+    },
+    "Supersedence": []
+}

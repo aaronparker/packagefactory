@@ -1,0 +1,16 @@
+{
+  "InstallTasks": {
+    "ArgumentList": "/package \"#SetupFile\" ALLUSERS=1 /quiet /log \"#LogPath\\#LogName.log\"",
+    "Wait": 10
+  },
+  "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
+  "PackageInformation": {
+    "SetupFile": "pdf24-creator-11.26.1.msi",
+    "SetupType": "MSI",
+    "Version": "11.26.1"
+  },
+  "PostInstall": {
+    "Copy": [],
+    "Remove": []
+  }
+}

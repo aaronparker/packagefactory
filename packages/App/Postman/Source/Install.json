@@ -1,0 +1,16 @@
+{
+  "PackageInformation": {
+    "SetupType": "EXE",
+    "SetupFile": "Postman-win64-11.48.4-Setup.exe",
+    "Version": "11.48.4"
+  },
+  "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
+  "InstallTasks": {
+    "ArgumentList": "/SP- /SILENT /SUPPRESSMSGBOXES /NORESTART /LOG=\"#LogPath\\#LogName.log\""
+  },
+  "PostInstall": {
+    "StopPath": [],
+    "Remove": [],
+    "Copy": []
+  }
+}

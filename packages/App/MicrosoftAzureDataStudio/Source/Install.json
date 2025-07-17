@@ -1,0 +1,15 @@
+{
+  "InstallTasks": {
+    "ArgumentList": "/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /MERGETASKS=!runcode /log \"#LogPath\\#LogName.log\""
+  },
+  "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
+  "PackageInformation": {
+    "SetupFile": "azuredatastudio-windows-setup-1.51.1.exe",
+    "SetupType": "EXE",
+    "Version": "1.51.1"
+  },
+  "PostInstall": {
+    "Copy": [],
+    "Remove": []
+  }
+}

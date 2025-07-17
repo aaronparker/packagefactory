@@ -1,0 +1,16 @@
+{
+  "InstallTasks": {
+    "ArgumentList": "/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /LOG=\"#LogPath\\#LogName.log\""
+  },
+  "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
+  "PackageInformation": {
+    "SetupFile": "Git-2.49.0-64-bit.exe",
+    "SetupType": "EXE",
+    "Version": "2.49.0"
+  },
+  "PostInstall": {
+    "Copy": [],
+    "Remove": [],
+    "StopPath": []
+  }
+}
