@@ -205,7 +205,7 @@ process {
                             ErrorAction = "Stop"
                         }
                         Write-Msg -Msg "Copy '$PSAppDeployToolkit' to '$SourcePath'"
-                        Copy-Item @params
+                        Copy-Item @params -Force
 
                         $params = @{
                             Path        = $([System.IO.Path]::Combine($AppPath, "Source", "Deploy-Application.ps1"))
@@ -213,7 +213,7 @@ process {
                             ErrorAction = "Stop"
                         }
                         Write-Msg -Msg "Copy deploy script: '$([System.IO.Path]::Combine($AppPath, "Source", "Deploy-Application.ps1"))' to '$([System.IO.Path]::Combine($SourcePath, "Deploy-Application.ps1"))'"
-                        Copy-Item @params
+                        Copy-Item @params -Force
 
                         Write-Msg -Msg "New path: '$([System.IO.Path]::Combine($SourcePath, "Files"))'"
                         New-Item -Path $([System.IO.Path]::Combine($SourcePath, "Files")) -ItemType "Directory" -ErrorAction "SilentlyContinue" | Out-Null

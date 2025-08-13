@@ -1,5 +1,5 @@
 ﻿# Specify the root folder where the "App.json" files are located
-$rootFolder = "C:\projects\packagefactory\packages\App"
+$rootFolder = "..\packages\App"
 
 # Retrieve all "App.json" files within the specified folder and its subfolders
 $appJsonFiles = Get-ChildItem -Path $rootFolder -Recurse -Filter "App.json"

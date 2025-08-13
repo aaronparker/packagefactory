@@ -107,14 +107,14 @@ Try {
     ##* VARIABLE DECLARATION
     ##*===============================================
     ## Variables: Application
-    [String]$appVendor = 'HP'
-    [String]$appName = 'HP Notifications'
+    [String]$appVendor = 'Eurofit'
+    [String]$appName = 'TSA Drucker Installieren E-EI'
     [String]$appVersion = ''
     [String]$appArch = 'x64'
     [String]$appLang = 'DE'
     [String]$appRevision = '01'
-    [String]$appScriptVersion = '1.0.0'
-    [String]$appScriptDate = '22/07/2024'
+    [String]$appScriptVersion = '1.0.1'
+    [String]$appScriptDate = '12.08.2025'
     [String]$appScriptAuthor = 'j.gruber'
     ##*===============================================
     ## Variables: Install Titles (Only set here to override defaults set by the toolkit)
@@ -129,7 +129,7 @@ Try {
 
     ## Variables: Script
     [String]$deployAppScriptFriendlyName = 'Deploy Application'
-    [Version]$deployAppScriptVersion = [Version]'3.9.3'
+    [Version]$deployAppScriptVersion = [Version]'3.10.2'
     [String]$deployAppScriptDate = '02/05/2023'
     [Hashtable]$deployAppScriptParameters = $PsBoundParameters
 
@@ -206,7 +206,68 @@ Try {
 
         ## <Perform Installation tasks here>
 
-        Remove-MSIApplications $appName
+        # Create directory for printer installation tracking
+        # Use user-specific location if running in user context
+        $isUserContext = -not ([Security.Principal.WindowsIdentity]::GetCurrent().Groups -contains "S-1-5-32-544")
+        if ($isUserContext) {
+            $printerDataPath = "$($env:LOCALAPPDATA)\Printers"
+        } else {
+            $printerDataPath = "$($env:ProgramData)\Printers"
+        }
+        
+        if (-not (Test-Path $printerDataPath))
+        {
+            New-Item -Path $printerDataPath -ItemType Directory -Force | Out-Null
+        }
+
+        # Start logging
+        Start-Transcript "$printerDataPath\TSAPrinterInstall.log" -Append
+
+        try {
+            Write-Log -Message "Starting installation of network printer \\tsaps1\E-EI" -Source $deployAppScriptFriendlyName
+            
+            # Check if running in user context and handle accordingly
+            $isUserContext = -not ([Security.Principal.WindowsIdentity]::GetCurrent().Groups -contains "S-1-5-32-544")
+            if ($isUserContext) {
+                Write-Log -Message "Running in user context - using user-specific printer installation" -Source $deployAppScriptFriendlyName
+            }
+            
+            # Check if printer already exists
+            $existingPrinter = Get-Printer -Name "\\tsaps1\E-EI" -ErrorAction SilentlyContinue
+            
+            if ($existingPrinter) {
+                Write-Log -Message "Printer \\tsaps1\E-EI already exists. Removing existing printer..." -Source $deployAppScriptFriendlyName
+                Remove-Printer -Name "\\tsaps1\E-EI" -ErrorAction SilentlyContinue
+            }
+            
+            # Add the network printer
+            Write-Log -Message "Adding network printer \\tsaps1\E-EI" -Source $deployAppScriptFriendlyName
+            Add-Printer -ConnectionName "\\tsaps1\E-EI" -ErrorAction Stop
+            
+            # Verify printer was added successfully
+            $newPrinter = Get-Printer -Name "\\tsaps1\E-EI" -ErrorAction SilentlyContinue
+            if ($newPrinter) {
+                Write-Log -Message "Successfully installed printer \\tsaps1\E-EI" -Source $deployAppScriptFriendlyName
+                
+                # Set as default printer (optional - uncomment if needed)
+                # Set-Printer -Name "\\tsaps1\E-EI" -Default
+                # Write-Log -Message "Set \\tsaps1\E-EI as default printer" -Source $deployAppScriptFriendlyName
+                
+                # Create installation marker
+                Set-Content -Path "$printerDataPath\TSAPrinterE-EI.ps1.tag" -Value "Installed" -Force
+                Write-Log -Message "Installation marker created successfully" -Source $deployAppScriptFriendlyName
+            } else {
+                throw "Printer installation verification failed"
+            }
+        }
+        catch {
+            Write-Log -Message "Failed to install printer \\tsaps1\E-EI. Error: $($_.Exception.Message)" -Severity 3 -Source $deployAppScriptFriendlyName
+            throw $_
+        }
+        finally {
+            Stop-Transcript
+        }
+
 
         ##*===============================================
         ##* POST-INSTALLATION
@@ -217,7 +278,7 @@ Try {
 
         ## Display a message at the end of the install
         If (-not $useDefaultMsi) {
-            Show-InstallationPrompt -Message '' -ButtonRightText 'OK' -Icon Information -NoWait
+            Show-InstallationPrompt -Message 'Printer installation completed successfully.' -ButtonRightText 'OK' -Icon Information -NoWait
         }
     }
     ElseIf ($deploymentType -ieq 'Uninstall') {
@@ -248,7 +309,46 @@ Try {
         }
 
         ## <Perform Uninstallation tasks here>
-        Remove-MSIApplications $appName
+
+        # Determine printer data path for user context
+        $isUserContext = -not ([Security.Principal.WindowsIdentity]::GetCurrent().Groups -contains "S-1-5-32-544")
+        if ($isUserContext) {
+            $printerDataPath = "$($env:LOCALAPPDATA)\Printers"
+        } else {
+            $printerDataPath = "$($env:ProgramData)\Printers"
+        }
+        
+        # Start logging
+        Start-Transcript "$printerDataPath\TSAPrinterUninstall.log" -Append
+
+        try {
+            Write-Log -Message "Starting uninstallation of printer \\tsaps1\E-EI" -Source $deployAppScriptFriendlyName
+            
+            # Check if printer exists
+            $existingPrinter = Get-Printer -Name "\\tsaps1\E-EI" -ErrorAction SilentlyContinue
+            
+            if ($existingPrinter) {
+                Write-Log -Message "Removing printer \\tsaps1\E-EI" -Source $deployAppScriptFriendlyName
+                Remove-Printer -Name "\\tsaps1\E-EI" -ErrorAction Stop
+                Write-Log -Message "Successfully removed printer \\tsaps1\E-EI" -Source $deployAppScriptFriendlyName
+            } else {
+                Write-Log -Message "Printer \\tsaps1\E-EI not found, nothing to remove" -Source $deployAppScriptFriendlyName
+            }
+            
+            # Remove installation marker
+            if (Test-Path "$printerDataPath\TSAPrinterE-EI.ps1.tag") {
+                Remove-Item -Path "$printerDataPath\TSAPrinterE-EI.ps1.tag" -Force
+                Write-Log -Message "Removed installation marker" -Source $deployAppScriptFriendlyName
+            }
+        }
+        catch {
+            Write-Log -Message "Failed to uninstall printer E-EI. Error: $($_.Exception.Message)" -Severity 3 -Source $deployAppScriptFriendlyName
+            throw $_
+        }
+        finally {
+            Stop-Transcript
+        }
+
         ##*===============================================
         ##* POST-UNINSTALLATION
         ##*===============================================
