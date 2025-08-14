@@ -3,8 +3,8 @@
     "Architecture": "x64",
     "Filter": " ",
     "Language": "English",
-    "Name": "TSADruckerInstallierenE-EI",
-    "Title": "TSA Drucker Installieren E-EI"
+    "Name": "TSADruckerInstallierenTSAPR-ET-2",
+    "Title": "TSA Drucker Installieren TSAPR-ET-2"
   },
   "Assignments": [],
   "CustomRequirementRule": [],
@@ -13,7 +13,7 @@
     {
       "Check32BitOn64System": "false",
       "DetectionMethod": "Existence",
-      "FileOrFolder": "TSAPrinterE-EI.ps1.tag",
+      "FileOrFolder": "TSAPrinterTSAPR-ET-2.ps1.tag",
       "Path": "C:\\ProgramData\\Printers",
       "DetectionType": "exists",
       "Type": "File"
@@ -21,12 +21,12 @@
   ],
   "Information": {
     "Categories": [],
-    "Description": "Automatically installes the TSA Printer E-EI",
-    "DisplayName": "TSA Drucker E-EI",
+    "Description": "Automatically installes the TSA Printer TSAPR-ET-2",
+    "DisplayName": "TSA Drucker TSAPR-ET-2",
     "FeaturedApp": false,
     "InformationURL": "https://tsa.at/de/",
     "PrivacyURL": "https://tsa.at/de/datenschutzerklaerung/",
-    "PSPackageFactoryGuid": "c89e938b-c764-49eb-830d-dd006b139e15",
+    "PSPackageFactoryGuid": "6e20ed90-7597-49d7-9b27-7c3ab4ba9138",
     "Publisher": "Eurofit IT GmbH"
   },
   "PackageInformation": {
@@ -35,7 +35,7 @@
     "SetupFile": "Deploy-Application.exe",
     "SetupType": "EXE",
     "SourceFolder": "Source",
-    "Version": "1.0.1"
+    "Version": "1.0.0"
   },
   "Program": {
     "AllowAvailableUninstall": true,
