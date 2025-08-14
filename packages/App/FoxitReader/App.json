@@ -9,13 +9,13 @@
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "FoxitPDFReader20251_enu_Setup.msi",
-    "Version": "2025.1.0.27937",
+    "Version": "2025.2.0.33046",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/FoxitReader.png"
   },
   "Information": {
-    "DisplayName": "Foxit PDF Reader 2025.1.0.27937",
+    "DisplayName": "Foxit PDF Reader 2025.2.0.33046",
     "Description": "View, annotate, form fill, and sign PDF across desktop, mobile, and web - no matter if you're at the office, home, or on the go.",
     "Publisher": "Foxit Software Inc.",
     "InformationURL": "https://www.foxit.com/pdf-reader/",
@@ -43,7 +43,7 @@
       "Path": "C:\\Program Files (x86)\\Foxit Software\\Foxit PDF Reader",
       "FileOrFolder": "FoxitPDFReader.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "2025.1.0.27937",
+      "VersionValue": "2025.2.0.33046",
       "Check32BitOn64System": "true"
     }
   ],
