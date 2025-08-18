@@ -6,7 +6,13 @@
     "Name": "TSADruckerInstallierenTSAPR-LOG-4-W2",
     "Title": "TSA Drucker Installieren TSAPR-LOG-4-W2"
   },
-  "Assignments": [],
+  "Assignments": [
+    {
+      "Target": "AllUsers",
+      "Intent": "available",
+      "Notification": "showAll"
+    }
+  ],
   "CustomRequirementRule": [],
   "Dependencies": [],
   "DetectionRule": [
@@ -20,13 +26,15 @@
     }
   ],
   "Information": {
-    "Categories": [],
+    "Categories": [
+      "Drucker"
+    ],
     "Description": "Automatically installes the TSA Printer TSAPR-LOG-4-W2",
     "DisplayName": "TSA Drucker TSAPR-LOG-4-W2",
     "FeaturedApp": false,
     "InformationURL": "https://tsa.at/de/",
     "PrivacyURL": "https://tsa.at/de/datenschutzerklaerung/",
-    "PSPackageFactoryGuid": "3f511d28-c511-4284-b0de-5d73cec9dca6",
+    "PSPackageFactoryGuid": "ec7a18f8-4ffe-4758-bf42-b581a91f40c5",
     "Publisher": "Eurofit IT GmbH"
   },
   "PackageInformation": {
@@ -35,15 +43,15 @@
     "SetupFile": "Deploy-Application.exe",
     "SetupType": "EXE",
     "SourceFolder": "Source",
-    "Version": "1.0.0"
+    "Version": "1.0.1"
   },
   "Program": {
     "AllowAvailableUninstall": true,
     "DeviceRestartBehavior": "suppress",
-    "InstallCommand": "Deploy-Application.exe -DeploymentType \"Install\" -DeployMode \"Silent\"",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -NoProfile -File \"Deploy-Application.ps1\" -DeploymentType Install -DeployMode Silent",
     "InstallExperience": "user",
-    "InstallTemplate": "Deploy-Application.exe -DeploymentType \"Install\" -DeployMode \"Silent\"",
-    "UninstallCommand": "Deploy-Application.exe -DeploymentType \"Uninstall\" -DeployMode \"Silent\""
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -NoProfile -File \"Deploy-Application.ps1\" -DeploymentType Install -DeployMode Silent",
+    "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -NoProfile -File \"Deploy-Application.ps1\" -DeploymentType Uninstall -DeployMode Silent"
   },
   "RequirementRule": {
     "Architecture": "x64",

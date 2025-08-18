@@ -113,8 +113,8 @@ Try {
     [String]$appArch = 'x64'
     [String]$appLang = 'DE'
     [String]$appRevision = '01'
-    [String]$appScriptVersion = '1.0.0'
-    [String]$appScriptDate = '14.08.2025'
+    [String]$appScriptVersion = '1.0.1'
+    [String]$appScriptDate = '2025-08-14'
     [String]$appScriptAuthor = 'j.gruber'
     ##*===============================================
     ## Variables: Install Titles (Only set here to override defaults set by the toolkit)
