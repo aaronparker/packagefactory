@@ -43,4 +43,4 @@ Like `App.json`, `Install.json` is also automatically updated with application i
 
 ## PSAppDeployToolkit
 
-If you prefer to use the PSAppDeployToolkit, replace `Install.json` with `Deploy-Application.ps1`. When `New-Win32Package.ps1` is run, it will detect the presence of `Deploy-Application.ps1` and copy the PSAppDeployToolkit into the package before preparing the .intunewin file.
+If you prefer to use the PSAppDeployToolkit, replace `Install.json` with `Invoke-AppDeployToolkit.ps1`. When `New-Win32Package.ps1` is run, it will detect the presence of `Invoke-AppDeployToolkit.ps1` and copy the PSAppDeployToolkit into the package before preparing the .intunewin file.

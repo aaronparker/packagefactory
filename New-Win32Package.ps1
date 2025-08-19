@@ -191,7 +191,7 @@ process {
                     }
 
                     #region Configure the installer script logic using Install.ps1 or PSAppDeployToolkit
-                    if (Test-Path -Path $([System.IO.Path]::Combine($AppPath, "Source", "Deploy-Application.ps1"))) {
+                    if (Test-Path -Path $([System.IO.Path]::Combine($AppPath, "Source", "Invoke-AppDeployToolkit.ps1"))) {
                         Write-Information -MessageData "$($PSStyle.Foreground.Cyan)This application uses the PSAppDeployToolkit"
 
                         # Copy the PSAppDeployToolkit into the target path
@@ -200,14 +200,14 @@ process {
                             Path        = "$PSAppDeployToolkit\*"
                             Destination = $SourcePath
                             Recurse     = $true
-                            Exclude     = "Deploy-Application.ps1"
+                            Exclude     = "Invoke-AppDeployToolkit.ps1"
                         }
                         Copy-Item @params
 
-                        Write-Information -MessageData "$($PSStyle.Foreground.Cyan)Copy deploy script: '$([System.IO.Path]::Combine($AppPath, "Source", "Deploy-Application.ps1"))' to '$([System.IO.Path]::Combine($SourcePath, "Deploy-Application.ps1"))'"
+                        Write-Information -MessageData "$($PSStyle.Foreground.Cyan)Copy deploy script: '$([System.IO.Path]::Combine($AppPath, "Source", "Invoke-AppDeployToolkit.ps1"))' to '$([System.IO.Path]::Combine($SourcePath, "Invoke-AppDeployToolkit.ps1"))'"
                         $params = @{
-                            Path        = $([System.IO.Path]::Combine($AppPath, "Source", "Deploy-Application.ps1"))
-                            Destination = $([System.IO.Path]::Combine($SourcePath, "Deploy-Application.ps1"))
+                            Path        = $([System.IO.Path]::Combine($AppPath, "Source", "Invoke-AppDeployToolkit.ps1"))
+                            Destination = $([System.IO.Path]::Combine($SourcePath, "Invoke-AppDeployToolkit.ps1"))
                         }
                         Copy-Item @params
 
@@ -243,7 +243,7 @@ process {
                         Path        = "$([System.IO.Path]::Combine($AppPath, "Source"))\*"
                         Destination = $SourcePath
                         Recurse     = $true
-                        Exclude     = "Deploy-Application.ps1"
+                        Exclude     = "Invoke-AppDeployToolkit.ps1"
                         Force       = $true
                     }
                     Copy-Item @params
@@ -375,7 +375,7 @@ process {
                 #region Create the intunewin package
                 # Adjust params for New-IntuneWin32AppPackage using PSAppDeployToolkit
                 $IntuneWinSetupFile = $Manifest.PackageInformation.SetupFile
-                if (Test-Path -Path $([System.IO.Path]::Combine($AppPath, "Source", "Deploy-Application.ps1"))) {
+                if (Test-Path -Path $([System.IO.Path]::Combine($AppPath, "Source", "Invoke-AppDeployToolkit.ps1"))) {
                     # Revert source path
                     $SourcePath = [System.IO.Path]::Combine($WorkingPath, $ApplicationName, "Source")
                     $IntuneWinSetupFile = "Deploy-Application.exe"
