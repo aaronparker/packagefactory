@@ -1,4 +1,3 @@
-#Requires -PSEdition Desktop
 #Requires -Modules MSAL.PS, IntuneWin32App
 <#
     .SYNOPSIS

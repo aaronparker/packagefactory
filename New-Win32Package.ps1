@@ -1,4 +1,3 @@
-#Requires -PSEdition Desktop
 #Requires -Modules Evergreen, VcRedist
 <#
     .SYNOPSIS
