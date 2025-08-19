@@ -30,7 +30,7 @@ jobs:
 
       - name: Test for packages
         id: test-package
-        shell: powershell
+        shell: pwsh
         working-directory: ${{ github.workspace }}
         run: |
           [System.Array] $Applications = ("${{ github.event.inputs.package }}").ToString() -split ","
@@ -50,12 +50,12 @@ jobs:
         with:
           modules-to-cache: "MSAL.PS::, IntuneWin32App::, Evergreen::, VcRedist::"
           updatable: true
-          shell: powershell
+          shell: pwsh
 
       # Create the app package
       - name: Authn to the Graph API and create packages
         id: upload-package
-        shell: powershell
+        shell: pwsh
         working-directory: ${{ github.workspace }}
         env:
           TENANT_ID: ${{ secrets.TENANT_ID }}
