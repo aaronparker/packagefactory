@@ -62,15 +62,18 @@ jobs:
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
         run: |
+          $ErrorActionPreference  = "Stop"
+          $InformationPreference = "Continue"
+          $ProgressPreference = "SilentlyContinue"
+
           Import-Module -Name "MSAL.PS", "IntuneWin32App", "Evergreen", "VcRedist" -Force
 
           # Authenticate to the Graph API; expects secrets to be passed into environment variables
-          Write-Information -MessageData "Authenticate to the Graph API" -InformationAction "Continue"
+          Write-Information -MessageData "$($PSStyle.Foreground.Cyan)Authenticate to the Graph API"
           $params = @{
               TenantId     = "$env:TENANT_ID"
               ClientId     = "$env:CLIENT_ID"
               ClientSecret = "$env:CLIENT_SECRET"
-              ErrorAction  = "Stop"
           }
           Connect-MSIntuneGraph @params
 
