@@ -34,8 +34,8 @@
     "FeaturedApp": false,
     "InformationURL": "https://tsa.at/de/",
     "PrivacyURL": "https://tsa.at/de/datenschutzerklaerung/",
-    "PSPackageFactoryGuid": "3bf6f619-ee2f-48d8-99e8-260e4d8d4316",
-    "Publisher": "Eurofit IT GmbH"
+    "PSPackageFactoryGuid": "9b7c9b29-9aa3-4aaa-86fe-9a317ec25953",
+    "Publisher": "TSA"
   },
   "PackageInformation": {
     "IconFile": "https://github.com/DrKrapfen/icons/raw/main/companyportal/Printer.png",
@@ -43,15 +43,15 @@
     "SetupFile": "Deploy-Application.exe",
     "SetupType": "EXE",
     "SourceFolder": "Source",
-    "Version": "1.0.1"
+    "Version": "1.0.2"
   },
   "Program": {
     "AllowAvailableUninstall": true,
     "DeviceRestartBehavior": "suppress",
-    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -NoProfile -File \"Deploy-Application.ps1\" -DeploymentType Install -DeployMode Silent",
+    "InstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -NoProfile -WindowStyle Hidden -File \"Deploy-Application.ps1\" -DeploymentType Install -DeployMode Silent",
     "InstallExperience": "user",
-    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -NoProfile -File \"Deploy-Application.ps1\" -DeploymentType Install -DeployMode Silent",
-    "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -NoProfile -File \"Deploy-Application.ps1\" -DeploymentType Uninstall -DeployMode Silent"
+    "InstallTemplate": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -NoProfile -WindowStyle Hidden -File \"Deploy-Application.ps1\" -DeploymentType Install -DeployMode Silent",
+    "UninstallCommand": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -NoProfile -WindowStyle Hidden -File \"Deploy-Application.ps1\" -DeploymentType Uninstall -DeployMode Silent"
   },
   "RequirementRule": {
     "Architecture": "x64",

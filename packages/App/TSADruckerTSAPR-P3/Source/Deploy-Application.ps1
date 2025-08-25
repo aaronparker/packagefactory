@@ -107,14 +107,14 @@ Try {
     ##* VARIABLE DECLARATION
     ##*===============================================
     ## Variables: Application
-    [String]$appVendor = 'Eurofit'
+    [String]$appVendor = 'TSA'
     [String]$appName = 'TSA Drucker Installieren TSAPR-P3'
     [String]$appVersion = ''
     [String]$appArch = 'x64'
     [String]$appLang = 'DE'
     [String]$appRevision = '01'
-    [String]$appScriptVersion = '1.0.1'
-    [String]$appScriptDate = '2025-08-14'
+    [String]$appScriptVersion = '1.0.2'
+    [String]$appScriptDate = '2025-08-18'
     [String]$appScriptAuthor = 'j.gruber'
     ##*===============================================
     ## Variables: Install Titles (Only set here to override defaults set by the toolkit)
