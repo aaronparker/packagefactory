@@ -40,15 +40,15 @@ Disables logging to file for the script. Default is: $false.
 
 .EXAMPLE
 
-powershell.exe -Command "& { & '.\Deploy-Application.ps1' -DeployMode 'Silent'; Exit $LastExitCode }"
+powershell.exe -Command "& { & '.\Invoke-AppDeployToolkit.ps1' -DeployMode 'Silent'; Exit $LastExitCode }"
 
 .EXAMPLE
 
-powershell.exe -Command "& { & '.\Deploy-Application.ps1' -AllowRebootPassThru; Exit $LastExitCode }"
+powershell.exe -Command "& { & '.\Invoke-AppDeployToolkit.ps1' -AllowRebootPassThru; Exit $LastExitCode }"
 
 .EXAMPLE
 
-powershell.exe -Command "& { & '.\Deploy-Application.ps1' -DeploymentType 'Uninstall'; Exit $LastExitCode }"
+powershell.exe -Command "& { & '.\Invoke-AppDeployToolkit.ps1' -DeploymentType 'Uninstall'; Exit $LastExitCode }"
 
 .EXAMPLE
 
@@ -69,8 +69,8 @@ This script does not generate any output.
 .NOTES
 
 Toolkit Exit Code Ranges:
-- 60000 - 68999: Reserved for built-in exit codes in Deploy-Application.ps1, Deploy-Application.exe, and AppDeployToolkitMain.ps1
-- 69000 - 69999: Recommended for user customized exit codes in Deploy-Application.ps1
+- 60000 - 68999: Reserved for built-in exit codes in Invoke-AppDeployToolkit.ps1, Deploy-Application.exe, and AppDeployToolkitMain.ps1
+- 69000 - 69999: Recommended for user customized exit codes in Invoke-AppDeployToolkit.ps1
 - 70000 - 79999: Recommended for user customized exit codes in AppDeployToolkitExtensions.ps1
 
 .LINK

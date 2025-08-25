@@ -3,27 +3,6 @@ using namespace System.Management.Automation
     Functions for use in New-Win32Package.ps1
 #>
 
-function Write-Msg ($Msg) {
-    $Message = [HostInformationMessage]@{
-        Message         = "[$(Get-Date -Format 'dd.MM.yyyy HH:mm:ss')]"
-        ForegroundColor = "Black"
-        BackgroundColor = "DarkCyan"
-        NoNewline       = $true
-    }
-    $params = @{
-        MessageData       = $Message
-        InformationAction = "Continue"
-        Tags              = "Microsoft365"
-    }
-    Write-Information @params
-    $params = @{
-        MessageData       = " $Msg"
-        InformationAction = "Continue"
-        Tags              = "Microsoft365"
-    }
-    Write-Information @params
-}
-
 function Test-IntuneWin32App {
     <#
         Return true of false if there's a matching Win32 package in the Intune tenant
@@ -33,7 +12,7 @@ function Test-IntuneWin32App {
         [System.Object] $Manifest
     )
 
-    Write-Msg -Msg "Retrieve existing Win32 applications in Intune"
+    Write-Information -MessageData "$($PSStyle.Foreground.Cyan)Retrieve existing Win32 applications in Intune"
     $ExistingApp = Get-IntuneWin32App | `
         Select-Object -Property * -ExcludeProperty "largeIcon" | `
         Where-Object { $_.notes -match "PSPackageFactory" } | `
@@ -43,19 +22,19 @@ function Test-IntuneWin32App {
 
     # Determine whether the new package should be imported
     if ($null -eq $ExistingApp) {
-        Write-Msg -Msg "Import new application: '$($Manifest.Information.DisplayName)'"
+        Write-Information -MessageData "$($PSStyle.Foreground.Cyan)Import new application: '$($Manifest.Information.DisplayName)'"
         Write-Output -InputObject $true
     }
     elseif ([System.String]::IsNullOrEmpty($ExistingApp.displayVersion)) {
-        Write-Msg -Msg "Found matching app but 'displayVersion' is null: '$($ExistingApp.displayName)'"
+        Write-Information -MessageData "$($PSStyle.Foreground.Cyan)Found matching app but 'displayVersion' is null: '$($ExistingApp.displayName)'"
         Write-Output -InputObject $false
     }
     elseif ([version]$Manifest.PackageInformation.Version -le [version]$ExistingApp.displayVersion) {
-        Write-Msg -Msg "Existing Intune app version is current: '$($ExistingApp.displayName)'"
+        Write-Information -MessageData "$($PSStyle.Foreground.Cyan)Existing Intune app version is current: '$($ExistingApp.displayName)'"
         Write-Output -InputObject $false
     }
     elseif ([version]$Manifest.PackageInformation.Version -gt [version]$ExistingApp.displayVersion) {
-        Write-Msg -Msg "Import application version: '$($Manifest.Information.DisplayName)'"
+        Write-Information -MessageData "$($PSStyle.Foreground.Cyan)Import application version: '$($Manifest.Information.DisplayName)'"
         Write-Output -InputObject $true
     }
     else {

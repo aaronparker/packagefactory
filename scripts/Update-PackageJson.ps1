@@ -1,5 +1,4 @@
 #Requires -Modules Evergreen, VcRedist
-#Requires -Version 6.0
 <#
     Update the App.json for packages
     Notice: Requires Powershell 6+ (due to ConvertFrom-Json -Depth parameter)

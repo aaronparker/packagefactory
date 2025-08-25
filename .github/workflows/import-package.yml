@@ -1,7 +1,7 @@
 # Creates a Win32 package and imports into a target Intune tenant
 # Uses secrets on the repo - TENANT_ID, CLIENT_ID, and CLIENT_SECRET
 # to import the package into a target tenant
-name: Import Intune Win32 package
+name: Import Win32 package
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -30,7 +30,7 @@ jobs:
 
       - name: Test for packages
         id: test-package
-        shell: powershell
+        shell: pwsh
         working-directory: ${{ github.workspace }}
         run: |
           [System.Array] $Applications = ("${{ github.event.inputs.package }}").ToString() -split ","
@@ -50,27 +50,30 @@ jobs:
         with:
           modules-to-cache: "MSAL.PS::, IntuneWin32App::, Evergreen::, VcRedist::"
           updatable: true
-          shell: powershell
+          shell: pwsh
 
       # Create the app package
       - name: Authn to the Graph API and create packages
         id: upload-package
-        shell: powershell
+        shell: pwsh
         working-directory: ${{ github.workspace }}
         env:
           TENANT_ID: ${{ secrets.TENANT_ID }}
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
         run: |
+          $ErrorActionPreference  = "Stop"
+          $InformationPreference = "Continue"
+          $ProgressPreference = "SilentlyContinue"
+
           Import-Module -Name "MSAL.PS", "IntuneWin32App", "Evergreen", "VcRedist" -Force
 
           # Authenticate to the Graph API; expects secrets to be passed into environment variables
-          Write-Information -MessageData "Authenticate to the Graph API" -InformationAction "Continue"
+          Write-Information -MessageData "$($PSStyle.Foreground.Cyan)Authenticate to the Graph API"
           $params = @{
               TenantId     = "$env:TENANT_ID"
               ClientId     = "$env:CLIENT_ID"
               ClientSecret = "$env:CLIENT_SECRET"
-              ErrorAction  = "Stop"
           }
           Connect-MSIntuneGraph @params
 
