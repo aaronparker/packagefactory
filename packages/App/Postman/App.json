@@ -8,14 +8,14 @@
   },
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "Postman-win64-11.48.4-Setup.exe",
-    "Version": "11.48.4",
+    "SetupFile": "Postman-win64-11.64.7-Setup.exe",
+    "Version": "11.64.7",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://raw.githubusercontent.com/kendaleiv/chocolatey-postman/main/postman-logo.png"
   },
   "Information": {
-    "DisplayName": "Postman 11.48.4 x64",
+    "DisplayName": "Postman 11.64.7 x64",
     "Description": "Postman helps you be more efficient while working with APIs. Using Postman, you can construct complex HTTP requests quickly, organize them in collections and share them with your co-workers.",
     "Publisher": "Postdot Technologies, Inc.",
     "InformationURL": "https://www.postman.com/",
@@ -43,7 +43,7 @@
       "Path": "%LOCALAPPDATA%\\Postman",
       "FileOrFolder": "Postman.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "11.48.4",
+      "VersionValue": "11.64.7",
       "Check32BitOn64System": "false"
     }
   ],

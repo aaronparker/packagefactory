@@ -15,15 +15,15 @@
       "DetectionMethod": "Version",
       "FileOrFolder": "SoapUI-5.7.1.exe",
       "Operator": "greaterThanOrEqual",
-      "Path": "C:\\Program Files\\SmartBear\\SoapUI-5.8.0\\bin",
+      "Path": "C:\\Program Files\\SmartBear\\SoapUI-5.9.1\\bin",
       "Type": "File",
-      "VersionValue": "5.8.0"
+      "VersionValue": "5.9.1"
     }
   ],
   "Information": {
     "Categories": [],
     "Description": "SoapUI is an open-source web service testing application for Simple Object Access Protocol and representational state transfers. Its functionality covers web service inspection, invoking, development, simulation and mocking, functional testing, load and compliance testing.",
-    "DisplayName": "SoapUI 5.8.0",
+    "DisplayName": "SoapUI 5.9.1",
     "FeaturedApp": false,
     "InformationURL": "http://www.soapui.org/",
     "PrivacyURL": "https://smartbear.com/privacy/?_ga=2.37596832.1866222035.1690557870-1703566472.1690557870",
@@ -33,10 +33,10 @@
   "PackageInformation": {
     "IconFile": "https://raw.githack.com/riezebosch/BoxstarterPackages/master/soapui/soapui.png",
     "OutputFolder": "Package",
-    "SetupFile": "SoapUI-x64-5.8.0.exe",
+    "SetupFile": "SoapUI-x64-5.9.1.exe",
     "SetupType": "EXE",
     "SourceFolder": "Source",
-    "Version": "5.8.0"
+    "Version": "5.9.1"
   },
   "Program": {
     "DeviceRestartBehavior": "suppress",

@@ -17,13 +17,13 @@
       "Operator": "greaterThanOrEqual",
       "Path": "C:\\Program Files (x86)\\TeamViewer",
       "Type": "File",
-      "VersionValue": "15.66.5"
+      "VersionValue": "15.69.5"
     }
   ],
   "Information": {
     "Categories": [],
     "Description": "Remote control any computer or Mac over the internet within seconds or use TeamViewer for online meetings. Free for private use. Commercial users are welcome to use for trial purposes.",
-    "DisplayName": "TeamViewer 15.66.5",
+    "DisplayName": "TeamViewer 15.69.5",
     "InformationURL": "http://www.teamviewer.com/",
     "PrivacyURL": "https://www.teamviewer.com/en/eula/",
     "PSPackageFactoryGuid": "12ed5efa-3fd1-4ecd-8bb4-6ffd8f6e3f92",
@@ -35,7 +35,7 @@
     "SetupFile": "TeamViewer_Setup.exe",
     "SetupType": "EXE",
     "SourceFolder": "Source",
-    "Version": "15.66.5"
+    "Version": "15.69.5"
   },
   "Program": {
     "DeviceRestartBehavior": "suppress",

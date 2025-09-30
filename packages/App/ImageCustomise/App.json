@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "ImageCustomise",
-    "Filter": "Get-EvergreenApp -Name \"WindowsEnterpriseDefaults\" | Where-Object { $_.Type -eq \"intunewin\" } | Select-Object -First 1",
+    "Filter": " ",
     "Title": "Windows Enterprise Defaults",
     "Language": "en-US",
     "Architecture": "x64"

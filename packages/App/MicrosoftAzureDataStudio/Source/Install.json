@@ -4,9 +4,9 @@
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "PackageInformation": {
-    "SetupFile": "azuredatastudio-windows-setup-1.51.1.exe",
+    "SetupFile": "azuredatastudio-windows-setup-1.52.0.exe",
     "SetupType": "EXE",
-    "Version": "1.51.1"
+    "Version": "1.52.0"
   },
   "PostInstall": {
     "Copy": [],
