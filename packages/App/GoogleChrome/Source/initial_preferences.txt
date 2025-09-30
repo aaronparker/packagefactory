@@ -1,5 +1,5 @@
 {
-    "homepage": "https://www.office.com",
+    "homepage": "https://m365.cloud.microsoft/?auth=2",
     "homepage_is_newtabpage": false,
     "browser": {
         "show_home_button": true
