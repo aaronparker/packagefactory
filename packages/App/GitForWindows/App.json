@@ -17,13 +17,13 @@
       "Operator": "greaterThanOrEqual",
       "Path": "C:\\Program Files\\Git",
       "Type": "File",
-      "VersionValue": "2.49.0"
+      "VersionValue": "2.51.0.2"
     }
   ],
   "Information": {
     "Categories": [],
     "Description": "Git for Windows focuses on offering a lightweight, native set of tools that bring the full feature set of the Git SCM to Windows while providing appropriate user interfaces for experienced Git users and novices alike.",
-    "DisplayName": "GitForWindows 2.49.0 x64",
+    "DisplayName": "GitForWindows 2.51.0.2 x64",
     "FeaturedApp": false,
     "InformationURL": "https://git-for-windows.github.io",
     "PrivacyURL": "https://git-for-windows.github.io",
@@ -33,10 +33,10 @@
   "PackageInformation": {
     "IconFile": "https://gitforwindows.org/img/git_logo.png",
     "OutputFolder": "Package",
-    "SetupFile": "Git-2.49.0-64-bit.exe",
+    "SetupFile": "Git-2.51.0.2-64-bit.exe",
     "SetupType": "EXE",
     "SourceFolder": "Source",
-    "Version": "2.49.0"
+    "Version": "2.51.0.2"
   },
   "Program": {
     "DeviceRestartBehavior": "suppress",

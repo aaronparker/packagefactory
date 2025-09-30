@@ -5,9 +5,9 @@
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "PackageInformation": {
-    "SetupFile": "pdf24-creator-11.26.1.msi",
+    "SetupFile": "pdf24-creator-11.28.2.msi",
     "SetupType": "MSI",
-    "Version": "11.26.1"
+    "Version": "11.28.2"
   },
   "PostInstall": {
     "Copy": [],

@@ -17,13 +17,13 @@
       "Operator": "greaterThanOrEqual",
       "Path": "C:\\Program Files\\PDF24",
       "Type": "File",
-      "VersionValue": "11.26.1"
+      "VersionValue": "11.28.2"
     }
   ],
   "Information": {
     "Categories": [],
     "Description": "The free, PDF24 PDF Creator is a program to create PDF files from almost any application.  The PDF creator functions as a virtual PDF printer and provides some PDF editing features.",
-    "DisplayName": "PDF24 Creator 11.26.1",
+    "DisplayName": "PDF24 Creator 11.28.2",
     "InformationURL": "https://tools.pdf24.org/en/creator",
     "PrivacyURL": "https://raw.githubusercontent.com/teknowledgist/Chocolatey-packages/master/automatic/pdf24/LICENSE.txt",
     "PSPackageFactoryGuid": "f33e088f-bf7e-4696-9ea5-ae748a696c36",
@@ -32,10 +32,10 @@
   "PackageInformation": {
     "IconFile": "https://cdn.jsdelivr.net/gh/teknowledgist/Chocolatey-packages@cc4b1558ccc7853df6d0cb4f1f79cb63caede42b/Icons/pdf24_icon.png",
     "OutputFolder": "Package",
-    "SetupFile": "pdf24-creator-11.26.1.msi",
+    "SetupFile": "pdf24-creator-11.28.2.msi",
     "SetupType": "MSI",
     "SourceFolder": "Source",
-    "Version": "11.26.1"
+    "Version": "11.28.2"
   },
   "Program": {
     "DeviceRestartBehavior": "basedOnReturnCode",

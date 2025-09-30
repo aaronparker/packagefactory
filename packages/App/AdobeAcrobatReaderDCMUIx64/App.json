@@ -17,13 +17,13 @@
       "Operator": "greaterThanOrEqual",
       "Path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat",
       "Type": "File",
-      "VersionValue": "25.001.20467"
+      "VersionValue": "25.001.20693"
     }
   ],
   "Information": {
     "Categories": [],
     "Description": "The leading PDF viewer to print, sign, and annotate PDFs.",
-    "DisplayName": "Adobe Acrobat Reader DC 25.001.20467 x64",
+    "DisplayName": "Adobe Acrobat Reader DC 25.001.20693 x64",
     "FeaturedApp": false,
     "InformationURL": "https://www.adobe.com/acrobat/pdf-reader.html",
     "PrivacyURL": "https://www.adobe.com/privacy.html",
@@ -33,10 +33,10 @@
   "PackageInformation": {
     "IconFile": "https://github.com/aaronparker/icons/raw/main/icons/Adobe-AcrobatReader.png",
     "OutputFolder": "Package",
-    "SetupFile": "AcroRdrDCx642500120467_MUI.exe",
+    "SetupFile": "AcroRdrDCx642500120693_MUI.exe",
     "SetupType": "EXE",
     "SourceFolder": "Source",
-    "Version": "25.001.20467"
+    "Version": "25.001.20693"
   },
   "Program": {
     "DeviceRestartBehavior": "suppress",
