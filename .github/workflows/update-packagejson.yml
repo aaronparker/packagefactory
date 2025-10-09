@@ -42,6 +42,7 @@ jobs:
         id: update-json
         shell: pwsh
         run: |
+          Update-Evergreen
           $params = @{
               Path            = "${{ github.workspace }}"
               PackageFolder   = "packages"

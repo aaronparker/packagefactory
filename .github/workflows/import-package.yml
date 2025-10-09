@@ -67,6 +67,7 @@ jobs:
           $ProgressPreference = "SilentlyContinue"
 
           Import-Module -Name "MSAL.PS", "IntuneWin32App", "Evergreen", "VcRedist" -Force
+          Update-Evergreen
 
           # Authenticate to the Graph API; expects secrets to be passed into environment variables
           Write-Information -MessageData "$($PSStyle.Foreground.Cyan)Authenticate to the Graph API"
