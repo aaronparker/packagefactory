@@ -1,8 +1,8 @@
 {
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "windowsdesktop-runtime-9.0.9-win-x64.exe",
-    "Version": "9.0.9"
+    "SetupFile": "windowsdesktop-runtime-9.0.10-win-x64.exe",
+    "Version": "9.0.10"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
