@@ -8,14 +8,14 @@
   },
   "PackageInformation": {
     "SetupType": "MSI",
-    "SetupFile": "zoomrooms-6.6.1.6661-x64.msi",
-    "Version": "6.6.1.6661",
+    "SetupFile": "zoomrooms-6.6.5.6792-x64.msi",
+    "Version": "6.6.5.6792",
     "SourceFolder": "Source",
     "OutputFolder": "Package",
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/ZoomRooms.png"
   },
   "Information": {
-    "DisplayName": "Zoom Meetings Client 6.6.1.6661 x64",
+    "DisplayName": "Zoom Meetings Client 6.6.5.6792 x64",
     "Description": "Conference rooms that make it easy to run or join video meetings with a tap of a button.",
     "Publisher": "Zoom",
     "InformationURL": "https://explore.zoom.us/en/products/zoom-rooms/",
@@ -43,7 +43,7 @@
       "Path": "C:\\Program Files\\ZoomRooms\\bin",
       "FileOrFolder": "ZoomRooms.exe",
       "Operator": "greaterThanOrEqual",
-      "VersionValue": "6.6.1.6661",
+      "VersionValue": "6.6.5.6792",
       "Check32BitOn64System": "false"
     }
   ],
