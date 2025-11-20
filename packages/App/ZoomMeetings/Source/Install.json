@@ -2,7 +2,7 @@
   "PackageInformation": {
     "SetupType": "MSI",
     "SetupFile": "ZoomInstallerFull.msi",
-    "Version": "6.6.6.19875"
+    "Version": "6.6.10.22255"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
