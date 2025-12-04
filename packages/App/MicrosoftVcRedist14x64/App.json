@@ -1,8 +1,8 @@
 {
   "Application": {
-    "Name": "MicrosoftVcRedist2022x64",
+    "Name": "MicrosoftVcRedist14x64",
     "Filter": "Get-VcList -Release \"2022\" -Architecture \"x64\"",
-    "Title": "Microsoft Visual C++ Redistributable for Visual Studio 2022",
+    "Title": "Visual C++ v14 Redistributable",
     "Language": "en-US",
     "Architecture": "x64"
   },
@@ -15,8 +15,8 @@
     "IconFile": "https://github.com/aaronparker/icons/raw/main/companyportal/Microsoft-VisualStudioCode2022.png"
   },
   "Information": {
-    "DisplayName": "Microsoft Visual C++ Redistributable for Visual Studio 2022 14.44.35211.0 x64",
-    "Description": "This package installs run-time components of Visual C++ libraries and can be used to run such applications on a computer even if it does not have Visual Studio 2022 installed.",
+    "DisplayName": "Microsoft Visual C++ 14 Redistributable 14.44.35211.0 x64",
+    "Description": "This package installs run-time components of Visual C++ libraries and can be used to run such applications on a computer even if it does not have Visual Studio 2026 installed.",
     "Publisher": "Microsoft",
     "InformationURL": "https://visualstudio.microsoft.com/downloads/",
     "PrivacyURL": "https://privacy.microsoft.com/privacystatement",
