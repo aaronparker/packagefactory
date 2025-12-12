@@ -1,8 +1,8 @@
 {
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "VC_redist.x86.exe",
-    "Version": "14.44.35211.0"
+    "SetupFile": "vc_redist.x86.exe",
+    "Version": "14.50.35719.0"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
