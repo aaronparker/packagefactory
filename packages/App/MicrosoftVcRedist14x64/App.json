@@ -1,7 +1,7 @@
 {
   "Application": {
     "Name": "MicrosoftVcRedist14x64",
-    "Filter": "Get-VcList -Release \"2022\" -Architecture \"x64\"",
+    "Filter": "Get-VcList -Release \"14\" -Architecture \"x64\"",
     "Title": "Visual C++ v14 Redistributable",
     "Language": "en-US",
     "Architecture": "x64"
