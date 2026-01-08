@@ -1,8 +1,8 @@
 {
   "PackageInformation": {
     "SetupType": "EXE",
-    "SetupFile": "Greenshot-INSTALLER-1.3.304-RELEASE.exe",
-    "Version": "1.3.304"
+    "SetupFile": "Greenshot-INSTALLER-1.3.312-RELEASE.exe",
+    "Version": "1.3.312"
   },
   "LogPath": "C:\\ProgramData\\Microsoft\\IntuneManagementExtension\\Logs",
   "InstallTasks": {
