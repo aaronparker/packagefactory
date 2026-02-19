@@ -48,7 +48,7 @@ process {
     $AppSourceFolder = [System.IO.Path]::Combine($AppSourceFolder, "Source")
 
     # Required packaging variables
-    $ScriptsFolder = [System.IO.Path]::Combine($PSScriptRoot, "Scripts")
+    $ScriptsFolder = [System.IO.Path]::Combine($AppSourceFolder, "Scripts")
 
     # Icon file - download the file, if the property is a URL
     if ($AppData.PackageInformation.IconFile -match "^http") {
