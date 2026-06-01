@@ -50,7 +50,12 @@ foreach ($ManifestJson in $ManifestList) {
         # Get the details of the application
         Write-Host -ForegroundColor "Cyan" "Application: $($Manifest.Application.Title)"
         Write-Host -ForegroundColor "Cyan" "Running: $($Manifest.Application.Filter)."
-        $AppUpdate = Invoke-Expression -Command $Manifest.Application.Filter -ErrorAction "SilentlyContinue" -WarningAction "SilentlyContinue"
+        try {
+            $AppUpdate = Invoke-Expression -Command $Manifest.Application.Filter -ErrorAction "SilentlyContinue" -WarningAction "SilentlyContinue"
+        }
+        catch {
+            Write-Warning -Message "Error running filter: $($Manifest.Application.Filter) with: $($_.Exception.Message)"
+        }
 
         if ([System.String]::IsNullOrEmpty($AppUpdate.Version)) {
             Write-Warning -Message "Returned null version value from: $($Manifest.Application.Filter)"
